@@ -8,19 +8,21 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
-                </div><br>
+                <div class="message-div">
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                </div>
             {% endfor %}
         {% endif %}
     {% endwith%}
     
     <H1>My Medic Apps - Protocol Tools</H1><hr>
-
+    <br>
     <P>
         Welcome to MyMedicApps.  This site contains protocols for Mecklenburg EMS Agency, as well as common tools and references.
     </P>
-    <br>
+    
     <p>
         Please Register and/or Log In at the top right, in order to create default settings to show/hide the information that is relavent to you.  
     </p>

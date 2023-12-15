@@ -30,7 +30,7 @@
             {% if CurrUser %}
                 <p>Username here</p>
             {% else %}
-                <button class="btn-login">Login</button>
+                <a class="btn-login" href="{{url_for('users.login')}}">Login\Register</button>
             {% endif %}
             </div>
         </div>
