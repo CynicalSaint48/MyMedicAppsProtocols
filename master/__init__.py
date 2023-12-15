@@ -9,17 +9,16 @@ from master.config import Config
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
-SECRET_KEY = 'thisisnotasecret'
-
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
-    print(SECRET_KEY)
-
     from master.protocols.routes import protocols
     from master.main.routes import main
+    from master.users.routes import users
     app.register_blueprint(protocols)
     app.register_blueprint(main)
+    app.register_blueprint(users)
 
     return app
+

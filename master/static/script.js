@@ -7,7 +7,7 @@ const protoList = document.querySelector("[proto-list]");
 const medsList = document.querySelector("[meds-list]");
 const otherList = document.querySelector("[other-list]");
 const modal = document.querySelector('.modal');
-const openModal = document.querySelector('.pt-info-div');
+const openModal = document.querySelector('.pt-info-div2');
 const closeModal = document.querySelector('.close-dialog-btn');
 
 menuIconButton.addEventListener("click", () => {

@@ -27,7 +27,7 @@ a {
     --light-txt: #aeb2b7;
     --header-height: 50px;
     --sidebar-width-open: 265px;
-    --sidebar-width: 50px;
+    --sidebar-width: 60px;
     --animation-duration: 200ms;
     --animation-timing-curve: ease-in-out;
  }
@@ -59,6 +59,9 @@ a {
    color: var(--light-txt);
    margin: 0;
    cursor: pointer;
+   width: 100%;
+   align-content: right;
+   margin-right: 10px;
  }
 
  .pt-info-labels {
@@ -89,6 +92,7 @@ a {
 .menu-icon-btn {
     background: none;
     border: none;
+    padding-left: 15px;
 }
 
  .menu-icon-right {
@@ -121,6 +125,19 @@ a {
  .menu-icon-right.hidden {
     display: none;
  }
+ .container {
+    display: flex;
+ }
+
+ .container1 {
+   /* display: flex; */
+   flex-wrap: wrap;
+}
+
+.container1 > * {
+   flex-shrink: 1;
+   flex-grow: 0;
+}
 
  .sidebar.open {
     width: var(--sidebar-width-open);
@@ -128,12 +145,15 @@ a {
     padding: 0;
     box-shadow:  0 1px 10px 0 rgba(0, 0, 0, .4);
     transition: width var(--animation-duration) var(--animation-timing-curve);
-
+    height: 100%;
+    flex-grow: 1;
+    
+    min-height: 100vh;
  }
 
  .sidebar {
     flex-shrink: 0;
-    overflow-x: hidden;
+    overflow-y: hidden;
     width: var(--sidebar-width);
     display: flex;
     flex-direction: column;
@@ -143,6 +163,11 @@ a {
     color: var(--light-txt);
     box-shadow:  0 1px 10px 0 rgba(0, 0, 0, .4);
     transition: width var(--animation-duration) var(--animation-timing-curve);
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    min-height: 100vh;
  }
 
  .sidebar .hidden-sidebar {
@@ -172,7 +197,7 @@ a {
  .top-list-button {
     flex-shrink: 0;
     margin: 0;
-    padding: 5px 10px;
+    padding: 5px 15px;
     background-color: var(--blue-bg);
     border: 0;
     display: flex;
@@ -269,9 +294,7 @@ a {
     height: 100%;
 }
 
- .container {
-    display: flex;
- }
+
 
  .content {
     margin: 1rem;
@@ -447,9 +470,17 @@ a {
 }
 
 @media (min-width: 600px) {
+   .bodyContainer {
+      width: 1200px;
+      margin: 0 auto;
+   }
    .accordian {
       min-width: 1100px;
    }
+   .content1 h1 {
+      min-width: 1100px
+   }
+   
 
    .agency:before {
       content: 'Mecklenburg EMS Agency'
@@ -488,4 +519,62 @@ ul li ul li ul {
 
 ol ul {
    list-style-type: disc;
+}
+
+.pt-info-div2 {
+   font-size: 10px;
+   background: none;
+   border: none;
+   text-decoration: none;
+   color: var(--light-txt);
+   margin: 5;
+   cursor: pointer;
+   width: 100%;
+   justify-content: left;
+}
+
+.pt-info-div2 hr {
+   opacity: 50%;
+}
+
+hr {
+   width: 100%;
+   height: 1px;
+   opacity: 50%;
+}
+
+.pt-info-div2 p {
+   display: flex;
+   gap: 0.2rem;
+   flex-wrap: nowrap;
+   justify-content: left;
+}
+
+.mvdown {
+   min-height: 5px;
+}
+
+.siteName {
+   display: flex;
+   height: 100%;
+   margin-left: 20px;
+   align-content: center;
+   margin-bottom: 31px;
+}
+
+.siteName p {
+   margin: 0;
+}
+
+.btn-login {
+   background: none;
+   border: none;
+   text-decoration: none;
+   color: var(--teal-accent);
+   cursor: pointer;
+}
+
+.invalid-feedback {
+   color: red;
+   font-size: large;
 }

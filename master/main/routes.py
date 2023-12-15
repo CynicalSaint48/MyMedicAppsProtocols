@@ -8,8 +8,6 @@ main = Blueprint('main', __name__)
 @main.route("/")
 @main.route("/home")
 def home():
-
-    print('Running main.home')
     if not session:
         session['ptMonths'] = 0.0
         session['ptYears'] = 15.0
@@ -25,7 +23,7 @@ def home():
         ptKgs = session['ptKgs']
 
     page = request.args.get('page', 1, type=int)
-    return render_template('/protocols/protocol_base.html', varTitle='Title Working', ptMonths=ptMonths, ptYears=ptYears, ptLbs=ptLbs, ptKgs=ptKgs)
+    return render_template('home.html', varTitle='Home', ptMonths=ptMonths, ptYears=ptYears, ptLbs=ptLbs, ptKgs=ptKgs)
 
 def setPt(months=0, years=0, lbs=0):
     print('Running setPt')

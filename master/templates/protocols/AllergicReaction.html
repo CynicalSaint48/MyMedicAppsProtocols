@@ -1,510 +1,218 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyMedicApps</title>
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
-</head>
-<body>
-    <header class="header">
-        <button class="menu-icon-btn" data-menu-icon-btn>
-            <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon-right"><path d="M4 6h16v2H4zm4 5h12v2H8zm5 5h7v2h-7z"></path></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon-left hidden"><path d="M4 11h12v2H4zm0-5h16v2H4zm0 12h7.235v-2H4z"></path></svg>
-        </button>
-        <div class="siteName">&ensp; MyMedicApps</div>
-        <button class="pt-info-div">
-            <div class="pt-info-labels">
-                <div>Pt Age:</div>
-                <div>Pt Weight:</div>
-            </div>
-            <div class="pt-info-values">
-                <div class="pt-age-text">00 years</div>
-                <div class="pt-weight-text">
-                    <div class="pt-kgs-text">000 kgs</div>
-                </div>
-            </div>
-        </button>
-    </header>
-
-    <div class="container">
-        <aside class="sidebar" data-sidebar-state>
-            <div class="middle-sidebar">
-                <ul>
-                    <li>
-                        <button class="top-list-button"><a href="{{ url_for('main.home')}}"><i class="fa-solid fa-gauge fa-lg"></i><div class="hidden-sidebar">Dashboard</div></a></button>
-                    </li>
-                    <li id="proto-id">                     
-                        <button class="top-list-button" data-proto-btn><a href="{{ url_for('main.home')}}" onclick="return false"><i class="fa-solid fa-notes-medical fa-lg"></i><div class="hidden-sidebar">Protocols</div></a></button>
-                        <ul proto-list id="proto-list-id" style="display:none">
-                            <li>
-                                <button class="bottom-list-button"><a href="{{ url_for('main.home')}}"><div class="hidden-sidebar">Abdominal Pain</div></a>
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Allergic Reaction  Specific Allergy HTML Page</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id="allergicNarrative" class="accordian__input">
+            <label for="allergicNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Objective</H3>
+                    <ul class="objectivelist">
+                        <li>Restore and maintain optimal respiratory and cardiovascular status</li>
+                        <li>Limit further exposure to allergen</li>
+                        <li>Limit recurrent symptoms</li>
+                    </ul>
+                <br><br><hr><br>
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul>
+                            <li>True anaphylaxis is a severe systemic reaction to an allergen causing a massive release 
+                                of histamine and other chemical mediators
                             </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="{{ url_for('protocols.allergy')}}"><div class="hidden-sidebar">Allergic Reaction</div></a>
+                            <li> Although anything can cause anaphylaxis, the most common offenders include:
+                                <ul>
+                                    <li>Antibiotics (penicillins, sulfa, vancomycin)</li>
+                                    <li>Aspirin</li>
+                                    <li>Bee stings</li>
+                                    <li>Contrast dye</li>
+                                    <li>Foods (i.e. peanuts, shellfish)</li>
+                                    <li>NSAID's</li>
+                                </ul>
                             </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="{{ url_for('main.home')}}"><div class="hidden-sidebar">Bites and Envenomations</div></a>
+                            <li>Anaphylaxis may cause:
+                                <ul>
+                                    <li>Generalized urticaria and pruritus</li>
+                                    <li>Hypotension due to vasodilation</li>
+                                    <li>Respiratory distress due to Bronchospasm</li>
+                                    <li>Upper airway obstruction due to edema</li>
+                                </ul>
                             </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="{{ url_for('main.home')}}"><div class="hidden-sidebar">Animal Bites</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="{{ url_for('main.home')}}"><div class="hidden-sidebar">Assault</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Back Pain</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Burns</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">CO, Cyanide and Hazmat</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Cardiac Arrest</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Chest Pain - Non Cardiac</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Choking</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Convulsions (Seizure)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Diabetic Problems</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Electrocution</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Eye Problems</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Falls</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Headache</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Heart Problems</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Heat/Cold Exposure</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Hemorrhage - Medical Etiology</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Industrial</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Overdose</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Pregnancy and Childbirth</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Psychiatric</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Sick Person</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Viral Hemorrhagic Fever</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">High Consequence Pathogen</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Stab Wound</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Stroke</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Traffic Accident</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Unconscious</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Unknown Problem</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Transfer - Interfacility</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Gunshot Wound</div></a>
-                            </li>                            
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Pedestrian Struck</div></a>
-                            </li>
+                        </ul><br>
+                    </div>
+                <h3>Clinical Presentation</h3>
+                    <p class="presentationText">
+                        <ul>
+                            <li>Difficulty breathing, swallowing</li>
+                            <li>Exposure to allergen (may not be realized)</li>
+                            <li>Hypotension</li>
+                            <li>Nausea and vomiting</li>
+                            <li>Possible anxiety or agitation</li>
+                            <li>Rapidly progressing upper airway edema with stridor, increased secretions, dysphagia</li>
+                            <li>Urticaria with or without pruritus</li>
+                            <li>Wheezing</li>
                         </ul>
-                    </li>
-                    <li id="meds-id">
-                        <button class="top-list-button" data-meds-btn><a href="#"><i class="fa-solid fa-file-prescription fa-lg"></i><div class="hidden-sidebar">&ensp;Medications</div></a></button>
-                        <ul meds-list style="display:none">
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Acetaminophen (Tylenol)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Adenosine (Adenocard)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Albuterol (Proventil)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Aspirin</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Atropine</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Calcium Gluconate</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Cefazolin (Ancef)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Dexamethason (Decadron)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Diltiazem (Cardizem)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Diphenhydramine (Benadryl)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Dopamine (10mcg/kg/min)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Dopamine (15mcg/kg/min)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Dopamine (20mcg/kg/min)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Epinephrine (Allergic Reaction)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Epinephrine (Respiratory)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Epinephrine (Cardiac Arrest)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Epinephrine (Racemic)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Fentanyl</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Gulcagon (GlucaGen)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Dextrose (D10)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Ketamine</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Labetalol</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Lidocaine (Cardiac Arrest)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Lidocaine (VT)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Lidocaine (IO Analgesia)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Mag Sulfate (Cardiac Arrest)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Mag Sulfate (Respiratory)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Mag Sulfate (Eclampsia)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Midazolam (Versed)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Naloxone (Narcan)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Nitroglycerine (Angina)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Ondansetron (Zofran)</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Sodium Bicarb</div></a>
-                            </li>
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Sodium Thiosulfate</div></a>
-                            </li>
+                    </p><br>
+                <h3>Differential Diagnosis</h3>
+                    <p class="differentialText">
+                        <ul>
+                            <li>Angioedema</li>
+                            <li>Aspiration / airway obstruction</li>
+                            <li>Asthma / COPD</li>
+                            <li>Cardiac dysrhtymia</li>
+                            <li>Congestive heart failure</li>
+                            <li>Pulmonary embolus</li>
+                            <li>Shock</li>
                         </ul>
-                    </li>
-                    <li id="other-id">
-                        <button class="top-list-button" data-other-btn><a href="#"><i class="fa-solid fa-truck-medical fa-lg"></i><div class="hidden-sidebar">Other</div></a>
-                        </button>
-                        <ul other-list id="other-list-id" style="display:none">
-                            <li>
-                                <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Shift Tracker</div></a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>               
+                    </p><hr><br>
             </div>
-        </aside>
-          <div class="container content1">
-        <div class="accordian">
-            <H1>Allergic Reaction  Specific Allergy HTML Page</H1><hr>
-            <div>
-                <input type="checkbox" name="accordian" id="allergicNarrative" class="accordian__input">
-                <label for="allergicNarrative" class="accordian__label">Narrative Protocol</label>
-                <div class="narrativeSection">
-                    <H3>Objective</H3>
-                        <ul class="objectivelist">
-                            <li>Restore and maintain optimal respiratory and cardiovascular status</li>
-                            <li>Limit further exposure to allergen</li>
-                            <li>Limit recurrent symptoms</li>
-                        </ul>
-                    <br><br><hr><br>
-                    <h3>Introduction</h3>
-                        <div class="introText">
-                            <ul>
-                                <li>True anaphylaxis is a severe systemic reaction to an allergen causing a massive release 
-                                    of histamine and other chemical mediators
-                                </li>
-                                <li> Although anything can cause anaphylaxis, the most common offenders include:
-                                    <ul>
-                                        <li>Antibiotics (penicillins, sulfa, vancomycin)</li>
-                                        <li>Aspirin</li>
-                                        <li>Bee stings</li>
-                                        <li>Contrast dye</li>
-                                        <li>Foods (i.e. peanuts, shellfish)</li>
-                                        <li>NSAID's</li>
-                                    </ul>
-                                </li>
-                                <li>Anaphylaxis may cause:
-                                    <ul>
-                                        <li>Generalized urticaria and pruritus</li>
-                                        <li>Hypotension due to vasodilation</li>
-                                        <li>Respiratory distress due to Bronchospasm</li>
-                                        <li>Upper airway obstruction due to edema</li>
-                                    </ul>
-                                </li>
-                            </ul><br>
-                    <h3>Clinical Presentation</h3>
-                        <p class="presentationText">
-                            <ul>
-                                <li>Difficulty breathing, swallowing</li>
-                                <li>Exposure to allergen (may not be realized)</li>
-                                <li>Hypotension</li>
-                                <li>Nausea and vomiting</li>
-                                <li>Possible anxiety or agitation</li>
-                                <li>Rapidly progressing upper airway edema with stridor, increased secretions, dysphagia</li>
-                                <li>Urticaria with or without pruritus</li>
-                                <li>Wheezing</li>
-                            </ul>
-                        </p><br>
-                    <h3>Differential Diagnosis</h3>
-                        <p class="differentialText">
-                            <ul>
-                                <li>Angioedema</li>
-                                <li>Aspiration / airway obstruction</li>
-                                <li>Asthma / COPD</li>
-                                <li>Cardiac dysrhtymia</li>
-                                <li>Congestive heart failure</li>
-                                <li>Pulmonary embolus</li>
-                                <li>Shock</li>
-                            </ul>
-                        </p><hr><br>
-                </div>
-            </div>
-            <div>
-                <input type="checkbox" name="accordian" id="allergicBasicTreatment" class="accordian__input">
-                <label for="allergicBasicTreatment" class="accordian__label">BLS Treatment</label>                
-                <div class="basicTreatmentSection">
-                    <h3>Basic Medical Care</h3>
-                        <p class="basicCare orderedList">
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="allergicBasicTreatment" class="accordian__input">
+            <label for="allergicBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Attempt to remove source of exposure (e.g. stinger) as possible</li>
+                        <li><a href="">Epinephrine (1:1000)</a> IM for any evidence of anaphylaxis
                             <ol>
-                                <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
-                                <li>Assess vital signs</li>
-                                <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
-                                <li>Attempt to remove source of exposure (e.g. stinger) as possible</li>
-                                <li><a href="">Epinephrine (1:1000)</a> IM for any evidence of anaphylaxis
-                                    <ol>
-                                        <li>Adult: 0.3 mg
-                                            <ul><li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li></ul>
-                                        </li>
-                                        <li>Pediatric: 0.01 mg</li>
-                                    </ol>
+                                <li>Adult: 0.3 mg
+                                    <ul><li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li></ul>
                                 </li>
-                                <li><a href="">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
-                                    <ol>
-                                        <li>Adult: 5 mg
-                                            <ul>
-                                                <li>Repeat 5 mg as indicated by patient's condition</li>
-                                            </ul>
-                                        </li>
-                                        <li>Pediatric: 2.5 - 5 mg</li>
-                                    </ol>
-                                </li>
-                                <li><a href="">Diphenhydramine (Benadryl®)</a> for uncomplicated allergic reaction (urticaria, flushing, itching only)
-                                    <ol>
-                                        <li>Adult - 50 mg PO</li>
-                                        <li>Pediatric: > 9 months of age: 1 mg/kg PO (maximum 50 mg)</li>
-                                    </ol>
-                                </li>
+                                <li>Pediatric: 0.01 mg</li>
                             </ol>
-                        </p><hr><br>
-                </div>
-            </div>
-            <div>
-                <input type="checkbox" name="accordian" id="allergicAdvancedTreatment" class="accordian__input" checked="checked">
-                <label for="allergicAdvancedTreatment" class="accordian__label">ALS Treatment</label>
-                <div class="advancedTreatmentSection">
-                    <h3>Advanced Medical Care</h3>
-                        <p class="advancedCare orderedList">
+                        </li>
+                        <li><a href="">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
                             <ol>
-                                <li>Uncomplicated allergic reaction (urticaria, flushing, itching only)
-                                    <ol>
-                                        <li><a href="">Diphenhydramine (Benadryl®)</a>; if not already administered
-                                            <ol>
-                                                <li>Adult: 25 - 50 mg PO, IV, IM (maximum 50 mg)</li>
-                                                <li>Pediatric: > 9 months of age: 1 mg/kg PO, IV, IM (maximum 50 mg)</li>
-                                            </ol>
-                                        </li>
-                                        <li><a href="">Dexamethasone</a>
-                                            <ol>
-                                                <li>Adult: 16 mg IV, PO</li>
-                                                <li>Pediatric: 0.6mg/kg IV, PO (maximum 16 mg)</li>
-                                            </ol>
-                                        </li>
-                                    </ol>
+                                <li>Adult: 5 mg
+                                    <ul>
+                                        <li>Repeat 5 mg as indicated by patient's condition</li>
+                                    </ul>
                                 </li>
-                                <li>For any evidence of anaphylaxis
-                                    <ol>
-                                        <li><a href="">Epinephrine (1:1000)</a>
-                                            <ol>
-                                                <li>Adult: 0.3 mg IM
-                                                    <ul><li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li></ul>
-                                                </li>
-                                                <li>Pediatric: 0.01 mg/kg IM (0.01 ml/kg); maximum 0.3 mg (0.3 ml)</li>
-                                                <li>May repeat every 5 - 10 minutes depending on patient response</li>
-                                            </ol>
-                                        </li>
-                                        <li>IVF as indicated
-                                            <ol>
-                                                <li>Adult: wide open</li>
-                                                <li>Pediatric: 20 ml/kg and reassess, re-bolus as clinically indicated</li>
-                                            </ol>
-                                        </li>
-                                        <li><a href="">Diphenhydramine</a> & <a href="">Dexamethasone</a> as above (if not yet administered)</li>
-                                    </ol>
-                                </li>
-                                <li><a href="">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
-                                    <ol>
-                                        <li>Adult: 5 mg
-                                            <ul>
-                                                <li>Repeat 5 mg as indicated by patient's condition</li>
-                                            </ul>
-                                        </li>
-                                        <li>Pediatric: 2.5 - 5 mg</li>
-                                    </ol>
-                                </li>
-                                <li><a href="">Airway: Adult</a> or <a href="">Airway: Pediatric Protocol</a></li>
-                                <li>Advanced Airway management as indicated
-                                    <ol>
-                                        <li><a href="">Airway: Intubation Protocol</a></li>
-                                        <li><a href="">Airway: BIAD Protocol</a></li>
-                                    </ol>
-                                </li>
-                                <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                                <li>Pediatric: 2.5 - 5 mg</li>
                             </ol>
-                        </p><hr><br>
-                </div>
+                        </li>
+                        <li><a href="">Diphenhydramine (Benadryl®)</a> for uncomplicated allergic reaction (urticaria, flushing, itching only)
+                            <ol>
+                                <li>Adult - 50 mg PO</li>
+                                <li>Pediatric: > 9 months of age: 1 mg/kg PO (maximum 50 mg)</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </p><hr><br>
             </div>
-            <div>
-                <input type="checkbox" name="accordian" id="allergicAdditional" class="accordian__input" checked="checked">
-                <label for="allergicAdditional" class="accordian__label">Additional Information</label>
-                <div class="additionalSection">
-                    <h3>Additional Considerations</h3>
-                        <p>
-                            <ul>
-                                <li>Epinephrine is the drug of choice and the first drug that should be administered in acute anaphylaxis (any Moderate / Severe Symptoms)
-                                    <ul><li>Epinephrine should be administered in priority before attempts at IV or IO access</li></ul>
-                                </li>
-                                <li>Anaphylaxis is a clinical diagnosis based on typical systemic manifestations</li>
-                                <li> Cardiovascular effects result from decreased vascular tone and capillary leakage
-                                    <ul><li> Hypotension, cardiac arrhythmias, syncope, and shock can result from intravascular volume loss, vasodilation, and myocardial dysfunction</li></ul>
-                                </li>
-                                <li> Anaphylaxis symptoms may include
-                                    <ul>
-                                        <li>Altered mental status</li>
-                                        <li>Altered voice</li>
-                                        <li>Difficulty swallowing</li>
-                                        <li>Hypotension</li>
-                                        <li>Respiratory distress</li>
-                                        <li>Sensation of throat swelling</li>
-                                    </ul>
-                                </li>
-                                <li> Allergic reactions may occur with only respiratory or gastrointestinal symptoms and have no rash / skin involvement</li>
-                                <li> Angioedema is seen in moderate to severe reactions and involves swelling of the face, lips or airway structures
-                                    <ul><li>May be seen in patients taking Angiotensin Converting Enzyme Inhibitors (ACE-I)
-                                        <ul><li>lisinopril (Prinivil®, Zestril®) benazepril (Lotensin®), captopril (Capoten®)</li></ul>
-                                    </li></ul>
-                                </li>
-                                <li> Hereditary Angioedema involves swelling of the face, lips, airway structures, extremities, and may cause moderate to severe abdominal pain
-                                    <ul>
-                                        <li> Some patients are prescribed specific medications to aid in reversal of swelling
-                                            <ul><li> Ecallantide (Kalbitor®)</li></ul>
-                                        </li>
-                                        <li> Paramedic may assist or administer this medication per patient's physician or package instructions</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </p>
-                </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="allergicAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for="allergicAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>Uncomplicated allergic reaction (urticaria, flushing, itching only)
+                                <ol>
+                                    <li><a href="">Diphenhydramine (Benadryl®)</a>; if not already administered
+                                        <ol>
+                                            <li>Adult: 25 - 50 mg PO, IV, IM (maximum 50 mg)</li>
+                                            <li>Pediatric: > 9 months of age: 1 mg/kg PO, IV, IM (maximum 50 mg)</li>
+                                        </ol>
+                                    </li>
+                                    <li><a href="">Dexamethasone</a>
+                                        <ol>
+                                            <li>Adult: 16 mg IV, PO</li>
+                                            <li>Pediatric: 0.6mg/kg IV, PO (maximum 16 mg)</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>For any evidence of anaphylaxis
+                                <ol>
+                                    <li><a href="">Epinephrine (1:1000)</a>
+                                        <ol>
+                                            <li>Adult: 0.3 mg IM
+                                                <ul><li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li></ul>
+                                            </li>
+                                            <li>Pediatric: 0.01 mg/kg IM (0.01 ml/kg); maximum 0.3 mg (0.3 ml)</li>
+                                            <li>May repeat every 5 - 10 minutes depending on patient response</li>
+                                        </ol>
+                                    </li>
+                                    <li>IVF as indicated
+                                        <ol>
+                                            <li>Adult: wide open</li>
+                                            <li>Pediatric: 20 ml/kg and reassess, re-bolus as clinically indicated</li>
+                                        </ol>
+                                    </li>
+                                    <li><a href="">Diphenhydramine</a> & <a href="">Dexamethasone</a> as above (if not yet administered)</li>
+                                </ol>
+                            </li>
+                            <li><a href="">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
+                                <ol>
+                                    <li>Adult: 5 mg
+                                        <ul>
+                                            <li>Repeat 5 mg as indicated by patient's condition</li>
+                                        </ul>
+                                    </li>
+                                    <li>Pediatric: 2.5 - 5 mg</li>
+                                </ol>
+                            </li>
+                            <li><a href="">Airway: Adult</a> or <a href="">Airway: Pediatric Protocol</a></li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a href="">Airway: Intubation Protocol</a></li>
+                                    <li><a href="">Airway: BIAD Protocol</a></li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="allergicAdditional" class="accordian__input" checked="checked">
+            <label for="allergicAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li>Epinephrine is the drug of choice and the first drug that should be administered in acute anaphylaxis (any Moderate / Severe Symptoms)
+                                <ul><li>Epinephrine should be administered in priority before attempts at IV or IO access</li></ul>
+                            </li>
+                            <li>Anaphylaxis is a clinical diagnosis based on typical systemic manifestations</li>
+                            <li> Cardiovascular effects result from decreased vascular tone and capillary leakage
+                                <ul><li> Hypotension, cardiac arrhythmias, syncope, and shock can result from intravascular volume loss, vasodilation, and myocardial dysfunction</li></ul>
+                            </li>
+                            <li> Anaphylaxis symptoms may include
+                                <ul>
+                                    <li>Altered mental status</li>
+                                    <li>Altered voice</li>
+                                    <li>Difficulty swallowing</li>
+                                    <li>Hypotension</li>
+                                    <li>Respiratory distress</li>
+                                    <li>Sensation of throat swelling</li>
+                                </ul>
+                            </li>
+                            <li> Allergic reactions may occur with only respiratory or gastrointestinal symptoms and have no rash / skin involvement</li>
+                            <li> Angioedema is seen in moderate to severe reactions and involves swelling of the face, lips or airway structures
+                                <ul><li>May be seen in patients taking Angiotensin Converting Enzyme Inhibitors (ACE-I)
+                                    <ul><li>lisinopril (Prinivil®, Zestril®) benazepril (Lotensin®), captopril (Capoten®)</li></ul>
+                                </li></ul>
+                            </li>
+                            <li> Hereditary Angioedema involves swelling of the face, lips, airway structures, extremities, and may cause moderate to severe abdominal pain
+                                <ul>
+                                    <li> Some patients are prescribed specific medications to aid in reversal of swelling
+                                        <ul><li> Ecallantide (Kalbitor®)</li></ul>
+                                    </li>
+                                    <li> Paramedic may assist or administer this medication per patient's physician or package instructions</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
             </div>
         </div>
     </div>
-        <dialog class="modal">
-            <div class="modal-form">
-                <div>
-                    <div>Pt age in months:</div>
-                    <div>-- or --</div>
-                    <div>Pt age in years:</div>
-                    <br>
-                    <div>Pt weight in lbs:</div>
-                    <div>-- or --</div>
-                    <div>Pt weight in kgs:</div>
-                </div>
-                <div>
-                    <input ></input>
-                    <div class="hide-me">HIDE ME</div>
-                    <input ></input>
-                    <div class="hide-me">HIDE ME</div>
-                    <input ></input>
-                    <div class="hide-me">HIDE ME</div>
-                    <input ></input>
-                </div>
-            </div>            
-            <button class="close-dialog-btn">Close Modal</button>
-        </dialog>
-    </div>
-</body>
-</html>
+</div> 
+ {% endblock %}
