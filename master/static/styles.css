@@ -575,10 +575,6 @@ hr {
    font-size: small;
 }
 
-.invalid-feedback {
-  
-}
-
 .invalid-feedback span {
    color: red;
    font-size:small;
