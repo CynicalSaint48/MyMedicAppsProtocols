@@ -25,6 +25,6 @@ def login():
         else:
             flash('Login Unsuccessful.  Please check your email and password', 'danger')
             return redirect(url_for('users.login'))
-
-    print('We skipped a bunch of stuff')
+        
+    
     return render_template('login.html', varTitle='Login', form=form)
