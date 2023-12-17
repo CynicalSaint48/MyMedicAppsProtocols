@@ -6,9 +6,6 @@ const sidebarState = document.querySelector("[data-sidebar-state");
 const protoList = document.querySelector("[proto-list]");
 const medsList = document.querySelector("[meds-list]");
 const otherList = document.querySelector("[other-list]");
-const modal = document.querySelector('.modal');
-const openModal = document.querySelector('.pt-info-div2');
-const closeModal = document.querySelector('.close-dialog-btn');
 
 menuIconButton.addEventListener("click", () => {
     window.scrollTo(0, 0), sidebarState.classList.toggle("open"), $("#proto-id > ul").slideUp(), $("#meds-id > ul").slideUp(), $("#other-id > ul").slideUp();
@@ -60,12 +57,4 @@ otherButton.addEventListener("click", () => {
                 sidebarState.classList.add("open"), $("#other-id > ul").slideUp();
             }
         }
-})
-
-openModal.addEventListener('click', () => {
-    modal.showModal();
-})
-
-closeModal.addEventListener('click', () => {
-    modal.close();
 })

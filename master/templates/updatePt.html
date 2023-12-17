@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container1 content1">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="message-div">
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
+
+    <H1>My Medic Apps - Add Pt Data</H1><hr>
+    <div class="form-content">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Pt Info</legend>
+                    
+                    <div class="form-group-inner">
+                        {{ form.ptYears.label(class="form-control-label") }}
+                        {% if form.ptYears.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.ptYears(class="form-control form-control-lg") }}
+                                {% for error in form.ptYears.errors %}
+                                    <br><span>{{ error }} </span>
+                                {% endfor %}
+                                
+                            </div>
+                        {% else %}
+                            {{ form.ptYears(class="form-control form-control-lg") }}
+                        {% endif %}
+                        
+                    </div>
+                    <div class="form-group-inner">
+                        {{ form.ptLbs.label(class="form-control-label") }}
+                        {% if form.ptLbs.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.ptLbs.errors %}
+                                    <span>{{ error }} </span>
+                                {% endfor %}
+                                {{ form.ptLbs(class="form-control form-control-lg") }}
+                            </div>
+                        {% else %}
+                            {{ form.ptLbs(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="small-link">Note:  Please enter 1 year old for infants.</div>
+                    
+                    <div class="form-submit">
+                        {{ form.submit(class="btn-submit") }}
+                    </div>
+                </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}

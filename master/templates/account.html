@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container1 content1">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="message-div">
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
+
+    <H1>Account: {{ current_user.displayName }}</H1>
+    <h2>{{ current_user.email }}</h2><hr>
+    <div class="form-content">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Account Info</legend>
+                    <div class="form-group-inner">
+                        {{ form.displayName.label(class="form-control-label") }}
+                        {% if form.displayName.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.displayName(class="form-control form-control-lg") }}
+                                {% for error in form.displayName.errors %}
+                                    <br><span>{{ error }} </span>
+                                {% endfor %}
+                                
+                            </div>
+                        {% else %}
+                            {{ form.displayName(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group-inner">
+                        <div class="form-control-label">Email</div>
+                        <div class="form-control give-border">{{ current_user.email }}</div>
+                    </div>
+                    <div class="form-group-inner">
+                        {{ form.showNarrative.label(class="form-control-label") }}
+                        {% if form.showNarrative.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.showNarrative(class="form-control form-control-lg") }}
+                                {% for error in form.showNarrative.errors %}
+                                    <br><span>{{ error }} </span>
+                                {% endfor %}
+                                
+                            </div>
+                        {% else %}
+                            {{ form.showNarrative(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group-inner">
+                        {{ form.showBasic.label(class="form-control-label") }}
+                        {% if form.showBasic.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.showBasic(class="form-control form-control-lg") }}
+                                {% for error in form.showBasic.errors %}
+                                    <br><span>{{ error }} </span>
+                                {% endfor %}
+                                
+                            </div>
+                        {% else %}
+                            {{ form.showBasic(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group-inner">
+                        {{ form.showAdvanced.label(class="form-control-label") }}
+                        {% if form.showAdvanced.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.showAdvanced(class="form-control form-control-lg") }}
+                                {% for error in form.showAdvanced.errors %}
+                                    <br><span>{{ error }} </span>
+                                {% endfor %}
+                                
+                            </div>
+                        {% else %}
+                            {{ form.showAdvanced(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group-inner">
+                        {{ form.showAdditional.label(class="form-control-label") }}
+                        {% if form.showAdditional.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.showAdditional(class="form-control form-control-lg") }}
+                                {% for error in form.showAdvanced.errors %}
+                                    <br><span>{{ error }} </span>
+                                {% endfor %}
+                                
+                            </div>
+                        {% else %}
+                            {{ form.showAdditional(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-submit">
+                        {{ form.submit(class="btn-submit") }}
+                    </div>
+                </fieldset>
+        </form>
+    </div>
+    <div class="border-top">
+        <small class="text-muted">
+            Want to Log Out?  <a href="{{ url_for('users.logout') }}" class="ml-2">Click Here</a>   
+        </small>
+    </div>
+</div>
+{% endblock %}

@@ -16,6 +16,7 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
 </head>
 
 <body>
@@ -25,15 +26,17 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon-right"><path d="M4 6h16v2H4zm4 5h12v2H8zm5 5h7v2h-7z"></path></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon-left hidden"><path d="M4 11h12v2H4zm0-5h16v2H4zm0 12h7.235v-2H4z"></path></svg>
             </button>
-            <div class="siteName"><p>&ensp; MyMedicApps</p></div>
+            <div class="agency"></div>
             <div class="pt-info-div">
-            {% if current_user %}
+            {% if current_user.is_authenticated %}
                 <div class="btn-user">
-                    <p>{{ current_user.email }}</p>
-                    <div><a href="#" class="user-settings-link">Settings/Log Out</a></div>
-                    
+                    {% if current_user.displayName %}
+                    <p>{{ current_user.displayName }}</p>
+                    {% else %}
+                        <p>{{ current_user.email }}</p>
+                    {% endif %}                    
+                    <div><a href="{{url_for('users.account')}}" class="small-link">Settings/Log Out</a></div>
                 </div>
-                
             {% else %}
                 <a class="btn-login" href="{{url_for('users.login')}}">Login\Register</button>
             {% endif %}
@@ -46,7 +49,7 @@
                 <div class="middle-sidebar">
                     <ul>
                         <li>
-                            <button class="top-list-button"><a href="{{ url_for('main.home')}}"><i class="fa-solid fa-gauge fa-lg"></i><div class="hidden-sidebar">Dashboard</div></a></button>
+                            <button class="top-list-button"><a href="{{ url_for('main.home')}}"><i class="fa-solid fa-gauge fa-lg"></i><div class="hidden-sidebar">Home Screen</div></a></button>
                         </li>
                         <li id="proto-id">                     
                             <button class="top-list-button" data-proto-btn><a href="{{ url_for('main.home')}}" onclick="return false"><i class="fa-solid fa-notes-medical fa-lg"></i><div class="hidden-sidebar">Protocols</div></a></button>
@@ -274,16 +277,27 @@
                                 </li>
                             </ul>
                         </li>
-                    </ul>
-                    <button class="pt-info-div2">
-                        <hr>
-                        <p>Pt Age:</p>
-                        <p>100 yrs</p>
-                        <p class="mvdown"></p>
-                        <p>Pt Weight:</p>
-                        <p>100 kgs</p>
-                        <hr>
-                    </button>               
+                    </ul><hr>
+                    <div class="pt-info-section">
+                        <div>
+                            <a href="{{url_for('main.updatePt')}}">
+                                <button class="pt-info-div2">
+                                    <p>Pt Age:</p>
+                                    <p>{{ ptYears }} years</p>
+                                    <div class="mvdown"><p></p></div>
+                                    
+                                    <p>Pt Weight:</p>
+                                    <p>{{ ptKgs }} kgs</p>
+                                </button>
+                            </a>             
+                        </div>
+                        <div>
+                            <a class="small-link" href="{{url_for('main.clrPt')}}">Clear Pt</a>
+                        </div>            
+                        
+                                     
+                    </div>
+                    <hr> 
                 </div>
             </aside>
         
@@ -291,28 +305,5 @@
         {% block content %}{% endblock %}
         </div>
     </div>
-    <dialog class="modal">
-        <div class="modal-form">
-            <div>
-                <div>Pt age in months:</div>
-                <div>-- or --</div>
-                <div>Pt age in years:</div>
-                <br>
-                <div>Pt weight in lbs:</div>
-                <div>-- or --</div>
-                <div>Pt weight in kgs:</div>
-            </div>
-            <div>
-                <input ></input>
-                <div class="hide-me">HIDE ME</div>
-                <input ></input>
-                <div class="hide-me">HIDE ME</div>
-                <input ></input>
-                <div class="hide-me">HIDE ME</div>
-                <input ></input>
-            </div>
-        </div>            
-            <button class="close-dialog-btn">Close Modal</button>
-    </dialog>
 </body>
 </html>

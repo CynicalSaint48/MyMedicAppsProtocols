@@ -19,6 +19,7 @@ body {
 
 a {
    color: var(--teal-accent);
+   text-decoration: none;
 }
 
 :root {
@@ -32,6 +33,7 @@ a {
     --animation-duration: 200ms;
     --animation-timing-curve: ease-in-out;
  }
+
 
  .header {
     display: flex;
@@ -308,12 +310,6 @@ a {
    margin: 1rem;
 }
 
- @media (max-width: 415px){
-   .pt-info-div {
-      margin-left: auto;
-    }
- }
-
 .modal:not([open]) {
    display: none;
 }
@@ -473,53 +469,14 @@ a {
    color: var(--light-txt);
 }
 
-@media (min-width: 950px) {
-   .bodyContainer {
-      width: 1405px;
-      margin: 0 auto;
-   }
-   .accordian {
-      min-width: 1100px;
-   }
-   .content1 h1 {
-      min-width: 1100px
-   }
    
-
-   .agency:before {
-      content: 'Mecklenburg EMS Agency'
-   }
-
-   .sidebar {
-      width: var(--sidebar-width-open);
-      margin: 0;
-      padding: 0;
-      box-shadow:  0 1px 10px 0 rgba(0, 0, 0, .4);
-      transition: width var(--animation-duration) var(--animation-timing-curve);
-      height: 100%;
-      flex-grow: 1;
-      flex-shrink: 0;
-      min-height: 120vh;
-      overflow: hidden;
-      position: fixed;
-   }
-
-   .sidebar .hidden-sidebar {
-      display: block;
-      opacity: 100;
-      transition: opacity var(--animation-duration) var(--animation-timing-curve);
-   }
-
-   .content1 {
-      margin-left: 285px;
-   }
-
+.agency {
+   min-width: 250px;
+   flex-shrink: 0;
 }
 
-@media (max-width: 600px) {
-   .agency:before {
-      content: 'Medic'
-   }
+.agency:before {
+   content: 'Mecklenburg EMS Agency';
 }
 
 ol {
@@ -556,7 +513,6 @@ ol ul {
    border: none;
    text-decoration: none;
    color: var(--light-txt);
-   margin: 5;
    cursor: pointer;
    width: 100%;
    justify-content: left;
@@ -581,6 +537,8 @@ hr {
 
 .mvdown {
    min-height: 5px;
+   width: 100%;
+   display: none;
 }
 
 .siteName {
@@ -634,6 +592,18 @@ hr {
    border: 1px solid var(--light-txt);
    border-radius: 5px;
    outline: none;
+}
+
+.give-border {
+   min-width:  225px;
+   margin-bottom: 5px;
+   background-color: var(--blue-bg);
+   color: var(--teal-accent);
+   padding: 5px;
+   border: 1px solid var(--light-txt);
+   border-radius: 5px;
+   outline: none;
+   font-size: small;
 }
 
 .form-submit {
@@ -728,4 +698,91 @@ hr {
    margin: 0;
    display: flex;
    justify-content: right;
+}
+
+.pt-info-section {
+   display: flex;
+   flex-direction: column;
+   justify-content: left;
+}
+
+.pt-info-section div {
+   flex-shrink: 1;
+   flex-grow: 1;
+}
+
+.small-link {
+   font-size: 10px;
+   text-decoration: none;
+   color: var(--teal-accent);
+   margin-left: 5px;
+}
+
+@media (max-width: 470px){
+   .pt-info-div {
+      margin-left: auto;
+    }
+
+   .agency {
+      min-width: 0;
+   }
+
+   .agency:before {
+      content: 'Medic';
+   }
+ }
+
+ @media (min-width: 950px) {
+   .bodyContainer {
+      width: 1405px;
+      margin: 0 auto;
+   }
+   .accordian {
+      min-width: 1100px;
+   }
+   .content1 h1 {
+      min-width: 1100px
+   }
+
+   .pt-info-div2 {
+      display: flex;
+      gap: 10px;
+      width: 120px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+   }
+
+   .mvdown {
+      display: none;
+   }
+   .sidebar {
+      width: var(--sidebar-width-open);
+      margin: 0;
+      padding: 0;
+      box-shadow:  0 1px 10px 0 rgba(0, 0, 0, .4);
+      transition: width var(--animation-duration) var(--animation-timing-curve);
+      height: 100%;
+      flex-grow: 1;
+      flex-shrink: 0;
+      min-height: 120vh;
+      overflow: hidden;
+      position: fixed;
+   }
+
+   .sidebar .hidden-sidebar {
+      display: block;
+      opacity: 100;
+      transition: opacity var(--animation-duration) var(--animation-timing-curve);
+   }
+
+   .content1 {
+      margin-left: 285px;
+   }
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+    margin: 0;
 }

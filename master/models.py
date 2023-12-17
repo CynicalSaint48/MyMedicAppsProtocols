@@ -4,6 +4,7 @@ from flask_login import UserMixin
 from itsdangerous import URLSafeTimedSerializer as Serializer
 from flask import current_app
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -11,7 +12,12 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120),  unique=True, nullable=False)
+    displayName = db.Column(db.String(120))
     password = db.Column(db.String(60), nullable=False)
+    showNarrative = db.Column(db.Boolean, default=1)
+    showBasic = db.Column(db.Boolean, default=1)
+    showAdvanced = db.Column(db.Boolean, default=1)
+    showAdditional = db.Column(db.Boolean, default=1)
 
     def get_reset_token(self, expires_sec=1800):
             s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -27,7 +33,7 @@ class User(db.Model, UserMixin):
         return User.query.get(user_id)
 
     def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+        return f"User(''{self.user_id}', {self.email}')"
     
 class UpdatePost(db.Model):
     id = db.Column(db.Integer, primary_key=True)

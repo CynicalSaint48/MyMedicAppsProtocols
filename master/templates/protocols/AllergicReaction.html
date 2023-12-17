@@ -4,7 +4,7 @@
     <div class="accordian">
         <H1>Allergic Reaction  Specific Allergy HTML Page</H1><hr>
         <div>
-            <input type="checkbox" name="accordian" id="allergicNarrative" class="accordian__input">
+            <input type="checkbox" name="accordian" id="allergicNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
             <label for="allergicNarrative" class="accordian__label">Narrative Protocol</label>
             <div class="narrativeSection">
                 <H3>Objective</H3>
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id="allergicBasicTreatment" class="accordian__input">
+            <input type="checkbox" name="accordian" id="allergicBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
             <label for="allergicBasicTreatment" class="accordian__label">BLS Treatment</label>                
             <div class="basicTreatmentSection">
                 <h3>Basic Medical Care</h3>
@@ -107,7 +107,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id="allergicAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id="allergicAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
             <label for="allergicAdvancedTreatment" class="accordian__label">ALS Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -172,7 +172,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id="allergicAdditional" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id="allergicAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
             <label for="allergicAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>

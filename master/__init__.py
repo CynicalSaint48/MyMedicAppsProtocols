@@ -4,6 +4,11 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from master.config import Config
 from flask_mail import Mail
+from sqlalchemy import Column, Boolean, DateTime, Integer
+
+from flask_login import login_user, current_user
+
+
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -13,6 +18,7 @@ login_manager.login_message_category = 'danger'
 
 mail = Mail()
 position = ""
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
