@@ -2,6 +2,18 @@
 {% block content %}
 <div class="container1 content1">
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="message-div">
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
+
     <H1>My Medic Apps - Registration</H1><hr>
     <div class="form-content">
         <form method="POST" action="">

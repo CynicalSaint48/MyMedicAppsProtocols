@@ -27,8 +27,13 @@
             </button>
             <div class="siteName"><p>&ensp; MyMedicApps</p></div>
             <div class="pt-info-div">
-            {% if CurrUser %}
-                <p>Username here</p>
+            {% if current_user %}
+                <div class="btn-user">
+                    <p>{{ current_user.email }}</p>
+                    <div><a href="#" class="user-settings-link">Settings/Log Out</a></div>
+                    
+                </div>
+                
             {% else %}
                 <a class="btn-login" href="{{url_for('users.login')}}">Login\Register</button>
             {% endif %}
@@ -261,11 +266,11 @@
                             </ul>
                         </li>
                         <li id="other-id">
-                            <button class="top-list-button" data-other-btn><a href="#"><i class="fa-solid fa-truck-medical fa-lg"></i><div class="hidden-sidebar">Other</div></a>
+                            <button class="top-list-button" data-other-btn><a href="#"><i class="fa-solid fa-truck-medical fa-lg"></i><div class="hidden-sidebar">Tools</div></a>
                             </button>
                             <ul other-list id="other-list-id" style="display:none">
                                 <li>
-                                    <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Shift Tracker</div></a>
+                                    <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Med Math Calculator</div></a>
                                 </li>
                             </ul>
                         </li>

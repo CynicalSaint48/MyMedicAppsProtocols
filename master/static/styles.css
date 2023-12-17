@@ -45,6 +45,7 @@ a {
     height: var(--header-height);
     font-size: 20px;
     color: var(--light-txt);
+    z-index: 1; /* Stay on top */
  }
 
  .pt-info-div {
@@ -148,7 +149,7 @@ a {
     transition: width var(--animation-duration) var(--animation-timing-curve);
     height: 100%;
     flex-grow: 1;
-    
+    flex-shrink: 0;
     min-height: 100vh;
  }
 
@@ -167,7 +168,6 @@ a {
     flex-grow: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    
     min-height: 100vh;
  }
 
@@ -184,10 +184,13 @@ a {
 
  .middle-sidebar {
     flex-grow: 1;
+    flex-shrink: 0;
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;    
     transition: opacity var(--animation-duration) var(--animation-timing-curve);
+    height: 100%;
+    min-height: 100vh;
  }
 
  .middle-sidebar ul {
@@ -470,9 +473,9 @@ a {
    color: var(--light-txt);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 950px) {
    .bodyContainer {
-      width: 1200px;
+      width: 1405px;
       margin: 0 auto;
    }
    .accordian {
@@ -486,6 +489,31 @@ a {
    .agency:before {
       content: 'Mecklenburg EMS Agency'
    }
+
+   .sidebar {
+      width: var(--sidebar-width-open);
+      margin: 0;
+      padding: 0;
+      box-shadow:  0 1px 10px 0 rgba(0, 0, 0, .4);
+      transition: width var(--animation-duration) var(--animation-timing-curve);
+      height: 100%;
+      flex-grow: 1;
+      flex-shrink: 0;
+      min-height: 120vh;
+      overflow: hidden;
+      position: fixed;
+   }
+
+   .sidebar .hidden-sidebar {
+      display: block;
+      opacity: 100;
+      transition: opacity var(--animation-duration) var(--animation-timing-curve);
+   }
+
+   .content1 {
+      margin-left: 285px;
+   }
+
 }
 
 @media (max-width: 600px) {
@@ -687,3 +715,17 @@ hr {
    /* min-width: 460px; */
 }
 
+.btn-user {
+   display: flex;
+   flex-wrap: nowrap;
+   flex-direction: column;
+   justify-content: center;
+   margin-left: auto;
+   margin-right: 10px;
+}
+
+.btn-user * {
+   margin: 0;
+   display: flex;
+   justify-content: right;
+}
