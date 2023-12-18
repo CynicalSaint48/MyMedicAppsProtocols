@@ -79,29 +79,89 @@
                         <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                         <li>Attempt to remove source of exposure (e.g. stinger) as possible</li>
                         <li><a href="">Epinephrine (1:1000)</a> IM for any evidence of anaphylaxis
-                            <ol>
-                                <li>Adult: 0.3 mg
-                                    <ul><li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li></ul>
-                                </li>
-                                <li>Pediatric: 0.01 mg</li>
-                            </ol>
-                        </li>
-                        <li><a href="">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
-                            <ol>
-                                <li>Adult: 5 mg
+                            {% if ptYears %}
+                                {% if ptAdult %}
                                     <ul>
-                                        <li>Repeat 5 mg as indicated by patient's condition</li>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Adult: <b style="color:#f4b02a;font-weight:500">0.3 mg</b></li>
+                                            </ul>
+                                                <ul>
+                                                    <li style="margin:5px">Consider decreasing dose to 0.15 mg IM in patients with coronary artery disease or patients > 55-years and CAD risk factors</li>
+                                                </ul>
                                     </ul>
-                                </li>
-                                <li>Pediatric: 2.5 - 5 mg</li>
-                            </ol>
+                                {% else %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                        
+                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">0.15mg IM</b></li></ul>
+                                    </ul>
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>Adult: 0.3 mg
+                                        <ul><li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li></ul>
+                                    </li>
+                                    <li>Pediatric: 0.01 mg/kg IM</li>
+                                </ol>
+                            {% endif %}
                         </li>
+                        
+                        <li><a href="">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">5 mg Nebulized</b></li></ul>
+                                            <ul><li>Repeat <b style="color:#f4b02a;font-weight:500">5 mg</b> as indicated by patient's condition</li></ul>
+                                    </ul>
+                                {% else %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</b></li></ul>
+                                    </ul>
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>Adult: 5 mg
+                                        <ul>
+                                            <li>Repeat 5 mg as indicated by patient's condition</li>
+                                        </ul>
+                                    </li>
+                                    <li>Pediatric: 2.5 - 5 mg</li>
+                                </ol>
+                            {% endif %}
+                        </li>
+
                         <li><a href="">Diphenhydramine (Benadryl®)</a> for uncomplicated allergic reaction (urticaria, flushing, itching only)
-                            <ol>
-                                <li>Adult - 50 mg PO</li>
-                                <li>Pediatric: > 9 months of age: 1 mg/kg PO (maximum 50 mg)</li>
-                            </ol>
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">50mg PO</b></li></ul>
+                                    </ul>
+                                {% else %}
+                                    {% if ptMax50 %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a">50mg PO</b></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 1 }}mg PO</b></li></ul>
+                                                <ul><li><b style="color:#D2042D;font-weight:600">Contraindicated in children under 9 months</b></li></ul>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>Adult - 50 mg PO</li>
+                                    <li>Pediatric: > 9 months of age: 1 mg/kg PO (maximum 50 mg)</li>
+                                </ol>                           
+                            {% endif %}
                         </li>
+                        
+
                     </ol>
                 </p><hr><br>
             </div>

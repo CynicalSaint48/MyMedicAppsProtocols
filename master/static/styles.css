@@ -27,6 +27,7 @@ a {
     --dark-bg:  #23313f;
     --teal-accent: #1abc9c;
     --light-txt: #aeb2b7;
+    --light-offset: #f4b02a;
     --header-height: 50px;
     --sidebar-width-open: 265px;
     --sidebar-width: 60px;
@@ -715,6 +716,14 @@ hr {
    font-size: 10px;
    text-decoration: none;
    color: var(--teal-accent);
+   margin-left: 5px;
+}
+
+.currentPatient {
+   font-size: 16px;
+   font-weight: 500;
+   text-decoration: none;
+   color: var(--light-offset);
    margin-left: 5px;
 }
 
