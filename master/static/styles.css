@@ -27,6 +27,7 @@ a {
     --dark-bg:  #23313f;
     --teal-accent: #1abc9c;
     --light-txt: #aeb2b7;
+    --fifty-border: #aeb2b750;
     --light-offset: #f4b02a;
     --header-height: 50px;
     --sidebar-width-open: 265px;
@@ -136,6 +137,7 @@ a {
 
  .container1 {
    /* display: flex; */
+   width: 100%;
    flex-wrap: wrap;
 }
 
@@ -143,6 +145,52 @@ a {
    flex-shrink: 1;
    flex-grow: 0;
 }
+
+.container2 {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: baseline;
+}
+
+.container2 > * {
+   flex-shrink: 1;
+   flex-grow: 0;
+}
+
+.container2 > H2 {
+   color: var(--teal-accent)
+}
+
+.containercontainer {
+   display: flex;
+   padding: 15px;
+}
+
+.container3 {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: baseline;
+   justify-content: end;
+   padding: 5px;
+   border: 1px solid var(--fifty-border);
+   -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+   border-radius: 5px;
+   outline: none;
+   margin-left: auto;
+}
+
+.container3 > * {
+   flex-shrink: 1;
+   flex-grow: 0;
+}
+
+.container3 > H4 {
+   color: var(--teal-accent);
+   margin: 0;
+}
+
+
 
  .sidebar.open {
     width: var(--sidebar-width-open);
@@ -348,21 +396,6 @@ a {
    gap: 1rem;
    justify-content: center;
    margin: 0;
-}
-
-.modal-form input {
-   justify-content: right;
-   height: 20px;
-   width: 25px;
-}
-
-.modal-form div {
-   min-height: 22px;
-   margin: 0;
-   align-items: center;
-   justify-content: center;
-   padding-left: 1rem;
-   flex-shrink: 0;
 }
 
 .twoBox {
@@ -739,6 +772,15 @@ hr {
    .agency:before {
       content: 'Medic';
    }
+
+   .form-group-inner {
+      flex-wrap: wrap;
+   }
+
+   .container3 {
+      font-size: .7em;
+   }
+
  }
 
  @media (min-width: 950px) {

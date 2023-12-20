@@ -14,16 +14,13 @@ protocols = Blueprint('protocols', __name__)
 @protocols.route("/protocols/allergic_reaction")
 def allergy():
 
-    print(session)
     
     if not session['ptYears']:
-        ptYears = False
+        ptYears = 0
+        ptKgs = 0.0
     else:
         ptYears = session['ptYears']
         ptKgs = session['ptKgs']
-
-    print(ptYears)
-    print(ptKgs)
 
     ptAdult = False
     ptMax26 = False

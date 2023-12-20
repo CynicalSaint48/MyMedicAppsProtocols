@@ -16,15 +16,27 @@
             {% endfor %}
         {% endif %}
     {% endwith%}
-    
-    <H1>My Medic Apps - Protocol Tools</H1><hr>
-    <br>
+
+        <article class="media content-section">
+            <div class="containercontainer">
+                <div class="container3">
+                    <thing>latest update:&emsp;&emsp;  </thing>
+                    <h4><div class="article-title"><a href="{{ url_for('main.siteUpdates') }}">{{ latest_update.title }}</a></div></h4>            
+                    <small class="text-muted">{{ latest_update.date_posted.strftime('%Y-%m-%d') }}</small>
+                </div>
+            </div>
+            <hr>
+        </article>
     <P>
         Welcome to MyMedicApps.  This site contains protocols for Mecklenburg EMS Agency, as well as common tools and references.
     </P>
     
-    <p>
-        Please Register and/or Log In at the top right, in order to create default settings to show/hide the information that is relavent to you.  
-    </p>
+    {% if current_user.is_authenticated %}
+    {% else %}
+        <p>
+            Please Register and/or Log In at the top right, in order to create default settings to show/hide the information that is relavent to you.  
+        </p>
+    {% endif %}
+
 </div>
 {% endblock %}

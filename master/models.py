@@ -39,6 +39,9 @@ class UpdatePost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    date_protocol = db.Column(db.String(10), nullable=False)
+    date_protocol = db.Column(db.DateTime, nullable=False)
     description = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return f"Update(''{self.title}', {self.date_posted}, {self.date_protocol}, {self.description}')"
 
