@@ -6,23 +6,24 @@
         <article class="media content-section">
             <div class="container-squared">
                 <div class="container2">
-                    <h2><div class="article-title">Dexamethasone</div></h2>
-                    <small class="text-muted">Decadron</small>
+                    <h2><div class="article-title">Diltiazem</div></h2>
+                    <small class="text-muted">Cardizem</small>
                     <hr>
                 </div>
                 <div class="med-container-lg large-screen">
                         <div class="med-container-L">
-                            <div class="med-image"><img src="{{ url_for('static', filename='images/medications/dexamethasone_vial.jpg') }}"></div>
+                            <div class="med-image"><img src="{{ url_for('static', filename='images/medications/diltiazem_vial.jpg') }}"></div>
                         </div>
                         <div class="med-container-R">
                             <div class="med-info-group">
                                 <div class="med-info-title">Indications:</div>
-                                <div class="med-info-sub-item"><a href="{{url_for('protocols.allergy')}}">Allergic Reaction</a></div>
-                                <div class="med-info-sub-item"><a href="#">Reactive Airway Disease</a></div>
+                                <div class="med-info-sub-item">Supraventricular tachycardia (SVT)</div>
                             </div>
                             <div class="med-info-group">
                                 <div class="med-info-title">Contraindications:</div>
-                                <div class="med-info-sub-item">None</div>
+                                <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                                <div class="med-info-sub-item">Hypotension</div>
+                                <div class="med-info-sub-item">Pediatric age</div>
                             </div>
                             <div class="med-info-group">
                                 <div class="med-info-title">How Supplied</div>
@@ -30,8 +31,8 @@
                             </div>
                             <div class="med-info-group">
                                 <div class="med-info-title">Mechanism of action:</div>
-                                <div class="med-info-sub-item">Corticosteroid</div>
-                                <div class="med-info-sub-item">Anti-inflammatory</div>
+                                <div class="med-info-sub-item">Calcium channel blocker - prevents calcium flow through slow calcium channels</div>
+                                <div class="med-info-sub-item">Negative chronotrope</div>
                             </div>
                         </div>
                 </div>  
@@ -39,21 +40,20 @@
                     <div class="med-image"><img src="{{ url_for('static', filename='images/medications/dexamethasone_vial.jpg') }}"></div>    
                     <div class="med-info-group">
                         <div class="med-info-title">Indications:</div>
-                        <div class="med-info-sub-item"><a href="{{url_for('protocols.allergy')}}">Allergic Reaction</a></div>
-                        <div class="med-info-sub-item"><a href="#">Reactive Airway Disease</a></div>
+                        <div class="med-info-sub-item">Supraventricular tachycardia (SVT)</div>
                     </div>
                     <div class="med-info-group">
                         <div class="med-info-title">Contraindications:</div>
-                        <div class="med-info-sub-item">None</div>
+                        <div class="med-info-sub-item">Hypotension due to hypovolemia</div>
                     </div>
                     <div class="med-info-group">
                         <div class="med-info-title">How Supplied</div>
-                        <div class="med-info-sub-item">20 mg in 5 ml vial (4 mg/ml)</div>
+                        <div class="med-info-sub-item">25 mg in 5 ml = (5 mg per ml)</div>
                     </div>
                     <div class="med-info-group">
                         <div class="med-info-title">Mechanism of action:</div>
-                        <div class="med-info-sub-item">Corticosteroid</div>
-                        <div class="med-info-sub-item">Anti-inflammatory</div>
+                        <div class="med-info-sub-item">Calcium channel blocker - prevents calcium flow through slow calcium channels</div>
+                        <div class="med-info-sub-item">Negative chronotrope</div>
                     </div>
                 </div>
                 <div class="medication-dose-group">
@@ -63,46 +63,43 @@
                                 {% if ptAdult %}
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                             <ul>
-                                                <li>Adult: <b style="color:#f4b02a;font-weight:500">16 mg IV, PO;  &nbsp or {{ 16/4 }} ml</b></li>
+                                                <li>Adult: <b style="color:#f4b02a;font-weight:500">15 mg IV over 2 minutes;  &nbsp or {{ 15/5 }} ml</b></li>
+                                                <thing>&nbsp &nbsp then <b style="color:#f4b02a;font-weight:500">20 mg IV over 2 minutes;  &nbsp or {{ 20/5 }} ml</b></thing>
                                             </ul>
                                 {% else %}
-                                    {% if ptMax26 %}
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a">16 mg IV, PO;  &nbsp or {{ 16/4 }} ml</b></li></ul>
-                                    {% else %}
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 0.6 }}mg IV, PO; &nbsp or {{(ptKgs * 0.6)/4 }} ml</b></li></ul>
-                                    {% endif %}
+                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients</b></li></ul>
                                 {% endif %}
                             {% else %}
                             {% endif %}
                     </div>
                     <div class="dose-item">
                         <b>Dose Adult</b>
-                        <thing>15 mg IV, IM, PO</thing>
+                        <ul><li>15 mg IV over 2 minutes</li></ul>
+                        <ul><li>If no response after 15 minutes, administer 20mg IV over 2 minutes</li></ul>
                     </div>
                     <div class="dose-item">
                         <b>Dose Pediatric</b>
-                        <thing>0.6 mg/kg IV, IM, PO (<b style="color:#D2042D;font-weight:600">maximum 16 mg)</b></thing>
+                        <ul><li><b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients</b></li></ul>
                     </div>
                 </div>
                 <div class="med-info-group">
+                    <div class="med-info-title">Adverse Effects</div>
+                    <div class="med-info-sub-item">Bradycardia</div>
+                    <div class="med-info-sub-item">Hypotension</div>
+                </div>
+                <div class="med-info-group">
                     <div class="med-info-title">Protocols Utilizing</div>
-                    <div class="med-info-sub-item"><a href="{{url_for('protocols.allergy') }}">Allergic Reaction</a></div>
-                    <div class="med-info-sub-item"><a href="#">Breathing Problems</a></div>
+                    <div class="med-info-sub-item"><a href="#">Heart Problems</a> - SVT: Atrial Fibrillation; Atrial Flutter</div>
                 </div>
                 <div class="med-info-group">
                     <div class="med-info-title">Administration</div>
-                    <div class="med-info-sub-item">Slow IV Push</div>
-                    <div class="med-info-sub-item">Oral</div>
+                    <div class="med-info-sub-item">Initial dose: 3 ml (15 mg) IV push over 2 minutes</div>
+                    <div class="med-info-sub-item">Subsequent dose: 4 ml (20 mg) IV push over 2 minutes</div>
                 </div>
                 <div class="med-info-group">
                     <div class="med-info-title">Caveats</div>
-                    <div class="med-info-sub-item">Same medication can be utilized for IV/IM or PO dosing</div>
-                    <div class="med-info-sub-item">Medication does have a poor taste PO but can be utilized when IV access is unavailable</div>
+                    <div class="med-info-sub-item">Must be kept refrigerated prior to usage</div>
                 </div>
-            </div>
-            <div class="img-dex-helper"><img src="{{ url_for('static', filename='images/medications/dexamethasone_helper.jpg') }}"></div>
             <hr>
         </article>
 

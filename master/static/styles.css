@@ -158,12 +158,22 @@ a {
 }
 
 .container2 > H2 {
-   color: var(--teal-accent)
+   color: var(--teal-accent);
+   margin: 0;
+   width: 100%;
 }
 
 .containercontainer {
    display: flex;
    padding: 15px;
+}
+
+.container-squared {
+   margin-bottom: 30px;
+}
+
+.indent {
+   margin-left: 60px;
 }
 
 .container3 {
@@ -370,32 +380,6 @@ a {
 
 .hide-me {
    opacity: 0;
-}
-
-.modal {
-   display: flex;
-   flex-direction: column;
-   flex-shrink: 0;
-   width: 350px;
-   font-size: 12px;
-   gap: 1rem;
-   background-color: var(--blue-bg);
-   border-radius: 10px;
-   color: var(--light-txt);
-   border-color: var(--dark-bg);
-   padding: 1em;
-   max-width: 240px;
-   position: fixed;
-   margin-top: 30px;
-   margin-left: 80px;
-}
-
-.modal-form {
-   display: flex;
-   flex-shrink: 0;
-   gap: 1rem;
-   justify-content: center;
-   margin: 0;
 }
 
 .twoBox {
@@ -760,6 +744,90 @@ hr {
    margin-left: 5px;
 }
 
+.med-container {
+   display: flex;
+   gap: 15px;
+   flex-wrap: wrap;
+   margin-bottom: 20px;
+}
+
+
+
+.medication-dose-group {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   flex-wrap: wrap;
+
+   border: 1px solid var(--fifty-border);
+   -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+   border-radius: 5px;
+   outline: none;
+   padding: 10px;
+   
+   margin-bottom: 20px;
+   max-width: 500px;
+}
+
+.medication-dose-group ul {
+   margin: 0;
+}
+
+.med-info-group {
+   min-width: 350px;
+   flex-shrink: 1;
+   margin-bottom: 20px;
+}
+
+.med-info-title {
+   font-weight: 700;
+   text-decoration: underline;
+}
+
+.med-info-item {
+   font-weight: 700;
+}
+
+.med-info-sub-item {
+   margin: 0;
+   margin-left: 10px;
+   text-decoration: none;
+   font-weight: 500;
+}
+
+.small-screen {
+   min-width: 350px;
+}
+
+.med-container-lg {
+   display: flex;
+}
+
+.med-container-L {
+   width: 200px
+}
+
+.med-container-R {
+   max-width: 1140px;
+   display: flex;
+   flex-wrap: wrap;
+   margin-left: 30px;
+}
+
+@media (max-width: 950px){
+   .med-image {
+      flex: 0 1;
+      min-width: 600px
+   }
+   .large-screen {
+      display: none;
+   }
+   .medication-dose-group {
+      max-width: 350px;
+   }
+}
+
 @media (max-width: 470px){
    .pt-info-div {
       margin-left: auto;
@@ -779,6 +847,19 @@ hr {
 
    .container3 {
       font-size: .7em;
+      justify-content: center;
+   }
+
+   .containercontainer {
+      justify-content: center;
+   }
+
+   .med-info-group {
+      max-width: 350px;
+   }
+
+   .large-screen {
+      display: none;
    }
 
  }
@@ -828,6 +909,14 @@ hr {
 
    .content1 {
       margin-left: 285px;
+   }
+
+   .small-screen {
+      display: none;
+   }
+
+   .med-image {
+      flex: 0 1;
    }
 
 }
