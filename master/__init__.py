@@ -4,11 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from master.config import Config
 from flask_mail import Mail
-from sqlalchemy import Column, Boolean, DateTime, Integer
-
-from flask_login import login_user, current_user
-
-
+from master.medications import *
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -18,7 +14,6 @@ login_manager.login_message_category = 'danger'
 
 mail = Mail()
 position = ""
-
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -30,6 +25,7 @@ def create_app(config_class=Config):
     mail.init_app(app)
 
     from master.protocols.routes import protocols
+    from master.medications.routes import medications
     from master.main.routes import main
     from master.users.routes import users
 
@@ -38,5 +34,6 @@ def create_app(config_class=Config):
     app.register_blueprint(protocols)
     app.register_blueprint(main)
     app.register_blueprint(users)
+    app.register_blueprint(medications)
 
     return app

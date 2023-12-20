@@ -1,15 +1,7 @@
-from flask import Flask, render_template, url_for, Blueprint
+from flask import render_template, Blueprint
 from flask import session
-from master.main.routes import setPt
 
 protocols = Blueprint('protocols', __name__)
-
-# def patient_variables():
-#     ptYears = session.get(ptYears)
-#     ptKgs = session.get(ptKgs)
-
-# patient_variables()
-
 
 @protocols.route("/protocols/allergic_reaction")
 def allergy():
