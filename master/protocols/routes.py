@@ -49,3 +49,39 @@ def allergy():
 
 
     return render_template('/protocols/AllergicReaction.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax30=ptMax30, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs)
+
+@protocols.route("/protocols/abdominal_pain")
+def abdominal():
+
+    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+    ptMax26 = False
+    ptMax100 = False
+
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 100:
+            ptMax26 = True
+            ptMax100 = True
+    elif ptKgs >= 26:
+            ptMax26 = True
+            ptMax100 = False
+    else:
+            ptMax26 = False
+            ptMax100 = False
+
+    print(ptAdult, ptMax26, ptMax100)
+
+
+    return render_template('/protocols/AbdPain.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs)
