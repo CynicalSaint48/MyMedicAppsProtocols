@@ -1,2 +1,4 @@
 /.devcontainer
 master/makedb.py
+master/templates/protocols/template.html
+master/templates/protocols/snippets.html

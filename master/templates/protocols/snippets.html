@@ -1,4 +1,6 @@
 <!-- List Item; Adult Ped no Maxes -->
+<!-- -->
+<!-- -->
 <li><a href="">DRUGNAMEHERE</a> INFOAFTERDRUGNAME
     {% if ptYears %}
         {% if ptAdult %}
@@ -31,6 +33,8 @@
 </li>
 
 <!-- List Item; Adult no Max Ped with a Max dose -->
+<!-- -->
+<!-- -->
 <li><a href="">DRUGNAMEHERE</a> INFOAFTERDRUGNAME
     {% if ptYears %}
         {% if ptAdult %}
@@ -64,4 +68,36 @@
             <li>Pediatric: PEDIATRICDOSEHERE</li>
         </ol>
     {% endif %}
+</li>
+
+<!-- Protocol Medication Adult - Ped - Max Weight -->
+<!-- -->
+<!-- -->
+
+<li><a href="">FIXME: MEDICATION NAME</a> FIXME: MEDICATION FOLLOWING TEXT
+    {% if ptYears %}
+        {% if ptAdult %}
+            <ul>
+                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">FIXME: ADULT DOSE AND ROUTE</b></li></ul>
+            </ul>
+        {% else %}
+            {% if FIXME: MAX VARIABLE ptMax50 FIXME: %}
+                <ul>
+                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                    <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a">FIXME: PED MAX DOSE AND ROUTE</b></li></ul>
+                </ul>
+            {% else %}
+                <ul>
+                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                    <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">FIXME: {{ ptKgs * 1 }}mg PO, IV, IM FIXME:</b></li></ul>
+                </ul>
+            {% endif %}
+        {% endif %}
+{% else %}
+    <ol>
+        <li>FIXME: ADULT DOSE AND ROUTE</li>
+        <li>FIXME: PEDIATRIC DOSE AND ROUTE</li>
+    </ol>                           
+{% endif %}
 </li>
