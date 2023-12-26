@@ -834,6 +834,10 @@ hr {
    margin: 20px;
 }
 
+.med-image {
+   margin-bottom: 20px;
+}
+
 
 @media (max-width: 950px){
    .med-image {
@@ -976,6 +980,10 @@ hr {
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
+   }
+
+   .ThreeFiveZero {
+      width: 350px;
    }
 
 }

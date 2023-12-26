@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Adenosine</div></h2>
+                    <small class="text-muted">Adenocard®</small>
+                    <hr>
+                </div>
+                <div class="med-container-lg large-screen">
+                    <div class="med-container-L">
+                        <div class="med-image"><img src="{{ url_for('static', filename='images/medications/adenosine_vial.jpg') }}"></div>
+                    </div>
+                    <div class="med-container-R">
+                        <div class="med-info-group">
+                            <div class="med-info-title">Indications:</div>
+                            <div class="med-info-sub-item">Supraventricular Tachycardia (SVT)</div>
+                        </div>
+                        <div class="med-info-group">
+                            <div class="med-info-title">Contraindications:</div>
+                            <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                            <div class="med-info-sub-item">2<sup>nd</sup> or 3<sup>rd</sup> degree heart block</div>
+                            <div class="med-info-sub-item">Post heart transplant</div>
+                            <div class="med-info-sub-item">Wide complex irregular rhythm SVT (e.g. WPW with atrial fibrillation)</div>
+                            <div class="med-info-sub-item">Caution in patients with significant reactive airway disease history</div>
+                        </div>
+                        <div class="med-info-group">
+                            <div class="med-info-title">How Supplied</div>
+                            <div class="med-info-sub-item">Vial: 12 mg in 4 ml = (3 mg per ml)</div>
+                        </div>
+                        <div class="med-info-group">
+                            <div class="med-info-title">Mechanism of action:</div>
+                            <div class="med-info-sub-item">Slows/blocks conduction through the AV-Node</div>
+                        </div>
+                    </div>
+            </div>  
+            <div class="med-container small-screen">
+                <div class="med-image"><img src="{{ url_for('static', filename='images/medications/adenosine_vial.jpg') }}"></div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Indications:</div>
+                    <div class="med-info-sub-item">Supraventricular Tachycardia (SVT)</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Contraindications:</div>
+                    <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                    <div class="med-info-sub-item">2<sup>nd</sup> or 3<sup>rd</sup> degree heart block</div>
+                    <div class="med-info-sub-item">Post heart transplant</div>
+                    <div class="med-info-sub-item">Wide complex irregular rhythm SVT (e.g. WPW with atrial fibrillation)</div>
+                    <div class="med-info-sub-item">Caution in patients with significant reactive airway disease history</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">How Supplied</div>
+                    <div class="med-info-sub-item">Vial: 12 mg in 4 ml = (3 mg per ml)</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Mechanism of action:</div>
+                    <div class="med-info-sub-item">Slows/blocks conduction through the AV-Node</div>
+                </div>
+            </div> 
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">6 mg IV rapid push initial dose</dose></li>
+                                                <thing>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">12 mg IV rapid push subsequent dose(s)</dose></thing>
+                                            </ul>
+                                {% else %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            {% if ptMax60 %}
+                                            <ul>
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">6 mg IV rapid push initial dose</dose></li>
+                                                <thing>&nbsp &nbsp  <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">12 mg IV rapid push subsequent dose(s)</dose></thing>
+                                            </ul>
+                                            {% else %}
+                                                    <ul>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs/10 }} mg IV rapid push initial dose</dose></li>
+                                                        <thing>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">{{ ptKgs/5 }} mg IV rapid push subsequent dose(s)</dose></thing>
+                                                    </ul>
+                                            {% endif %}
+                                {% endif %}
+                        <hr>    
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Adult</b>
+                        <ul><li>6 mg IV rapid push initial dose</li></ul>
+                        <ul><li>12 mg IV rapid push subsequent dose(s)</li></ul>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b>
+                        <ul><li>0.1 mg/kg IV rapid push initial dose <b style="color:#D2042D;font-weight:600">(maximum = 6 mg)</b></li></ul>
+                        <ul><li>0.2 mg/kg IV rapid push subsequent dose(s) <b style="color:#D2042D;font-weight:600"> (maximum = 12 mg)</b></li></ul>
+                    </div>
+                </div>
+                <div class="med-helpers-group">
+                    <div class="med-image"><img src="{{ url_for('static', filename='images/medications/adenosine_helper.jpg') }}"></div>
+                </div> 
+                <div class="med-info-group">
+                    <div class="med-info-title">Adverse Effects</div>
+                    <div class="med-info-sub-item">Bronchospasm</div>
+                    <div class="med-info-sub-item">Chest pain</div>
+                    <div class="med-info-sub-item">Dysrhythmia (asystole, v. fibrillation/tachycardia, bradycardia, a. fibrillation, Torsades)
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Heart Problems</a> - Supraventricular tachycardia</div>
+                    <div class="med-info-sub-item">Pediatric supraventricular tachycardia</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">Initial dose: 2 ml (6 mg) rapid IV push & flushed with NS</div>
+                    <div class="med-info-sub-item">Subsequent: 4ml (12 mg) rapid IV push & flushed with NS</div>
+                    <div class="med-info-sub-item">Pediatric: 0.1 mg/kg rapid IV push</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Caveats</div>
+                    <div class="med-info-sub-item">&frac12; < 10 seconds</div>
+                    <div class="med-info-sub-item">MUST have ECG rhythm strip printing (initiate prior administration)</div>
+                    <div class="med-info-sub-item">Will only CONVERT AV-Nodal Reentrant Tachycardia</div>
+                    <div class="med-info-sub-item">Will assist with diagnosis of other undefined SVT's</div>
+                </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

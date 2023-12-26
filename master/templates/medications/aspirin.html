@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Aspirin</div></h2>
+                    <hr>
+                </div>
+                <div class="med-container-lg large-screen">
+                    <div class="med-container-L">
+                        <div class="med-image"><img src="{{ url_for('static', filename='images/medications/aspirin.jpg') }}"></div>
+                    </div>
+                    <div class="med-container-R">
+                        <div class="med-info-group ThreeFiveZero">
+                            <div class="med-info-title">Indications:</div>
+                            <div class="med-info-sub-item">Chest pain consistent with cardiac etiology</div>
+                        </div>
+                        <div class="med-info-group ThreeFiveZero">
+                            <div class="med-info-title">Contraindications:</div>
+                            <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                            <div class="med-info-sub-item">Known GI bleeding</div>
+                            <div class="med-info-sub-item">Pediatric age</div>
+                        </div>
+                        <div class="med-info-group ThreeFiveZero">
+                            <div class="med-info-title">How Supplied</div>
+                            <div class="med-info-sub-item">81mg chewable tablet</div>
+                        </div>
+                        <div class="med-info-group ThreeFiveZero">
+                            <div class="med-info-title">Mechanism of action:</div>
+                            <div class="med-info-sub-item">Anti-platelet aggregation via blocking formation of thromboxane &alpha;2</div>
+                        </div>
+                    </div>
+            </div>  
+            <div class="med-container small-screen">
+                <div class="med-image"><img src="{{ url_for('static', filename='images/medications/aspirin.jpg') }}"></div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Indications:</div>
+                    <div class="med-info-sub-item">Chest pain consistent with cardiac etiology</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Contraindications:</div>
+                    <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                    <div class="med-info-sub-item">Known GI bleeding</div>
+                    <div class="med-info-sub-item">Pediatric age</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">How Supplied</div>
+                    <div class="med-info-sub-item">81mg chewable tablet</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Mechanism of action:</div>
+                    <div class="med-info-sub-item">Anti-platelet aggregation via blocking formation of thromboxane &Alpha;2</div>
+                </div>
+            </div> 
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">324 mg orally</dose></li>
+                                            </ul>
+                                {% else %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li><b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients</b></li>
+                                            </ul>
+                                {% endif %}
+                        <hr>    
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Adult</b>
+                        <ul><li>324 mg orally</li></ul>
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Adverse Effects</div>
+                    <div class="med-info-sub-item">Angioedema</div>
+                    <div class="med-info-sub-item">Bleeding</div>
+                    <div class="med-info-sub-item">Bronchospasm</div>
+                    <div class="med-info-sub-item">Nausea/vomiting</div>
+                    <div class="med-info-sub-item">Rash</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Heart Problems</a> -  Chest Pain, Myocardial Ischemia</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Chest Pain Myocardial Infarction</a></div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">4 chewable tablets PO</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Caveats</div>
+                    <div class="med-info-sub-item">Hold (must document) if patient has already taken aspirin prior to arrival</div>
+                    <div class="med-info-sub-item">Clinical performance measure:</div>
+                        <thing>&emsp;&emsp;Aspirin administration in STEMI</thing>
+                    <div class="med-info-sub-item">Aspirin products:</div>
+                    <thing>&emsp;&emsp;Anacin®</thing><br>
+                        <thing>&emsp;&emsp;Bayer®</thing><br>
+                        <thing>&emsp;&emsp;BC Powder®</thing><br>
+                        <thing>&emsp;&emsp;Bufferin®</thing><br>
+                        <thing>&emsp;&emsp;Ecotrin®</thing><br>
+                        <thing>&emsp;&emsp;Excedrin®</thing><br>
+                        <thing>&emsp;&emsp;>Goody's®</thing><br>
+                </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

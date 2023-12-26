@@ -26,6 +26,61 @@ def acetaminophen():
 
     return render_template('/medications/acetaminophen.html', ptAdult=ptAdult, ptMax43=ptMax43, ptYears=ptYears, ptKgs=ptKgs)
 
+@medications.route("/medications/adenosine")
+def adenosine():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax60 = False
+    if ptYears >= 18:
+        ptAdult = True
+        ptMax60 = False
+    else:
+
+        if ptKgs >= 60:
+            ptAdult = False
+            ptMax60 = True
+        else:
+            ptMax60 = False
+
+    return render_template('/medications/adenosine.html', ptAdult=ptAdult, ptMax60=ptMax60, ptYears=ptYears, ptKgs=ptKgs)
+
+@medications.route("/medications/albuterol")
+def albuterol():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    return render_template('/medications/albuterol.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs)
+
+@medications.route("/medications/aspirin")
+def aspirin():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    return render_template('/medications/aspirin.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs)
+
 @medications.route("/medications/calcium")
 def calcium():    
     if not session['ptYears']:
