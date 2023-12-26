@@ -824,11 +824,25 @@ hr {
    margin-bottom: 20px;
 }
 
+.med-imgs-group {
+   display: flex;
+   flex-wrap: nowrap;
+   gap: 5px;
+}
+
+.med-helpers-group {
+   margin: 20px;
+}
+
 
 @media (max-width: 950px){
    .med-image {
       flex: 0 1;
       min-width: 600px
+   }
+
+   .dual {
+      min-width: auto;
    }
    .large-screen {
       display: none;

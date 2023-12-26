@@ -7,7 +7,7 @@
             <ul>
                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                     <ul>
-                        <li>Adult: <b style="color:#f4b02a;font-weight:500">ADULTDOSEHERE</b></li>
+                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">ADULTDOSEHERE</dose></li>
                     </ul>
                         <ul>
                             <li style="margin:5px">EXTRAMESSAGEHERE</li>
@@ -16,7 +16,7 @@
         {% else %}
             <ul>
                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                        
-                    <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">PEDIATRICDOSEHERE</b></li></ul>
+                    <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">PEDIATRICDOSEHERE</dose></li></ul>
                     <ul>
                         <li style="margin:5px">EXTRAMESSAGEHERE</li>
                     </ul>
@@ -41,7 +41,7 @@
             <ul>
                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                     <ul>
-                        <li>Adult: <b style="color:#f4b02a;font-weight:500">ADULTDOSEHERE</b></li>
+                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">ADULTDOSEHERE</dose></li>
                     </ul>
                         <ul>
                             <li style="margin:5px">EXTRAMESSAGEHERE</li>
@@ -51,12 +51,12 @@
             {% if PTMAXVARIABLEHERE %}
                 <ul>
                     <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                    <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a">PEDIATRICDOSEHERE</b></li></ul>
+                    <ul><li>Pediatric: <dose style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a">PEDIATRICDOSEHERE</dose></li></ul>
                 </ul>
             {% else %}
                 <ul>
                     <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                    <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">CALCPEDIATRICDOSEHERE</b></li></ul>
+                    <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">CALCPEDIATRICDOSEHERE</dose></li></ul>
                 </ul>
             {% endif %}
         {% endif %}
@@ -79,18 +79,18 @@
         {% if ptAdult %}
             <ul>
                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">FIXME: ADULT DOSE AND ROUTE</b></li></ul>
+                <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">FIXME: ADULT DOSE AND ROUTE</dose></li></ul>
             </ul>
         {% else %}
             {% if FIXME: MAX VARIABLE ptMax50 FIXME: %}
                 <ul>
                     <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                    <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a">FIXME: PED MAX DOSE AND ROUTE</b></li></ul>
+                    <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">FIXME: PED MAX DOSE AND ROUTE</dose></li></ul>
                 </ul>
             {% else %}
                 <ul>
                     <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                    <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">FIXME: {{ ptKgs * 1 }}mg PO, IV, IM FIXME:</b></li></ul>
+                    <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">FIXME: {{ ptKgs * 1 }}mg PO, IV, IM FIXME:</dose></li></ul>
                 </ul>
             {% endif %}
         {% endif %}

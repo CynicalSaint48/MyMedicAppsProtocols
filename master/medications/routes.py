@@ -3,6 +3,28 @@ from flask import session
 
 medications = Blueprint('medications', __name__)
 
+@medications.route("/medications/acetaminophen")
+def acetaminophen():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax43 = False
+    if ptYears >= 18:
+        ptAdult = True
+        ptMax43 = False
+    else:
+
+        if ptKgs >= 43:
+            ptAdult = False
+            ptMax43 = True
+        else:
+            ptMax43 = False
+
+    return render_template('/medications/acetaminophen.html', ptAdult=ptAdult, ptMax43=ptMax43, ptYears=ptYears, ptKgs=ptKgs)
 
 @medications.route("/medications/calcium")
 def calcium():    

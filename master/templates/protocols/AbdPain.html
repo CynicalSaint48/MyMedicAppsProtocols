@@ -84,7 +84,7 @@
                 <h3>Basic Medical Care</h3>
                 <p class="basicCare orderedList">
                     <ol>
-                        <li><a href="">Medical Initial Assessment Protocol</a></li>
+                        <li><a FIXME:href=""FIXME:>Medical Initial Assessment Protocol</a></li>
                         <li>Assess vital signs</li>
                         <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                         <li> Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent </li>
@@ -109,7 +109,7 @@
                         <ol>
                             <li> 4-lead and refer to appropriate protocol as indicated </li>
                             <li> 12-lead ECG for patient presentation consistent with potential cardiac etiology </li>
-                            <li><a href="">IVF</a> bolus for signs of hypotension/dehydration
+                            <li><a FIXME:href=""FIXME:>IVF</a> bolus for signs of hypotension/dehydration
                                 <ol>
                                     {% if ptYears %}
                                         {% if ptAdult %}
@@ -128,18 +128,18 @@
                                 </ol>
                             </li>
                             <li> Reassess vital signs following IVF bolus </li>
-                            <li><a href="">Ondansetron (Zofran®)</a> for nausea/vomiting
+                            <li><a FIXME:href=""FIXME:>Ondansetron (Zofran®)</a> for nausea/vomiting
                                 {% if ptYears %}
                                     {% if ptAdult %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Adult: <b style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</b></li></ul>
+                                            <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</thing></li></ul>
                                         </ul>
                                     {% else %}
                                         {% if ptMax26 %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a"> 4 mg PO, IV, IM</b></li></ul>
+                                                <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a"> 4 mg PO, IV, IM</thing></li></ul>
                                             </ul>
                                         {% else %}
                                             <ul>
@@ -155,7 +155,7 @@
                                 </ol>                           
                             {% endif %}
                             </li>
-                            <li><a href="">Fentanyl (Sublimaze®)</a> for pain contro
+                            <li><a FIXME:href=""FIXME:>Fentanyl (Sublimaze®)</a> for pain contro
                                 {% if ptYears %}
                                     {% if ptAdult %}
                                         {% if ptMax100 %}

@@ -74,17 +74,17 @@
                 <h3>Basic Medical Care</h3>
                 <p class="basicCare orderedList">
                     <ol>
-                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li><a FIXME:href=""FIXME:>Medical Initial Assessment Protocol</a> or <a FIXME:href=""FIXME:>Pediatric Initial Assessment Protocol</a></li>
                         <li>Assess vital signs</li>
                         <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                         <li>Attempt to remove source of exposure (e.g. stinger) as possible</li>
-                        <li><a href="">Epinephrine (1:1000)</a> IM for any evidence of anaphylaxis
+                        <li><a FIXME:href=""FIXME:>Epinephrine (1:1000)</a> IM for any evidence of anaphylaxis
                             {% if ptYears %}
                                 {% if ptAdult %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                             <ul>
-                                                <li>Adult: <b style="color:#f4b02a;font-weight:500">0.3 mg</b></li>
+                                                <li>Adult: <thing style="color:#f4b02a;font-weight:500">0.3 mg</thing></li>
                                             </ul>
                                                 <ul>
                                                     <li style="margin-left:20px">Consider decreasing dose to 0.15 mg IM in patients with coronary artery disease or patients > 55-years and CAD risk factors</li>
@@ -93,7 +93,7 @@
                                 {% else %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                        
-                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">0.15mg IM</b></li></ul>
+                                            <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">0.15mg IM</thing></li></ul>
                                     </ul>
                                 {% endif %}
                             {% else %}
@@ -106,18 +106,18 @@
                             {% endif %}
                         </li>
                         
-                        <li><a href="">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
+                        <li><a FIXME:href=""FIXME:>Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
                             {% if ptYears %}
                                 {% if ptAdult %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                         <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">5 mg Nebulized</b></li></ul>
-                                            <ul><li style="margin-left:20px">Repeat <b style="color:#f4b02a;font-weight:500">5 mg</b> as indicated by patient's condition</li></ul>
+                                            <ul><li style="margin-left:20px">Repeat <thing style="color:#f4b02a;font-weight:500">5 mg</thing> as indicated by patient's condition</li></ul>
                                     </ul>
                                 {% else %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                        <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</b></li></ul>
+                                        <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</thing></li></ul>
                                     </ul>
                                 {% endif %}
                             {% else %}
@@ -132,12 +132,12 @@
                             {% endif %}
                         </li>
 
-                        <li><a href="">Diphenhydramine (Benadryl®)</a> for uncomplicated allergic reaction (urticaria, flushing, itching only)
+                        <li><a FIXME:href=""FIXME:>Diphenhydramine (Benadryl®)</a> for uncomplicated allergic reaction (urticaria, flushing, itching only)
                             {% if ptYears %}
                                 {% if ptAdult %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                        <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">50mg PO</b></li></ul>
+                                        <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500">50mg PO</thing></li></ul>
                                     </ul>
                                 {% else %}
                                     {% if ptMax50 %}
@@ -148,7 +148,7 @@
                                     {% else %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 1 }}mg PO</b></li></ul>
+                                            <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">{{ ptKgs * 1 }}mg PO</thing></li></ul>
                                                 <ul><li><b style="color:#D2042D;font-weight:600">Contraindicated in children under 9 months</b></li></ul>
                                         </ul>
                                     {% endif %}
@@ -175,23 +175,23 @@
                         <ol>
                             <li>Uncomplicated allergic reaction (urticaria, flushing, itching only)
                                 <ol>
-                                    <li><a href="">Diphenhydramine (Benadryl®)</a>; if not already administered
+                                    <li><a FIXME:href=""FIXME:>Diphenhydramine (Benadryl®)</a>; if not already administered
                                         {% if ptYears %}
                                             {% if ptAdult %}
                                                 <ul>
                                                     <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                    <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">25 - 50mg PO, IV, IM</b></li></ul>
+                                                    <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500">25 - 50mg PO, IV, IM</thing></li></ul>
                                                 </ul>
                                             {% else %}
                                                 {% if ptMax50 %}
                                                     <ul>
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a">50mg PO, IV, IM</b></li></ul>
+                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a">50mg PO, IV, IM</thing></li></ul>
                                                     </ul>
                                                 {% else %}
                                                     <ul>
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 1 }}mg PO, IV, IM</b></li></ul>
+                                                        <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">{{ ptKgs * 1 }}mg PO, IV, IM</thing></li></ul>
                                                             <ul><li><b style="color:#D2042D;font-weight:600">Contraindicated in children under 9 months</b></li></ul>
                                                     </ul>
                                                 {% endif %}
@@ -209,19 +209,19 @@
                                                 <ul>
                                                     <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                         <ul>
-                                                            <li>Adult: <b style="color:#f4b02a;font-weight:500">16 mg IV, PO</b></li>
+                                                            <li>Adult: <thing style="color:#f4b02a;font-weight:500">16 mg IV, PO</thing></li>
                                                         </ul>
                                                 </ul>
                                             {% else %}
                                                 {% if ptMax26 %}
                                                     <ul>
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a">16 mg IV, PO</b></li></ul>
+                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a">16 mg IV, PO</thing></li></ul>
                                                     </ul>
                                                 {% else %}
                                                     <ul>
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 0.6 }}mg IV, PO</b></li></ul>
+                                                        <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">{{ ptKgs * 0.6 }}mg IV, PO</thing></li></ul>
                                                     </ul>
                                                 {% endif %}
                                             {% endif %}
@@ -236,13 +236,13 @@
                             </li>
                             <li>For any evidence of anaphylaxis
                                 <ol>
-                                    <li><a href="">Epinephrine (1:1000)</a>
+                                    <li><a FIXME:href=""FIXME:>Epinephrine (1:1000)</a>
                                         {% if ptYears %}
                                             {% if ptAdult %}
                                                 <ul>
                                                     <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                         <ul>
-                                                            <li>Adult: <b style="color:#f4b02a;font-weight:500">0.3 mg IM</b></li>
+                                                            <li>Adult: <thing style="color:#f4b02a;font-weight:500">0.3 mg IM</thing></li>
                                                         </ul>
                                                             <ul>
                                                                 <li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li>
@@ -254,12 +254,12 @@
                                                 {% if ptMax30 %}
                                                     <ul>
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a">0.3 mg IM</b></li></ul>
+                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a">0.3 mg IM</thing></li></ul>
                                                     </ul>
                                                 {% else %}
                                                     <ul>
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 0.01 }}mg IM</b></li></ul>
+                                                        <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">{{ ptKgs * 0.01 }}mg IM</thing></li></ul>
                                                         <ul><li style="margin-left:20px">May repeat every 5 - 10 minutes depending on patient response</li></ul>
                                                     </ul>
                                                 {% endif %}
@@ -275,17 +275,17 @@
                                         {% endif %}
                                         
                                     </li>
-                                    <li><a href="">IVF</a> as indicated
+                                    <li><a FIXME:href=""FIXME:>IVF</a> as indicated
                                         <ol>
                                             {% if ptYears %}
                                                 {% if ptAdult %}
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                             <ul>
-                                                                <li>Adult: <b style="color:#f4b02a;font-weight:500">wide open</b></li>
+                                                                <li>Adult: <thing style="color:#f4b02a;font-weight:500">wide open</thing></li>
                                                             </ul>
                                                 {% else %}
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
-                                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 20 }}ml</b></li></ul>
+                                                            <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">{{ ptKgs * 20 }}ml</thing></li></ul>
                                                             <ul>
                                                                 <li style="margin-left:20px">reassess and re-bolus as clinically indicated</li>
                                                             </ul>
@@ -298,23 +298,23 @@
                                             {% endif %}
                                         </ol>
                                     </li>
-                                    <li><a href="">Diphenhydramine (Benadryl®)</a> & <a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a> as above, if not yet administered</li>
+                                    <li><a FIXME:href=""FIXME:>Diphenhydramine (Benadryl®)</a> & <a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a> as above, if not yet administered</li>
 
                                 </ol>
                             </li>
                             
-                            <li><a href="">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
+                            <li><a FIXME:href=""FIXME:>Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
                                 {% if ptYears %}
                                     {% if ptAdult %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">5 mg Nebulized</b></li></ul>
-                                                <ul><li style="margin-left:20px">Repeat <b style="color:#f4b02a;font-weight:500">5 mg Nebulized</b> as indicated by patient's condition</li></ul>
+                                            <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500">5 mg Nebulized</thing></li></ul>
+                                                <ul><li style="margin-left:20px">Repeat <thing style="color:#f4b02a;font-weight:500">5 mg Nebulized</thing> as indicated by patient's condition</li></ul>
                                         </ul>
                                     {% else %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</b></li></ul>
+                                            <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</thing></li></ul>
                                         </ul>
                                     {% endif %}
                                 {% else %}
@@ -328,11 +328,11 @@
                                     </ol>
                                 {% endif %}
                             </li>
-                            <li><a href="">Airway: Adult</a> or  <a href="">Airway: Pediatric Protocol</a></li>
+                            <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
                             <li>Advanced Airway management as indicated></li>
                                 <ol>
-                                    <li><a href="">Airway: Intubation Protocol</a></li>
-                                    <li><a href="">Airway: BIAD Protocol</a></li>
+                                    <li><a FIXME:href=""FIXME:>Airway: Intubation Protocol</a></li>
+                                    <li><a FIXME:href=""FIXME:>Airway: BIAD Protocol</a></li>
                                 </ol>
                             <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
                         </ol>

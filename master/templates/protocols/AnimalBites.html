@@ -35,23 +35,23 @@
                         <li>Remove any constricting clothing or jewelry/watches</li>
                         <li>Splint affected extremity as needed for patient comfort</li>
                         <li><a href="{{url_for('protocols.allergy')}}">Allergic Reaction Protocol</a> as indicated </li>
-                        <li><a FIXME:FIXME:href=""FIXME:FIXME:> Acetaminophen (Tylenol®)</a> for pain control
+                        <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
                             {% if ptYears %}
                                 {% if ptAdult %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                        <ul><li>Adult: <b style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </b></li></ul>
+                                        <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </thing></li></ul>
                                     </ul>
                                 {% else %}
                                     {% if ptMax43 %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a"> 650 mg PO</b></li></ul>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a"> 650 mg PO</thing></li></ul>
                                         </ul>
                                     {% else %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</b></li></ul>
+                                            <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</thing></li></ul>
                                         </ul>
                                     {% endif %}
                                 {% endif %}
@@ -83,10 +83,10 @@
                                             {% if ptYears %}
                                                 {% if ptAdult %}
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                            <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">TKO to wide open</b></li></ul>
+                                                            <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500">TKO to wide open</thing></li></ul>
                                                 {% else %}
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
-                                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml bolus and reassess</b></li></ul>
+                                                            <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml bolus and reassess</thing></li></ul>
                                                 {% endif %}
                                             {% else %}
                                                 <ol>                                                    
@@ -105,7 +105,7 @@
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> Adult: <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</thing> of 100 mcg IV, IM, IN, IO </b></li>
                                                     <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
                                                 </ul>
                                             </ul>
@@ -113,7 +113,7 @@
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </b></li>
+                                                    <li> Adult: <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </thing></li>
                                                     <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
                                                 </ul>
                                             </ul>
@@ -123,7 +123,7 @@
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
                                                 <ul>
-                                                    <li> Pediatric:  <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Pediatric:  <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</thing> of 100 mcg IV, IM, IN </b></li>
                                                     <li> Contact Medical Control for repeat dosing </li>
                                                 </ul>
                                             </ul>
@@ -131,7 +131,7 @@
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </b></li>
+                                                    <li> Pediatric: <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </thing></li>
                                                     <li> Contact Medical Control for repeat dosing </li>
                                                 </ul>
                                             </ul>
