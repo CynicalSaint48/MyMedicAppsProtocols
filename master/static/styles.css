@@ -932,6 +932,27 @@ hr {
       min-width: 40%;
    }
 
+   .sourceslist, .presentationlist {
+      display: flex;
+      flex-wrap: wrap;
+   }
+
+   .sourceslist li, .presentationlist li {
+      min-width: 40%;
+   }
+
+   .snake-pictures {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+   }
+
+   .snake-pictures div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
 }
 
 input::-webkit-outer-spin-button,

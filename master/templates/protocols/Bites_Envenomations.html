@@ -1,0 +1,434 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Bites & Envenomations</H1><hr>
+        <h2>Snake Bite</h2>
+        <div>
+            <input type="checkbox" name="accordian" id=" snakeBiteNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" snakeBiteNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul>
+                            <li> Consider bite is poisonous until proven otherwise
+                            </li>
+                            <li> Typically present with pain, swelling, edema, paresthesia, numbness  
+                                
+                            </li>
+                            <li> May present with nausea, vomiting, hypotension, coagulopathy, seizure
+                            </li>
+                            <li>  25% of bites may be “dry bites” - no envenomation
+                            </li>
+                        </ul><br>
+                    </div>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" snakeBiteBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" snakeBiteBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li> Ensure scene safety </li>
+                        <li> Assess vital signs </li>
+                        <li> Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97% </li>
+                        <li> Obtain any available information about the snake </li>
+                        <li> Immobilize extremity in neutral position </li>
+                        <li> Remove any constricting clothing or jewelry/watches </li>
+                        <li> Provide basic wound care for the bite site </li>
+                        <li> Do <b><i>NOT</i></b>&ensp;apply ice </li>
+                        <li> Do <b><i>NOT</i></b>&ensp;apply any constrictive dressings (including any form of tourniquet) </li>
+                        <li><a FIXME:href=""FIXME:> Acetaminophen (Tylenol®)</a> for pain control
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <b style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </b></li></ul>
+                                    </ul>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a"> 650 mg PO</b></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</b></li></ul>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                        {% else %}
+                            <ol>
+                                <li> Adult: 650 - 975 mg PO</li>
+                                <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                </li>
+                            </ol>                           
+                        {% endif %}
+                        </li>
+                        <li> Alternative pain control: nitrous oxide via patient-controlled inhalation </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" snakeBiteAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" snakeBiteAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li><a href="">IVF</a> as per patient condition
+                                <ol>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">TKO to wide open</b></li></ul>
+                                        {% else %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
+                                                    <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml bolus and reassess</b></li></ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>                                                    
+                                            <li> Adult: TKO to wide open</li>
+                                            <li>Pediatric: 10 - 20 ml/kg bolus and reassess</li>
+                                        </ol>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                            <li><a href="">Fentanyl (Sublimaze®)</a> for pain contro
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric:  <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </b></li>
+                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact Medical Control for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <H2> Marine Envenomation/Injury </H2>
+        <div>
+            <input type="checkbox" name="accordian" id=" marineNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" marineNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3> Sources </H3>
+                    <div class="sources">
+                        <ul class="sourceslist">
+                            <li> Cone shell sting </li>
+                            <li> Coral sting </li>
+                            <li> Jellyfish sting </li>
+                            <li> Lion fish sting </li>
+                            <li> Man-o-war </li>
+                            <li> Sea anemone </li>
+                            <li> Sea urchin sting </li>
+                            <li> Sting ray barb </li>
+                        </ul>
+                    </div><br>
+                <h3>Clinical Presentation</h3>
+                <div class="presentation">
+                    <ul class="presentationlist">
+                        <li> Allergic reaction </li>
+                        <li> Hypotension </li>
+                        <li> Increased oral secretions </li>
+                        <li> Localized pain, swelling, edema </li>
+                        <li> Nausea / vomiting </li>
+                        <li> Paresthesias, numbness </li>
+                    </ul>
+                </div><br>
+
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul>
+                            <li> Allergic reactions/anaphylaxis may occur from marine envenomations </li>
+                            <li> Coral contact often presents with delayed onset of symptoms </li>
+                            <li> Many marine envenomations occur in the home as above sources are kept as pets in saltwater aquariums </li>
+                        </ul><br>
+                    </div>
+
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" marineBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" marineBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li> Ensure scene safety </li>
+                        <li> Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97% </li>
+                        <li>  Assess bite site / extremity </li>
+                            <ol>
+                                <li> Measure extremity circumference at and above bite site </li>
+                                <li> Place appropriate marking on the extremity to ensure subsequent measurements taken at the same location for direct comparison </li>
+                                <li> Repeat measurement every 15 minutes until stable </li>
+                            </ol>
+                        <li> <a href="{{url_for('protocols.allergy')}}">Allergic Reaction Protocol</a> as indicated </li>
+                        <li> Remove any obvious barbs/spines/stingers from extremities </li>
+                            <ul>
+                                <li> Lift, do <b><i>NOT</i></b>&ensp;brush away, any tentacles or barbs </li>
+                            </ul>
+                        <li>  Rinse site / area with seawater (do <b><i>NOT</i></b>&ensp;use fresh water)  </li>
+                            <ol>
+                                <li> May rinse with vinegar as available (jellyfish, anemone, man-o-war stings) </li>
+                                <li> Immerse with hot water as available (sting ray, lion fish, sea urchin stings) </li>
+                                    <ul><li>Assure temperature does not cause thermal injury
+                                    </li></ul>
+                            </ol>
+                        <li> Remove any constricting clothing or jewelry/watches </li>
+                        <li> Splint the affected extremity in neutral position </li>
+                        <li> Do <b><i>NOT</i></b>&ensp;apply ice </li>
+                        <li> Do <b><i>NOT</i></b>&ensp;apply constrictive dressings (including tourniquet) </li>
+                        <li><a FIXME:href=""FIXME:> Acetaminophen (Tylenol®)</a> for pain control
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <b style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </b></li></ul>
+                                    </ul>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a"> 650 mg PO</b></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</b></li></ul>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                        {% else %}
+                            <ol>
+                                <li> Adult: 650 - 975 mg PO</li>
+                                <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                </li>
+                            </ol>                           
+                        {% endif %}
+                        </li>
+                        <li> Alternative pain control: nitrous oxide via patient-controlled inhalation </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" marineAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" marineAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li><a href="">IVF</a> as per patient condition
+                                <ol>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">TKO to wide open</b></li></ul>
+                                        {% else %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
+                                                    <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml bolus and reassess</b></li></ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>                                                    
+                                            <li> Adult: TKO to wide open</li>
+                                            <li>Pediatric: 10 - 20 ml/kg bolus and reassess</li>
+                                        </ol>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                            <li><a href="">Fentanyl (Sublimaze®)</a> for pain contro
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric:  <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </b></li>
+                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact Medical Control for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <!-- FIXME: Protocol Error? 1g for Adult, max 2g for Ped?  FIXME: -->
+                            <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> for severe muscle spasms
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Adult: <b style="color:#f4b02a;font-weight:500"> 1 gram (10 ml of 10% solution) IV, IO </b></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        {% if ptMax50 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a"> 1 gram (10 ml of 10% solution) IV, IO </b></li></ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs * 2)/100) }}g IV, IO </b></li></ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 1 gram (10 ml of 10% solution) IV, IO </li>
+                                    <li> Pediatric: 20 mg/kg IV, IO (0.2 ml/kg of 10% solution); maximum 2 grams (20ml) </li>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+
+
+
+        <div>
+            <input type="checkbox" name="accordian" id=" biteEnvenomationsAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" biteEnvenomationsAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li> Contact <b style="color:#D2042D;font-weight:600"> Poison Control </b> as needed: <b style="color:#D2042D;font-weight:600"> 800-222-1222 </b>
+                            </li>
+                        </ul>
+                    </p>
+                <h2>Other Envenomations </h2>
+                    <p>
+                        <ul>
+                            <li> Fire Ants
+                                <ul>
+                                    <li> Approximately 10% of patients with fire ant bites will suffer anaphylactic reactions </li>
+                                    <li> <a href="{{url_for('protocols.allergy')}}">Allergic Reaction Protocol</a> as indicated </li>
+                                </ul>
+                            </li>
+                            <li> Black widow spider bites
+                                <ul>
+                                    <li>  Can cause significant muscle spasms and pain and therefore may require benzodiazepine administration as well as analgesic care </li>
+                                    <li> Contact Medical Control for possible <a FIXME: href="#" FIXME:> midazolam (Versed®)</a> administration </li>
+                                </ul>
+                            </li>
+                            <li> Brown Recluse spider bites
+                                <ul>
+                                    <li> Initially present with minimal symptoms </li>
+                                    <li> May progress to necrotic bite sites over the next few days </li>
+                                </ul>
+                            </li>
+                        </ul> 
+                    </p>
+                <h2>Venomous Snakes in Mecklenburg County </h2>
+                    <div class="snake-pictures">
+                        <div>
+                            <img src="{{ url_for('static', filename='images/protocol/copperhead.jpg') }}" alt="Copperhead">
+                            <p><i> Copperhead </i></p>
+                        </div>
+                        <div>
+                            <img src="{{ url_for('static', filename='images/protocol/timber.jpg') }}" alt="Timber Rattlesnake">
+                            <p><i> Timber Rattlesnake </i></p>
+                        </div>
+                    </div>
+                    <p>
+                        <ul>
+                            <li> Consider patients may have exotic snakes as pets including other venomous species (other rattlesnakes, cobras, coral snakes, etc.) </li>
+                            <li> Do not attempt to identify, capture or bring snake to the hospital </li>
+                        </ul> 
+                    </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -81,7 +81,48 @@ def abdominal():
             ptMax26 = False
             ptMax100 = False
 
-    print(ptAdult, ptMax26, ptMax100)
-
-
     return render_template('/protocols/AbdPain.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs)
+
+@protocols.route("/protocols/bites_envenomations")
+def bites():
+
+    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+    ptMax43 = False
+    ptMax50 = False
+    ptMax100 = False
+
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 100:
+            ptMax43 = True
+            ptMax50 = True
+            ptMax100 = True
+
+    elif ptKgs >= 50:
+            ptMax43 = True
+            ptMax50 = True
+            ptMax100 = False
+
+    elif ptKgs >= 43:
+        ptMax43 = True
+        ptMax50 = False
+        ptMax100 = False
+
+    else:
+            ptMax43 = False
+            ptMax50 = False
+            ptMax100 = False
+
+    return render_template('/protocols/Bites_Envenomations.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax50=ptMax50, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs)
