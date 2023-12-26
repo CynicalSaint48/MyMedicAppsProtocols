@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Animal Bites</H1><hr><br>
+        <div>
+            <input type="checkbox" name="accordian" id=" animalBiteNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" animalBiteNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Types</H3>
+                    <ul class="typeslist">
+                        <li> Cat bite </li>
+                        <li> Dog bite </li>
+                        <li> Human bite </li>
+                        <li> Insect sting </li>
+                        <li> Other animal bites </li>
+                    </ul>
+                    <hr><br>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" animalBiteBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" animalBiteBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety</li>
+                        <li><a FIXME:href=""FIXME:>Medical Initial Assessment Protocol</a> or <a FIXME:href=""FIXME:>Pediatric Initial Assessment Protocol</a></li>
+                        <li><a FIXME:href=""FIXME:>Trauma Initial Assessment Protocol</a> or <a FIXME:href=""FIXME:>Pediatric Trauma Assessment Protocol</a></li>
+                        <li>Control Bleeding</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide local wound care and dress wound as appropriate</li>
+                        <li>Copiously irrigate with normal saline</li>
+                        <li>Remove any constricting clothing or jewelry/watches</li>
+                        <li>Splint affected extremity as needed for patient comfort</li>
+                        <li><a href="{{url_for('protocols.allergy')}}">Allergic Reaction Protocol</a> as indicated </li>
+                        <li><a FIXME:FIXME:href=""FIXME:FIXME:> Acetaminophen (Tylenol®)</a> for pain control
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <b style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </b></li></ul>
+                                    </ul>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <b style="color:#f4b02a"> 650 mg PO</b></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</b></li></ul>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                        {% else %}
+                            <ol>
+                                <li> Adult: 650 - 975 mg PO</li>
+                                <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                </li>
+                            </ol>                           
+                        {% endif %}
+                        </li>
+                        <li> Alternative pain control: nitrous oxide via patient-controlled inhalation </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" animalBiteAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" animalBiteAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>IV Access as indicated by mechanism of injury</li>
+                                <ol>
+                                    <li>Preferably establish IV access in unaffected extremity</li>
+                                    <li><a FIXME:href=""FIXME:>IVF</a> as per patient condition
+                                        <ol>
+                                            {% if ptYears %}
+                                                {% if ptAdult %}
+                                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                            <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">TKO to wide open</b></li></ul>
+                                                {% else %}
+                                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
+                                                            <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml bolus and reassess</b></li></ul>
+                                                {% endif %}
+                                            {% else %}
+                                                <ol>                                                    
+                                                    <li> Adult: TKO to wide open</li>
+                                                    <li>Pediatric: 10 - 20 ml/kg bolus and reassess</li>
+                                                </ol>
+                                            {% endif %}
+                                        </ol>
+                                    </li>
+                                </ol>
+                            
+                            <li><a FIXME:FIXME:href=""FIXME:FIXME:>Fentanyl (Sublimaze®)</a> for pain control
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric:  <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </b></li>
+                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact Medical Control for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li><a href="{{url_for('protocols.allergy')}}">Allergic Reaction Protocol</a> as indicated </li>
+                            <li>Advanced Airway management as indicated </li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li> Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" animalBiteAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" animalBiteAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li> Human bites
+                                <ul>
+                                    <li>Control hemorrhage and apply appropriate wound dressing</li>
+                                    <li>Apply appropriate wound dressing</li>
+                                    <li>Potential for high infection rates</li>
+                                        <ul>
+                                            <li>Eikenella</li>
+                                            <li>Streptococcus</li>
+                                            <li>Staphylococcus</li>
+                                        </ul>
+                                    <li> “Fight bite” injuries involve wounds to hands from thrown punches contacting teeth of 2nd party</li>
+                                        <ul>
+                                            <li>These wounds are particularly at high risk for infection</li>
+                                            <li>Transport to the ED for irrigation and antibiotics should be recommended if the patient is declining transport</li>
+                                        </ul>
+                                <div class="human-bites-images">
+                                    <img src="{{ url_for('static', filename='images/protocol/human-bite1.jpg') }}" alt="human bite1">
+                                    <img src="{{ url_for('static', filename='images/protocol/human-bite2.jpg') }}" alt="human bite2">
+                                    <img src="{{ url_for('static', filename='images/protocol/human-bite3.jpg') }}" alt="human bite3">
+                                </div>
+                                </ul>
+                            </li>
+                            <li> Dog & Cat bites
+                                <ul>
+                                    <li>Dog bites often have associated crush type injury</li>
+                                    <li>Cat bites often have deep puncture wounds with minimal surface injury and therefore increased risk of infection</li>
+                                    <li>Potential for high infection rates</li>
+                                        <ul>
+                                            <li>Dogs: Pasteurella, staphylococcus, streptococcus</li>
+                                            <li>Cats: Pasteurella, staphylococcus, streptococcus</li>
+                                        </ul>
+                                    <li>Control hemorrhage and apply appropriate wound dressing</li>
+                                    <li>Any unknown animal bite must be considered at risk for rabies transmission</li>
+                                    <li>Contact with Animal Control</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

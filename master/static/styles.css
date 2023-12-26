@@ -819,6 +819,11 @@ hr {
    margin: 20px;
 }
 
+.human-bites-images {
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+
 
 @media (max-width: 950px){
    .med-image {
@@ -951,6 +956,12 @@ hr {
       display: flex;
       flex-direction: column;
       align-items: center;
+   }
+
+   .human-bites-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
    }
 
 }

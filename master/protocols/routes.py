@@ -126,3 +126,38 @@ def bites():
             ptMax100 = False
 
     return render_template('/protocols/Bites_Envenomations.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax50=ptMax50, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs)
+
+@protocols.route("/protocols/animal_bites")
+def animalBites():
+
+    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+    ptMax43 = False
+    ptMax100 = False
+
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 100:
+            ptMax43 = True
+            ptMax100 = True
+
+    elif ptKgs >= 43:
+        ptMax43 = True
+        ptMax100 = False
+
+    else:
+            ptMax43 = False
+            ptMax100 = False
+
+    return render_template('/protocols/AnimalBites.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs)
