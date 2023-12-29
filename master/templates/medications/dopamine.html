@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Atropine</div></h2>
+                    <hr>
+                </div>
+                <div class="med-container-lg large-screen">
+                        <div class="med-container-L">
+                            <div class="med-image"><img src="{{ url_for('static', filename='images/medications/dopamine.jpg') }}"></div>
+                        </div>
+                        <div class="med-container-R">
+                            <div class="med-info-group">
+                                <div class="med-info-title">Indications:</div>
+                                <div class="med-info-sub-item">Hypotension despite adequate volume resuscitation</a></div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Contraindications:</div>
+                                <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                                <div class="med-info-sub-item">Hypotension due to hypovolemia</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Mechanism of action:</div>
+                                <div class="med-info-sub-item">Dopamine receptor agonist</div>
+                                <div class="med-info-sub-item">With elevating doses stimulates &alpha;-receptors and &beta;-receptors</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Adverse Effects</div>
+                                <div class="med-info-sub-item">Tachycardia</div>
+                                <div class="med-info-sub-item">Dysrhythmia</div>
+                                <div class="med-info-sub-item">Hypertension</div>
+                            </div>
+                        </div>
+                </div>  
+                <div class="med-container small-screen">
+                    <div class="med-image"><img src="{{ url_for('static', filename='images/medications/atropine.jpg') }}"></div>    
+                    <div class="med-info-group">
+                        <div class="med-info-title">Indications:</div>
+                        <div class="med-info-sub-item">Hypotension despite adequate volume resuscitation</a></div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Contraindications:</div>
+                        <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                        <div class="med-info-sub-item">Hypotension due to hypovolemia</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Mechanism of action:</div>
+                        <div class="med-info-sub-item">Dopamine receptor agonist</div>
+                        <div class="med-info-sub-item">With elevating doses stimulates &alpha;-receptors and &beta;-receptors</div>
+                    </div>
+                </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Adverse Effects</div>
+                        <div class="med-info-sub-item">Tachycardia</div>
+                        <div class="med-info-sub-item">Dysrhythmia</div>
+                        <div class="med-info-sub-item">Hypertension</div>
+                    </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a href="{{url_for('protocols.allergy')}}">Allergic reaction</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Cardiac Arrest</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Heart Problems</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Sick Person</a> - Sepsis, Shock</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">How Supplied</div>
+                    <div class="med-info-sub-item">400 mg in 250 ml pre-mixed bag - (1,600 mcg per ml)</div>
+                    <div class="med-info-sub-item"></div>
+                    <div class="med-info-sub-item">Alternate Packaging:
+                        <ul>
+                            <li><div class="med-info-sub-item">200 - 400 mg vial(s) to be mixed with D5W</div></li>
+                            <li><div class="med-info-sub-item">IVF may be 250 ml - 1000 ml bag</div></li>
+                        </ul>
+                    </div>
+                    <div class="med-info-sub-item">Mixed all vials in accompanying IVF for end concentration of 1,600 mcg per ml (400 mg in 250 ml; 800 mg in 500 ml; 1,600 mg in 1000 ml)</div>
+                </div>
+                <div class="medication-dose-group">
+                    <div class="dose-item">
+                        <b>Dose Adult</b><br>
+                        <div>10 - 20 mcg/kg/min IV</div>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b><br>
+                        <div>10 - 20 mcg/kg/min IV</div>
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">Continuous infusion @ 10 - 20 mcg/kg/min</div>
+                </div>
+                <div class="dop-calc">
+                    <div class="dop-calc-item">Rate</div>
+                    <div class="dop-calc-item">=</div>
+                    <div class="dop-calc-item">
+                        <div class="calc-block1">dose * kg * 60</div><hr><div class="calc-block">concentration</div>
+                    </div>
+                    <div class="dop-calc-item">=</div>
+                    <div class="dop-calc-item">
+                        <div class="calc-block2">10mcg/min * 70kg * 60min</div><hr><div class="calc-block">1600mcg/ml</div>
+                    </div>
+                    <div class="dop-calc-item">=</div>
+                    <div class="dop-calc-item">
+                        <div class="calc-block3">26.25 ml/hour</div>
+                    </div>
+                    <div class="dop-calc-item">=</div>
+                    <div class="dop-calc-item">
+                        <div class="calc-block4">26.25-gtts/min</div><hr><div class="calc-block">(w/ 60-gtt set)</div>
+                    </div>
+                </div>
+                <div class="img-dex-helper"><img src="{{ url_for('static', filename='images/medications/dopamine_helper.jpg') }}"></div>
+            </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

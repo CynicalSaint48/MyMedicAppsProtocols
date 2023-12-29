@@ -767,15 +767,24 @@ hr {
    padding: 10px;
    
    margin-bottom: 20px;
-   max-width: 500px;
+   max-width: 650px;
 }
 
 .medication-dose-group ul {
    margin: 0;
 }
 
+.dose-item div {
+   padding-left: 20px;
+}
+
+.dose-item thing b{
+   padding-left: 20px;
+   margin-left: 20px;
+}
+
 .med-info-group {
-   min-width: 350px;
+   width: 350px;
    flex-shrink: 1;
    margin-bottom: 20px;
 }
@@ -813,6 +822,7 @@ hr {
    display: flex;
    flex-wrap: wrap;
    margin-left: 30px;
+   gap: 20px;
 }
 
 .proto-image {
@@ -838,10 +848,60 @@ hr {
    margin-bottom: 20px;
 }
 
+.dop-calc {
+   display: flex;
+   gap: 5px;
+   flex-wrap: wrap;
+   margin-left: 20px;
+   margin-bottom: 20px;
+}
+
+.dop-calc hr {
+   margin-top: 2px;
+   margin-bottom: 2px;
+}
+
+.dop-calc-item {
+   flex: 0 1;
+   display: flex;
+   flex-wrap: wrap;
+   margin: 0;
+   flex-direction: column;
+   align-items: center;
+}
+
+.calc-block {
+   flex: 1 1;
+   margin: 0;
+}
+
+.calc-block1 {
+   flex: 1 1;
+   width: 115px;
+   margin: 0;
+}
+
+.calc-block2 {
+   flex: 1 1;
+   width: 210px;
+   margin: 0;
+}
+
+.calc-block3 {
+   flex: 1 1;
+   width: 115px;
+   margin: 0;
+}
+
+.calc-block4 {
+   flex: 1 1;
+   width: 115px;
+   margin: 0;
+}
 
 @media (max-width: 950px){
    .med-image {
-      flex: 0 1;
+      flex: 1 0;
       min-width: 600px
    }
 

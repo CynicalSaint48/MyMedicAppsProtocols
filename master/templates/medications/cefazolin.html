@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Cefazolin</div></h2>
+                    <small class="text-muted">Ancef®</small>
+                    <hr>
+                </div>
+                <div class="med-container-lg large-screen">
+                        <div class="med-container-L">
+                            <div class="med-image"><img src="{{ url_for('static', filename='images/medications/ancef.jpg') }}"></div>
+                        </div>
+                        <div class="med-container-R">
+                            <div class="med-info-group">
+                                <div class="med-info-title">Indications:</div>
+                                <div class="med-info-sub-item">Open Skeletal Fracture</a></div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Contraindications:</div>
+                                <div class="med-info-sub-item">Known hypersensitivity reaction to cephalosporin (e.g. cefazolin, cefadroxil, cephalexin, ceftriaxone)</div>
+                                <div class="med-info-sub-item">Known anaphylaxis reaction to penicillin (e.g. amoxicillin, ampicillin)</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Mechanism of action:</div>
+                                <div class="med-info-sub-item">Cephalosporin antibiotic</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">How Supplied</div>
+                                <div class="med-info-sub-item">1 gram per vial</div>
+                            </div>
+                        </div>
+                </div>  
+                <div class="med-container small-screen">
+                    <div class="med-image"><img src="{{ url_for('static', filename='images/medications/ancef.jpg') }}"></div>    
+                    <div class="med-info-group">
+                        <div class="med-info-title">Indications:</div>
+                        <div class="med-info-sub-item">Open Skeletal Fracture</a></div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Contraindications:</div>
+                        <div class="med-info-sub-item">Known hypersensitivity reaction to cephalosporin (e.g. cefazolin, cefadroxil, cephalexin, ceftriaxone)</div>
+                        <div class="med-info-sub-item">Known anaphylaxis reaction to penicillin (e.g. amoxicillin, ampicillin)</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Mechanism of action:</div>
+                        <div class="med-info-sub-item">Cephalosporin antibiotic</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">How Supplied</div>
+                        <div class="med-info-sub-item">1 gram per vial</div>
+                    </div>
+                </div>
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                    {% if ptKgsMax %}
+                                        <li>Adult: <b style="color:#f4b02a;font-weight:500">3 grams IV over 3 - 5 minutes</b></li>
+                                    {% elif ptKgsMin %}
+                                        <li>Adult: <b style="color:#f4b02a;font-weight:500">2 grams IV over 3 - 5 minutes</b></li>
+                                    {% else %}
+                                        <div><b style="color:#D2042D;font-weight:600">&ensp; Contraindicated for patients under 40kg</b></div>
+                                    {% endif %}
+                                {% else %}
+                                    <div><b style="color:#D2042D;font-weight:600">&ensp; Contraindicated for pediatric patients</b></div>
+                                {% endif %}
+                            <hr>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Adult</b><br>
+                        <div>Weight ≥ 120 kg: 3 grams IV over 3 - 5 minutes</div>
+                        <div>Weight 40 - 120 kg: 2 grams IV over 3 - 5 minutes</div>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b><br>
+                        <div><b style="color:#D2042D;font-weight:600">N/A</b></div>
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Assault</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Falls</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Gunshot wound</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Industrial accident</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Stab wound</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Traffic accident</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Traumatic injury</a></div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">Reconstitute with 10 ml saline</div>
+                    <div class="med-info-sub-item"><b style="color:#D2042D;font-weight:600">SLOWLY</b> push IV over 3 - 5 minutes</div>
+                    <div class="med-info-sub-item">Observer for adverse reaction</div>
+                </div>
+            </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

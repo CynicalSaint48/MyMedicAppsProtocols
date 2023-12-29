@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Atropine</div></h2>
+                    <hr>
+                </div>
+                <div class="med-container-lg large-screen">
+                        <div class="med-container-L">
+                            <div class="med-image"><img src="{{ url_for('static', filename='images/medications/atropine.jpg') }}"></div>
+                        </div>
+                        <div class="med-container-R">
+                            <div class="med-info-group">
+                                <div class="med-info-title">Indications:</div>
+                                <div class="med-info-sub-item">Symptomatic bradycardia</a></div>
+                                <div class="med-info-sub-item">Organophosphate overdose</a></div>
+                                <div class="med-info-sub-item">Nerve agent exposure</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Contraindications:</div>
+                                <div class="med-info-sub-item">None</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">How Supplied</div>
+                                <div class="med-info-sub-item">1 mg in 10 ml = (0.1 mg per ml) prefilled syringe</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Mechanism of action:</div>
+                                <div class="med-info-sub-item">Anticholinergic; blocks the parasympathetic nervous system</div>
+                            </div>
+                        </div>
+                </div>  
+                <div class="med-container small-screen">
+                    <div class="med-image"><img src="{{ url_for('static', filename='images/medications/atropine.jpg') }}"></div>    
+                    <div class="med-info-group">
+                        <div class="med-info-title">Indications:</div>
+                                <div class="med-info-sub-item">Symptomatic bradycardia</a></div>
+                                <div class="med-info-sub-item">Organophosphate overdose</a></div>
+                                <div class="med-info-sub-item">Nerve agent exposure</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Contraindications:</div>
+                        <div class="med-info-sub-item">None</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">How Supplied</div>
+                        <div class="med-info-sub-item">1 mg in 10 ml = (0.1 mg per ml) prefilled syringe</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Mechanism of action:</div>
+                        <div class="med-info-sub-item">Anticholinergic; blocks the parasympathetic nervous system</div>
+                    </div>
+                </div>
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Adult: <b style="color:#f4b02a;font-weight:500">0.5 - 1 mg IV for symptomatic bradycardia;  &ensp; or 5 - 10 ml</b></li>
+                                                <li>Adult: <b style="color:#f4b02a;font-weight:500">2 - 6 mg for organophosphate poisoning & repeated prn;  &nbsp or 20 - 60 ml</b></li>
+                                            </ul>
+                                {% else %}
+                                    {% if ptYrs8 %}
+                                        {% if ptMax50 %}
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a">1mg IV or 10ml</thing></li></ul>
+                                        {% else %}
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <thing style="color:#f4b02a">{{'%0.2f'| format(ptKgs/50) }}mg IV or {{ '%0.2f'| format((ptKgs/50)*10) }}ml</thing></li></ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax25 %}
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a">0.5mg IV or 5ml</thing></li></ul>
+                                        {% else %}
+                                                {% if ptKgs5Min %}
+                                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul><li>Pediatric: <thing style="color:#f4b02a">{{'%0.2f'| format(ptKgs/50) }}mg IV or {{ '%0.2f'| format((ptKgs/50)*10) }}ml</thing></li></ul>
+                                                {% else %}
+                                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">minimum dose</b>; <thing style="color:#f4b02a">0.1mg IV or 1ml</thing></li></ul>
+                                                {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            <hr>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Adult</b><br>
+                        <div>0.5 - 1 mg IV for symptomatic bradycardia</div>
+                        <div>2 - 6 mg IV for organophosphate poisoning & repeated prn</div>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b><br>
+                        <div>0.02 mg/kg IV (<b style="color:#D2042D;font-weight:600">minimum 0.1 mg; maximum 0.5 mg age < 8 years; 1 mg age > 8 years)</b></div>
+                    </div>
+                </div>
+                <div class="img-dex-helper"><img src="{{ url_for('static', filename='images/medications/atropine_helper.jpg') }}"></div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Adverse Effects</div>
+                    <div class="med-info-sub-item">Tachycardia</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Medical Monitoring</a> - Hazardous Materials</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Carbon Monoxide Exposure</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Heart Problems</a> - Bradycardia; Heart Block 2&deg; type 1</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Pregnancy/Childbirth</a> - Newly Born</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">IV Push</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Caveats</div>
+                    <div class="med-info-sub-item">Cardiac effects occur at the SA-Node</div>
+                    <div class="med-info-sub-item">No effect for 2&deg; type 2 or 3&deg; block</div>
+                </div>
+            </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

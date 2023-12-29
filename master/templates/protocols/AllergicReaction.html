@@ -106,7 +106,7 @@
                             {% endif %}
                         </li>
                         
-                        <li><a FIXME:href=""FIXME:>Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
+                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
                             {% if ptYears %}
                                 {% if ptAdult %}
                                     <ul>
@@ -132,7 +132,7 @@
                             {% endif %}
                         </li>
 
-                        <li><a FIXME:href=""FIXME:>Diphenhydramine (Benadryl®)</a> for uncomplicated allergic reaction (urticaria, flushing, itching only)
+                        <li><a href="{{url_for('medications.diphenhydramine')}}">Diphenhydramine (Benadryl®)</a> for uncomplicated allergic reaction (urticaria, flushing, itching only)
                             {% if ptYears %}
                                 {% if ptAdult %}
                                     <ul>
@@ -175,7 +175,7 @@
                         <ol>
                             <li>Uncomplicated allergic reaction (urticaria, flushing, itching only)
                                 <ol>
-                                    <li><a FIXME:href=""FIXME:>Diphenhydramine (Benadryl®)</a>; if not already administered
+                                    <li><a href="{{url_for('medications.diphenhydramine')}}">Diphenhydramine (Benadryl®)</a>; if not already administered
                                         {% if ptYears %}
                                             {% if ptAdult %}
                                                 <ul>
@@ -298,12 +298,12 @@
                                             {% endif %}
                                         </ol>
                                     </li>
-                                    <li><a FIXME:href=""FIXME:>Diphenhydramine (Benadryl®)</a> & <a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a> as above, if not yet administered</li>
+                                    <li><a href="{{url_for('medications.diphenhydramine')}}">Diphenhydramine (Benadryl®)</a> & <a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a> as above, if not yet administered</li>
 
                                 </ol>
                             </li>
                             
-                            <li><a FIXME:href=""FIXME:>Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
+                            <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
                                 {% if ptYears %}
                                     {% if ptAdult %}
                                         <ul>

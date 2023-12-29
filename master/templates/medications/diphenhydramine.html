@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Diphenhydramine</div></h2>
+                    <small class="text-muted">Benadryl®</small>
+                    <hr>
+                </div>
+                <div class="med-imgs-group">
+                    <div class="med-image dual"><img src="{{ url_for('static', filename='images/medications/benadryl2.jpg') }}"></div>
+                    <div class="med-image dual"><img src="{{ url_for('static', filename='images/medications/benadryl1.jpg') }}"></div> 
+                </div>                       
+                <div class="med-info-group">
+                    <div class="med-info-title">Indications:</div>
+                    <div class="med-info-sub-item">Allergic reaction</div>
+                    <div class="med-info-sub-item">Dystonic Reaction</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Contraindications:</div>
+                    <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                    <div class="med-info-sub-item">Age < 9 months</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Mechanism of action:</div>
+                    <div class="med-info-sub-item">Antihistamine (blocks H1 receptor)</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">How Supplied</div>
+                    <div class="med-info-sub-item">Oral: 25 mg in 10 ml = (2.5 mg per ml)</div>
+                    <div class="med-info-sub-item">IV: 50 mg in 1 ml = (50 mg per ml)</div>
+                </div>
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Adult: <thing style="color:#f4b02a;font-weight:500">25 mg - 50 mg IV, IM, PO</thing></li>
+                                                <thing>&nbsp &nbsp <thing style="color:#f4b02a;font-weight:500">1 - 2 containers Oral Solution; 25mg /  10ml</thing></thing><br>
+                                                <thing>&nbsp &nbsp &nbsp<thing style="color:#f4b02a;font-weight:500">0.5 - 1.0ml IM,IV</thing></thing>
+                                            </ul>
+                                {% else %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            {% if ptMax50 %}
+                                                <ul>
+                                                    <li>Pediatric: <thing style="color:#f4b02a;font-weight:500">0 mg IV, IM, PO</thing></li>
+                                                    <thing>&nbsp &nbsp <thing style="color:#f4b02a;font-weight:500">1 - 2 containers Oral Solution; 25mg /  10ml</thing></thing><br>
+                                                    <thing>&nbsp &nbsp &nbsp<thing style="color:#f4b02a;font-weight:500">0.5 - 1.0ml IM,IV</thing></thing>
+                                                </ul>
+                                            {% else %}
+                                                    <ul>
+                                                        <li>Pediatric: <thing style="color:#f4b02a;font-weight:500">{{ ptKgs }} mg</thing></li>
+                                                        <thing>&nbsp &nbsp <thing style="color:#f4b02a;font-weight:500">see table below for dosing</thing></thing>
+                                                        <thing>&nbsp &nbsp &nbsp<b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients less than 9 months</b></thing>
+                                                    </ul>
+                                            {% endif %}
+                                {% endif %}
+                        <hr>
+                        {% else %}
+                        {% endif %}
+                     </div>       
+                    <div class="dose-item">
+                        <b>Dose Adult</b>
+                        <ul><li>25 mg - 50 mg IV, IM, PO</li></ul>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric <thing style="color:#D2042D;font-weight:600">( > 9 months of age)</thing></b>                        
+                            <ul>
+                                <li>1 mg/kg IV, IM, PO (maximum dose = 50 mg)</li>
+                            </ul>
+                    </div>
+                </div>
+                <div class="med-helpers-group">
+                    <div class="med-image"><img src="{{ url_for('static', filename='images/medications/benadryl_helper.jpg') }}"></div>
+                </div> 
+                <div class="med-info-group">
+                    <div class="med-info-title">Adverse Effects</div>
+                    <div class="med-info-sub-item">Sedation</div>
+                    <div class="med-info-sub-item">Confusion</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a href="{{ url_for('protocols.allergy')}}">Allergic reaction</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Psychiatric / Behavioral</a> - Dystonic Reaction</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">PO, slow IV push, or IM</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">Pediatric patients > 9-months of age</div>
+                </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}
