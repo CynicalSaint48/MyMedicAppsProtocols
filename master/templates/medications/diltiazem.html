@@ -26,13 +26,13 @@
                                 <div class="med-info-sub-item">Pediatric age</div>
                             </div>
                             <div class="med-info-group">
-                                <div class="med-info-title">How Supplied</div>
-                                <div class="med-info-sub-item">20 mg in 5 ml vial (4 mg/ml)</div>
-                            </div>
-                            <div class="med-info-group">
                                 <div class="med-info-title">Mechanism of action:</div>
                                 <div class="med-info-sub-item">Calcium channel blocker - prevents calcium flow through slow calcium channels</div>
                                 <div class="med-info-sub-item">Negative chronotrope</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">How Supplied</div>
+                                <div class="med-info-sub-item">20 mg in 5 ml vial (4 mg/ml)</div>
                             </div>
                         </div>
                 </div>  
@@ -47,13 +47,13 @@
                         <div class="med-info-sub-item">Hypotension due to hypovolemia</div>
                     </div>
                     <div class="med-info-group">
-                        <div class="med-info-title">How Supplied</div>
-                        <div class="med-info-sub-item">25 mg in 5 ml = (5 mg per ml)</div>
-                    </div>
-                    <div class="med-info-group">
                         <div class="med-info-title">Mechanism of action:</div>
                         <div class="med-info-sub-item">Calcium channel blocker - prevents calcium flow through slow calcium channels</div>
                         <div class="med-info-sub-item">Negative chronotrope</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">How Supplied</div>
+                        <div class="med-info-sub-item">25 mg in 5 ml = (5 mg per ml)</div>
                     </div>
                 </div>
                 <div class="medication-dose-group">
@@ -63,8 +63,8 @@
                                 {% if ptAdult %}
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                             <ul>
-                                                <li>Adult: <b style="color:#f4b02a;font-weight:500">15 mg IV over 2 minutes;  &nbsp or {{ 15/5 }} ml</b></li>
-                                                <thing>&nbsp &nbsp then <b style="color:#f4b02a;font-weight:500">20 mg IV over 2 minutes;  &nbsp or {{ 20/5 }} ml</b></thing>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">15 mg IV over 2 minutes;</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ 15/5 }} ml</dose></li>
+                                                <thing>&nbsp &nbsp then <dose style="color:#f4b02a;font-weight:500">20 mg IV over 2 minutes;</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ 20/5 }} ml</dose></thing>
                                             </ul>
                                 {% else %}
                                         <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients</b></li></ul>

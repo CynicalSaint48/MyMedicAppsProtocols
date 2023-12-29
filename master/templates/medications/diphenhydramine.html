@@ -40,22 +40,22 @@
                                 {% if ptAdult %}
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                             <ul>
-                                                <li>Adult: <thing style="color:#f4b02a;font-weight:500">25 mg - 50 mg IV, IM, PO</thing></li>
-                                                <thing>&nbsp &nbsp <thing style="color:#f4b02a;font-weight:500">1 - 2 containers Oral Solution; 25mg /  10ml</thing></thing><br>
-                                                <thing>&nbsp &nbsp &nbsp<thing style="color:#f4b02a;font-weight:500">0.5 - 1.0ml IM,IV</thing></thing>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">25 mg - 50 mg IV, IM, PO</dose></li>
+                                                <thing>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">1 - 2 containers Oral Solution; 25mg /  10ml</dose></thing><br>
+                                                <thing>&nbsp &nbsp &nbsp<dose style="color:#f4b02a;font-weight:500">0.5 - 1.0ml IM,IV</dose></thing>
                                             </ul>
                                 {% else %}
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                             {% if ptMax50 %}
                                                 <ul>
-                                                    <li>Pediatric: <thing style="color:#f4b02a;font-weight:500">0 mg IV, IM, PO</thing></li>
-                                                    <thing>&nbsp &nbsp <thing style="color:#f4b02a;font-weight:500">1 - 2 containers Oral Solution; 25mg /  10ml</thing></thing><br>
-                                                    <thing>&nbsp &nbsp &nbsp<thing style="color:#f4b02a;font-weight:500">0.5 - 1.0ml IM,IV</thing></thing>
+                                                    <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">50 mg IV, IM, PO</dose></li>
+                                                    <thing>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">1 - 2 containers Oral Solution; 25mg /  10ml</dose></thing><br>
+                                                    <thing>&nbsp &nbsp &nbsp<dose style="color:#f4b02a;font-weight:500">0.5 - 1.0ml IM,IV</dose></thing>
                                                 </ul>
                                             {% else %}
                                                     <ul>
-                                                        <li>Pediatric: <thing style="color:#f4b02a;font-weight:500">{{ ptKgs }} mg</thing></li>
-                                                        <thing>&nbsp &nbsp <thing style="color:#f4b02a;font-weight:500">see table below for dosing</thing></thing>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs }} mg</dose></li>
+                                                        <thing>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">see table below for dosing</dose></thing>
                                                         <thing>&nbsp &nbsp &nbsp<b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients less than 9 months</b></thing>
                                                     </ul>
                                             {% endif %}

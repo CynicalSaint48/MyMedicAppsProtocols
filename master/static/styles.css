@@ -784,7 +784,7 @@ hr {
 }
 
 .med-info-group {
-   width: 350px;
+   min-width: 350px;
    flex-shrink: 1;
    margin-bottom: 20px;
 }
@@ -803,6 +803,10 @@ hr {
    margin-left: 10px;
    text-decoration: none;
    font-weight: 500;
+}
+
+.med-info-sub-item ul {
+   margin-top: 0px;
 }
 
 .small-screen {
@@ -897,6 +901,10 @@ hr {
    flex: 1 1;
    width: 115px;
    margin: 0;
+}
+
+.add-margin-L {
+   margin-left: 20px;
 }
 
 @media (max-width: 950px){

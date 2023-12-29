@@ -267,3 +267,87 @@ def droperidol():
 
     return render_template('/medications/droperidol.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Droperidol")
 
+@medications.route("/medications/epinephrine")
+def epinephrine():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+    ptMax5 = False
+    ptMax30 = False
+    ptMax100 = False
+
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 100:
+        ptMax5 = True
+        ptMax30 = True
+        ptMax100 = True
+    elif ptKgs >= 30:
+        ptMax5 = True
+        ptMax30 = True
+        ptMax100 = False
+    elif ptKgs >= 5:
+        ptMax5 = True
+        ptMax30 = False
+        ptMax100 = False
+    else:
+        ptMax5 = False
+        ptMax30 = False
+        ptMax100 = False
+
+    return render_template('/medications/epinephrine.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, ptMax5=ptMax5, ptMax30=ptMax30, ptMax100=ptMax100, varTitle="Epinephrine")
+
+@medications.route("/medications/fentanyl")
+def fentanyl():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax100 = False
+    if ptYears >= 18:
+        ptAdult = True
+        ptMax100 = False
+    else:
+
+        if ptKgs >= 100:
+            ptAdult = False
+            ptMax100 = True
+        else:
+            ptMax100 = False
+
+    return render_template('/medications/fentanyl.html', ptAdult=ptAdult, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Calcium")
+
+@medications.route("/medications/glucagon")
+def glucagon():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax20 = False
+    if ptYears >= 18:
+        ptAdult = True
+        ptMax20 = False
+    else:
+
+        if ptKgs >= 20:
+            ptAdult = False
+            ptMax20 = True
+        else:
+            ptMax20 = False
+
+    return render_template('/medications/glucagon.html', ptAdult=ptAdult, ptMax20=ptMax20, ptYears=ptYears, ptKgs=ptKgs, varTitle="Calcium")
