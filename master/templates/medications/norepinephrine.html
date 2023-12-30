@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Norepinephrine</div></h2>
+                    <small class="text-muted">Levophed®</small>
+                    <hr>
+                </div>
+                <div class="med-container-lg large-screen">
+                        <div class="med-container-L">
+                            <div class="med-image"><img src="{{ url_for('static', filename='images/medications/levophed.jpg') }}"></div>
+                        </div>
+                        <div class="med-container-R">
+                            <div class="med-info-group">
+                                <div class="med-info-title">Indications:</div>
+                                <div class="med-info-sub-item">Hypotension despite adequate volume resuscitation</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Contraindications:</div>
+                                <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                                <div class="med-info-sub-item">Hypotension due to hypovolemia</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Mechanism of action:</div>
+                                <div class="med-info-sub-item">&alpha;-1 (vasoconstriction) & &beta;-1 (heart rate, contractility) agonist</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">How Supplied</div>
+                                <div class="med-info-sub-item">4 mg in 4 ml vial</div>
+                            </div>
+                        </div>
+                </div>  
+                <div class="med-container small-screen">
+                    <div class="med-image"><img src="{{ url_for('static', filename='images/medications/levophed.jpg') }}"></div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Indications:</div>
+                        <div class="med-info-sub-item">Hypotension despite adequate volume resuscitation</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Contraindications:</div>
+                        <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                        <div class="med-info-sub-item">Hypotension due to hypovolemia</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Mechanism of action:</div>
+                        <div class="med-info-sub-item">&alpha;-1 (vasoconstriction) & &beta;-1 (heart rate, contractility) agonist</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">How Supplied</div>
+                        <div class="med-info-sub-item">4 mg in 4 ml vial</div>
+                    </div>
+                </div>
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <div>Adult: 
+                                            <ul>
+                                                <li><dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min continuous infusion</dose></li>
+                                            </ul>
+                                            </div>
+                                {% else %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <div>Pediatric:
+                                            <ul><li><b style="color:#D2042D;font-weight:600">Must Contact </b><a FIXME: href="" FIXME:>Medical Control Ring Central</a></li></ul>
+                                        </div>                                    
+                                {% endif %}
+                            <hr>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Adult</b><br>
+                        <div>2 - 10 mcg/min continuous infusion</div>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b><br>
+                        <div>Contact <a FIXME: href="" FIXME:>Medical Control Ring Central</a></div>
+                    </div>
+                </div>
+                <div class="img-dex-helper"><img src="{{ url_for('static', filename='images/medications/levophed_helper.jpg') }}"></div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">4 mg (4 ml) norepinephrine in 250 ml NS = 16mcg/ml
+                        <div class="add-margin-L">Utilize 60 drop/ ml IV set</div>
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a href="{{url_for('protocols.allergy')}}">Allergic reaction</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Cardiac Arrest</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Heart Problems</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Sick Person</a> -  Sepsis, Shock</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Caveats</div>
+                    <div class="med-info-sub-item">Use large bore IV in upper extremity</div>
+                    <div class="med-info-sub-item">Antecubital vein preferred</div>
+                    <div class="med-info-sub-item">Infusion must be stopped immediately if any signs for extravasation</div>
+                    <div class="med-info-sub-item">Monitor blood pressure Q 2 - 3 minutes and titrate infusion
+                        <div class="add-margin-L">Titrate 1 - 2 mcg/min</div>
+                        <div class="add-margin-L">Goal = MAP = 65 - 75 mmHg</div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

@@ -78,7 +78,7 @@
                         <li>Assess vital signs</li>
                         <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                         <li>Attempt to remove source of exposure (e.g. stinger) as possible</li>
-                        <li><a FIXME:href=""FIXME:>Epinephrine (1:1000)</a> IM for any evidence of anaphylaxis
+                        <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:1000)</a> IM for any evidence of anaphylaxis
                             {% if ptYears %}
                                 {% if ptAdult %}
                                     <ul>
@@ -236,7 +236,7 @@
                             </li>
                             <li>For any evidence of anaphylaxis
                                 <ol>
-                                    <li><a FIXME:href=""FIXME:>Epinephrine (1:1000)</a>
+                                    <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:1000)</a>
                                         {% if ptYears %}
                                             {% if ptAdult %}
                                                 <ul>

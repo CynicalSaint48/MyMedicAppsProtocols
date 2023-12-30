@@ -92,7 +92,7 @@
                             <ul>
                                 <li>Administer oral glucose if patient hypoglycemic and alert with intact gag reflex
                             </ul>
-                        <li> Pain control: nitrous oxide via patient-controlled inhalation </li>
+                        <li> Pain control: <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide</a> via patient-controlled inhalation </li>
                             <ul>
                                 <li> <b style="color:#D2042D;font-weight:600">Contraindicated if there is concern for bowel obstruction</b>
                             </ul>
@@ -128,7 +128,7 @@
                                 </ol>
                             </li>
                             <li> Reassess vital signs following IVF bolus </li>
-                            <li><a FIXME:href=""FIXME:>Ondansetron (Zofran®)</a> for nausea/vomiting
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
                                 {% if ptYears %}
                                     {% if ptAdult %}
                                         <ul>

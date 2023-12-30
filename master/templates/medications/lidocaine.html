@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Lidocaine</div></h2>
+                    <hr>
+                </div>
+                <div class="med-container-lg large-screen">
+                        <div class="med-container-L">
+                            <div class="med-image"><img src="{{ url_for('static', filename='images/medications/lidocaine.jpg') }}"></div>
+                        </div>
+                        <div class="med-container-R">
+                            <div class="med-info-group">
+                                <div class="med-info-title">Indications:</div>
+                                <div class="med-info-sub-item">Ventricular ectopy</a></div>
+                                <div class="med-info-sub-item">Cardiac arrest - ventricular fibrillation; ventricular tachycardia</a></div>
+                                <div class="med-info-sub-item">Analgesia related to IO line insertion</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Contraindications:</div>
+                                <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                                <div class="med-info-sub-item">2<sup>nd</sup> degree type 2 & 3<sup>rd</sup> degree heart block</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Mechanism of action:</div>
+                                <div class="med-info-sub-item">Class 1B anti-arrhythmic</div>
+                                <div class="med-info-sub-item">Blocks sodium channels</div>
+                                <div class="med-info-sub-item">Decreases myocardial automaticity</div>
+                                <div class="med-info-sub-item">Local anesthetic</div>
+                                <div class="med-info-sub-item">Blocks sodium channels</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">How Supplied</div>
+                                <div class="med-info-sub-item">100 mg in 5 ml = (20 mg per ml) prefilled syringe</div>
+                            </div>
+                        </div>
+                </div>  
+                <div class="med-container small-screen">
+                    <div class="med-image"><img src="{{ url_for('static', filename='images/medications/lidocaine.jpg') }}"></div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Indications:</div>
+                        <div class="med-info-sub-item">Ventricular ectopy</a></div>
+                        <div class="med-info-sub-item">Cardiac arrest - ventricular fibrillation; ventricular tachycardia</a></div>
+                        <div class="med-info-sub-item">Analgesia related to IO line insertion</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Contraindications:</div>
+                        <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                        <div class="med-info-sub-item">2<sup>nd</sup> degree type 2 & 3<sup>rd</sup> degree heart block</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Mechanism of action:</div>
+                        <div class="med-info-sub-item">Class 1B anti-arrhythmic</div>
+                        <div class="med-info-sub-item">Blocks sodium channels</div>
+                        <div class="med-info-sub-item">Decreases myocardial automaticity</div>
+                        <div class="med-info-sub-item">Local anesthetic</div>
+                        <div class="med-info-sub-item">Blocks sodium channels</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">How Supplied</div>
+                        <div class="med-info-sub-item">100 mg in 5 ml = (20 mg per ml) prefilled syringe</div>
+                    </div>
+                </div>
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li>Cardiac
+                                            <div class="add-margin-L">Initial Dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*3)/4) }} - {{ '%0.2f'| format((ptKgs*3)/2) }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs*3)/4)/20) }} - {{ '%0.2f'| format(((ptKgs*3)/2)/20) }} ml</dose></div>
+                                            <div class="add-margin-L">Repeat Dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/2) }} - {{ '%0.2f'| format((ptKgs*3)/4) }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs)/2)/20) }} - {{ '%0.2f'| format(((ptKgs*3)/4)/20) }} ml</dose></div>
+                                            </li>
+                                            <li>IO Analgesia
+                                                <div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">20 - 40 mg IO</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 - 2 ml</dose></div>
+                                            </li>
+                                        </ul>
+                                {% else %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li>Cardiac
+                                            <div class="add-margin-L">Initial Dose: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs*3)/4)/20) }} - {{ '%0.2f'| format(((ptKgs*3)/2)/20) }} ml</dose></div>
+                                            <div class="add-margin-L">Repeat Dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/2) }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs)/2)/20) }} ml</dose></div>
+                                            </li>
+                                            <li>IO Analgesia
+                                                <div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/2) }} mg IO</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs)/2)/20) }} ml</dose></div>
+                                            </li>
+                                        </ul>
+                                {% endif %}
+                            <hr>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Adult</b><br>
+                            <div class="add-margin-L">Cardiac
+                                <div class="add-margin-L">0.75 - 1.5 mg/kg IV bolus initial dose</div>
+                                <div class="add-margin-L">0.5 - 0.75 mg/kg IV bolus repeat dose</div>
+                            </div>
+                            <div class="add-margin-L">IO analgesia
+                                <div class="add-margin-L">20 - 40 mg (1 - 2 ml) IO</div>
+                            </div>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b><br>
+                            <div class="add-margin-L">Cardiac
+                                <div class="add-margin-L">1 mg/kg IV bolus for ventricular ectopy, cardiac arrest</div>
+                                <div class="add-margin-L">0.5 mg/kg IV bolus repeat dose for ventricular ectopy or cardiac arrest</div>
+                            </div>
+                            <div class="add-margin-L">IO analgesia
+                                <div class="add-margin-L">0.5 mg/kg IO</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Adverse Effects</div>
+                    <div class="med-info-sub-item">Seizure (with toxicity)</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Cardiac arrest</a> - VFib, VTach; Post-Resuscitation</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Venous Access</a> - Intraosseous</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">
+                        <div class="add-margin-L">Cardiac arrest
+                            <div class="add-margin-L">IV push</div>
+                        </div>
+                        <div class="add-margin-L">IO analgesia
+                            <div class="add-margin-L"><b style="color:#D2042D;font-weight:600">Slow</b> IV push</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

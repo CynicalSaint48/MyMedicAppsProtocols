@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Nitrous Oxide</div></h2>
+                    <hr>
+                </div>
+                <div class="med-imgs-group">
+                    <div class="med-image dual"><img src="{{ url_for('static', filename='images/medications/nitrous1.jpg') }}"><img src="{{ url_for('static', filename='images/medications/nitrous2.jpg') }}"></div> 
+                </div>                       
+                <div class="med-info-group">
+                    <div class="med-info-title">Indications:</div>
+                    <div class="med-info-sub-item">Acute pain management</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Contraindications:</div>
+                    <div class="med-info-sub-item">Bowel obstruction</div>
+                    <div class="med-info-sub-item">Hypotension</div>
+                    <div class="med-info-sub-item">Pneumothorax</div>
+                    <div class="med-info-sub-item">Pregnancy (patient or provider)</div>
+                    <div class="med-info-sub-item">Significant respiratory compromise</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Mechanism of action:</div>
+                    <div class="med-info-sub-item">Stimulation of Mu receptor in CNS = analgesia</div>
+                    <div class="med-info-sub-item">Stimulation of GABA receptor in CNS = anxiolysis</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">How Supplied</div>
+                    <div class="med-info-sub-item">Preset 50:50 mixture N<sub>2</sub>O:O<sub>2</sub></div>
+                </div>
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <div class="add-margin-L">Adult:</div>
+                                            <ul><li><dose style="color:#f4b02a;font-weight:500">50:50 mixture via self-administered device</dose></li></ul>
+                                {% else %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <div class="add-margin-L">Pediatric:</div>
+                                            <ul><li><dose style="color:#f4b02a;font-weight:500">50:50 mixture via self-administered device</dose></li></ul>
+                                    {% endif %}
+                        <hr>
+                        {% else %}
+                        {% endif %}
+                     </div>       
+                    <div class="dose-item">
+                        <b>Dose Adult</b>
+                        <ul>
+                            <li>50:50 mixture via self-administered device</li>
+                        </ul>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b> 
+                        <ul>
+                            <li>50:50 mixture via self-administered device</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a href="{{url_for('protocols.abdominal')}}">Abdominal Pain</a></div>
+                    <div class="med-info-sub-item"><a href="{{url_for('protocols.animalBites')}}">Animal Bite</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Back Pain</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Chest Pain</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Electrocution</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Eye Problems</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Falls/Back Injury</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Headache</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Heart Problems</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Industrial Accident</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Stab Wound</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Traumatic Injury</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Traffic Accident</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Gunshot Wound</a></div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">Via patient-controlled inhalation device</div>
+                </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Naloxone</div></h2>
+                    <small class="text-muted">Narcan®</small>
+                    <hr>
+                </div>
+                <div class="med-imgs-group">
+                    <div class="med-image dual"><img src="{{ url_for('static', filename='images/medications/naloxone1.jpg') }}"></div>
+                    <div class="med-image dual"><img src="{{ url_for('static', filename='images/medications/naloxone2.jpg') }}"></div> 
+                </div>                       
+                <div class="med-info-group">
+                    <div class="med-info-title">Indications:</div>
+                    <div class="med-info-sub-item">Suspected narcotic overdose</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Contraindications:</div>
+                    <div class="med-info-sub-item">None</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Mechanism of action:</div>
+                    <div class="med-info-sub-item">Opioid antagonist</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">How Supplied</div>
+                    <div class="med-info-sub-item">2 mg in 2 ml (1 mg per ml)</div>
+                </div>
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <div class="add-margin-L">Adult:</div>
+                                            <ul>
+                                                <li><dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IN, IO, IM</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 - 2 ml</dose></li>
+                                            </ul>
+                                {% else %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <div class="add-margin-L">Pediatric:</div>
+                                            {% if ptMax20 %}
+                                                <ul>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(ptKgs/100) }} - 2.00 mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/100) }} - 2.00 ml</dose></li>
+                                                </ul>
+                                            {% else %}
+                                                <ul>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(ptKgs/100) }} - {{ ptKgs/10 }} mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/100) }} - {{ '%0.2f'| format((ptKgs)/10) }} ml</dose></li>
+                                                </ul>                                                    
+                                            {% endif%}
+                                    {% endif %}
+                        <hr>
+                        {% else %}
+                        {% endif %}
+                     </div>       
+                    <div class="dose-item">
+                        <b>Dose Adult</b>
+                        <ul>
+                            <li>1 - 2 mg IV, IN, IO, IM</li>
+                        </ul>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b> 
+                        <ul>
+                            <li>0.01 - 0.1 mg/kg IV, IN, IO, IM <b style="color:#D2042D;font-weight:600">(maximum 2 mg)</b></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Adverse Effects</div>
+                    <div class="med-info-sub-item">Nausea/vomiting</div>
+                    <div class="med-info-sub-item">Precipitation of opioid withdrawal symptoms</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Altered Mental Status</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Overdose / Toxic Ingestion</a></div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">IV Push</div>
+                    <div class="med-info-sub-item">IN Via atomizer</div>
+                    <div class="med-info-sub-item add-margin-L">&frac12; dose in each nostril</div>
+                    <div class="med-info-sub-item">Repeat Q 5” as indicated</div>
+                    <div class="med-info-sub-item">Maximum total dosage = 10 mg</div>
+                </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

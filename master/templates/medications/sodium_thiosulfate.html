@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Sodium Thiosulfate</div></h2>
+                    <hr>
+                </div>
+                <div class="med-container-lg large-screen">
+                        <div class="med-container-L">
+                            <div class="med-image"><img src="{{ url_for('static', filename='images/medications/sodium_thiosulfate.jpg') }}"></div>
+                        </div>
+                        <div class="med-container-R">
+                            <div class="med-info-group">
+                                <div class="med-info-title">Indications:</div>
+                                <div class="med-info-sub-item">Potential cyanide poisoning</a></div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Contraindications:</div>
+                                <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Mechanism of action:</div>
+                                <div class="med-info-sub-item">Sulfur donor facilitating the conversion of cyanide to thiocyanate</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">How Supplied</div>
+                                <div class="med-info-sub-item">12.5 gm in 50 ml = (250 mg per ml)</div>
+                            </div>
+                        </div>
+                </div>  
+                <div class="med-container small-screen">
+                    <div class="med-image"><img src="{{ url_for('static', filename='images/medications/sodium_thiosulfate.jpg') }}"></div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Indications:</div>
+                        <div class="med-info-sub-item">Potential cyanide poisoning</a></div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Contraindications:</div>
+                        <div class="med-info-sub-item">Known hypersensitivity reaction</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Mechanism of action:</div>
+                        <div class="med-info-sub-item">Sulfur donor facilitating the conversion of cyanide to thiocyanate</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">How Supplied</div>
+                        <div class="med-info-sub-item">12.5 gm in 50 ml = (250 mg per ml)</div>
+                    </div>
+                </div>
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li><dose style="color:#f4b02a;font-weight:500">12.5 grams IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">50 ml</dose></li>
+                                        </ul>
+                                {% else %}
+                                    {% if ptMax50 %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): <b style="color:#D2042D;font-weight:600">maximum dose</b></div>
+                                        <ul>
+                                            <li><dose style="color:#f4b02a;font-weight:500">12.5 grams IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">50 ml</dose></li>
+                                        </ul>
+                                    {% else %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*250)/1000) }} grams IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*250)/250) }} ml</dose></li>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                            <hr>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Adult</b><br>
+                            <div class="add-margin-L">
+                                <div class="add-margin-L">12.5 grams IV</div>
+                            </div>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b><br>
+                        <div class="add-margin-L">
+                            <div class="add-margin-L">250 mg/kg IV (maximum = 12.5 grams)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Adverse Effects</div>
+                    <div class="med-info-sub-item">Hypotension</div>
+                    <div class="med-info-sub-item">Nausea/vomiting</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Burns</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Carbon monoxide / toxic inhalation</a></div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item"><b style="color:#D2042D;font-weight:600">Slow </b>IV push</div>
+                    <div class="med-info-sub-item">Adults: 50 ml IV (12.5 grams)</div>
+                    <div class="med-info-sub-item">Pediatrics: 1 ml/kg (maximum = 50 ml; 12.5 grams)</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Caveats</div>
+                    <div class="med-info-sub-item">Administered for altered mental status or severe acidemia</div>
+                    <div class="med-info-sub-item">Medication is stored in drawer 3 of patient compartment</div>
+                </div>
+            </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

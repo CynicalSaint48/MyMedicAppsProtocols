@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+        <article class="media content-section">
+            <div class="container-squared">
+                <div class="container2">
+                    <h2><div class="article-title">Magnesium Sulfate</div></h2>
+                    <hr>
+                </div>
+                <div class="med-container-lg large-screen">
+                        <div class="med-container-L">
+                            <div class="med-image"><img src="{{ url_for('static', filename='images/medications/mag_sulfate.jpg') }}"></div>
+                        </div>
+                        <div class="med-container-R">
+                            <div class="med-info-group">
+                                <div class="med-info-title">Indications:</div>
+                                <div class="med-info-sub-item">Obstetric: Pre-eclampsia / Eclampsia; Pre-term labor</a></div>
+                                <div class="med-info-sub-item">Cardiac: Refractory ventricular fibrillation / ventricular tachycardia; Torsades des points</a></div>
+                                <div class="med-info-sub-item">Pulmonary: Refractory bronchospasm</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Contraindications:</div>
+                                <div class="med-info-sub-item">Renal Failure</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">Mechanism of action:</div>
+                                <div class="med-info-sub-item">Bronchospasm: bronchial smooth muscle relaxation</div>
+                                <div class="med-info-sub-item">Torsades: decreases influx of calcium suppressing early afterdepolarizations</div>
+                                <div class="med-info-sub-item">Eclampsia: depresses the CNS producing anticonvulsant effects</div>
+                            </div>
+                            <div class="med-info-group">
+                                <div class="med-info-title">How Supplied</div>
+                                <div class="med-info-sub-item">1 gram per 2 ml vial = (500 mg per ml) 50%</div>
+                            </div>
+                        </div>
+                </div>  
+                <div class="med-container small-screen">
+                    <div class="med-image"><img src="{{ url_for('static', filename='images/medications/mag_sulfate.jpg') }}"></div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Indications:</div>
+                        <div class="med-info-sub-item">Obstetric: Pre-eclampsia / Eclampsia; Pre-term labor</a></div>
+                        <div class="med-info-sub-item">Cardiac: Refractory ventricular fibrillation / ventricular tachycardia; Torsades des points</a></div>
+                        <div class="med-info-sub-item">Pulmonary: Refractory bronchospasm</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Contraindications:</div>
+                        <div class="med-info-sub-item">Renal Failure</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">Mechanism of action:</div>
+                        <div class="med-info-sub-item">Bronchospasm: bronchial smooth muscle relaxation</div>
+                        <div class="med-info-sub-item">Torsades: decreases influx of calcium suppressing early afterdepolarizations</div>
+                        <div class="med-info-sub-item">Eclampsia: depresses the CNS producing anticonvulsant effects</div>
+                    </div>
+                    <div class="med-info-group">
+                        <div class="med-info-title">How Supplied</div>
+                        <div class="med-info-sub-item">1 gram per 2 ml vial = (500 mg per ml) 50%</div>
+                    </div>
+                </div>
+                <div class="medication-dose-group">
+                    <div>
+                        {% if ptYears %}
+                            <div class="med-info-title">Dose for Current Pt:</div>
+                                {% if ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li>Obstetric Indications: </li><div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">4 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">4 vials (total 8ml) in 150 ml Normal Saline</dose></div>
+                                            <li>Cardiac Indications: </li><div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">1 - 2 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 -2 vials (total of 2 - 4 ml) IV</dose></div>
+                                            <li>Pulmonary indications: </li><div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">1 - 2 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 -2 vials (total of 2 - 4 ml) IV</dose></div>
+                                        </ul>
+                                {% else %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul>
+                                            {% if ptMax40 %}
+                                                <li><div class="add-margin-L">Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b><dose style="color:#f4b02a;font-weight:500"> 1 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 vial (2.0 ml)</dose></div>
+                                            {% elif ptMax20 %}
+                                                <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - 1.00 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/500) }} - 2.0 ml </dose></div>
+                                            {% else %}
+                                            <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - {{ '%0.2f'| format((ptKgs*50)/1000) }} g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/500) }} - {{ '%0.2f'| format((ptKgs*50)/500) }} ml</dose></div>
+                                            {% endif %}
+                                        </ul>
+                                {% endif %}
+                            <hr>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Adult</b><br>
+                            <div class="add-margin-L">
+                                <div class="add-margin-L">Obstetric indications: 4 grams IV</div>
+                                <div class="add-margin-L">Cardiac indications: 1 - 2 grams IV</div>
+                                <div class="add-margin-L">Pulmonary indications: 1 - 2 grams IV</div>
+                            </div>
+                    </div>
+                    <div class="dose-item">
+                        <b>Dose Pediatric</b><br>
+                            <div class="add-margin-L">
+                                <div class="add-margin-L">25 - 50 mg/kg IV (maximum = 1 gram)</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Adverse Effects</div>
+                    <div class="med-info-sub-item">Hypotension</div>
+                    <div class="med-info-sub-item">Respiratory depression</div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Protocols Utilizing</div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Cardiac arrest</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Breathing Problem</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Heart Problem</a></div>
+                    <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Pregnancy & Childbirth</a></div>
+                </div>
+                <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">
+                        <div class="add-margin-L">IV usage must be diluted with NS</div>
+                        <div class="add-margin-L">Bronchospasm
+                            <div class="add-margin-L">Adult: 1 - 2 grams over 5 - 10 minutes</div>
+                            <div class="add-margin-L">Pediatric: 25 - 50 mg/kg over 5 - 10 minutes</div>
+                        </div>
+                        <div class="add-margin-L">Eclampsia
+                            <div class="add-margin-L">Dilute 4 grams in 150 ml NS</div>
+                            <div class="add-margin-L">Infuse over 15 minutes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </article>
+
+</div>
+{% endblock %}

@@ -327,7 +327,7 @@ def fentanyl():
         else:
             ptMax100 = False
 
-    return render_template('/medications/fentanyl.html', ptAdult=ptAdult, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Calcium")
+    return render_template('/medications/fentanyl.html', ptAdult=ptAdult, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Fentanyl")
 
 @medications.route("/medications/glucagon")
 def glucagon():    
@@ -350,4 +350,327 @@ def glucagon():
         else:
             ptMax20 = False
 
-    return render_template('/medications/glucagon.html', ptAdult=ptAdult, ptMax20=ptMax20, ptYears=ptYears, ptKgs=ptKgs, varTitle="Calcium")
+    return render_template('/medications/glucagon.html', ptAdult=ptAdult, ptMax20=ptMax20, ptYears=ptYears, ptKgs=ptKgs, varTitle="Glucagon")
+
+@medications.route("/medications/glucose")
+def glucose():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+    ptYears8 = False
+    ptMax20 = False
+    ptMax100 = False
+
+    if ptYears >= 18:
+        ptAdult = True
+        ptYears8 = True
+    elif ptYears > 8:
+        ptAdult = False
+        ptYears8 = True
+    else:
+        ptAdult = False
+        ptYears8 = False
+
+
+    if ptKgs >= 100:
+        ptMax20 = True
+        ptMax100 = True
+    elif ptKgs >= 20:
+        ptMax20 = True
+        ptMax100 = False
+    else:
+        ptMax20 = False
+        ptMax100 = False
+
+    return render_template('/medications/glucose.html', ptAdult=ptAdult, ptYears=ptYears, ptYears8=ptYears8, ptKgs=ptKgs, ptMax20=ptMax20, ptMax100=ptMax100, varTitle="Glucose")
+
+@medications.route("/medications/ibuprophen")
+def ibuprophen():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax26 = False
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+
+        if ptKgs >= 26:
+            ptAdult = False
+            ptMax26 = True
+        else:
+            ptMax26 = False
+
+    return render_template('/medications/ibuprophen.html', ptAdult=ptAdult, ptMax26=ptMax26, ptYears=ptYears, ptKgs=ptKgs, varTitle="Ibuprophen")
+
+@medications.route("/medications/ketamine")
+def ketamine():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax100 = False
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 100:
+        ptMax100 = True
+    else: 
+        ptMax100 = False
+
+    return render_template('/medications/ketamine.html', ptAdult=ptAdult, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Ketamine")
+
+@medications.route("/medications/labetalol")
+def labetalol():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    return render_template('/medications/labetalol.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Labetalol")
+
+@medications.route("/medications/lidocaine")
+def lidocaine():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax100 = False
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 100:
+        ptMax100 = True
+    else: 
+        ptMax100 = False
+
+    return render_template('/medications/lidocaine.html', ptAdult=ptAdult, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Lidocaine")
+
+@medications.route("/medications/magnesium")
+def magnesium():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax20 = False
+    ptMax40 = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 40:
+        ptMax20 = True
+        ptMax40 = True
+    elif ptKgs >= 20:
+        ptMax20 = True
+        ptMax40 = False
+    else: 
+        ptMax20 = False
+        ptMax40 = False
+
+    return render_template('/medications/magnesium.html', ptAdult=ptAdult, ptMax20=ptMax20, ptMax40=ptMax40, ptYears=ptYears, ptKgs=ptKgs, varTitle="Magnesium")
+
+@medications.route("/medications/midazolam")
+def midazolam():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax33 = False
+    ptMax50 = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 50:
+        ptMax33 = True
+        ptMax50 = True
+    elif ptKgs >= 33:
+        ptMax33 = True
+        ptMax50 = False
+    else: 
+        ptMax33 = False
+        ptMax50 = False
+
+    return render_template('/medications/midazolam.html', ptAdult=ptAdult, ptMax33=ptMax33, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs, varTitle="Midazolam")
+
+@medications.route("/medications/naloxone")
+def naloxone():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax20 = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 20:
+        ptMax20 = True
+    else: 
+        ptMax20 = False
+
+    return render_template('/medications/naloxone.html', ptAdult=ptAdult, ptMax20=ptMax20, ptYears=ptYears, ptKgs=ptKgs, varTitle="Naloxone")
+
+@medications.route("/medications/nitroglycerin")
+def nitroglycerin():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+
+    return render_template('/medications/nitroglycerin.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Nitroglycerin")
+
+@medications.route("/medications/nitrous")
+def nitrous():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+
+    return render_template('/medications/nitrous.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Nitrous")
+
+@medications.route("/medications/norepinephrine")
+def norepinephrine():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+
+    return render_template('/medications/norepinephrine.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Norepinephrine")
+
+@medications.route("/medications/ondansetron")
+def ondansetron():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax26 = False
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+
+        if ptKgs >= 26:
+            ptAdult = False
+            ptMax26 = True
+        else:
+            ptMax26 = False
+
+    return render_template('/medications/ondansetron.html', ptAdult=ptAdult, ptMax26=ptMax26, ptYears=ptYears, ptKgs=ptKgs, varTitle="Ondansetron")
+
+@medications.route("/medications/bicarb")
+def bicarb():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax50 = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 50:
+        ptMax50 = True
+    else:
+        ptMax50 = False
+
+    return render_template('/medications/bicarb.html', ptAdult=ptAdult, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs, varTitle="Sodium Bicarb")
+
+@medications.route("/medications/sodium_thiosulfate")
+def sodiumThiosulfate():    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+    ptAdult = False
+    ptMax50 = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 50:
+        ptMax50 = True
+    else:
+        ptMax50 = False
+
+    return render_template('/medications/sodium_thiosulfate.html', ptAdult=ptAdult, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs, varTitle="Sodium Thiosulfate")
