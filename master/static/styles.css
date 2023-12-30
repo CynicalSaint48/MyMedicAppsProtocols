@@ -911,6 +911,10 @@ hr {
    margin-left: 20px;
 }
 
+.img-helper {
+   margin-bottom: 20px;
+}
+
 @media (max-width: 950px){
    .med-image {
       flex: 1 0;

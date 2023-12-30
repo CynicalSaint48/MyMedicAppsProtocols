@@ -11,8 +11,7 @@
                     <hr>
                 </div>
                 <div class="med-imgs-group">
-                    <div class="med-image dual"><img src="{{ url_for('static', filename='images/medications/benadryl2.jpg') }}"></div>
-                    <div class="med-image dual"><img src="{{ url_for('static', filename='images/medications/benadryl1.jpg') }}"></div> 
+                    <div class="med-image dual"><img src="{{ url_for('static', filename='images/medications/benadryl2.jpg') }}"><img src="{{ url_for('static', filename='images/medications/benadryl1.jpg') }}"></div> 
                 </div>                       
                 <div class="med-info-group">
                     <div class="med-info-title">Indications:</div>
@@ -55,8 +54,8 @@
                                             {% else %}
                                                     <ul>
                                                         <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs }} mg</dose></li>
-                                                        <thing>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">see table below for dosing</dose></thing>
-                                                        <thing>&nbsp &nbsp &nbsp<b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients less than 9 months</b></thing>
+                                                        <div>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">see table below for dosing</dose></div>
+                                                        <div>&nbsp &nbsp &nbsp<b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients less than 9 months</b></div>
                                                     </ul>
                                             {% endif %}
                                 {% endif %}
@@ -79,6 +78,10 @@
                     <div class="med-image"><img src="{{ url_for('static', filename='images/medications/benadryl_helper.jpg') }}"></div>
                 </div> 
                 <div class="med-info-group">
+                    <div class="med-info-title">Administration</div>
+                    <div class="med-info-sub-item">PO, <b style="color:#D2042D;font-weight:600">Slow</b> IV push, or IM</div>
+                </div>
+                <div class="med-info-group">
                     <div class="med-info-title">Adverse Effects</div>
                     <div class="med-info-sub-item">Sedation</div>
                     <div class="med-info-sub-item">Confusion</div>
@@ -89,12 +92,8 @@
                     <div class="med-info-sub-item"><a FIXME: href="" FIXME:>Psychiatric / Behavioral</a> - Dystonic Reaction</div>
                 </div>
                 <div class="med-info-group">
-                    <div class="med-info-title">Administration</div>
-                    <div class="med-info-sub-item">PO, slow IV push, or IM</div>
-                </div>
-                <div class="med-info-group">
                     <div class="med-info-title">Caveats</div>
-                    <div class="med-info-sub-item">Pediatric patients > 9-months of age</div>
+                    <div class="med-info-sub-item">Pediatric patients > 9 months of age</div>
                 </div>
             <hr>
         </article>
