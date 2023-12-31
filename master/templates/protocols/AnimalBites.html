@@ -40,18 +40,18 @@
                                 {% if ptAdult %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                        <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </thing></li></ul>
+                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
                                     </ul>
                                 {% else %}
                                     {% if ptMax43 %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a"> 650 mg PO</thing></li></ul>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
                                         </ul>
                                     {% else %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</thing></li></ul>
+                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
                                         </ul>
                                     {% endif %}
                                 {% endif %}
@@ -63,7 +63,7 @@
                             </ol>                           
                         {% endif %}
                         </li>
-                        <li> Alternative pain control: nitrous oxide via patient-controlled inhalation </li>
+                        <li> Alternative pain control: <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide</a> via patient-controlled inhalation </li>
                     </ol>
                 </p><hr><br>
             </div>
@@ -83,10 +83,10 @@
                                             {% if ptYears %}
                                                 {% if ptAdult %}
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                            <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500">TKO to wide open</thing></li></ul>
+                                                            <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">TKO to wide open</dose></li></ul>
                                                 {% else %}
                                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
-                                                            <ul><li>Pediatric: <thing style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml bolus and reassess</thing></li></ul>
+                                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml bolus and reassess</dose></li></ul>
                                                 {% endif %}
                                             {% else %}
                                                 <ol>                                                    
@@ -105,7 +105,7 @@
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</thing> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
                                                     <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
                                                 </ul>
                                             </ul>
@@ -113,7 +113,7 @@
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </thing></li>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
                                                     <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
                                                 </ul>
                                             </ul>
@@ -123,16 +123,16 @@
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
                                                 <ul>
-                                                    <li> Pediatric:  <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</thing> of 100 mcg IV, IM, IN </b></li>
-                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                                 </ul>
                                             </ul>
                                         {% else %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Pediatric: <thing style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </thing></li>
-                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                                 </ul>
                                             </ul>
                                         {% endif %}
@@ -147,7 +147,7 @@
                                     <li> Pediatric: </li>
                                         <ul>
                                             <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
-                                            <li>  Contact Medical Control for repeat dosing </li>                                        
+                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
                                         </ul>
                                 </ol>                           
                             {% endif %}

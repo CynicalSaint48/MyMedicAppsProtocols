@@ -1,0 +1,323 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Back Pain</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" backPainNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" backPainNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                    <ul class="differentialText">
+                        <li>Abdominal aortic aneurysm</li>
+                        <li>Acute coronary syndrome</li>
+                        <li>Aortic dissection</li>
+                        <li>Epidural abscess</li>
+                        <li>Herniated disc</li>
+                        <li>Kidney stone</li>
+                        <li>Metastatic cancer</li>
+                        <li>Musculoskeletal strain / muscle spasm</li>
+                        <li>Pneumonia</li>
+                        <li>Pulmonary embolus</li>
+                        <li>Pyelonephritis</li>
+                        <li>Vertebral disc rupture/herniation</li>
+                        <li>Vertebral fracture</li>
+                    </ul>
+                    <h3>Clinical Presentation</h3>
+                        <ul class="presentationText">
+                            <li>History considerations
+                                <ul>
+                                    <li>Age</li>
+                                    <li>Onset of pain</li>
+                                    <li>Trauma</li>
+                                    <li>Lower extremity symptoms</li>
+                                    <li>Bowel, bladder, urinary dysfunction symptoms</li>
+                                </ul>
+                            </li>
+                            <li>Physical exam
+                                <ul>
+                                    <li>Vital signs including temperature</li>
+                                    <li>Abdominal mass, bruit</li>
+                                    <li>Costovertebral angle tenderness, muscular tenderness</li>
+                                    <li>Midline/vertebral tenderness</li>
+                                    <li>Extremity motor, sensory, vascular status</li>
+                                </ul>
+                            </li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" backPainBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" backPainBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li><a FIXME:href="">Trauma Initial Assessment Protocol</a> or <a FIXME:href="">Pediatric Trauma Assessment Protocol</a></li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Medical
+                            <ol>
+                                <li>Allow patient to sit/lay in position of comfort</li>
+                                <li>Additional care as per appropriate protocol</li>
+                            </ol>
+                        </li>
+                        <li>Trauma
+                            <ol>
+                                <li><a FIXME:href="">Spinal Motion Restriction Protocol</a>  as per patient history and presentation
+                                    <ol>
+                                        <li>Long spine boards are to be utilized as a patient extrication/movement device and are not intended for the patient to be transported on the LSB</li>
+                                    </ol>
+                                </li>
+                                <li>Additional care as per appropriate trauma protocol</li>
+                            </ol>
+                        </li>
+                        <li><a href="{{url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain Control
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </thing></li></ul>
+                                    </ul>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 650 - 975 mg PO</li>
+                                    <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                    </li>
+                                </ol>                           
+                            {% endif %}
+                        </li>
+                        <li> Alternative pain control: <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide </a>via patient-controlled inhalation </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" backPainAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" backPainAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>12-lead ECG as per patient's presentation</li>
+                            <li>IV Access as indicated by mechanism of injury, patient presentation</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> bolus for signs of hypotension
+                                <ol>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li>Adult: <b style="color:#f4b02a;font-weight:500">500 - 1000 ml as per patient condition</b>
+                                                            <div class="add-margin-L">Repeat IVF bolus as indicated per patient condition</div>
+                                                        </li>
+                                                    </ul>
+                                        {% else %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
+                                                    <ul>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml</dose>
+                                                            <div class="add-margin-L">Repeat IVF bolus as indicated per patient condition</div>
+                                                        </li>
+                                                    </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>                                                    
+                                            <li> Adult: 500 - 1000 ml as per patient condition</li>
+                                            <li>Pediatric: 10 - 20 ml/kg</li>
+                                            <li>Repeat IVF bolus as indicated per patient condition</li>
+                                        </ol>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </dose></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg </dose></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500">4 - 8 mg IV, IM, PO</dose></li>
+                                                </ul>
+                                            </ul>
+                                    {% else %}
+                                        {% if ptMax26 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500"> 4 mg </dose></li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                            <ul>
+                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format((ptKgs*3)/20) }} mg IV, IM, PO</dose></li>
+                                            </ul>
+                                        </ul>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li> Adult: </li>
+                                            <ul>
+                                                <li>4 - 8 mg IV, IM, PO</li>                                      
+                                            </ul>
+                                        <li> Pediatric: </li>
+                                            <ul>
+                                                <li>Pediatric: 0.15 mg/kg IV, IM, PO (<b style="color:#D2042D;font-weight:600">maximum 4 mg</b>)</li>                                      
+                                            </ul>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li> Additional treatment as per appropriate protocol or contact <a FIXME: href="#">Medical Control Ring Central</a> for management assistance</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" backPainAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" backPainAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li>Analgesia may be required prior to patient movement</li>
+                            <li>Elderly patients with back pain, especially those that are hemodynamically unstable, should be considered critical until proven otherwise</li>
+                            <li>Back pain in diabetic patients may be cardiac in etiology</li>
+                            <li>Women of child-bearing age should be considered pregnant until proven otherwise
+                                <ul><li>Pregnancy/ectopic must be considered</li></ul>
+                            </li>
+                            <li>Potential Etiologies
+                                <ul>
+                                    <li>Abdominal aortic aneurysms
+                                        <ul>
+                                            <li>May present as isolated back pain or abdominal pain radiating to the back</li>
+                                            <li>May present with pulsatile abdominal mass, bruit and /or diminished lower extremity pulses</li>
+                                        </ul>
+                                    </li>
+                                    <li>Aortic dissection
+                                        <ul>
+                                            <li>Hypertension and thoracic back pain</li>
+                                            <li>Blood pressure and pulses should be checked in both extremities</li>
+                                        </ul>
+                                    </li>
+                                    <li>Cauda equine (compression of spinal cord terminal nerves)
+                                        <ul>
+                                            <li>May present with saddle anesthesia, bowel/bladder dysfunction, lower extremity motor weakness and decreased reflexes</li>
+                                        </ul>
+                                    </li>
+                                    <li>Cholecystitis
+                                        <ul>
+                                            <li>May present as RUQ pain with radiation to back and/or the scapula</li>
+                                        </ul>
+                                    </li>
+                                    <li>Epidural abscess
+                                        <ul>
+                                            <li>Fever, chills</li>
+                                            <li>History of IV drug abuse</li>
+                                            <li>Immunocompromised (HIV, chronic steroids, other)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Kidney stones
+                                        <ul>
+                                            <li>May present as intractable unilateral flank pain that radiates to the groin</li>
+                                        </ul>
+                                    </li>
+                                    <li>Sciatica
+                                        <ul>
+                                            <li>May present as low back pain radiating down posterior aspect of one leg</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Concerning signs & symptoms (<b style="color:#D2042D;font-weight:600">“red flag”</b> symptoms)
+                                <ul>
+                                    <li>Age &gt; 50 or &lt; 18-years</li>
+                                    <li>Fever</li>
+                                    <li>History of IV drug abuse</li>
+                                    <li>History of cancer</li>
+                                    <li>Neurological deficit
+                                        <ul>
+                                            <li>Bowel incontinence</li>
+                                            <li>Saddle area anesthesia</li>
+                                            <li>Urinary retention</li>
+                                            <li>Weakness</li>
+                                        </ul>
+                                    </li>
+                                    <li>Pain worse at rest</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

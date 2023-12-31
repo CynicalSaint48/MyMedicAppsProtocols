@@ -113,10 +113,10 @@
                                     {% if ptYears %}
                                         {% if ptAdult %}
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                    <ul><li>Adult: <b style="color:#f4b02a;font-weight:500">500 - 1000 ml as per patient condition</b></li></ul>
+                                                    <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">500 - 1000 ml as per patient condition</dose></li></ul>
                                         {% else %}
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
-                                                    <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml</b></li></ul>
+                                                    <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml</dose></li></ul>
                                         {% endif %}
                                     {% else %}
                                         <ol>                                                    
@@ -143,7 +143,7 @@
                                         {% else %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Pediatric: <b style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(ptKgs * 3)/20 }}mg PO, IV, IM</b></li></ul>
+                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(ptKgs * 3)/20 }}mg PO, IV, IM</dose></li></ul>
                                             </ul>
                                         {% endif %}
                                     {% endif %}
@@ -154,14 +154,14 @@
                                 </ol>                           
                             {% endif %}
                             </li>
-                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain contro
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
                                 {% if ptYears %}
                                     {% if ptAdult %}
                                         {% if ptMax100 %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </b></li>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </dose></li>
                                                     <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
                                                 </ul>
                                             </ul>
@@ -169,7 +169,7 @@
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg </b></li>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg </dose></li>
                                                     <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
                                                 </ul>
                                             </ul>
@@ -179,16 +179,16 @@
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
                                                 <ul>
-                                                    <li> Pediatric:  <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </b></li>
-                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                                 </ul>
                                             </ul>
                                         {% else %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Pediatric: <b style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg </b></li>
-                                                    <li> Contact Medical Control for repeat dosing </li>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                                 </ul>
                                             </ul>
                                         {% endif %}
@@ -203,7 +203,7 @@
                                     <li> Pediatric: </li>
                                         <ul>
                                             <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
-                                            <li>  Contact Medical Control for repeat dosing </li>                                        
+                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
                                         </ul>
                                 </ol>                           
                             {% endif %}

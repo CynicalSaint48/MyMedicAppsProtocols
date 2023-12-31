@@ -1022,13 +1022,14 @@ hr {
    .med-image {
       flex: 1 1;
    }
-   .differentialText {
+   .differentialText, .presentationText {
       display: flex;
       flex-wrap: wrap;
    }
    
-   .differentialText li {
+   .differentialText li, .presentationText li {
       min-width: 40%;
+      max-width: 350px;
    }
 
    .sourceslist, .presentationlist {

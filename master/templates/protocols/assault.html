@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Assault</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id="assaultBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for="assaultBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety
+                            <ol>
+                                <li> It may be necessary to remove the patient from the surrounding area to a more protective and supportive environment</li>
+                                <li> After discussing your course of action and within a confidential setting, remove appropriate clothing to fully inspect the chest, abdomen, and extremities for any signs of physical abuse or assault</li>
+                            </ol>
+                        </li>    
+                        <li><a FIXME:href="">Trauma Initial Assessment Protocol</a> or <a FIXME:href="">Pediatric Trauma Assessment Protocol</a></li>
+                        <li>Maintain airway
+                            <ol>
+                                <li> Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                            </ol>
+                        </li>
+                        <li><a FIXME:href="">Spinal Motion Restriction Protocol</a>  as per patient history and presentation</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Control any active bleeding sites with manual direct pressure and/or pressure dressing
+                            <ol>
+                                <li>Apply Medic tourniquet as indicated per <a FIXME: href="#">Wound Care Tourniquet Protocol</a></li>
+                            </ol>
+                        </li>
+                        <li><a href="{{url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain Control
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
+                                    </ul>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 650 - 975 mg PO</li>
+                                    <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                    </li>
+                                </ol>                           
+                            {% endif %}
+                        </li>
+                        <li> Alternative pain control: <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide </a>via patient-controlled inhalation </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="assaultAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for="assaultAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>IV access as indicated by mechanism of injury and physical exam findings
+                            </li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> bolus for signs of hypotension
+                                <ol>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">500 - 1000 ml as per patient condition</dose></li></ul>
+                                        {% else %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
+                                                    <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml</dose></li></ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>                                                    
+                                            <li> Adult: 500 - 1000 ml as per patient condition</li>
+                                            <li>Pediatric: 10 - 20 ml/kg</li>
+                                        </ol>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg </dose></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg </b></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.cefazolin')}}"> Cefazolin (Ancef®)</a> for adult with suspected open fracture
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax120 %}
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">3 grams IV over 3 - 5 minutes</dose></li>
+                                            </ul>
+                                        {% elif ptMax40 %}
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 grams IV over 3 - 5 minutes</dose></li>
+                                            </ul>
+                                        {% else %}
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li><b style="color:#D2042D;font-weight:600">Contraindicated for Pediatric patients or Adults under 40kg</b></li>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li><b style="color:#D2042D;font-weight:600">Contraindicated for Pediatric patients or Adults under 40kg</b></li>
+                                        </ul>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>&gt; 120 kg: 3 grams IV over 3 - 5 minutes</li>
+                                        <li> 40 - 120 kg: 2 grams IV over 3 - 5 minutes</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href=""FIXME:>Airway: Intubation Protocol</a></li>
+                                    <li><a FIXME:href=""FIXME:>Airway: BIAD Protocol</a></li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="assaultAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for="assaultallergicAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li>If a sexual assault has occurred, do not allow patient to shower or change clothes</li>
+                            <li>Adult assault patients should only refuse care in the presence of law enforcement officers
+                                <ul><li>If this is not available, the case should be discussed with Medical Control</li></ul>
+                                <ul><li>A Patient Refusal Form will be completed on all cases of refusal</li></ul>
+                            </li>
+                            <li>Pediatric assault patients may not refuse transport, nor may their guardians refuse transport if you suspect child abuse</li>
+                            <li>Refer to Non-fatal strangulation and/or human trafficking protocols as indicated</li>
+                            <li>Ensure that patient has a safe place to go if refusing transport (family members, friends) and document this information in the PCR</li>
+                            <li>It may be acceptable for patients to agree to go to the hospital but refuse all assessment and care in the field</li>
+                            <li>Fentanyl or other mind-altering medications for pain control should be avoided in patients with a closed head injury unless ordered by medical control</li>
+                            <li>Ensure contact with DSS & other appropriate agency for cases of suspected elder or child abuse or neglect
+                                <ul>
+                                    <li><b style="color:#D2042D;font-weight:600">Mecklenburg County Department of Social Services</b> to report the suspicion
+                                        <ul><b style="color:#D2042D;font-weight:600">(980) 314-3577</b> </ul>
+                                        <ul><b style="color:#D2042D;font-weight:600">(704) 336-2273</b> </ul>
+                                        <ul>Online Reporting Tool <a href="http://MeckNC.gov/CPSReportOnline">MeckNC.gov/CPSReportOnline</a></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Report any suspicion of human trafficking to the <b style="color:#D2042D;font-weight:600">National Human Trafficking Resource Center:</b>
+                                <ul>
+                                    <li>Phone:<b style="color:#D2042D;font-weight:600"> (888) 373-7888</b></li>
+                                    <li>Text:<b style="color:#D2042D;font-weight:600"> 233733</b></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

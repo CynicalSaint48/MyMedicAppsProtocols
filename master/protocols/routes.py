@@ -48,7 +48,7 @@ def allergy():
             ptMax50 = False
 
 
-    return render_template('/protocols/AllergicReaction.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax30=ptMax30, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs)
+    return render_template('/protocols/AllergicReaction.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax30=ptMax30, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs, varTitle="Allergic Reaction")
 
 @protocols.route("/protocols/abdominal_pain")
 def abdominal():
@@ -81,7 +81,7 @@ def abdominal():
             ptMax26 = False
             ptMax100 = False
 
-    return render_template('/protocols/AbdPain.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs)
+    return render_template('/protocols/AbdPain.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Abdominal Pain")
 
 @protocols.route("/protocols/bites_envenomations")
 def bites():
@@ -125,7 +125,7 @@ def bites():
             ptMax50 = False
             ptMax100 = False
 
-    return render_template('/protocols/Bites_Envenomations.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax50=ptMax50, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs)
+    return render_template('/protocols/Bites_Envenomations.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax50=ptMax50, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Bites & Envenomations")
 
 @protocols.route("/protocols/animal_bites")
 def animalBites():
@@ -160,4 +160,125 @@ def animalBites():
             ptMax43 = False
             ptMax100 = False
 
-    return render_template('/protocols/AnimalBites.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs)
+    return render_template('/protocols/AnimalBites.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Animal Bites")
+
+@protocols.route("/protocols/assault")
+def assault():
+
+    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+    ptMax40 = False
+    ptMax43 = False
+    ptMax100 = False
+    ptMax120 = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 120:
+        ptMax40 = True
+        ptMax43 = True
+        ptMax100 = True
+        ptMax120 = True
+
+    elif ptKgs >= 100:
+        ptMax40 = True
+        ptMax43 = True
+        ptMax100 = True
+        ptMax120 = False
+
+    elif ptKgs >= 43:
+        ptMax40 = True
+        ptMax43 = True
+        ptMax100 = False
+        ptMax120 = False
+
+    elif ptKgs >= 40:
+        ptMax40 = True
+        ptMax43 = False
+        ptMax100 = False
+        ptMax120 = False
+
+    else:
+        ptMax40 = False
+        ptMax43 = False
+        ptMax100 = False
+        ptMax120 = False
+
+    return render_template('/protocols/assault.html', ptAdult=ptAdult, ptMax40=ptMax40, ptMax43=ptMax43, ptMax100=ptMax100, ptMax120=ptMax120, ptYears=ptYears, ptKgs=ptKgs, varTitle="Assault")
+
+@protocols.route("/protocols/BackPain")
+def backPain():
+
+    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+    ptMax40 = False
+    ptMax43 = False
+    ptMax100 = False
+    ptMax120 = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 120:        
+        ptMax26 = True
+        ptMax40 = True
+        ptMax43 = True
+        ptMax100 = True
+        ptMax120 = True
+
+    elif ptKgs >= 100:        
+        ptMax26 = True
+        ptMax40 = True
+        ptMax43 = True
+        ptMax100 = True
+        ptMax120 = False
+
+    elif ptKgs >= 43:        
+        ptMax26 = True
+        ptMax40 = True
+        ptMax43 = True
+        ptMax100 = False
+        ptMax120 = False
+
+    elif ptKgs >= 40:        
+        ptMax26 = True
+        ptMax40 = True
+        ptMax43 = False
+        ptMax100 = False
+        ptMax120 = False
+
+    elif ptKgs >= 26:        
+        ptMax26 = True
+        ptMax40 = False
+        ptMax43 = False
+        ptMax100 = False
+        ptMax120 = False
+
+
+    else:        
+        ptMax26 = False
+        ptMax40 = False
+        ptMax43 = False
+        ptMax100 = False
+        ptMax120 = False
+
+    return render_template('/protocols/BackPain.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax40=ptMax40, ptMax43=ptMax43, ptMax100=ptMax100, ptMax120=ptMax120, ptYears=ptYears, ptKgs=ptKgs, varTitle="Back Pain")
