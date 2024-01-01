@@ -282,3 +282,70 @@ def backPain():
         ptMax120 = False
 
     return render_template('/protocols/BackPain.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax40=ptMax40, ptMax43=ptMax43, ptMax100=ptMax100, ptMax120=ptMax120, ptYears=ptYears, ptKgs=ptKgs, varTitle="Back Pain")
+
+@protocols.route("/protocols/BreathingProblems")
+def breathingProblems():
+
+    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+    ptMax40 = False
+    ptMax43 = False
+    ptMax100 = False
+    ptMax120 = False
+
+    if ptYears >= 18:
+        ptAdult = True
+    else:
+        ptAdult = False
+
+    if ptKgs >= 120:        
+        ptMax26 = True
+        ptMax40 = True
+        ptMax43 = True
+        ptMax100 = True
+        ptMax120 = True
+
+    elif ptKgs >= 100:        
+        ptMax26 = True
+        ptMax40 = True
+        ptMax43 = True
+        ptMax100 = True
+        ptMax120 = False
+
+    elif ptKgs >= 43:        
+        ptMax26 = True
+        ptMax40 = True
+        ptMax43 = True
+        ptMax100 = False
+        ptMax120 = False
+
+    elif ptKgs >= 40:        
+        ptMax26 = True
+        ptMax40 = True
+        ptMax43 = False
+        ptMax100 = False
+        ptMax120 = False
+
+    elif ptKgs >= 26:        
+        ptMax26 = True
+        ptMax40 = False
+        ptMax43 = False
+        ptMax100 = False
+        ptMax120 = False
+
+
+    else:        
+        ptMax26 = False
+        ptMax40 = False
+        ptMax43 = False
+        ptMax100 = False
+        ptMax120 = False
+
+    return render_template('/protocols/BreathingProblems.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax40=ptMax40, ptMax43=ptMax43, ptMax100=ptMax100, ptMax120=ptMax120, ptYears=ptYears, ptKgs=ptKgs, varTitle="Breathing Problems")

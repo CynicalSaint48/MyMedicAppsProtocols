@@ -915,6 +915,14 @@ hr {
    margin-bottom: 20px;
 }
 
+.differentialText div {
+   width: 350px;
+}
+
+red {
+   color:#D2042D;
+}
+
 @media (max-width: 950px){
    .med-image {
       flex: 1 0;
@@ -966,7 +974,15 @@ hr {
       display: none;
    }
 
- }
+   .differentialText {
+      display: flex;
+      flex-wrap: wrap;
+   }
+
+   .differentialText div {
+      width: 350px;
+   }
+}
 
  @media (min-width: 950px) {
    .bodyContainer {

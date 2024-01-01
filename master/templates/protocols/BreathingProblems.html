@@ -1,0 +1,682 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Breathing Problems</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" breathingNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" breathingNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Differential</H3>
+                <div class="differentialText">
+                    <div><li><b>Adult</b></li>
+                        <ul>
+                            <li>Anaphylaxis</li>
+                            <li>Aspiration</li>
+                            <li>Asthma</li>
+                            <li>Cardiac dysrhythmia</li>
+                            <li>Congestive heart failure</li>
+                            <li>COPD</li>
+                            <li>Epiglottitis</li>
+                            <li>Myocardial infarction</li>
+                            <li>Peritonsillar abscess</li>
+                            <li>Pleural effusion</li>
+                            <li>Pneumonia</li>
+                            <li>Pneumothorax</li>
+                            <li>Pulmonary embolus</li>
+                            <li>Toxic inhalation</li>
+                            <li>Upper respiratory infection</li>
+                            <li>Volume overload</li>
+                        </ul>    
+                    </div>
+                    <div><b>Pediatric</b>
+                        <ul>
+                            <li>Anaphylaxis</li>
+                            <li>Aspiration</li>
+                            <li>Asthma</li>
+                            <li>Cardiac dysrhythmia</li>
+                            <li>Congenital heart disease</li>
+                            <li>Croup</li>
+                            <li>Epiglottitis</li>
+                            <li>Foreign body airway obstruction</li>
+                            <li>Peritonsillar abscess</li>
+                            <li>Pneumonia</li>
+                            <li>Pneumothorax</li>
+                            <li>Retropharyngeal abscess</li>
+                            <li>Tonsillitis</li>
+                            <li>Toxic inhalation</li>
+                            <li>Upper respiratory infection</li>
+                        </ul>    
+                    </div>
+                    
+                </div><br>
+                <h3>Evaluation</h3>
+                    <div class="evaluationText">
+                        <ul>
+                            <li>History
+                                <ul>
+                                    <li>Pre-existing cardiac or pulmonary disease</li>
+                                    <li>Acute vs. gradual onset & duration of symptoms</li>
+                                    <li>Presence of chest pain, fever, and/or cough</li>
+                                    <li>Past medical history - CHF, COPD, asthma, pulmonary fibrosis, ESRD</li>
+                                    <li>Social history - tobacco usage, cocaine</li>
+                                </ul>
+                            </li>
+                            <li>Physical exam
+                                <ul>
+                                    <li>Assess mental status</li>
+                                    <li>Auscultate heart sounds</li>
+                                    <li>Auscultate breath sounds
+                                        <ul>
+                                            <li>Absent breath sounds consider pneumothorax</li>
+                                            <li>Diffuse rales consider pulmonary edema</li>
+                                            <li>Focal rales / rhonchi consider pneumonia</li>
+                                            <li>Diffuse wheezing: consider reactive airway disease</li>
+                                            <li>Focal diminished sounds: consider pleural effusion, pneumonia</li>
+                                            <li>Normal sounds with pleuritic chest pain: consider pulmonary embolus</li>
+                                        </ul>
+                                    </li>
+                                    <li>Assess for unilateral or bilateral lower extremity edema</li>
+                                    <li>Assess for urticaria</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" breathingBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" breathingBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%
+                            <ol>
+                                <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                            </ol>
+                        </li>
+                        <li>Allow all conscious patients to sit in a position of comfort</li>
+                        <li>Additional care as per presumptive etiology of breathing problem</li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" breathingAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" breathingAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>12-lead ECG for patient history consistent with cardiac ischemia or dysrhythmia</li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Additional care as per presumed etiology of breathing problem</li>
+                        </ol>
+                    </p><hr><br>
+                <h3><b style="color:#D2042D;font-weight:600">T-RECS Inclusion Criteria</b></h3>
+                    <ul>
+                        <li>Age: 2 - 17-years + history of wheeze, current asthma symptoms <b>AND (> 4 of the following)</b></li>
+                        <li>Visible us of accessory muscles/retractions</li>
+                        <li>Inspiratory or expiratory wheezing or “silent chest”</li>
+                        <li>Agitation, drowsiness, or confusion</li>
+                        <li>SpO<sub>2</sub> &gt; 93% on room air</li>
+                        <li>Abnormal RR for age</li>
+                            <ul>
+                                <li>&lt; 6-years of age &ge; 46 breaths/minute</li>
+                                <li>&ge; 6-years of age &ge; 36 breaths/minute</li>
+                            </ul>
+                    </ul>                
+                <h3><b style="color:#D2042D;font-weight:600">T-RECS Exclusion Criteria</b></h3>
+                    <ul>
+                        <li>Known albuterol, ipratropium, or dexamethasone allergy</li>
+                        <li>Known or suspected pregnancy</li>
+                        <li>Prisoner</li>
+                        <li>Croup</li>
+                        <li>Suspected foreign body airway obstruction</li>
+                        <li>Respiratory distress NOT caused by asthma/wheezing</li>
+                        <li>Patient objects to participation</li>
+                    </ul><hr><br>
+            </div>
+        </div>
+
+        <H2> Asthma, COPD, Reactive Airway Disease </H2>
+        <div>
+            <input type="checkbox" name="accordian" id=" asthmaBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" asthmaBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
+                                            <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
+                                    </ul>
+                                {% else %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
+                                    </ul>
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>Adult: 5 mg
+                                        <ul>
+                                            <li>Repeat 5 mg as indicated by patient's condition</li>
+                                        </ul>
+                                    </li>
+                                    <li>Pediatric: 2.5 - 5 mg</li>
+                                </ol>
+                            {% endif %}
+                        </li>
+                        <li><a FIXME: href="#">CPAP</a> for persistent or severe respiratory distress per <a FIXME: href="#">Respiratory: NIPPV Protocol</a>
+                            <ol>
+                                <li>Continue <a FIXME: href="{{url_for('medications.albuterol')}}">Albuterol</a> in-line via <a FIXME: href="#">CPAP</a> as indicated by patient condition</li>
+                            </ol>
+                        </li>
+                        <li> For severe respiratory distress:
+                            <ol>
+                                <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:1000)</a> IM for any evidence of anaphylaxis
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">0.3 mg</dose></li>
+                                                    </ul>
+                                                        <ul>
+                                                            <li style="margin-left:20px">Consider decreasing dose to 0.15 mg IM in patients with coronary artery disease or patients > 55-years and CAD risk factors</li>
+                                                        </ul>
+                                            </ul>
+                                        {% else %}
+                                            {% if ptMax30 %}
+                                                <ul>
+                                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                        
+                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum </b><dose style="color:#f4b02a;font-weight:500">0.3 mg IM</dose></li></ul>
+                                                </ul>
+                                            {% else %}
+                                                <ul>
+                                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                        
+                                                        <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/100) }} mg IM</dose></li></ul>
+                                                </ul>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>
+                                            <li>Adult: 0.3 mg
+                                                <ul><li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li></ul>
+                                            </li>
+                                            <li> Pediatric: 0.01 mg/kg IM; maximum 0.3 mg IM (0.3 ml)</li>
+                                        </ol>
+                                    {% endif %}
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" asthmaAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" asthmaAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li><a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a>
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">16 mg IV, PO</dose></li>
+                                                </ul>
+                                        </ul>
+                                    {% else %}
+                                        {% if ptMax26 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">16 mg IV, PO</dose></li>
+                                                    <ol>
+                                                        <li> May refrain from administering IV if placing IV access strictly for the purpose of administering dexamethasone, as this may further distress the pediatric patient worsening any respiratory distress</li>
+                                                    </ol>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs * 0.6 }}mg IV, PO</dose></li>
+                                                    <ol>
+                                                        <li> May refrain from administering IV if placing IV access strictly for the purpose of administering dexamethasone, as this may further distress the pediatric patient worsening any respiratory distress</li>
+                                                    </ol>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 16 mg IV, PO</li>
+                                        <li>Pediatric: .6mg/kg IV, PO (maximum 16 mg)
+                                            <ol>
+                                                <li> May refrain from administering IV if placing IV access strictly for the purpose of administering dexamethasone, as this may further distress the pediatric patient worsening any respiratory distress</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a>
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 grams IV over 5 - 10 minutes</dose></li>
+                                                </ul>
+                                        </ul>
+                                    {% else %}
+                                        {% if ptMax40 %}
+                                            <li><div class="add-margin-L">Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b><dose style="color:#f4b02a;font-weight:500"> 1 g IV</dose></div>
+                                        {% elif ptMax20 %}
+                                            <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - 1.00 g IV</dose></div>
+                                        {% else %}
+                                            <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - {{ '%0.2f'| format((ptKgs*50)/1000) }} g IV</dose></div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 2 grams IV over 5 - 10 minutes</li>
+                                        <li>Pediatric: 25 - 50 mg/kg IV over 5 - 10 minutes</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><red><b style="color:#D2042D;font-weight:600">T-RECS Specific for patients 2 - 17 years of age</b>
+                                <ol>
+                                    <li>Three (3) DuoNeb's via nebulizer @ 6-LPM (over 20-30 minutes)</li>
+                                    <li>Dexamethasone 0.6 mg/kg PO (maximum 16 mg)
+                                        <ol>
+                                            <li>IV, IM administration if cannot tolerate PO</li>
+                                        </ol>
+                                    </li>
+                                    <li>Magnesium / Epinephrine as indicated per clinical condition (as dosing above)</li>
+                                </ol>
+                            </red></li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Continue albuterol in-line via CPAP, ETT, or BIAD as indicated by patient condition</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <H2> Pulmonary Edema </H2>
+        
+        <div>
+            <input type="checkbox" name="accordian" id=" edemaBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" edemaBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li><a FIXME: href="#">CPAP</a> for persistent or severe respiratory distress per <a FIXME: href="#">Respiratory: NIPPV Protocol</a>
+                            <ol>
+                                <li> Titrate pressure per patient response to therapy</li>
+                            </ol>
+                        </li>
+                        <li>Maintain patient in position of respiratory comfort</li>
+                </p><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" edemaAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" edemaAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>12-lead ECG for patient history consistent with cardiac ischemia or dysrhythmia</li>
+                            <li><a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin </a>(adult patients only)
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        <ol>
+                                            <li><dose style="color:#f4b02a;font-weight:500">0.4 mg SL</dose></li>
+                                            <li>For patient unable to tolerate SL nitroglycerin, apply nitro paste to upper chest
+                                                <ol>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">SBP &gt; 200 mm Hg: apply 2 inches</dose></li>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">SBP 150 - 200 mm Hg: apply 1.5 inches</dose></li>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">SBP 100 - 150 mm Hg: apply 1 inch</dose></li>
+                                                </ol>
+                                            </li>
+                                            <li><dose style="color:#f4b02a;font-weight:500">Hold/remove for SBP &lt; 100 mm Hg</dose></li>
+                                            <li><dose style="color:#f4b02a;font-weight:500">Hold for Viagra®, Cialis®, Levitra®, or similar drug use in the past 24 hours</dose></li>
+                                            <li><dose style="color:#f4b02a;font-weight:500">EMT may administer to patients with a current prescription for nitroglycerin</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        <ul>
+                                            <li><b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients</b></li>
+                                        </ul>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>0.4 mg SL</li>
+                                        <li>For patient unable to tolerate SL nitroglycerin, apply nitro paste to upper chest
+                                            <ol>
+                                                <li>SBP &gt; 200 mm Hg: apply 2 inches</li>
+                                                <li>SBP 150 - 200 mm Hg: apply 1.5 inches</li>
+                                                <li>SBP 100 - 150 mm Hg: apply 1 inch</li>
+                                            </ol>
+                                        </li>
+                                        <li>Hold/remove for SBP &lt; 100 mm Hg</li>
+                                        <li>Hold for Viagra®, Cialis®, Levitra®, or similar drug use in the past 24 hours</li>
+                                        <li>EMT may administer to patients with a current prescription for nitroglycerin</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>
+                                                    <div><b>OR</b></div>
+                                                    <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> 10 - 20 mcg/kg/min</dose></li>
+                                                </ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a>: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>
+                                                    <div><b>OR</b></div>
+                                                    <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>: <b style="color:#D2042D;font-weight:600">must contact</b><a FIXME: href="#">Medical Contronl Ring Central</a></li>
+                                                </ul>
+                                        </ul>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 2 - 10 mcg/min IV for hypotension</li>
+                                        <li>Pediatric: <b style="color:#D2042D;font-weight:600">must contact</b><a FIXME: href="#">Medical Contronl Ring Central</a></li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <h2>Croup</h2>
+        <div>
+            <input type="checkbox" name="accordian" id=" croupNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" croupNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Description</h3>
+                <div class="descriptionText">
+                    <ul>
+                        <li>Acute obstructive swelling and inflammation in the subglottic area and tracheobronchial tree caused by viral infection</li>
+                        <li>Occurs most often in children three (3) months to three (3) years of age</li>
+                        <li>Often preceded by upper respiratory infection</li>
+                        <li>Clinical Presentation: dyspnea, stridor, barking type cough, tachycardia</li>
+                    </ul>
+                </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" croupBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" croupBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Maintain child in position of respiratory comfort</li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" croupAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" croupAdvancedTreatment" class="accordian__label">ALS Treatment</label>                
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                <p class="advancedCare orderedList">
+                    <ol>
+                        <li>For signs of respiratory distress (retractions, flaring, stridor, hypoxia, dyspnea etc.) <a href="{{url_for('medications.epinephrine')}}">Racemic Epinephrine</a> Nebulized
+                            <ol>
+                                <li>&lt;5 kg: 0.25 ml (½ ampule) of 2.25% solution (diluted to 3 mL with NS)</li>
+                                <li>&ge;5 kg: 0.5 ml (½ ampule) of 2.25% solution (diluted to 3 mL with NS)</li>
+                            </ol>
+                        </li>
+                        <li><a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a> 0.6 mg/kg IV, PO (maximum 16 mg)
+                            <ol>
+                                <li>Do not start IV access simply for dexamethasone administration - this may further upset the child worsening respiratory distress</li>
+                            </ol>
+                        </li>
+                        <li>Reassess patient frequently</li>
+                        <li>Advanced airway management as indicated</li>
+                    </ol>
+                </p><hr><br>
+            </div>  
+        </div>
+        
+        <h2>Bronchiolitis</h2>
+        <div>
+            <input type="checkbox" name="accordian" id=" bronchioNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" bronchioNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Description</H3>
+                <div class="descriptionText">
+                    <ul>
+                        <li>Viral infection typically affecting young infants resulting in fever, congestion, wheezing</li>
+                        <li>May cause episodes of apnea</li>
+                    </ul>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" bronchioBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" bronchioBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Maintain child in position of respiratory comfort</li>
+                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 2.5  5 mg via hand-held or mask nebulizer
+                            <ol>
+                                <li>Repeat 2.5 - 5 mg as indicated by patient's condition</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" bronchioAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" bronchioAdvancedTreatment" class="accordian__label">ALS Treatment</label>                
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                <p class="advancedCare orderedList">
+                    <ol>
+                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 2.5  5 mg via hand-held or mask nebulizer
+                            <ol>
+                                <li>Repeat 2.5 - 5 mg as indicated by patient's condition</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+
+        <h2>Post-Intubation / BIAD Management</h2>
+        <div>
+            <input type="checkbox" name="accordian" id=" intubationNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" intubationNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Introduction</H3>
+                <div class="introText">
+                    <ul>
+                        <li>To be utilized following placement of an endotracheal tube or BIAD</li>
+                    </ul>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" intubationBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" intubationBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li> Continuous waveform ETCO<sub>2</sub> monitoring
+                            <ul>
+                                <li>Unless patient with an indication for elevated ventilation rates (severe metabolic acidosis - DKA, aspirin overdose, etc.) maintain ETCO<sub>2</sub> 35-45 mmHg</li>
+                            </ul>
+                        </li>
+                        <li> Continuous SpO<sub>2</sub> monitoring</li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" intubationAdvancedTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" intubationAdvancedTreatment" class="accordian__label">ALS Treatment</label>                
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                <p class="advancedCare orderedList">
+                    <ol>
+                        <li>To improve device tolerance, optimization of ventilation
+                            <ol>
+                                <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IO, IM</dose></li>
+                                                    </ul>
+                                            </ul>
+                                        {% else %}
+                                            {% if ptMax33 %}
+                                                <ul>
+                                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                        <ul>
+                                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">5 mg IV, IO, IM</dose></li>
+                                                        </ul>
+                                                </ul>
+                                            {% else %}
+                                                <ul>
+                                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                        <ul>
+                                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*3)/20) }} mg IV, IO, IM</dose></li>
+                                                        </ul>
+                                                </ul>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                    <ol>
+                                        <li>Adult: 5 mg IV, IO, IM</li>
+                                        <li>Pediatric: 0.15 mg/kg IV, IO, IM (max 5 mg)</li>
+                                    </ol>
+                                    {% endif %}
+                                </li>
+                                <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl</a>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">50 mcg IV, IO, IM</dose></li>
+                                                        <li>Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing</li>
+                                                    </ul>
+                                            </ul>
+                                        {% else %}
+                                            {% if ptMax100 %}
+                                                <ul>
+                                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                        <ul>
+                                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">50 mcg IV, IO, IM</dose></li>
+                                                            <li>Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing</li>
+                                                        </ul>
+                                                </ul>
+                                            {% else %}
+                                                <ul>
+                                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                        <ul>
+                                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/2) }} mcg IV, IO, IM</dose></li>
+                                                            <li>Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing</li>
+                                                        </ul>
+                                                </ul>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                    <ol>
+                                        <li>Adult: 50 mcg IV, IO, IM</li>
+                                        <li>Pediatric: 0.5 mcg/kg IV, IO, IM (maximum 50 mcg)</li>
+                                        <li>Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing</li>
+                                    </ol>
+                                    {% endif %}
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" breathingAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" breathingAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li>TODO: ADDITIONAL ITEM 1
+                                <ul><li>TODO:  ADDITIONAL SUB ITEM 1</li></ul>
+                                <ul><li>TODO:  ADDITIONAL SUB ITEM 2</li></ul>
+                                <ul><li>TODO:  ADDITIONAL SUB ITEM 3</li></ul>
+                            </li>
+                            <li>TODO: ADDITIONAL ITEM 2
+                                <ul><li>TODO:  ADDITIONAL SUB ITEM 1</li></ul>
+                                <ul><li>TODO:  ADDITIONAL SUB ITEM 2</li></ul>
+                                <ul><li>TODO:  ADDITIONAL SUB ITEM 3</li></ul>
+                            </li>
+                            <li>TODO: ADDITIONAL ITEM 3
+                                <ul><li>TODO:  ADDITIONAL SUB ITEM 1</li></ul>
+                                <ul><li>TODO:  ADDITIONAL SUB ITEM 2</li></ul>
+                                <ul><li>TODO:  ADDITIONAL SUB ITEM 3</li></ul>
+                            </li>
+                        </ul>
+                    </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
