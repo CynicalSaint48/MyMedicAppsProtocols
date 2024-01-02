@@ -1,0 +1,592 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Burns - Thermal</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" thermalNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" thermalNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Clinical Presentation</H3>
+                <div class="clinicalText">
+                        <ul>
+                            <li>Superficial burns
+                                <ul>
+                                    <li>Erythematous patches</li>
+                                    <li>Minimal tissue injury of the outermost layers of epidermis</li>
+                                </ul>
+                            </li>
+                            <li>Partial thickness burns
+                                <ul>
+                                    <li>Vesicle formation</li>
+                                    <li>Tissue damage extends into dermis</li>
+                                </ul>
+                            </li>
+                            <li>Full thickness burns
+                                <ul>
+                                    <li>Charred, leathery or pearly white surface</li>
+                                    <li>Destruction of all layers of skin including nerve endings</li>
+                                </ul>
+                            </li>
+                            <li>Rule of nines for estimation of % total body surface area
+                                <div class="bsaLists"><div class="bsaList"><b>Adult:</b>
+                                    <ul>
+                                        <li>Head = 9% (face 4.5%, scalp 4.5%)</li>
+                                        <li>Anterior torso = 18%</li>
+                                        <li>Posterior torso = 18%</li>
+                                        <li>R Arm = 9% (anterior 4.5%, posterior 4.5%)</li>
+                                        <li>L Arm = 9% (anterior 4.5%, posterior 4.5%)</li>
+                                        <li>R Leg = 18% (anterior 9%, posterior 9%)</li>
+                                        <li>L Leg = 18% (anterior 9%, posterior 9%)</li>
+                                        <li>Genitalia = 1%</li>
+                                    </ul>
+                                </div>
+                                <div><b>Pediatric:</b>
+                                    <ul>
+                                        <li>Head = 18% (face 9%, scalp 9%)</li>
+                                        <li>Chest = 13%</li>
+                                        <li>Back = 13%</li>
+                                        <li>R Arm = 9%</li>
+                                        <li>L Arm = 9%</li>
+                                        <li>R Leg = 18%</li>
+                                        <li>L Leg = 18%</li>
+                                        <li>Genitalia = 1%</li>
+                                    </ul>
+                                </div></div>
+                            </li>
+                            <li><b>Only partial-thickness (2<sup>nd</sup> degree) and full-thickness (3<sup>rd</sup> degree) burns should be considered when calculating the Total Body Surface Area (TBSA) extent of burns</b>
+                                <ul>
+                                    <li>As an estimate, the size of the patient's palm can be considered 1% TBSA in calculating scattered areas of burn</li>
+                                    <li>Refer to attached figures for further assistance in calculating TBSA extent of burn</li>
+                                </ul>
+                            </li>
+                            <li>TBSA estimation of burn size can only be utilized for thermal burns</li>
+                            <li>For electrical burns: exterior burns CANNOT be utilized to determine extent of injury or needed fluid resuscitation</li>
+                        </ul>    
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" thermalBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" thermalBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety</li>
+                        <li>Remove patient from source of injury</li>
+                        <li><a FIXME:href=""FIXME:>Trauma Initial Assessment Protocol</a> or <a FIXME:href=""FIXME:>Pediatric Trauma Assessment Protocol</a></li>
+                        <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Assess extent and depth of burns</li>
+                        <li>Assess for signs of airway burns / inhalational injury
+                            <ol>
+                                <li>Carbonaceous sputum</li>
+                                <li>Intra-oral burns</li>
+                                <li>Singed nasal hair</li>
+                                <li>Stridor, dyspnea</li>
+                            </ol>
+                        </li>
+                        <li>For multi-trauma <a FIXME: href="#">Spinal Motion Restriction Protocol</a> as per patient history</li>
+                        <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
+                                    </ul>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                        {% else %}
+                            <ol>
+                                <li> Adult: 650 - 975 mg PO</li>
+                                <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                </li>
+                            </ol>                           
+                        {% endif %}
+                        </li>
+                        <li> Alternative pain control: <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide</a> via patient-controlled inhalation </li>
+                        <li>Remove any constricting clothing, jewelry, watches, etc. on any affected extremity</li>
+                        <li>Attempt to cool burn with saline or clean water (only if &lt; 1 - 2 minutes from injury)</li>
+                        <li> Dress burns with clean, DRY dressings</li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" thermalAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" thermalAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                <ol>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li>Hemodynamically unstable <b>OR</b> &ge; 25% TBSA:<dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                                        <li>Hemodynamically stable <b>OR</b> &lt; 25% TBSA:<dose style="color:#f4b02a;font-weight:500">IVF @ maintenance rate</dose></li>
+                                                    </ul>
+                                        {% else %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
+                                                <ul>
+                                                    <li>Hemodynamically unstable <b>OR</b> &ge; 25% TBSA:<dose style="color:#f4b02a;font-weight:500">{{ ptKgs*20 }} ml bolus</dose></li>
+                                                    <li>Hemodynamically stable <b>OR</b> &lt; 25% TBSA:<dose style="color:#f4b02a;font-weight:500">IVF @ maintenance rate</dose></li>
+                                                </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>                                                    
+                                            <li>Adult:
+                                                <ol>
+                                                    <li>Hemodynamically unstable: IVF wide open</li>
+                                                    <li> Hemodynamically stable: maintenance rate</li>
+                                                </ol>
+                                            </li>
+                                            <li>Pediatric:
+                                                <ol>
+                                                    <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                    <li> Hemodynamically stable: maintenance rate</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" thermalAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" thermalAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li>Always ensure that the scene is safe before approaching the patient</a>
+                            </li>
+                            <li>Cooling with water is considered useless and potentiates hypothermia if performed beyond the first 1 - 2 minutes from time of Exposure
+                            </li>
+                            <li>Do <b>NOT</b> apply ice</li>
+                            <li>Carbon monoxide, cyanide, or other toxic gases may exacerbate the patient's clinical condition
+                                <ul>
+                                    <li>Consider associated carbon monoxide toxicity
+                                        <ul>
+                                            <li>High flow oxygen via face mask</li>
+                                        </ul>
+                                    </li>
+                                    <li>Consider associated cyanide toxicity
+                                        <ul>
+                                            <li>Symptoms
+                                                <ul>
+                                                    <li>Altered mental status</li>
+                                                    <li>Chest pain</li>
+                                                    <li>Dizziness</li>
+                                                    <li>Headache</li>
+                                                    <li>Nausea, vomiting</li>
+                                                    <li>Syncope</li>
+                                                </ul>
+                                            </li>
+                                            <li>High flow oxygenation is paramount for these patients
+                                                <ul>
+                                                    <li>Pulse oximetry measurements may be falsely elevated</li>
+                                                </ul>
+                                            </li>
+                                            <li>Treatment: <a href="{{url_for('medications.sodiumThiosulfate')}}">Sodium Thiosulfate</a>
+                                                {% if ptYears %}
+                                                    {% if ptAdult %}
+                                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                                            <ul>
+                                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                                            </ul>
+                                                        </div>
+                                                    {% else %}
+                                                        {% if ptMax50 %}
+                                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                                                <ul>
+                                                                    <li> Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                                                </ul>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                                                <ul>
+                                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*250)/1000) }} grams IV over 10 minutes</dose></li>
+                                                                </ul>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% else %}
+                                                <ul>
+                                                    <li>Adult: 12.5 grams IV over 10 minutes</li>
+                                                    <li>Pediatric: 250 mg/kg IV (maximum 12.5 grams) over 10 minutes</li>
+                                                </ul>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Always consider the possibility of abuse, particularly in pediatric patients</li>
+                                    <li>It is acceptable to initiate an IV or IO over a superficial or partial thickness burn area</li>
+                                    <li>Avoid IM mediations in patients with significant thermal burns</li>
+                                    <img class="proto-image" src="{{ url_for('static', filename='images/protocol/burns_helper1.jpg') }}" alt="Burns Helper Image">
+                            <li>For intubated patients:
+                                <ul>
+                                    <li>Allow for adequate time for exhalation with increased I:E ratios</li>
+                                    <li>Plan for lower respiratory rates and lower tidal volumes than typical normal levels in patients with asthma/COPD exacerbations</li>
+                                    <li>Goal of treatment is to maximize medical therapy early to avoid intubation</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <h2>Burns - Chemical and Electrical</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" chemElecNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" chemElecNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Current</H3>
+
+                <div class="differentialText">
+                    <ul>
+                        <li> Alternating Current (AC)
+                            <ul>
+                                <li>Lower voltage, household current</li>
+                                <li>Flow of electrons switches from positive to negative</li>
+                                <li>Tends to cause continuous muscle contraction (tetany), longer exposure time</li>
+                                <li>Classically cardiac arrest due to ventricular fibrillation</li>
+                            </ul>
+                        </li>
+                        <li>Direct Current (DC)
+                            <ul>
+                                <li>Higher voltage, power lines, lightning</li>
+                                <li>Flow of electrons in one direction</li>
+                                <li>Tends to cause single muscle spasm, shorter exposure time and “throw” victim from source</li>
+                                <li>Classically cardiac arrest due to asystole</li>
+                            </ul>
+                        </li>
+                    </ul>    
+                </div>
+
+                <H3>Clinical Presentation</H3>
+                <div class="differentialText">
+                        <ul>
+                            <li>Variable entrance and exit wounds</li>
+                            <li>Cardiac dysrhythmia</li>
+                            <li>Muscle pain</li>
+                        </ul>    
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" chemElecBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" chemElecBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety
+                            <ol>
+                                <li>Ensure patient no longer in contact with power source</li>
+                                <li>Ensure power source turned off</li>
+                            </ol>
+                        </li>
+                        <li><a FIXME:href=""FIXME:>Trauma Initial Assessment Protocol</a> or <a FIXME:href=""FIXME:>Pediatric Trauma Assessment Protocol</a></li>
+                        <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
+                        <li>Assess vital signs</li>
+                        <li>Initiate spinal motion restriction as indicated</li>
+                        <li>Provide copious water / saline irrigation to the site of any chemical burn / exposure after brushing away any dry compounds that may be present</li>
+                        <li>Apply sterile dressing to involved site(s)</li>
+                        <li>Remove any constricting clothing, jewelry, watches, etc. on any affected extremity</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Assess extent and depth of burns
+                            <ul>
+                                <li>Rule of nines <b>CANNOT</b> be utilized to assess extent of injury with electrical burns</li>
+                            </ul>
+                        </li>
+                        <li>Consider blunt trauma as suggested by mechanism of injury</li>
+                        <li>Note neurovascular status of distal extremities</li>
+                        <li>Pain control <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide </a>via patient-controlled inhalation </li>
+                        <li>If chemicals are involved, attempt to identify source
+                            <ol>
+                                <li>Any chemical information or copy of the data sheet (MSDS) should be brought to the hospital with the patient</li>
+                                <li>Decontaminate as indicated based on exposure history</li>
+                                <li>Copiously irrigate any eye exposure with sterile saline</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" chemElecAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" chemElecAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>12-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                <ol>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                                        <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500">IVF @ maintenance rate</dose></li>
+                                                    </ul>
+                                        {% else %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
+                                                <ul>
+                                                    <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500">{{ ptKgs*20 }} ml bolus</dose></li>
+                                                    <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500">IVF @ maintenance rate</dose></li>
+                                                </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>                                                    
+                                            <li>Adult:
+                                                <ol>
+                                                    <li>Hemodynamically unstable: IVF wide open</li>
+                                                    <li>Hemodynamically stable: maintenance rate</li>
+                                                </ol>
+                                            <li>Pediatric:
+                                                <ol>
+                                                    <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                    <li>Hemodynamically stable: maintenance rate</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" chemElecAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" chemElecAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li>Always ensure that the scene is safe before approaching the patient</a>
+                            </li>
+                            <li>Carbon monoxide, cyanide, or other toxic gases may exacerbate the patient's clinical condition
+                                <ul>
+                                    <li>Consider associated carbon monoxide toxicity
+                                        <ul>
+                                            <li>High flow oxygen via face mask</li>
+                                        </ul>
+                                    </li>
+                                    <li>Consider associated cyanide toxicity
+                                        <ul>
+                                            <li>Symptoms
+                                                <ul>
+                                                    <li>Altered mental status</li>
+                                                    <li>Chest pain</li>
+                                                    <li>Dizziness</li>
+                                                    <li>Headache</li>
+                                                    <li>Nausea, vomiting</li>
+                                                    <li>Syncope</li>
+                                                </ul>
+                                            </li>
+                                            <li>High flow oxygenation is paramount for these patients
+                                                <ul>
+                                                    <li>Pulse oximetry measurements may be falsely elevated</li>
+                                                </ul>
+                                            </li>
+                                            <li>Treatment: <a href="{{url_for('medications.sodiumThiosulfate')}}">Sodium Thiosulfate</a>
+                                                {% if ptYears %}
+                                                    {% if ptAdult %}
+                                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                                            <ul>
+                                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                                            </ul>
+                                                        </div>
+                                                    {% else %}
+                                                        {% if ptMax50 %}
+                                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                                                <ul>
+                                                                    <li> Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                                                </ul>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                                                <ul>
+                                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*250)/1000) }} grams IV over 10 minutes</dose></li>
+                                                                </ul>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% else %}
+                                                <ul>
+                                                    <li>Adult: 12.5 grams IV over 10 minutes</li>
+                                                    <li>Pediatric: 250 mg/kg IV (maximum 12.5 grams) over 10 minutes</li>
+                                                </ul>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Always consider the possibility of abuse, particularly in pediatric patients</li>
+                            <li>It is acceptable to initiate an IV or IO over a superficial or partial thickness burn area</li>
+                            <br>
+                            <h3>Estimation of burn size (Adult)</h3>
+                                <img class="proto-image" src="{{ url_for('static', filename='images/protocol/burns_helper2.jpg') }}" alt="Rule of 9s Adult">
+                            
+                            <h3>Estimation of burn size (Pediatric)</h3>
+                            <img class="proto-image" src="{{ url_for('static', filename='images/protocol/burns_helper3.jpg') }}" alt="Rule of 9s Pediatric">
+                            
+                        </ul>
+                    </p><hr><br>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

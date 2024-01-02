@@ -123,7 +123,8 @@
                             <li>Additional care as per presumed etiology of breathing problem</li>
                         </ol>
                     </p><hr><br>
-                <h3><b style="color:#D2042D;font-weight:600">T-RECS Inclusion Criteria</b></h3>
+                <red>
+                <h3><b style="font-weight:600">T-RECS Inclusion Criteria</b></h3>
                     <ul>
                         <li>Age: 2 - 17-years + history of wheeze, current asthma symptoms <b>AND (> 4 of the following)</b></li>
                         <li>Visible us of accessory muscles/retractions</li>
@@ -136,7 +137,7 @@
                                 <li>&ge; 6-years of age &ge; 36 breaths/minute</li>
                             </ul>
                     </ul>                
-                <h3><b style="color:#D2042D;font-weight:600">T-RECS Exclusion Criteria</b></h3>
+                <h3><b style="font-weight:600">T-RECS Exclusion Criteria</b></h3>
                     <ul>
                         <li>Known albuterol, ipratropium, or dexamethasone allergy</li>
                         <li>Known or suspected pregnancy</li>
@@ -145,7 +146,8 @@
                         <li>Suspected foreign body airway obstruction</li>
                         <li>Respiratory distress NOT caused by asthma/wheezing</li>
                         <li>Patient objects to participation</li>
-                    </ul><hr><br>
+                    </ul>
+                </red><hr><br>
             </div>
         </div>
 
@@ -239,25 +241,20 @@
                             <li><a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a>
                                 {% if ptYears %}
                                     {% if ptAdult %}
-                                        <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
                                                     <li>Adult: <dose style="color:#f4b02a;font-weight:500">16 mg IV, PO</dose></li>
                                                 </ul>
-                                        </ul>
                                     {% else %}
                                         {% if ptMax26 %}
-                                            <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
                                                     <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">16 mg IV, PO</dose></li>
                                                     <ol>
                                                         <li> May refrain from administering IV if placing IV access strictly for the purpose of administering dexamethasone, as this may further distress the pediatric patient worsening any respiratory distress</li>
                                                     </ol>
-                                                </ul>
                                             </ul>
                                         {% else %}
-                                            <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
                                                     <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs * 0.6 }}mg IV, PO</dose></li>
@@ -265,7 +262,6 @@
                                                         <li> May refrain from administering IV if placing IV access strictly for the purpose of administering dexamethasone, as this may further distress the pediatric patient worsening any respiratory distress</li>
                                                     </ol>
                                                 </ul>
-                                            </ul>
                                         {% endif %}
                                     {% endif %}
                                 {% else %}
@@ -282,20 +278,21 @@
                             <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a>
                                 {% if ptYears %}
                                     {% if ptAdult %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul>
-                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 grams IV over 5 - 10 minutes</dose></li>
-                                                </ul>
-                                        </ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 grams IV over 5 - 10 minutes</dose></li>
+                                            </ul>
                                     {% else %}
-                                        {% if ptMax40 %}
-                                            <li><div class="add-margin-L">Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b><dose style="color:#f4b02a;font-weight:500"> 1 g IV</dose></div>
-                                        {% elif ptMax20 %}
-                                            <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - 1.00 g IV</dose></div>
-                                        {% else %}
-                                            <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - {{ '%0.2f'| format((ptKgs*50)/1000) }} g IV</dose></div>
-                                        {% endif %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul>
+                                            {% if ptMax40 %}
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b><dose style="color:#f4b02a;font-weight:500"> 1 g IV</dose>
+                                            {% elif ptMax20 %}
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - 1.00 g IV</dose>
+                                            {% else %}
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - {{ '%0.2f'| format((ptKgs*50)/1000) }} g IV</dose>
+                                            {% endif %}
+                                            </ul>
                                     {% endif %}
                                 {% else %}
                                     <ol>
@@ -409,14 +406,14 @@
                                                 <ul>
                                                     <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a>: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>
                                                     <div><b>OR</b></div>
-                                                    <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>: <b style="color:#D2042D;font-weight:600">must contact</b><a FIXME: href="#">Medical Contronl Ring Central</a></li>
+                                                    <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>: <b style="color:#D2042D;font-weight:600">must contact </b><a FIXME: href="#">Medical Control Ring Central</a></li>
                                                 </ul>
                                         </ul>
                                     {% endif %}
                                 {% else %}
                                     <ol>
                                         <li>Adult: 2 - 10 mcg/min IV for hypotension</li>
-                                        <li>Pediatric: <b style="color:#D2042D;font-weight:600">must contact</b><a FIXME: href="#">Medical Contronl Ring Central</a></li>
+                                        <li>Pediatric: <b style="color:#D2042D;font-weight:600">must contact </b><a FIXME: href="#">Medical Control Ring Central</a></li>
                                     </ol>
                                 {% endif %}
                             </li>
@@ -427,7 +424,28 @@
                                 </ol>
                             <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
                         </ol>
-                    </p><hr><br>
+                    </p>
+                    <h3>Additional Considerations</h3>
+                    <div class="edemaAdditional orderedList">
+                        <ul>
+                            <li>Patients with respiratory distress and elevated blood pressure
+                                <ul>
+                                    <li>Assess patient to determine if the elevated blood pressure is the cause of the respiratory distress (e.g. CHF)
+                                        <ul>
+                                            <li>If true, treat blood pressure as part of managing the respiratory distress</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Assess patient to determine if the elevated blood pressure is a result of the respiratory distress (e.g. COPD or asthma exacerbation)
+                                <ul>
+                                    <li>If true, aggressively treat the respiratory distress per protocol</li>
+                                    <li>The blood pressure does not require direct treatment</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+                    
             </div>
         </div>
 
@@ -509,7 +527,7 @@
                     <ol>
                         <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                         <li>Maintain child in position of respiratory comfort</li>
-                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 2.5  5 mg via hand-held or mask nebulizer
+                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 2.5 - 5 mg via hand-held or mask nebulizer
                             <ol>
                                 <li>Repeat 2.5 - 5 mg as indicated by patient's condition</li>
                             </ol>
@@ -525,7 +543,7 @@
                 <h3>Advanced Medical Care</h3>
                 <p class="advancedCare orderedList">
                     <ol>
-                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 2.5  5 mg via hand-held or mask nebulizer
+                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 2.5 - 5 mg via hand-held or mask nebulizer
                             <ol>
                                 <li>Repeat 2.5 - 5 mg as indicated by patient's condition</li>
                             </ol>
@@ -566,7 +584,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" intubationAdvancedTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" intubationAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
             <label for=" intubationAdvancedTreatment" class="accordian__label">ALS Treatment</label>                
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -647,10 +665,190 @@
                             </ol>
                         </li>
                     </ol>
-                </p><hr><br>
+                </p>
+                <h3>Additional Considerations</h3>
+                <div class="edemaAdditional orderedList">
+                    <ul>
+                        <li>For patient comfort remember midazolam (Versed®) does not treat pain</li>
+                    </ul>
+                </div><hr><br>
             </div>
         </div>
 
+        <h2>Ventilator Emergencies</h2>
+        <div>
+            <input type="checkbox" name="accordian" id=" ventNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" ventNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Disruption from oxygen source</li>
+                            <li>Disruption of ventilator circuit</li>
+                            <li>Patient with increase oxygen requirement</li>
+                            <li>Ventilator failure</li>
+                            <li>Dislodgement or obstruction of tracheostomy (endotracheal) tube</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" ventBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" ventBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Assess vital signs including pulse oximetry
+                        </li>
+                        <li>Confirm baseline SpO<sub>2</sub> saturation</li>
+                        <li> Provide suctioning as indicated per patient condition</li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" ventAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" ventAdvancedTreatment" class="accordian__label">ALS Treatment</label>                
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                <p class="advancedCare orderedList">
+                    <ol>
+                        <li>Assess ventilator, oxygen source, and circuit</li>
+                        <li>Attempt to maintain patient on patient's typical ventilator settings</li>
+                        <li> Contact <a FIXME: href="#"></a>Medical Control Ring Central to attempt corrective actions to improve cause of respiratory distress/increased work of breathing</li>
+                            <ul>
+                                <li>Family may be able to provide instructions from patient's physician</li>
+                            </ul>
+                        <li>Ventilate with bag-valve-device if unable to oxygenate/ventilate with ventilator despite appropriate adjustment to settings</li>
+                        <li>Utilize continuous waveform ETCO2 during transport</li>
+                    </ol>
+                </p>
+
+                <h3>Additional Considerations</h3>
+                <div class=" ventAdditional orderedList">
+                <ul>
+                    <li>Troubleshooting <b>DOPE</b> pneumonic
+                        <ul>
+                            <li><b>D</b>isplaced ETT, tracheostomy</li>
+                            <li><b>O</b>bstruction, <b>O</b>xygen source</li>
+                            <li><b>P</b>neumothorax</li>
+                            <li><b>E</b>quipment failure</li>
+                        </ul>
+                    </li>
+                    <li>Typical alarms
+                        <ul>
+                            <li>Low pressure/apnea
+                                <ul>
+                                    <li>Loose or disconnected circuit</li>
+                                    <li>Leak in circuit or at tracheostomy site</li>
+                                </ul>
+                            </li>
+                            <li>Low power
+                                <ul>
+                                    <li>Internal battery depletion</li>
+                                </ul>
+                            </li>
+                            <li>High pressure
+                                <ul>
+                                    <li>Plugged/obstructed airway or circuit</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>When in doubt: ventilate with bag-valve-device if unable to oxygenate/ventilate with ventilator</li>
+                </ul>
+                </div><hr><br>
+            </div>
+        </div><br>
+
+        <h2>Tracheostomy Tube Emergencies</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" trachNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" trachNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Differential</H3>
+                <div class="differentialText">
+                    <div>
+                        <ul>
+                            <li>Allergic reaction</li>
+                            <li>Aspiration</li>
+                            <li>Asthma</li>
+                            <li>Foreign body obstruction</li>
+                            <li>Infection / Sepsis</li>
+                            <li>Trauma</li>
+                            <li>Ventilator failure</li>
+                        </ul>    
+                    </div>
+                    <div><img src="{{url_for('static', filename='images/protocol/tracheostomy.jpg') }}">    
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" trachBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" trachBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide suctioning as indicated per patient condition</li>
+                        <li>Maintain patient in position of respiratory comfort</li>
+                        <li>Assist ventilations with BVM as indicated per patient condition</li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" trachAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" trachAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>Assess tracheostomy tube</li>
+                            <li>For tube not in place; place tube via standard technique
+                                <ol>
+                                    <li>Prepare and check necessary equipment including device of the same size and 0.5 size smaller than patients existing device</li>
+                                    <li>Have standard airway management equipment available</li>
+                                    <li>Appropriately lubricate the replacement tube</li>
+                                </ol>
+                            </li>
+                            <li>Ensure obturator removed following tracheostomy tube insertion</li>
+                            <li>Ensure inner cannula properly placed</li>
+                            <li>Provide suctioning as indicated per patient condition
+                                <ol>
+                                    <li>Limit suctioning attempt to &lt; 10 seconds</li>
+                                    <li>May instill 2 - 3 ml of saline as needed before suctioning</li>
+                                </ol>
+                            </li>
+                            <li>Replace tube if indicated per <a FIXME: href="#">Airway: Tracheostomy Tube Change Protocol</a></li>
+                            <li>If unable to place new smaller device, use standard airway procedures to assist patient
+                                <ol>
+                                    <li><a FIXME: href="#">Airway: Adult Protocol</a>; <a FIXME: href="#">Airway: Pediatric Protocol</a></li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </p>
+
+                <h3>Additional Considerations</h3>
+                <div class=" ventAdditional orderedList">
+                <ul>
+                    <li>Utilize family members as appropriate for assistance in the care of the tracheostomy</li>
+                    <li>Anticipate more difficult tube changing with tracheostomies &lt; 2-weeks old</li>
+                    <li>Potential complications
+                        <ul>
+                            <li>Airway obstruction</li>
+                            <li>Airway device misplacement</li>
+                            <li>Bleeding</li>
+                        </ul>
+                    </li>
+                </ul>
+                </div><hr><br>
+            </div>
+        </div>
+        
+        <H2> Breathing Problems </H2>
         <div>
             <input type="checkbox" name="accordian" id=" breathingAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
             <label for=" breathingAdditional" class="accordian__label">Additional Information</label>
@@ -658,20 +856,43 @@
                 <h3>Additional Considerations</h3>
                     <p>
                         <ul>
-                            <li>TODO: ADDITIONAL ITEM 1
-                                <ul><li>TODO:  ADDITIONAL SUB ITEM 1</li></ul>
-                                <ul><li>TODO:  ADDITIONAL SUB ITEM 2</li></ul>
-                                <ul><li>TODO:  ADDITIONAL SUB ITEM 3</li></ul>
+                            <li><a FIXME: href"#">CPAP</a>
+                                <ul>
+                                    <li>For COPD, asthma, bronchospasm, or reactive airways disease, apply positive end-expiratory pressure by starting at 3 - 5 cm H<sub>2</sub>O of pressure and slowly titrating to achieve a desirable and tolerated positive pressure reading</li>
+                                    <li>Maximum 10 cm H<sub>2</sub>O</li>
+                                </ul>
                             </li>
-                            <li>TODO: ADDITIONAL ITEM 2
-                                <ul><li>TODO:  ADDITIONAL SUB ITEM 1</li></ul>
-                                <ul><li>TODO:  ADDITIONAL SUB ITEM 2</li></ul>
-                                <ul><li>TODO:  ADDITIONAL SUB ITEM 3</li></ul>
+                            <li>The benefits of administering supplemental oxygen to patients with exacerbated COPD outweigh the risks of suppressing the hypoxic respiratory drive
+                                <ul><li>This phenomenon does not occur in the acute care or prehospital setting</li></ul>
                             </li>
-                            <li>TODO: ADDITIONAL ITEM 3
-                                <ul><li>TODO:  ADDITIONAL SUB ITEM 1</li></ul>
-                                <ul><li>TODO:  ADDITIONAL SUB ITEM 2</li></ul>
-                                <ul><li>TODO:  ADDITIONAL SUB ITEM 3</li></ul>
+                            <li>Bronchospasm may be severe enough - especially in pediatric patients - that no wheezing is heard on auscultation as air flow is minimal
+                                <ul><li>This represents significant exacerbation and warrants aggressive therapy</li></ul>
+                            </li>
+                            <li>When patients present with severe respiratory distress, impending respiratory failure or are deteriorating, treatment should be initiated before transport
+                            </li>
+                            <li>Consider the patient's history of or risk for coronary artery disease prior to the administration of epinephrine
+                                <ul><li>Consider decreasing dose or contact medical control prior to IM epinephrine administration to patients with a known cardiac history or patients &gt; 55-years of age with known coronary artery disease risk factors
+                                    </li>
+                                    <li>However, there is no contraindication to the administration of epinephrine in a life-threatening respiratory situation</li>
+                                </ul>
+                            </li>
+                            <li>For intubated patients:
+                                <ul>
+                                    <li>Allow for adequate time for exhalation with increased I:E ratios</li>
+                                    <li>Plan for lower respiratory rates and lower tidal volumes than typical normal levels in patients with asthma/COPD exacerbations</li>
+                                    <li>Goal of treatment is to maximize medical therapy early to avoid intubation</li>
+                                </ul>
+                            </li>
+                            <li>Consider acute myocardial ischemic event, especially in patients with any chest pain or cardiac disease risk factors
+                            </li>
+                            <li>Epiglottitis
+                                <ul>
+                                    <li>Bacterial infection involving the epiglottis causing it to swell and partially or totally obstruct the upper airway</li>
+                                    <li>Typically presents with sudden onset of sore throat, drooling, stridor, and fever</li>
+                                    <li>Total airway occlusion is a catastrophic possibility that can be precipitated by invasive oral exams (using tongue blades or laryngoscopes), finger sweeps, and/or supine positioning</li>
+                                    <li>Prehospital treatment includes quiet transportation with the patient in position of comfort and parent or guardian accompanying the child</li>
+                                    <li>Oxygen should be utilized as tolerated</li>
+                                </ul>
                             </li>
                         </ul>
                     </p>
