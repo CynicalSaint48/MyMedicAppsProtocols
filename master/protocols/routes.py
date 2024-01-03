@@ -3,566 +3,322 @@ from flask import session
 
 protocols = Blueprint('protocols', __name__)
 
-@protocols.route("/protocols/allergic_reaction")
-def allergy():
+def get_key_list():
 
-    
+    keys={'ptYears':0, 'ptKgs':0.0, 'ptAdult':'', 'ptYears7':'', 'ptYears14':'',
+           'ptMax5':'', 'ptMax20':'', 'ptMax26':'', 'ptMax30':'', 'ptMax33':'',
+             'ptMax40':'', 'ptMax43':'', 'ptMax50':'', 'ptMax66':'', 'ptMax80':'',
+               'ptMax100':'', 'ptMax120':'', 'ptMax200':'', 'ptMax300':''}
+
     if not session['ptYears']:
         ptYears = 0
+        keys['ptYears'] = 0
         ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
+        keys['ptKgs'] = 0.0
 
-    ptAdult = False
-    ptMax26 = False
-    ptMax30 = False
-    ptMax50 = False
-
-
-    if ptYears >= 18:
-        ptAdult = True
-        ptMax26 = False
-        ptMax30 = False
-        ptMax50 = False
-    else:
-
-        if ptKgs > 26.6:
-            ptAdult = False
-            ptMax26 = True
-            ptMax30 = False
-            ptMax50 = False
-        if ptKgs >= 30:
-            ptAdult = False
-            ptMax26 = True
-            ptMax30 = True
-            ptMax50 = False
-        if ptKgs >= 50:
-            ptAdult = False
-            ptMax26 = True
-            ptMax30 = True
-            ptMax50 = True
-        else:
-            ptMax16 = False
-            ptMax30 = False
-            ptMax50 = False
-
-
-    return render_template('/protocols/AllergicReaction.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax30=ptMax30, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs, varTitle="Allergic Reaction")
-
-@protocols.route("/protocols/abdominal_pain")
-def abdominal():
-
-    
-    if not session['ptYears']:
+    elif session['ptYears'] == '':
         ptYears = 0
+        keys['ptYears'] = 0
         ptKgs = 0.0
+        keys['ptKgs'] = 0.0
+
     else:
         ptYears = session['ptYears']
+        keys['ptYears'] = ptYears
         ptKgs = session['ptKgs']
-
-    ptAdult = False
-    ptMax26 = False
-    ptMax100 = False
-
-
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 100:
-            ptMax26 = True
-            ptMax100 = True
-    elif ptKgs >= 26:
-            ptMax26 = True
-            ptMax100 = False
-    else:
-            ptMax26 = False
-            ptMax100 = False
-
-    return render_template('/protocols/AbdPain.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Abdominal Pain")
-
-@protocols.route("/protocols/bites_envenomations")
-def bites():
-
-    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-
-    ptAdult = False
-    ptMax43 = False
-    ptMax50 = False
-    ptMax100 = False
-
-
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 100:
-            ptMax43 = True
-            ptMax50 = True
-            ptMax100 = True
-
-    elif ptKgs >= 50:
-            ptMax43 = True
-            ptMax50 = True
-            ptMax100 = False
-
-    elif ptKgs >= 43:
-        ptMax43 = True
-        ptMax50 = False
-        ptMax100 = False
-
-    else:
-            ptMax43 = False
-            ptMax50 = False
-            ptMax100 = False
-
-    return render_template('/protocols/Bites_Envenomations.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax50=ptMax50, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Bites & Envenomations")
-
-@protocols.route("/protocols/animal_bites")
-def animalBites():
-
-    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-
-    ptAdult = False
-    ptMax43 = False
-    ptMax100 = False
-
-
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 100:
-            ptMax43 = True
-            ptMax100 = True
-
-    elif ptKgs >= 43:
-        ptMax43 = True
-        ptMax100 = False
-
-    else:
-            ptMax43 = False
-            ptMax100 = False
-
-    return render_template('/protocols/AnimalBites.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Animal Bites")
-
-@protocols.route("/protocols/assault")
-def assault():
-
-    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-
-    ptAdult = False
-    ptMax40 = False
-    ptMax43 = False
-    ptMax100 = False
-    ptMax120 = False
-
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 120:
-        ptMax40 = True
-        ptMax43 = True
-        ptMax100 = True
-        ptMax120 = True
-
-    elif ptKgs >= 100:
-        ptMax40 = True
-        ptMax43 = True
-        ptMax100 = True
-        ptMax120 = False
-
-    elif ptKgs >= 43:
-        ptMax40 = True
-        ptMax43 = True
-        ptMax100 = False
-        ptMax120 = False
-
-    elif ptKgs >= 40:
-        ptMax40 = True
-        ptMax43 = False
-        ptMax100 = False
-        ptMax120 = False
-
-    else:
-        ptMax40 = False
-        ptMax43 = False
-        ptMax100 = False
-        ptMax120 = False
-
-    return render_template('/protocols/Assault.html', ptAdult=ptAdult, ptMax40=ptMax40, ptMax43=ptMax43, ptMax100=ptMax100, ptMax120=ptMax120, ptYears=ptYears, ptKgs=ptKgs, varTitle="Assault")
-
-@protocols.route("/protocols/BackPain")
-def backPain():
-
-    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-
-    ptAdult = False
-    ptMax40 = False
-    ptMax43 = False
-    ptMax100 = False
-    ptMax120 = False
-
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 120:        
-        ptMax26 = True
-        ptMax40 = True
-        ptMax43 = True
-        ptMax100 = True
-        ptMax120 = True
-
-    elif ptKgs >= 100:        
-        ptMax26 = True
-        ptMax40 = True
-        ptMax43 = True
-        ptMax100 = True
-        ptMax120 = False
-
-    elif ptKgs >= 43:        
-        ptMax26 = True
-        ptMax40 = True
-        ptMax43 = True
-        ptMax100 = False
-        ptMax120 = False
-
-    elif ptKgs >= 40:        
-        ptMax26 = True
-        ptMax40 = True
-        ptMax43 = False
-        ptMax100 = False
-        ptMax120 = False
-
-    elif ptKgs >= 26:        
-        ptMax26 = True
-        ptMax40 = False
-        ptMax43 = False
-        ptMax100 = False
-        ptMax120 = False
-
-
-    else:        
-        ptMax26 = False
-        ptMax40 = False
-        ptMax43 = False
-        ptMax100 = False
-        ptMax120 = False
-
-    return render_template('/protocols/BackPain.html', ptAdult=ptAdult, ptMax26=ptMax26, ptMax40=ptMax40, ptMax43=ptMax43, ptMax100=ptMax100, ptMax120=ptMax120, ptYears=ptYears, ptKgs=ptKgs, varTitle="Back Pain")
-
-@protocols.route("/protocols/BreathingProblems")
-def breathingProblems():
-
-    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-
-    ptAdult = False
-
-    ptMax20 = False
-    ptMax26 = False
-    ptMax30 = False
-    ptMax33 = False
-    ptMax40 = False
-    ptMax100 = False
-
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 100:        
-        ptMax20 = True
-        ptMax26 = True
-        ptMax30 = True
-        ptMax33 = True
-        ptMax40 = True
-        ptMax100 = True
-
-    elif ptKgs >= 40:        
-        ptMax20 = True
-        ptMax26 = True
-        ptMax30 = True
-        ptMax33 = True
-        ptMax40 = True
-        ptMax100 = False
-
-    elif ptKgs >= 33:        
-        ptMax20 = True
-        ptMax26 = True
-        ptMax30 = True
-        ptMax33 = True
-        ptMax40 = False
-        ptMax100 = False
-
-    elif ptKgs >= 30:        
-        ptMax20 = True
-        ptMax26 = True
-        ptMax30 = True
-        ptMax33 = False
-        ptMax40 = False
-        ptMax100 = False
-
-    elif ptKgs >= 26:        
-        ptMax20 = True
-        ptMax26 = True
-        ptMax30 = False
-        ptMax33 = False
-        ptMax40 = False
-        ptMax100 = False
-
-    elif ptKgs >= 20:        
-        ptMax20 = True
-        ptMax26 = False
-        ptMax30 = False
-        ptMax33 = False
-        ptMax40 = False
-        ptMax100 = False
-
-
-    else:        
-        ptMax20 = False
-        ptMax26 = False
-        ptMax30 = False
-        ptMax33 = False
-        ptMax40 = False
-        ptMax100 = False
-
-    return render_template('/protocols/BreathingProblems.html', ptAdult=ptAdult, ptMax20=ptMax20, ptMax26=ptMax26, ptMax30=ptMax30, ptMax33=ptMax33, ptMax40=ptMax40, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Breathing Problems")
-
-@protocols.route("/protocols/Burns")
-def burns():
-
-    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-
-    ptAdult = False
-
-    ptMax43 = False
-    ptMax50 = False
-    ptMax100 = False
-
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 100:        
-        ptMax43 = True
-        ptMax50 = True
-        ptMax100 = True
-
-    elif ptKgs >= 50:        
-        ptMax43 = True
-        ptMax50 = True
-        ptMax100 = False
-
-    elif ptKgs >= 43:    
-        ptMax43 = True
-        ptMax50 = False
-        ptMax100 = False
-
-    else:
-        ptMax43 = False
-        ptMax50 = False
-        ptMax100 = False
-
-    return render_template('/protocols/Burns.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax50=ptMax50, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Burns")
-
-@protocols.route("/protocols/HazMat")
-def hazmat():
-
-    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
+        keys['ptKgs'] = ptKgs
 
     ptAdult = False
     ptYears14 = False
     ptYears7 = False
 
+    ptMax5= False
+    ptMax20 = False
     ptMax26 = False
+    ptMax30 = False
+    ptMax33 = False
+    ptMax40 = False
     ptMax43 = False
     ptMax50 = False
     ptMax66 = False
+    ptMax80 = False
     ptMax100 = False
     ptMax120 = False
     ptMax200 = False
     ptMax300 = False
 
     if ptYears >= 18:
-        ptYears7 = True
-        ptYears14 = True
-        ptAdult = True
+        keys['ptYears7'] = True
+        keys['ptYears14'] = True
+        keys['ptAdult'] = True
 
     elif ptYears > 14:
-        ptYears7 = False
-        ptYears14 = True
-        ptAdult = True
+        keys['ptYears7'] = False
+        keys['ptYears14'] = True
+        keys['ptAdult'] = True
 
     elif ptYears > 7:
-        ptYears7 = False
-        ptYears14 = False
-        ptAdult = True
+        keys['ptYears7'] = False
+        keys['ptYears14'] = False
+        keys['ptAdult'] = True
 
     else:
-        ptYears7 = False
-        ptYears14 = False
-        ptAdult = False
+        keys['ptYears7'] = False
+        keys['ptYears14'] = False
+        keys['ptAdult'] = False
 
     if ptKgs >= 300:
-        ptMax26 = True        
-        ptMax43 = True
-        ptMax50 = True
-        ptMax66 = True
-        ptMax80 = True
-        ptMax100 = True
-        ptMax120 = True
-        ptMax200 = True
-        ptMax300 = True
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = True
+        keys['ptMax50'] = True
+        keys['ptMax66'] = True
+        keys['ptMax80'] = True
+        keys['ptMax100'] = True
+        keys['ptMax120'] = True
+        keys['ptMax200'] = True
+        keys['ptMax300'] = True
 
-    if ptKgs >= 200:
-        ptMax26 = True        
-        ptMax43 = True
-        ptMax50 = True
-        ptMax66 = True
-        ptMax80 = True
-        ptMax100 = True
-        ptMax120 = True
-        ptMax200 = True
-        ptMax300 = False
+    elif ptKgs >= 200:
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = True
+        keys['ptMax50'] = True
+        keys['ptMax66'] = True
+        keys['ptMax80'] = True
+        keys['ptMax100'] = True
+        keys['ptMax120'] = True
+        keys['ptMax200'] = True
+        keys['ptMax300'] = False
 
     elif ptKgs >= 120:
-        ptMax26 = True        
-        ptMax43 = True
-        ptMax50 = True
-        ptMax66 = True
-        ptMax80 = True
-        ptMax100 = True
-        ptMax120 = True
-        ptMax200 = False
-        ptMax300 = False
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = True
+        keys['ptMax50'] = True
+        keys['ptMax66'] = True
+        keys['ptMax80'] = True
+        keys['ptMax100'] = True
+        keys['ptMax120'] = True
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
 
     elif ptKgs >= 100:
-        ptMax26 = True        
-        ptMax43 = True
-        ptMax50 = True
-        ptMax66 = True
-        ptMax80 = True
-        ptMax100 = True
-        ptMax120 = False
-        ptMax200 = False
-        ptMax300 = False
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = True
+        keys['ptMax50'] = True
+        keys['ptMax66'] = True
+        keys['ptMax80'] = True
+        keys['ptMax100'] = True
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
 
     elif ptKgs >= 80:
-        ptMax26 = True        
-        ptMax43 = True
-        ptMax50 = True
-        ptMax66 = True
-        ptMax80 = True
-        ptMax100 = False
-        ptMax120 = False
-        ptMax200 = False
-        ptMax300 = False
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = True
+        keys['ptMax50'] = True
+        keys['ptMax66'] = True
+        keys['ptMax80'] = True
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
 
     elif ptKgs >= 66:
-        ptMax26 = True        
-        ptMax43 = True
-        ptMax50 = True
-        ptMax66 = True
-        ptMax80 = False
-        ptMax100 = False
-        ptMax120 = False
-        ptMax200 = False
-        ptMax300 = False
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = True
+        keys['ptMax50'] = True
+        keys['ptMax66'] = True
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
 
     elif ptKgs >= 50:
-        ptMax26 = True        
-        ptMax43 = True
-        ptMax50 = True
-        ptMax66 = False
-        ptMax80 = False
-        ptMax100 = False
-        ptMax120 = False
-        ptMax200 = False
-        ptMax300 = False
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = True
+        keys['ptMax50'] = True
+        keys['ptMax66'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
 
     elif ptKgs >= 43:
-        ptMax26 = True        
-        ptMax43 = True
-        ptMax50 = False
-        ptMax66 = False
-        ptMax80 = False
-        ptMax100 = False
-        ptMax120 = False
-        ptMax200 = False
-        ptMax300 = False
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = True
+        keys['ptMax50'] = False
+        keys['ptMax66'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
 
     elif ptKgs >= 26:
-        ptMax26 = True        
-        ptMax43 = False
-        ptMax50 = False
-        ptMax66 = False
-        ptMax80 = False
-        ptMax100 = False
-        ptMax120 = False
-        ptMax200 = False
-        ptMax300 = False
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = False
+        keys['ptMax33'] = False
+        keys['ptMax40'] = False
+        keys['ptMax43'] = False
+        keys['ptMax50'] = False
+        keys['ptMax66'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
+
+    elif ptKgs >= 20:
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = False
+        keys['ptMax30'] = False
+        keys['ptMax33'] = False
+        keys['ptMax40'] = False
+        keys['ptMax43'] = False
+        keys['ptMax50'] = False
+        keys['ptMax66'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
+
+    elif ptKgs >= 5:
+        keys['ptMax5']= True
+        keys['ptMax20'] = False
+        keys['ptMax26'] = False
+        keys['ptMax30'] = False
+        keys['ptMax33'] = False
+        keys['ptMax40'] = False
+        keys['ptMax43'] = False
+        keys['ptMax50'] = False
+        keys['ptMax66'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
 
     else:
-        ptMax26 = False        
-        ptMax43 = False
-        ptMax50 = False
-        ptMax66 = False
-        ptMax80 = False
-        ptMax100 = False
-        ptMax120 = False
-        ptMax200 = False
-        ptMax300 = False
+        keys['ptMax5']= False
+        keys['ptMax20'] = False
+        keys['ptMax26'] = False
+        keys['ptMax30'] = False
+        keys['ptMax33'] = False
+        keys['ptMax40'] = False
+        keys['ptMax43'] = False
+        keys['ptMax50'] = False
+        keys['ptMax66'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
 
-    return render_template('/protocols/CarbonMonoxide.html', ptAdult=ptAdult, ptYears7=ptYears7, ptYears14=ptYears14, ptMax26=ptMax26, ptMax43=ptMax43, ptMax50=ptMax50, ptMax66=ptMax66, ptMax80=ptMax80, ptMax100=ptMax100, ptMax120=ptMax120, ptMax200=ptMax200, ptMax300=ptMax300, ptYears=ptYears, ptKgs=ptKgs, varTitle="Hazardous Materials")
+    return (keys)
+
+@protocols.route("/protocols/allergic_reaction")
+def allergy():
+
+    keys = get_key_list()
+    return render_template('/protocols/AllergicReaction.html', keys=keys, varTitle="Allergic Reaction")
+
+@protocols.route("/protocols/abdominal_pain")
+def abdominal():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/AbdPain.html', keys=keys, varTitle="Abdominal Pain")
+
+@protocols.route("/protocols/bites_envenomations")
+def bites():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Bites_Envenomations.html', keys=keys, varTitle="Bites & Envenomations")
+
+@protocols.route("/protocols/animal_bites")
+def animalBites():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/AnimalBites.html', keys=keys, varTitle="Animal Bites")
+
+@protocols.route("/protocols/assault")
+def assault():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Assault.html', keys=keys, varTitle="Assault")
+
+@protocols.route("/protocols/BackPain")
+def backPain():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/BackPain.html', keys=keys, varTitle="Back Pain")
+
+@protocols.route("/protocols/BreathingProblems")
+def breathingProblems():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/BreathingProblems.html', keys=keys, varTitle="Breathing Problems")
+
+@protocols.route("/protocols/Burns")
+def burns():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Burns.html', keys=keys, varTitle="Burns")
+
+@protocols.route("/protocols/HazMat")
+def hazmat():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/CarbonMonoxide.html', keys=keys, varTitle="Hazardous Materials")

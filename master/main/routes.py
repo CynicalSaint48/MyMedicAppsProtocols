@@ -10,19 +10,51 @@ main = Blueprint('main', __name__)
 
 
 def getPt():
+
+    keys= {}
+    
     if not session.get('ptYears'):
         session['ptYears'] = 0
         session['ptLbs'] = 0.0
         session['ptKgs'] = 0.0
+        keys['ptYears'] = 0
+        keys['ptLbs'] = 0.0
+        keys['ptKgs'] = 0.0
     
     if ( session['ptYears'] == 0.0):
-        ptYears, ptLbs, ptKgs = setPt()
+        keys = setPt()
+        ptYears = keys['ptYears']
+        ptLbs = keys['ptLbs']
+        ptKgs = keys['ptKgs']
+
     else:
         ptYears = session['ptYears']
         ptLbs = session['ptLbs']
         ptKgs = session['ptKgs']
+        keys['ptYears'] = ptYears
+        keys['ptLbs'] = ptLbs
+        keys['ptKgs'] = ptKgs
     
-    return ptYears, ptLbs, ptKgs
+    print(keys)
+    return keys
+
+def setPt(years=0, lbs=0):
+    session['ptYears'] = years
+    session['ptLbs'] = lbs
+    session['ptKgs'] = round((lbs/2.2), 1)
+    
+    
+    ptYears = session['ptYears']
+    ptLbs = session['ptLbs']
+    ptKgs = Decimal(session['ptKgs'])
+    ptKgs = session['ptKgs']
+
+    keys = {'ptYears':0, 'ptKgs':0.0, 'ptLbs':0}
+    keys['ptYears'] = ptYears
+    keys['ptKgs'] = ptKgs
+    keys['ptLbs'] = ptLbs
+    
+    return keys
 
 
 
@@ -30,51 +62,39 @@ def getPt():
 @main.route("/home")
 def home():
     
-    ptYears = getPt()[0]
-    ptKgs = getPt()[2]
+
+    keys = getPt()
     latest_update = UpdatePost.query.order_by(UpdatePost.date_posted.desc()).first()
 
-    return render_template('home.html', varTitle='Home', ptYears=ptYears, ptKgs=ptKgs, latest_update=latest_update)
-
-def setPt(years=0, lbs=0):
-    session['ptYears'] = years
-    session['ptLbs'] = lbs
-    session['ptKgs'] = round((lbs/2.2), 1)
-    
-    ptYears = session['ptYears']
-    ptLbs = session['ptLbs']
-    ptKgs = Decimal(session['ptKgs'])
-    ptKgs = session['ptKgs']
-    
-    return ptYears, ptLbs, ptKgs
+    return render_template('home.html', varTitle='Home', keys=keys, latest_update=latest_update)
 
 @main.route("/clrPt")
 def clrPt():
     session['ptYears'] = 0
     session['ptLbs'] = 0.0
-    session['ptKgs'] = 0.0
-    ptYears = session['ptYears']
-    ptLbs = session['ptLbs']
-    ptKgs = session['ptKgs']
-
+    session['ptKgs'] = 0.0    
     latest_update = UpdatePost.query.order_by(UpdatePost.date_posted.desc()).first()   
 
-    return render_template('home.html', varTitle='Home', ptYears=ptYears, ptLbs=ptLbs, ptKgs=ptKgs, latest_update=latest_update)
+    keys = setPt()
+
+    return render_template('home.html', varTitle='Home', keys=keys, latest_update=latest_update)
 
 @main.route("/updatePt", methods=['GET', 'POST'])
 def updatePt():
     latest_update = UpdatePost.query.order_by(UpdatePost.date_posted.desc()).first()
+    keys = getPt()
     form = updatePtForm()
     if form.validate_on_submit():
         setPt(form.ptYears.data, form.ptLbs.data)
         return redirect(url_for('main.home'))
-    return render_template('updatePt.html', varTitle='Add Patient', form=form, legend='New Patient', subButton='Save', latest_update=latest_update)
+    
+    return render_template('updatePt.html', varTitle='Add Patient', form=form, legend='New Patient', subButton='Save', latest_update=latest_update, keys=keys)
 
 
 @main.route("/site_updates", methods=['GET', 'POST'])
 def siteUpdates():
-    updates = UpdatePost.query.order_by(UpdatePost.date_posted.desc())
-    ptYears = getPt()[0]
-    ptKgs = getPt()[2]
 
-    return render_template('site_updates.html', varTitle='Updates', updates=updates, ptYears=ptYears, ptKgs=ptKgs)
+    updates = UpdatePost.query.order_by(UpdatePost.date_posted.desc())
+    keys = setPt()
+
+    return render_template('site_updates.html', varTitle='Updates', updates=updates, keys=keys)

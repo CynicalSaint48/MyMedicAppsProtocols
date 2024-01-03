@@ -41,22 +41,22 @@
                         <li> Do <b><i>NOT</i></b>&ensp;apply ice </li>
                         <li> Do <b><i>NOT</i></b>&ensp;apply any constrictive dressings (including any form of tourniquet) </li>
                         <li><a href="{{url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
-                            {% if ptYears %}
-                                {% if ptAdult %}
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
                                     <ul>
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
                                     </ul>
                                 {% else %}
                                     {% if ptMax43 %}
                                         <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
                                         </ul>
                                     {% else %}
                                         <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs * 15) }}mg PO</dose></li></ul>
                                         </ul>
                                     {% endif %}
                                 {% endif %}
@@ -82,13 +82,13 @@
                         <ol>
                             <li><a FIXME:href=""FIXME:>IVF</a> as per patient condition
                                 <ol>
-                                    {% if ptYears %}
-                                        {% if ptAdult %}
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                     <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">TKO to wide open</dose></li></ul>
                                         {% else %}
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
-                                                    <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml bolus and reassess</dose></li></ul>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>                                      
+                                                    <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 10) }} - {{ '%0.2f'| format(keys.ptKgs * 20) }} ml bolus and reassess</dose></li></ul>
                                         {% endif %}
                                     {% else %}
                                         <ol>                                                    
@@ -99,21 +99,21 @@
                                 </ol>
                             </li>
                             <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
-                                {% if ptYears %}
-                                    {% if ptAdult %}
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
                                         {% if ptMax100 %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN, IO </dose></li>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN, IO </dose></li>
                                                     <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
                                                 </ul>
                                             </ul>
                                         {% else %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{ '%0.2f'| format(keys.ptKgs) }} mcg IV, IM, IN, IO </dose></li>
                                                     <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
                                                 </ul>
                                             </ul>
@@ -121,17 +121,17 @@
                                     {% else %}
                                         {% if ptMax100 %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs): </div>
                                                 <ul>
-                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
                                                     <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                                 </ul>
                                             </ul>
                                         {% else %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{ '%0.2f'| format(keys.ptKgs) }} mcg IV, IM, IN </dose></li>
                                                     <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                                 </ul>
                                             </ul>
@@ -230,22 +230,22 @@
                         <li> Do <b><i>NOT</i></b>&ensp;apply ice </li>
                         <li> Do <b><i>NOT</i></b>&ensp;apply constrictive dressings (including tourniquet) </li>
                         <li><a href="{{url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
-                            {% if ptYears %}
-                                {% if ptAdult %}
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
                                     <ul>
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
                                     </ul>
                                 {% else %}
                                     {% if ptMax43 %}
                                         <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
                                         </ul>
                                     {% else %}
                                         <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs * 15) }} mg PO</dose></li></ul>
                                         </ul>
                                     {% endif %}
                                 {% endif %}
@@ -271,13 +271,13 @@
                         <ol>
                             <li><a FIXME:href=""FIXME:>IVF</a> as per patient condition
                                 <ol>
-                                    {% if ptYears %}
-                                        {% if ptAdult %}
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                     <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">TKO to wide open</dose></li></ul>
                                         {% else %}
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
-                                                    <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs * 10 }} - {{ ptKgs * 20 }} ml bolus and reassess</dose></li></ul>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>                                      
+                                                    <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 10) }} - {{ '%0.2f'| format(keys.ptKgs * 20) }} ml bolus and reassess</dose></li></ul>
                                         {% endif %}
                                     {% else %}
                                         <ol>                                                    
@@ -288,21 +288,21 @@
                                 </ol>
                             </li>
                             <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
-                                {% if ptYears %}
-                                    {% if ptAdult %}
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
                                         {% if ptMax100 %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
                                                     <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
                                                 </ul>
                                             </ul>
                                         {% else %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{ '%0.2f'| format(keys.ptKgs) }} mcg IV, IM, IN, IO </dose></li>
                                                     <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
                                                 </ul>
                                             </ul>
@@ -310,17 +310,17 @@
                                     {% else %}
                                         {% if ptMax100 %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs): </div>
                                                 <ul>
-                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN </dose></li>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IM, IN </dose></li>
                                                     <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                                 </ul>
                                             </ul>
                                         {% else %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{ '%0.2f'| format(keys.ptKgs) }} mcg IV, IM, IN </dose></li>
                                                     <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                                 </ul>
                                             </ul>
@@ -343,22 +343,22 @@
                             </li>
                             <!-- FIXME: Protocol Error? 1g for Adult, max 2g for Ped?  FIXME: -->
                             <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> for severe muscle spasms
-                                {% if ptYears %}
-                                    {% if ptAdult %}
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
                                         <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 gram (10 ml of 10% solution) IV, IO </dose></li></ul>
                                         </ul>
                                     {% else %}
                                         {% if ptMax50 %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                 <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 1 gram (10 ml of 10% solution) IV, IO </dose></li></ul>
                                             </ul>
                                         {% else %}
                                             <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs * 2)/100) }}g IV, IO </dose></li></ul>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs * 2)/100) }}g IV, IO </dose></li></ul>
                                             </ul>
                                         {% endif %}
                                     {% endif %}

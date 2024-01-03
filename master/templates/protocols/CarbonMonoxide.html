@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container content1">
     <div class="accordian">
-        <H1>Carbon Monoxide / Cyanide / Hazmat Exposure</H1><hr>
+        <H1>Carbon Monoxide / Cyanide / Hazmat Exposure {{ ptYears }} {{ ptYears != 0 }}</H1><hr>
         <div>
             <input type="checkbox" name="accordian" id="carbonNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
             <label for="carbonNarrative" class="accordian__label">Narrative Protocol</label>
@@ -93,8 +93,8 @@
                         <li>Assess vital signs</li>
                         <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                         <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
-                            {% if ptYears %}
-                                {% if ptAdult %}
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                         <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
@@ -162,14 +162,14 @@
                             <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
                             <li><a FIXME:href=""FIXME:>IVF</a> as indicated
                                 <ol>
-                                    {% if ptYears %}
-                                        {% if ptAdult %}
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}Here I am
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                     <ul>
                                                         <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
                                                         <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
                                                     </ul>
-                                        {% else %}
+                                        {% else %}No Here I am
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
                                                 <ul>
                                                     <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> {{ ptKgs*20 }} ml bolus</dose></li>
@@ -195,17 +195,17 @@
                                 </ol>
                             </li>
                             <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
-                                {% if ptYears %}
-                                    {% if ptAdult %}
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</thing></li></ul>
+                                            <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</dose></li></ul>
                                         </ul>
                                     {% else %}
-                                        {% if ptMax26 %}
+                                        {% if keys.ptMax26 %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a"> 4 mg PO, IV, IM</thing></li></ul>
+                                                <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 4 mg PO, IV, IM</dose></li></ul>
                                             </ul>
                                         {% else %}
                                             <ul>
@@ -300,8 +300,8 @@
                             <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
                             <li><a FIXME:href=""FIXME:>IVF</a> as indicated
                                 <ol>
-                                    {% if ptYears %}
-                                        {% if ptAdult %}
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                     <ul>
                                                         <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
@@ -332,34 +332,33 @@
                                 </ol>
                             </li>
                             <li>Treatment: <a href="{{url_for('medications.sodiumThiosulfate')}}">Sodium Thiosulfate</a>
-                                {% if ptYears %}
-                                    {% if ptAdult %}
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
-                                            <ul>
-                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
-                                            </ul>
-                                        </div>
-                                    {% else %}
-                                        {% if ptMax50 %}
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                <ol>
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
-                                                    <li> Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
                                                 </ul>
-                                            </div>
                                         {% else %}
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
-                                                <ul>
-                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*250)/1000) }} grams IV over 10 minutes</dose></li>
-                                                </ul>
-                                            </div>
+                                            {% if keys.ptMax50 %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li> Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                                    </ul>
+                                            {% else %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li> Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*250)/1000) }} grams IV over 10 minutes</dose></li>
+                                                    </ul>
+                                            {% endif %}
                                         {% endif %}
+                                    {% else %}
+                                    <ul>
+                                        <li>Adult: 12.5 grams IV over 10 minutes</li>
+                                        <li>Pediatric: 250 mg/kg IV (maximum 12.5 grams) over 10 minutes</li>
+                                    </ul>
                                     {% endif %}
-                                {% else %}
-                                <ul>
-                                    <li>Adult: 12.5 grams IV over 10 minutes</li>
-                                    <li>Pediatric: 250 mg/kg IV (maximum 12.5 grams) over 10 minutes</li>
-                                </ul>
-                                {% endif %}
+                                </ol>
                             </li>
                     </p><hr><br>
             </div>
@@ -422,8 +421,8 @@
                             <ol>
                                 <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                                 <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
-                                    {% if ptYears %}
-                                        {% if ptAdult %}
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
@@ -449,14 +448,14 @@
                             </ol>
                         </li>
                         <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
-                            {% if ptYears %}
-                                {% if ptAdult %}
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                         <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
                                     </ul>
                                 {% else %}
-                                    {% if ptMax43 %}
+                                    {% if keys.ptMax43 %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                             <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
@@ -489,9 +488,9 @@
                         <ol>
                             <li>Additional care as per appropriate medical or trauma condition protocol</li>
                             <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
-                                {% if ptYears %}
-                                    {% if ptAdult %}
-                                        {% if ptMax100 %}
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                        {% if keys.ptMax100 %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
@@ -509,7 +508,7 @@
                                             </ul>
                                         {% endif %}
                                     {% else %}
-                                        {% if ptMax100 %}
+                                        {% if keys.ptMax100 %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
                                                 <ul>
@@ -599,8 +598,8 @@
                                 <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                                 <li>Suction as indicated</li>
                                 <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
-                                    {% if ptYears %}
-                                        {% if ptAdult %}
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
@@ -638,9 +637,9 @@
                         <ol>
                             <li>Additional care as per appropriate medical or trauma condition protocol</li>
                             <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
-                                {% if ptYears %}
-                                    {% if ptAdult %}
-                                        {% if ptMax100 %}
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                        {% if keys.ptMax100 %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul>
@@ -658,7 +657,7 @@
                                             </ul>
                                         {% endif %}
                                     {% else %}
-                                        {% if ptMax100 %}
+                                        {% if keys.ptMax100 %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
                                                 <ul>
@@ -753,8 +752,8 @@
                                 <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                                 <li>Suction as indicated</li>
                                 <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
-                                    {% if ptYears %}
-                                        {% if ptAdult %}
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
                                             <ul>
                                                 <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                                 <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
@@ -780,14 +779,14 @@
                             </ol>
                         </li>
                         <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
-                            {% if ptYears %}
-                                {% if ptAdult %}
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
                                     <ul>
                                         <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                         <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
                                     </ul>
                                 {% else %}
-                                    {% if ptMax43 %}
+                                    {% if keys.ptMax43 %}
                                         <ul>
                                             <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
                                             <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
@@ -868,8 +867,8 @@
                         <li>Initiate decontamination procedures</li>
                         <li>Airway protection; may need frequent suctioning</li>
                         <li>Initiate decontamination procedures</li>
-                        {% if ptYears %}
-                            {% if ptAdult %}
+                        {% if keys.ptYears > 0 %}
+                            {% if keys.ptAdult %}
                             <div class="currentPatient">Current Pt ({{ ptYears }} years), Adult:
                                 <li>Mild effects (miosis, rhinorrhea, nausea, vomiting)
                                     <ul><li><dose style="color:#f4b02a;font-weight:500">1 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
@@ -882,11 +881,11 @@
                                 </li>
                             </div>
                             {% else %}
-                                {% if ptYears14 %}
+                                {% if keys.ptYears14 %}
                                     <div class="currentPatient">Current Pt ({{ ptYears }} years), Pediatric &gt; 14 years:
                                         <ul><li><dose style="color:#f4b02a;font-weight:500">3 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
                                     </div>
-                                {% elif ptYears7 %}
+                                {% elif keys.ptYears7 %}
                                     <div class="currentPatient">Current Pt ({{ ptYears }} years), Pediatric 7 - 14 years:
                                         <ul><li><dose style="color:#f4b02a;font-weight:500">2 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
                                     </div>
@@ -929,8 +928,8 @@
                 <h3>Advanced Medical Care</h3>
                     <div class="advancedCare orderedList">
                         <ol>
-                            {% if ptYears %}
-                                {% if ptAdult %}
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
                                 <li>
                                     <div class="currentPatient">Current Pt ({{ ptYears }} years), Adult:
                                         <div>
@@ -952,7 +951,7 @@
                                 {%else %}
                                 <li>
                                     <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs) Pediatric:
-                                        {% if ptMax300 %}
+                                        {% if keys.ptMax300 %}
                                             <div>Mild - moderate symptoms
                                                 <ol>
                                                     <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
@@ -969,7 +968,7 @@
                                                     <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
                                                 </ol>
                                             </div>
-                                        {% elif ptMax200 %}
+                                        {% elif keys.ptMax200 %}
                                             <div>Mild - moderate symptoms
                                                     <ol>
                                                         <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
@@ -986,7 +985,7 @@
                                                         <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
                                                     </ol>
                                             </div>
-                                            {% elif ptMax120 %}
+                                            {% elif keys.ptMax120 %}
                                             <div>Mild - moderate symptoms
                                                 <ol>
                                                     <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
@@ -1003,7 +1002,7 @@
                                                     <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
                                                 </ul>
                                             </div>
-                                            {% elif ptMax100 %}
+                                            {% elif keys.ptMax100 %}
                                             <div>Mild - moderate symptoms
                                                 <ol>
                                                     <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - 4.00 mg IV, IM, IO</dose></li>
@@ -1020,7 +1019,7 @@
                                                     <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
                                                 </ul>
                                             </div>
-                                            {% elif ptMax80 %}
+                                            {% elif keys.ptMax80 %}
                                             <div>Mild - moderate symptoms
                                                 <ol>
                                                     <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - 4.00 mg IV, IM, IO</dose></li>
@@ -1037,7 +1036,7 @@
                                                     <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
                                                 </ul>
                                             </div>
-                                            {% elif ptMax66 %}
+                                            {% elif keys.ptMax66 %}
                                             <div>Mild - moderate symptoms
                                                 <ol>
                                                     <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
@@ -1054,7 +1053,7 @@
                                                     <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
                                                 </ul>
                                             </div>
-                                            {% elif ptMax50 %}
+                                            {% elif keys.ptMax50 %}
                                             <div>Mild - moderate symptoms
                                                 <ol>
                                                     <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
@@ -1092,7 +1091,6 @@
                                     </div>
                                 </li>
                                 <li>Repeat atropine every 3-5 minutes as indicated</li>
-                                </div>
                                 {% endif %}
                             {% else %}
                                 <li>Treatment Adult:
@@ -1171,7 +1169,7 @@
             <input type="checkbox" name="accordian" id=" radiationAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
             <label for=" radiationAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
-                <h3>CHEMPACK Program</h3>
+                <h3>Additional Info</h3>
                     <div class="proto-image">
                         <div><img src="{{ url_for('static', filename='images/protocol/hazmat4.jpg') }}" alt="Time Phases of Radiation Injury"></div>
                     </div>
