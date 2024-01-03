@@ -410,3 +410,159 @@ def burns():
         ptMax100 = False
 
     return render_template('/protocols/Burns.html', ptAdult=ptAdult, ptMax43=ptMax43, ptMax50=ptMax50, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Burns")
+
+@protocols.route("/protocols/HazMat")
+def hazmat():
+
+    
+    if not session['ptYears']:
+        ptYears = 0
+        ptKgs = 0.0
+    else:
+        ptYears = session['ptYears']
+        ptKgs = session['ptKgs']
+
+    ptAdult = False
+    ptYears14 = False
+    ptYears7 = False
+
+    ptMax26 = False
+    ptMax43 = False
+    ptMax50 = False
+    ptMax66 = False
+    ptMax100 = False
+    ptMax120 = False
+    ptMax200 = False
+    ptMax300 = False
+
+    if ptYears >= 18:
+        ptYears7 = True
+        ptYears14 = True
+        ptAdult = True
+
+    elif ptYears > 14:
+        ptYears7 = False
+        ptYears14 = True
+        ptAdult = True
+
+    elif ptYears > 7:
+        ptYears7 = False
+        ptYears14 = False
+        ptAdult = True
+
+    else:
+        ptYears7 = False
+        ptYears14 = False
+        ptAdult = False
+
+    if ptKgs >= 300:
+        ptMax26 = True        
+        ptMax43 = True
+        ptMax50 = True
+        ptMax66 = True
+        ptMax80 = True
+        ptMax100 = True
+        ptMax120 = True
+        ptMax200 = True
+        ptMax300 = True
+
+    if ptKgs >= 200:
+        ptMax26 = True        
+        ptMax43 = True
+        ptMax50 = True
+        ptMax66 = True
+        ptMax80 = True
+        ptMax100 = True
+        ptMax120 = True
+        ptMax200 = True
+        ptMax300 = False
+
+    elif ptKgs >= 120:
+        ptMax26 = True        
+        ptMax43 = True
+        ptMax50 = True
+        ptMax66 = True
+        ptMax80 = True
+        ptMax100 = True
+        ptMax120 = True
+        ptMax200 = False
+        ptMax300 = False
+
+    elif ptKgs >= 100:
+        ptMax26 = True        
+        ptMax43 = True
+        ptMax50 = True
+        ptMax66 = True
+        ptMax80 = True
+        ptMax100 = True
+        ptMax120 = False
+        ptMax200 = False
+        ptMax300 = False
+
+    elif ptKgs >= 80:
+        ptMax26 = True        
+        ptMax43 = True
+        ptMax50 = True
+        ptMax66 = True
+        ptMax80 = True
+        ptMax100 = False
+        ptMax120 = False
+        ptMax200 = False
+        ptMax300 = False
+
+    elif ptKgs >= 66:
+        ptMax26 = True        
+        ptMax43 = True
+        ptMax50 = True
+        ptMax66 = True
+        ptMax80 = False
+        ptMax100 = False
+        ptMax120 = False
+        ptMax200 = False
+        ptMax300 = False
+
+    elif ptKgs >= 50:
+        ptMax26 = True        
+        ptMax43 = True
+        ptMax50 = True
+        ptMax66 = False
+        ptMax80 = False
+        ptMax100 = False
+        ptMax120 = False
+        ptMax200 = False
+        ptMax300 = False
+
+    elif ptKgs >= 43:
+        ptMax26 = True        
+        ptMax43 = True
+        ptMax50 = False
+        ptMax66 = False
+        ptMax80 = False
+        ptMax100 = False
+        ptMax120 = False
+        ptMax200 = False
+        ptMax300 = False
+
+    elif ptKgs >= 26:
+        ptMax26 = True        
+        ptMax43 = False
+        ptMax50 = False
+        ptMax66 = False
+        ptMax80 = False
+        ptMax100 = False
+        ptMax120 = False
+        ptMax200 = False
+        ptMax300 = False
+
+    else:
+        ptMax26 = False        
+        ptMax43 = False
+        ptMax50 = False
+        ptMax66 = False
+        ptMax80 = False
+        ptMax100 = False
+        ptMax120 = False
+        ptMax200 = False
+        ptMax300 = False
+
+    return render_template('/protocols/CarbonMonoxide.html', ptAdult=ptAdult, ptYears7=ptYears7, ptYears14=ptYears14, ptMax26=ptMax26, ptMax43=ptMax43, ptMax50=ptMax50, ptMax66=ptMax66, ptMax80=ptMax80, ptMax100=ptMax100, ptMax120=ptMax120, ptMax200=ptMax200, ptMax300=ptMax300, ptYears=ptYears, ptKgs=ptKgs, varTitle="Hazardous Materials")

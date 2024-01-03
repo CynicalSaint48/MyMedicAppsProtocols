@@ -1,0 +1,1210 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Carbon Monoxide / Cyanide / Hazmat Exposure</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id="carbonNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for="carbonNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>History</H3>
+                    <div class="historylist">
+                        <ul>
+                            <li>Carbon Monoxide
+                                <ul>
+                                    <li>Confined space fire exposure</li>
+                                    <li>Gas powered home appliances exposure</li>
+                                    <li>Gas powered machinery exposure</li>
+                                    <li>Smoke inhalation</li>
+                                </ul>
+                            </li>
+                            <li>Cyanide
+                                <ul>
+                                    <li>Smoke inhalation</li>
+                                    <li>Industrial exposure</li>
+                                </ul>
+                            </li>
+                        </ul><br>
+                    </div>
+                <h3>Considerations</h3>
+                    <div class="considerationsText">
+                        <ul>
+                            <li>Accidental/intentional exposure</li>
+                            <li>Duration of exposure</li>
+                            <li>Past medical history</li>
+                            <li>Pregnancy</li>
+                        </ul><br>
+                    </div>
+                <h3>Signs & Symptoms</h3>
+                        <ul class="presentationText">
+                            <li>Altered mental status</li>
+                            <li>Chest pain</li>
+                            <li>Confusion</li>
+                            <li>Dizziness</li>
+                            <li>Dyspnea</li>
+                            <li>Headache</li>
+                            <li>Malaise, weakness, flu-like illness symptoms</li>
+                            <li>Nausea</li>
+                            <li>Seizure</li>
+                            <li>Syncope</li>
+                        </ul><br>
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Anaphylaxis</li>
+                            <li>Cardiogenic syncope</li>
+                            <li>Co-ingestant/exposure</li>
+                            <li>Epilepsy</li>
+                            <li>Hypo/hyperglycemia</li>
+                            <li>Myocardial ischemia/infarction</li>
+                            <li>Trauma/head injury</li>
+                            <li>Viral infection</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" carbonBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" carbonBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety and a protective environment for all personnel and patients
+                            <ol>
+                                <li>Consider additional precautions (distance and shielding) when radiological agents are involved</li>
+                            </ol>
+                        </li>
+                        <li>Ensure fire department resources (Hazardous Materials Team) has been notified</li>
+                        <li>Attempt to identify exposure (bystander or worker information, incident location, environmental indicators, container description, placards or labels, shipping papers or Material Safety Data Sheets, patient symptoms)</li>
+                        <li>Don appropriate personal protective equipment
+                            <ol>
+                                <li>Decision for type and level will be made by the scene Incident Command</li>
+                            </ol>
+                        </li>
+                        <li>Immediately remove all patients from the exposure and determine the level of contamination present
+                            <ol>
+                                <li>Determine the need for decontamination prior to full assessment and treatment</li>
+                                <li>Vapor material source: remove from source of contamination</li>
+                                <li>Liquid material source: remove contaminated equipment and clothing and perform gross and technical decontamination procedures</li>
+                                <li>Solid material source: remove material by physical measures of brushing away source, then gross and technical decontamination procedures as indicated</li>
+                            </ol>
+                        </li>
+                        <li><a FIXME:href=""FIXME:>Medical Initial Assessment Protocol</a> or <a FIXME:href=""FIXME:>Pediatric Initial Assessment Protocol</a></li>
+                        <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
+                                            <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
+                                    </ul>
+                                {% else %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
+                                    </ul>
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>Adult: 5 mg
+                                        <ul>
+                                            <li>Repeat 5 mg as indicated by patient's condition</li>
+                                        </ul>
+                                    </li>
+                                    <li>Pediatric: 2.5 - 5 mg</li>
+                                </ol>
+                            {% endif %}
+                        </li>
+                        <li><a FIXME: href="#">CPAP</a> for persistent or severe respiratory distress per <a FIXME: href="#">Respiratory: NIPPV Protocol</a></li>
+                        <li>Remove appropriate clothing to fully inspect the chest, abdomen, and extremities for any significant thermal injuries</li>
+                        <li>If available, utilize a Rad 57 to obtain carboxyhemoglobin level
+                            <div>
+                                <div><b>Initial SpCO level</b>
+                                    <ol>
+                                        <li>&lt; 3%:  Continue to monitor</li> 
+                                        <li>3% to 12% and no symptoms:  Oxygen via NRB mask</li>
+                                        <li>&gt; 3% and symptoms; or &gt; 12%:  Oxygen via NRB & transport</li>
+                                    </ol>
+                                </div>
+                                <div><b>Symptoms of CO toxicity</b>
+                                    <ol>
+                                        <li>Headache, vertigo, confusion, loss of consciousness</li>
+                                        <li>Shortness of breath</li>
+                                        <li>Nausea</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </li>
+                        <li>For eye exposure, copiously irrigate with sterile saline</li>
+                        <li>Provide copious water / saline irrigation to the any site of liquid chemical exposure burn</li>
+                        <li>Dry/powder chemical should be brushed-off
+                            <ol>
+                                <li>Brushing away from potential inhalation of substance</li>
+                            </ol>
+                        </li>
+                        <li>Apply sterile dressing to involved site(s)</li>
+                        <li>Any chemical information or copy of the data sheet (MSDS) should be brought to the hospital with the patient</li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" carbonAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" carbonAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>12-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                <ol>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
+                                                        <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
+                                                    </ul>
+                                        {% else %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
+                                                <ul>
+                                                    <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> {{ ptKgs*20 }} ml bolus</dose></li>
+                                                    <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
+                                                </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>                                                    
+                                            <li>Adult:
+                                                <ol>
+                                                    <li>Hemodynamically unstable: IVF wide open</li>
+                                                    <li> Hemodynamically stable: maintenance rate</li>
+                                                </ol>
+                                            </li>
+                                            <li>Pediatric:
+                                                <ol>
+                                                    <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                    <li> Hemodynamically stable: maintenance rate</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Adult: <thing style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</thing></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        {% if ptMax26 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a"> 4 mg PO, IV, IM</thing></li></ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs * 3)/20) }}mg PO, IV, IM</dose></li></ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 4 - 8 mg PO, IV, IM </li>
+                                    <li> Pediatric dose = 0.15 mg/kg PO, IV, IM (maximum 4 mg) </li>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Consider affiliated treatment for cyanide toxicity as indicated per patient presentation</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" carbonAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" carbonAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li>Carbon Monoxide &frac12; life
+                                <ul>
+                                    <li>Room air = 4 - 6 hours</li>
+                                    <li>Face mask O2 @ 15 LPM = 90 minutes</li>
+                                </ul>
+                            </li>
+                            <li>Contact <red><b>Poison Control</b></red> as needed
+                                <ul><li><red><b>800-222-1222</b></red></li></ul>
+                            </li>
+                        </ul>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <h2>Cyanide</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" cyanideNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" cyanideNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Toxicity</H3>
+                <div class="differentialText">
+                        <ul>
+                            <li>Mild - no symptoms</li>
+                            <li>Moderate - anxiety, nausea/vomiting, weakness, dizziness</li>
+                            <li>Severe - syncope, loss of consciousness, seizures, apnea</li>
+                        </ul>    
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" cyanideBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" cyanideBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen
+                            <ol>
+                                <li>High flow oxygenation is paramount for these patients</li>
+                                <li>Pulse oximetry measurements may be falsely elevated</li>
+                            </ol>
+                        </li>
+                        <li>Assist ventilations as indicated by patient presentation</li>
+                        <li>Assess blood glucose level for any altered mental status</li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" cyanideAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" cyanideAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                <ol>
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                    <ul>
+                                                        <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
+                                                        <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
+                                                    </ul>
+                                        {% else %}
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
+                                                <ul>
+                                                    <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> {{ ptKgs*20 }} ml bolus</dose></li>
+                                                    <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
+                                                </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>                                                    
+                                            <li>Adult:
+                                                <ol>
+                                                    <li>Hemodynamically unstable: IVF wide open</li>
+                                                    <li>Hemodynamically stable: maintenance rate</li>
+                                                </ol>
+                                            <li>Pediatric:
+                                                <ol>
+                                                    <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                    <li>Hemodynamically stable: maintenance rate</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                            <li>Treatment: <a href="{{url_for('medications.sodiumThiosulfate')}}">Sodium Thiosulfate</a>
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                            <ul>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                            </ul>
+                                        </div>
+                                    {% else %}
+                                        {% if ptMax50 %}
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                                <ul>
+                                                    <li> Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                                </ul>
+                                            </div>
+                                        {% else %}
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):
+                                                <ul>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*250)/1000) }} grams IV over 10 minutes</dose></li>
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                <ul>
+                                    <li>Adult: 12.5 grams IV over 10 minutes</li>
+                                    <li>Pediatric: 250 mg/kg IV (maximum 12.5 grams) over 10 minutes</li>
+                                </ul>
+                                {% endif %}
+                            </li>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" cyanideAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" cyanideAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li>Always ensure scene safety</li>
+                            <li>Always ensure appropriate personal protection</li>
+                            <li>Copiously irrigate exposed patient to prevent cross contamination of providers or other patients
+                                <ul><li>Protect patient from hypothermia as a result of irrigation</li></ul>
+                            </li>
+                        </ul>
+                    </p><hr><br>
+            </div>
+        </div>
+
+        <H3>Vesicants</H3>
+        <div>
+            <input type="checkbox" name="accordian" id=" vesicantsNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" vesicantsNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Agents</H3>
+                    <div class="agentslist">
+                        <ul>
+                            <li>Mustard gas</li>
+                        </ul>
+                    </div>
+                <h3>Symptoms</h3>
+                    <div class="presentationText">
+                        <ul>
+                            <li>Skin - erythema, burning, itching, vesicles, blisters, bulla</li>
+                            <li>Eyes - conjunctivitis, lid inflammation and edema, blepharospasm, corneal effects</li>
+                            <li>Respiratory - epistaxis, sinus pain, pharyngitis, cough, dyspnea, pulmonary edema</li>
+                            <li>Other system effects - gastrointestinal tract (nausea, vomiting)</li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" vesicantsBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" vesicantsBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety</li>
+                        <li>Skin exposure
+                            <ol><li>Standard burn therapy - <a href="{{url_for('protocols.burns')}}">Burns Protocol</a></li></ol>
+                        </li>
+                        <li>Eye exposure
+                            <ul><li>Copious irrigation</li></ul>
+                        </li>
+                        <li>Respiratory tract exposure
+                            <ol>
+                                <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                                <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
+                                                    <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>
+                                            <li>Adult: 5 mg
+                                                <ul>
+                                                    <li>Repeat 5 mg as indicated by patient's condition</li>
+                                                </ul>
+                                            </li>
+                                            <li>Pediatric: 2.5 - 5 mg</li>
+                                        </ol>
+                                    {% endif %}
+                                </li>
+                            </ol>
+                        </li>
+                        <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
+                                    </ul>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                        {% else %}
+                            <ol>
+                                <li> Adult: 650 - 975 mg PO</li>
+                                <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                </li>
+                            </ol>                           
+                        {% endif %}
+                        </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" vesicantsAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" vesicantsAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>Additional care as per appropriate medical or trauma condition protocol</li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" vesicantsAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" vesicantsAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <p>
+                        <ul>
+                            <li>Copiously irrigate exposed patient to prevent cross contamination of providers or other patients (protect patient from hypothermia as a result of irrigation)</li>
+                        </ul>
+                    </p>
+            </div>
+        </div>
+
+        <H3>Pulmonary Agents</H3>
+        <div>
+            <input type="checkbox" name="accordian" id=" pulmNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" pulmNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Agents</H3>
+                    <div class="agentslist">
+                        <ul>
+                            <li>Hydrogen sulfide</li>
+                            <li>Ammonia</li>
+                            <li>Chlorine</li>
+                        </ul>
+                    </div>
+                <h3>Symptoms</h3>
+                    <div class="presentationText">
+                        <ul>
+                            <li>Eyes - irritation and burning</li>
+                            <li>Respiratory - cough, shortness of breath, dyspnea, chest pain</li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" pulmBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" pulmBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Skin exposure
+                            <ol><li>Irrigation and standard burn therapy - <a href="{{url_for('protocols.burns')}}">Burns Protocol</a></li></ol>
+                        </li>
+                        <li>Eye exposure
+                            <ul><li>Copious irrigation</li></ul>
+                        </li>
+                        <li>Respiratory tract exposure
+                            <ol>
+                                <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                                <li>Suction as indicated</li>
+                                <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
+                                                    <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>
+                                            <li>Adult: 5 mg
+                                                <ul>
+                                                    <li>Repeat 5 mg as indicated by patient's condition</li>
+                                                </ul>
+                                            </li>
+                                            <li>Pediatric: 2.5 - 5 mg</li>
+                                        </ol>
+                                    {% endif %}
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" pulmAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" pulmAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>Additional care as per appropriate medical or trauma condition protocol</li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if ptYears %}
+                                    {% if ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
+                                                <ul>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" pulmAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" pulmAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Always ensure scene safety</li>
+                            <li>Always ensure appropriate personal protection</li>
+                            <li>Copiously irrigate exposed patient to prevent cross contamination of providers or other patients
+                                <ul><li>Protect patient from hypothermia as a result of irrigation</li></ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <H3>Riot Control Agents</H3>
+        <div>
+            <input type="checkbox" name="accordian" id=" riotNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" riotNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Agents</H3>
+                    <div class="agentslist">
+                        <ul>
+                            <li>Pepper spray - OC (Oleoresin Capsicum)</li>
+                            <li>Mace - CN (chloroacetophenone)</li>
+                            <li>Tear gas - CS (chlorobenzylidenemalononitrile)</li>
+                        </ul>
+                    </div>
+                <h3>Symptoms</h3>
+                    <div class="presentationText">
+                        <ul>
+                            <li>Skin - burning, redness, blisters</li>
+                            <li>Eyes - blepharospasm (eyelid closure), transient blindness, tearing, conjunctival injection</li>
+                            <li>Respiratory - nasal discharge, sneezing, burning, cough, shortness of breath, chest tightness, bronchospasm and wheezing</li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" riotBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" riotBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Skin exposure
+                            <ol><li>Irrigation and standard burn therapy - <a href="{{url_for('protocols.burns')}}">Burns Protocol</a></li></ol>
+                        </li>
+                        <li>Eye exposure
+                            <ul><li> Copious irrigation with normal saline or water</li></ul>
+                        </li>
+                        <li>Respiratory tract exposure
+                            <ol>
+                                <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                                <li>Suction as indicated</li>
+                                <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
+                                    {% if ptYears %}
+                                        {% if ptAdult %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
+                                                    <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
+                                            </ul>
+                                        {% else %}
+                                            <ul>
+                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
+                                            </ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>
+                                            <li>Adult: 5 mg
+                                                <ul>
+                                                    <li>Repeat 5 mg as indicated by patient's condition</li>
+                                                </ul>
+                                            </li>
+                                            <li>Pediatric: 2.5 - 5 mg</li>
+                                        </ol>
+                                    {% endif %}
+                                </li>
+                            </ol>
+                        </li>
+                        <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                    <ul>
+                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
+                                    </ul>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
+                                        </ul>
+                                    {% else %}
+                                        <ul>
+                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
+                                        </ul>
+                                    {% endif %}
+                                {% endif %}
+                        {% else %}
+                            <ol>
+                                <li> Adult: 650 - 975 mg PO</li>
+                                <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                </li>
+                            </ol>                           
+                        {% endif %}
+                        </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" riotAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" riotAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>Additional care as per appropriate medical or trauma condition protocol</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" riotAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" riotAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Always ensure scene safety</li>
+                            <li>Always ensure appropriate personal protection</li>
+                            <li>Copiously irrigate exposed patient to prevent cross contamination of providers or other patients
+                                <ul><li>Protect patient from hypothermia as a result of irrigation</li></ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <H3>WMD - Nerve Agent Exposure</H3><hr>
+        <b>Chemical Nerve Agents, Organophosphates, Carbamates</b>
+        <div>
+            <input type="checkbox" name="accordian" id=" nerveNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" nerveNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Symptoms</h3>
+                    <div class="presentationText">
+                        <ul>
+                            <li>SLUDGE syndrome: salivation, lacrimation, urination, defecations, gastric hypermobility (diarrhea), vomiting</li>
+                            <li>Muscle fasciculations, muscle twitching, weakness, flaccid paralysis</li>
+                            <li>Loss of consciousness, seizures</li>
+                            <li>Hypertension, bradycardia or tachycardia, ventricular dysrhythmias, apnea</li>
+                            <li>Vapor exposure: miosis, blurred vision, eye pain</li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" nerveBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" nerveBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Initiate decontamination procedures</li>
+                        <li>Airway protection; may need frequent suctioning</li>
+                        <li>Initiate decontamination procedures</li>
+                        {% if ptYears %}
+                            {% if ptAdult %}
+                            <div class="currentPatient">Current Pt ({{ ptYears }} years), Adult:
+                                <li>Mild effects (miosis, rhinorrhea, nausea, vomiting)
+                                    <ul><li><dose style="color:#f4b02a;font-weight:500">1 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                </li>
+                                <li>Moderate effects (shortness of breath)
+                                    <ul><li><dose style="color:#f4b02a;font-weight:500">2 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                </li>
+                                <li>Severe effects (seizures, vomiting, apnea)
+                                    <ul><li><dose style="color:#f4b02a;font-weight:500">3 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                </li>
+                            </div>
+                            {% else %}
+                                {% if ptYears14 %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years), Pediatric &gt; 14 years:
+                                        <ul><li><dose style="color:#f4b02a;font-weight:500">3 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                    </div>
+                                {% elif ptYears7 %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years), Pediatric 7 - 14 years:
+                                        <ul><li><dose style="color:#f4b02a;font-weight:500">2 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                    </div>
+                                {% else %}
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years), Pediatric &lt; 7 years:
+                                        <ul><li><dose style="color:#f4b02a;font-weight:500">1 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                        <li>Treatment Adult:
+                            <ul>
+                                <li>Mild effects (miosis, rhinorrhea, nausea, vomiting)
+                                    <ol><li>1 - atropine/2-Pralidoxime IM via auto-injector</li></ol>
+                                </li>
+                                <li>Moderate effects (shortness of breath)
+                                    <ol><li>2 - atropine/2-Pralidoxime IM via auto-injector</li></ol>
+                                </li>
+                                <li>Severe effects (seizures, vomiting, apnea)
+                                    <ol><li>3 - atropine/2-Pralidoxime IM via auto-injector</li></ol>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Treatment Pediatric:
+                            <ol>
+                                <li>&lt; 7 years of age: 1 - atropine/2-Pralidoxime IM via auto-injector</li>
+                                <li>7 - 14 years of age: 2 - atropine/2-Pralidoxime IM via auto-injector</li>
+                                <li>&gt; 14 years of age: 3 - atropine/2-Pralidoxime IM via auto-injector</li>
+                            </ol>
+                        </li>
+                        {% endif %}
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" nerveAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for=" nerveAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            {% if ptYears %}
+                                {% if ptAdult %}
+                                <li>
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years), Adult:
+                                        <div>
+                                            <div>Mild effects:
+                                                <ol><li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li></ol>
+                                            </div>
+                                            <div>Moderate effects:
+                                                <ol><li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li></ol>
+                                            </div>
+                                            <div>Severe effects:
+                                                <ol><li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 6 mg IV, IM, IO</dose></li></ol>
+                                            </div>
+                                            <div>Seizures:
+                                                <ol><li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><dose style="color:#f4b02a;font-weight:500"> 10 mg IM, IN</dose></li></ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {%else %}
+                                <li>
+                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs) Pediatric:
+                                        {% if ptMax300 %}
+                                            <div>Mild - moderate symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Severe symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 6 mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </ol>
+                                            <div>Seizures:
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
+                                                </ol>
+                                            </div>
+                                        {% elif ptMax200 %}
+                                            <div>Mild - moderate symptoms
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
+                                                        <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li>
+                                                    </ol>
+                                            </div>
+                                            <div>Severe symptoms
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - 6 mg IV, IM, IO</dose></li>
+                                                    </ol>
+                                            </div>
+                                            <div>Seizures:
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
+                                                    </ol>
+                                            </div>
+                                            {% elif ptMax120 %}
+                                            <div>Mild - moderate symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Severe symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - 6 mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Seizures:
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
+                                                </ul>
+                                            </div>
+                                            {% elif ptMax100 %}
+                                            <div>Mild - moderate symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - 4.00 mg IV, IM, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Severe symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Seizures:
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
+                                                </ul>
+                                            </div>
+                                            {% elif ptMax80 %}
+                                            <div>Mild - moderate symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - 4.00 mg IV, IM, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Severe symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Seizures:
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
+                                                </ul>
+                                            </div>
+                                            {% elif ptMax66 %}
+                                            <div>Mild - moderate symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Severe symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Seizures:
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
+                                                </ul>
+                                            </div>
+                                            {% elif ptMax50 %}
+                                            <div>Mild - moderate symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Severe symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Seizures:
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs*3)/20) }} IM <b>or</b> 10 mg IN</dose></li>
+                                                </ol>
+                                            </div>
+                                            {% else %}
+                                            <div>Mild - moderate symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Severe symptoms
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ol>
+                                            </div>
+                                            <div>Seizures:
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs*3)/20) }} IM <b>or</b> {{ '%0.2f'| format((ptKgs)/5) }} IN</dose></li>
+                                                </ol>
+                                            </div>   
+                                        {% endif %}
+                                    </div>
+                                </li>
+                                <li>Repeat atropine every 3-5 minutes as indicated</li>
+                                </div>
+                                {% endif %}
+                            {% else %}
+                                <li>Treatment Adult:
+                                    <ol>
+                                        <li>Mild effects: atropine 2 mg IV, IM, IO</li>
+                                        <li>Moderate effects: atropine 4 mg IV, IM, IO</li>
+                                        <li>Severe effects: atropine 6 mg IV, IM, IO</li>
+                                        <li>Seizures: midazolam 10 mg IM, IN</li>
+                                    </ol>
+                                </li>
+                                <li>Treatment Pediatric:
+                                    <ol>
+                                        <li>Mild - moderate symptoms
+                                            <ol>
+                                                <li>Atropine 0.02 - 0.05 mg/kg IV, IM, IO (maximum 4 mg)</li>
+                                                <li>Repeat 0.02 mg/kg IV, IM, IO in 5 minutes as indicated (maximum 2 mg)</li>
+                                            </ol>
+                                        </li>
+                                        <li>Severe symptoms
+                                            <ol>
+                                                <li>Atropine 0.02 - 0.05 mg/kg IV, IM, IO (maximum 6 mg)</li>
+                                            </ol>
+                                        </li>
+                                        <li>Seizures: midazolam 0.15 mg/kg IM (max 10 mg); 0.2 mg/kg IN (max 10 mg)</li>
+                                    </ol>
+                                </li>
+                                <li>Repeat atropine every 3-5 minutes as indicated</li>
+                            {% endif %}
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" nerveAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" nerveAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>CHEMPACK Program</h3>
+                    <div>
+                        <ul>
+                            <li>For multiple patients, call for CHEMPACK deployment per local emergency management and Metrolina Healthcare Coalition</li>
+                            <li>1 EMS CHEMPACK supports 454 patients</li>
+                            <li>Medication in CHEMPACK may be used regardless of expiration date</li>
+                        </ul>
+                    </div>
+                    <div class="proto-image">
+                        <div><img src="{{ url_for('static', filename='images/protocol/hazmat1.jpg') }}" alt="Chempack container contents"></div>
+                        <div><img src="{{ url_for('static', filename='images/protocol/hazmat2.jpg') }}" alt="Chempack locations North Carolina"></div>
+                        <div><img src="{{ url_for('static', filename='images/protocol/hazmat3.jpg') }}" alt="Chempack locations Mecklenburg"></div>
+                    </div>
+            </div>
+        </div>
+
+        <h3>Radiation Incident</h3>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" radiationBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for=" radiationBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety</li>
+                        <li><a FIXME: href="#">Start Triage Protocol</a></li>
+                        <li><a FIXME: href="#">Medical Initial Assessment</a></li> or <a FIXME: href="#">Trauma Initial Assessment Protocol</a></li> as indicated</li>
+                        <li><a FIXME: href="#">Pediatric Initial Assessment</a></li> or <a FIXME: href="#">Pediatric Trauma Assessment Protocol</a></li> as indicated</li>
+                        <li>Attempt to assess the type and duration of exposure</li>
+                        <li>Decontaminate with copious amounts of normal saline irrigation</li>
+                        <li>Additional care as per appropriate associated protocol</li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" radiationAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" radiationAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>CHEMPACK Program</h3>
+                    <div class="proto-image">
+                        <div><img src="{{ url_for('static', filename='images/protocol/hazmat4.jpg') }}" alt="Time Phases of Radiation Injury"></div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Classes of radiation
+                                <ul>
+                                    <li>Ionizing
+                                        <ul>
+                                            <li>Greater energy, most dangerous</li>
+                                            <li>Alpha particles, beta particles, gamma rays</li>
+                                        </ul>
+                                    </li>
+                                    <li>Non-ionizing
+                                        <ul>
+                                            <li>Lower energy</li>
+                                            <li>Microwaves, radios, lasers, visible light</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Mechanisms of protection from radiation sources
+                                <ul>
+                                    <li>Limit time of exposure</li>
+                                    <li>Increase distance from source</li>
+                                    <li>Shield from source</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
