@@ -931,6 +931,15 @@ red {
 
 }
 
+.additional-content {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.additional-content ul {
+   width: 350px;
+}
+
 
 
 @media (max-width: 950px){

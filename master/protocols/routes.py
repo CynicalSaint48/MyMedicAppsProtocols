@@ -6,8 +6,8 @@ protocols = Blueprint('protocols', __name__)
 def get_key_list():
 
     keys={'ptYears':0, 'ptKgs':0.0, 'ptAdult':'', 'ptYears7':'', 'ptYears14':'',
-           'ptMax5':'', 'ptMax20':'', 'ptMax26':'', 'ptMax30':'', 'ptMax33':'',
-             'ptMax40':'', 'ptMax43':'', 'ptMax50':'', 'ptMax66':'', 'ptMax80':'',
+           'ptMax5':'', 'ptMax20':'', 'ptMax26':'', 'ptMax30':'', 'ptMax33':'', 'ptMax37':'',
+             'ptMax40':'', 'ptMax43':'', 'ptMax50':'', 'ptMax66':'', 'ptMax75':'', 'ptMax80':'',
                'ptMax100':'', 'ptMax120':'', 'ptMax200':'', 'ptMax300':''}
 
     if not session['ptYears']:
@@ -27,25 +27,6 @@ def get_key_list():
         keys['ptYears'] = ptYears
         ptKgs = session['ptKgs']
         keys['ptKgs'] = ptKgs
-
-    ptAdult = False
-    ptYears14 = False
-    ptYears7 = False
-
-    ptMax5= False
-    ptMax20 = False
-    ptMax26 = False
-    ptMax30 = False
-    ptMax33 = False
-    ptMax40 = False
-    ptMax43 = False
-    ptMax50 = False
-    ptMax66 = False
-    ptMax80 = False
-    ptMax100 = False
-    ptMax120 = False
-    ptMax200 = False
-    ptMax300 = False
 
     if ptYears >= 18:
         keys['ptYears7'] = True
@@ -73,10 +54,12 @@ def get_key_list():
         keys['ptMax26'] = True
         keys['ptMax30'] = True
         keys['ptMax33'] = True
+        keys['ptMax37'] = True
         keys['ptMax40'] = True
         keys['ptMax43'] = True
         keys['ptMax50'] = True
         keys['ptMax66'] = True
+        keys['ptMax75'] = True
         keys['ptMax80'] = True
         keys['ptMax100'] = True
         keys['ptMax120'] = True
@@ -89,10 +72,12 @@ def get_key_list():
         keys['ptMax26'] = True
         keys['ptMax30'] = True
         keys['ptMax33'] = True
+        keys['ptMax37'] = True
         keys['ptMax40'] = True
         keys['ptMax43'] = True
         keys['ptMax50'] = True
         keys['ptMax66'] = True
+        keys['ptMax75'] = True
         keys['ptMax80'] = True
         keys['ptMax100'] = True
         keys['ptMax120'] = True
@@ -105,10 +90,12 @@ def get_key_list():
         keys['ptMax26'] = True
         keys['ptMax30'] = True
         keys['ptMax33'] = True
+        keys['ptMax37'] = True
         keys['ptMax40'] = True
         keys['ptMax43'] = True
         keys['ptMax50'] = True
         keys['ptMax66'] = True
+        keys['ptMax75'] = True
         keys['ptMax80'] = True
         keys['ptMax100'] = True
         keys['ptMax120'] = True
@@ -121,10 +108,12 @@ def get_key_list():
         keys['ptMax26'] = True
         keys['ptMax30'] = True
         keys['ptMax33'] = True
+        keys['ptMax37'] = True
         keys['ptMax40'] = True
         keys['ptMax43'] = True
         keys['ptMax50'] = True
         keys['ptMax66'] = True
+        keys['ptMax75'] = True
         keys['ptMax80'] = True
         keys['ptMax100'] = True
         keys['ptMax120'] = False
@@ -137,11 +126,31 @@ def get_key_list():
         keys['ptMax26'] = True
         keys['ptMax30'] = True
         keys['ptMax33'] = True
+        keys['ptMax37'] = True
         keys['ptMax40'] = True
         keys['ptMax43'] = True
         keys['ptMax50'] = True
         keys['ptMax66'] = True
+        keys['ptMax75'] = True
         keys['ptMax80'] = True
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
+
+    elif ptKgs >= 75:
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax37'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = True
+        keys['ptMax50'] = True
+        keys['ptMax66'] = True
+        keys['ptMax75'] = True
+        keys['ptMax80'] = False
         keys['ptMax100'] = False
         keys['ptMax120'] = False
         keys['ptMax200'] = False
@@ -153,10 +162,12 @@ def get_key_list():
         keys['ptMax26'] = True
         keys['ptMax30'] = True
         keys['ptMax33'] = True
+        keys['ptMax37'] = True
         keys['ptMax40'] = True
         keys['ptMax43'] = True
         keys['ptMax50'] = True
         keys['ptMax66'] = True
+        keys['ptMax75'] = False
         keys['ptMax80'] = False
         keys['ptMax100'] = False
         keys['ptMax120'] = False
@@ -169,10 +180,12 @@ def get_key_list():
         keys['ptMax26'] = True
         keys['ptMax30'] = True
         keys['ptMax33'] = True
+        keys['ptMax37'] = True
         keys['ptMax40'] = True
         keys['ptMax43'] = True
         keys['ptMax50'] = True
         keys['ptMax66'] = False
+        keys['ptMax75'] = False
         keys['ptMax80'] = False
         keys['ptMax100'] = False
         keys['ptMax120'] = False
@@ -185,10 +198,84 @@ def get_key_list():
         keys['ptMax26'] = True
         keys['ptMax30'] = True
         keys['ptMax33'] = True
+        keys['ptMax37'] = True
         keys['ptMax40'] = True
         keys['ptMax43'] = True
         keys['ptMax50'] = False
         keys['ptMax66'] = False
+        keys['ptMax75'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
+
+    elif ptKgs >= 40:
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax37'] = True
+        keys['ptMax40'] = True
+        keys['ptMax43'] = False
+        keys['ptMax50'] = False
+        keys['ptMax66'] = False
+        keys['ptMax75'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
+
+    elif ptKgs >= 37:
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax37'] = True
+        keys['ptMax40'] = False
+        keys['ptMax43'] = False
+        keys['ptMax50'] = False
+        keys['ptMax66'] = False
+        keys['ptMax75'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
+
+    elif ptKgs >= 33:
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = True
+        keys['ptMax37'] = False
+        keys['ptMax40'] = False
+        keys['ptMax43'] = False
+        keys['ptMax50'] = False
+        keys['ptMax66'] = False
+        keys['ptMax75'] = False
+        keys['ptMax80'] = False
+        keys['ptMax100'] = False
+        keys['ptMax120'] = False
+        keys['ptMax200'] = False
+        keys['ptMax300'] = False
+
+    elif ptKgs >= 30:
+        keys['ptMax5']= True
+        keys['ptMax20'] = True
+        keys['ptMax26'] = True
+        keys['ptMax30'] = True
+        keys['ptMax33'] = False
+        keys['ptMax37'] = False
+        keys['ptMax40'] = False
+        keys['ptMax43'] = False
+        keys['ptMax50'] = False
+        keys['ptMax66'] = False
+        keys['ptMax75'] = False
         keys['ptMax80'] = False
         keys['ptMax100'] = False
         keys['ptMax120'] = False
@@ -201,10 +288,12 @@ def get_key_list():
         keys['ptMax26'] = True
         keys['ptMax30'] = False
         keys['ptMax33'] = False
+        keys['ptMax37'] = False
         keys['ptMax40'] = False
         keys['ptMax43'] = False
         keys['ptMax50'] = False
         keys['ptMax66'] = False
+        keys['ptMax75'] = False
         keys['ptMax80'] = False
         keys['ptMax100'] = False
         keys['ptMax120'] = False
@@ -221,6 +310,7 @@ def get_key_list():
         keys['ptMax43'] = False
         keys['ptMax50'] = False
         keys['ptMax66'] = False
+        keys['ptMax75'] = False
         keys['ptMax80'] = False
         keys['ptMax100'] = False
         keys['ptMax120'] = False
@@ -237,6 +327,7 @@ def get_key_list():
         keys['ptMax43'] = False
         keys['ptMax50'] = False
         keys['ptMax66'] = False
+        keys['ptMax75'] = False
         keys['ptMax80'] = False
         keys['ptMax100'] = False
         keys['ptMax120'] = False
@@ -253,6 +344,7 @@ def get_key_list():
         keys['ptMax43'] = False
         keys['ptMax50'] = False
         keys['ptMax66'] = False
+        keys['ptMax75'] = False
         keys['ptMax80'] = False
         keys['ptMax100'] = False
         keys['ptMax120'] = False
@@ -322,3 +414,10 @@ def hazmat():
     keys = get_key_list()
 
     return render_template('/protocols/CarbonMonoxide.html', keys=keys, varTitle="Hazardous Materials")
+
+@protocols.route("/protocols/CardiacArrest")
+def cardiacArrest():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/CardiacArrest.html', keys=keys, varTitle="Cardiac Arrest")

@@ -1,0 +1,1711 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1> Cardiac Arrest</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" cardiacTTNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <label for=" cardiacTTNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                    <div class="differentialText">
+                        <ul>
+                            <li>Asystole</li>
+                            <li>Pulseless Electrical Activity</li>
+                            <li>Ventricular fibrillation</li>
+                        </ul>
+                    </div>
+                <h3>Considerations</h3>
+                    <div class="differentialText">
+                            <ul>
+                                <li>Medical vs. trauma</li>
+                                <li>Past medical history</li>
+                                <li>Current medications</li>
+                                <li>DNR order</li>
+                                <li>Events preceding cardiac arrest</li>
+                                <li>Estimated downtime</li>
+                                <li>Pre-arrival treatment</li>
+                            </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id="cardiacBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <label for="cardiacBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <p class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Immediately following arrival on the scene, the attending paramedic (or EMTCC) will proceed directly to the patient
+                            <ol>
+                                <li>Once at the patient's side, check for pulses and breathing
+                                    <ol>
+                                        <li>If absent, will begin chest compressions</li>
+                                        <li>Compressions: &ge; 2-inch depth & permit full chest recoil</li>
+                                        <li>Compression rate = 110/minute</li>
+                                    </ol>
+                                </li>
+                                <li>If bystander chest compressions are being administered, proceed to perform airway interventions (be certain to ensure chest compressions are being performed appropriately)</li>
+                            </ol>
+                        </li>
+                        <li>EMT or non-attending paramedic will bring in equipment, proceed directly to the patient's airway and check for breathing & if absent:
+                            <ol>
+                                <li>Insert BIAD airway device and begin ventilations or</li>
+                                <li>Utilize BVM with OPA/NPA as indicated and 100% oxygen for ventilations</li>
+                                <li>Insert orogastric tube and connect to suction</li>
+                                <li>Provide one ventilation every 20th compression
+                                    <ol><li>Pediatrics (&ge; 14-years) provide one ventilation every 10th compression</li></ol>
+                                </li>
+                                <li>Apply Zoll Monitor/Defibrillator
+                                    <ol><li>If only BLS providers on scene ensure AED mode & follow AED prompts</li></ol>
+                                </li>
+                                <li>After 200 compressions, relieve paramedic with chest compressions
+                                    <ol><li>The paramedic will continue with Advanced Medical Care</li></ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>With First Responder performing compressions and AED in place
+                            <ol>
+                                <li>Complete current 200 compressions cycle on the AED</li>
+                                <li>Analyze and follow AED recommendation</li>
+                                <li>Post AED recommendation, immediately resume CPR with CPR feedback device in place and swap pads deploying Zoll monitor/defibrillator</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="cardiacAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <label for="cardiacAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <p class="advancedCare orderedList">
+                        <ol>
+                            <li>Upon Paramedic crew arrival
+                                <ol>
+                                    <li>Paramedic will proceed to the patient's side and initiate intravenous (IV) line
+                                        <ol><li>If unable to quickly place IV access; initiate intraosseous (IO) line as indicated per <a FIXME: href="#">Parenteral Access: IO Protocol</a> and ACLS interventions</li></ol>
+                                    </li>
+                                    <li>EMT-Basic or Non-Crew Chief Paramedic will deploy the ALS monitor including defibrillation pads, CPR feedback device, SpO<sub>2</sub> monitor and ETCO<sub>2</sub> adaptor</li>
+                                </ol>
+                            </li>
+                            <li>If BIAD placement unsuccessful or ineffective - perform endotracheal intubation (adults)
+                                <ol>
+                                    <li>Compressions must <u>NOT</u> be interrupted for any attempt at intubation</li>
+                                    <li>Confirm placement via standard technique</li>
+                                </ol>
+                            </li>
+                            <li>EMT-Basic or Non-Crew Chief will prepare IVF for infusion then assume ready position to assume ventilations at the next position change following 200 compressions cycle and enter same rotation through positions with first responders</li>
+                            <li>While rapid defibrillation is the treatment of choice for ventricular fibrillation, CPR should be performed on all adult unwitnessed cardiac arrests regardless of initial rhythm for 200 compressions prior to defibrillation attempt</li>
+                            <li>For pediatric ventricular fibrillation arrest, early defibrillation is important
+                                <ol>
+                                    <li>Ventricular fibrillation is seen in cardiomyopathies, myocarditis, hypoxia, or intoxication</li>
+                                    <li>Airway control and oxygenation are of paramount importance</li>
+                                    <li>Pediatric patients in cardiac arrest from a medical etiology should NOT be expeditiously carried to the ambulance when it arrives
+                                        <ol><li>For maximum survival benefit, resuscitative efforts should be conducted on the scene with two or more rescuers performing CPR</li></ol>
+                                    </li>
+                                    <li>Resuscitation and transport should be performed on all pediatric cardiac arrest patients regardless of etiology - medical or trauma</li>
+                                    <li>Indicated ALS medications should be administered for both pediatric medical and trauma arrest</li>
+                                </ol>
+                            </li>
+                            <li>After each defibrillator shock, chest compressions should commence immediately</li>
+                            <li>Additional care as per specific dysrhythmia protocol</li>
+                        </ol>
+                    </p><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="cardiacAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for="cardiacAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>For suspicion of opioid associated cardiac arrest: administer <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> 2 mg IV
+                                <ul><li>Attention must be on airway, oxygenation, ventilation, and cardiac arrest care</li></ul>
+                                <ul><li><a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> has not been associated with improved outcome once cardiac arrest has occurred and therefore is not indicated in all cardiac arrest events</li></ul>
+                            </li>
+                            <li>Ensure hyper/over ventilation does NOT occur
+                                <ul><li>Feedback in the form of end-tidal CO2 and verbal queues are important to the provider administering the ventilations to avoid hyperventilation</li></ul>
+                            </li>
+                            <li>With ETCO<sub>2</sub> spike consider return of spontaneous circulation</li>
+                            <li>Maximum total <a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> dosage during cardiac arrest care = 5 mg</li>
+                            <li>Maternal cardiac arrest: follow appropriate Protocol
+                                <ul>Manually displace uterus to the patient's left</ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Ventricular Fibrillation, Pulseless VT</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="cardiac1AdvancedTreatment" class="accordian__input" checked="checked">
+            <label for="cardiac1AdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                    <div class="advancedCare orderedList"><br>
+                        <div><b>Witnessed by EMS provider:</b>
+                            <ol>
+                                <li>Immediately initiate CPR as defibrillation pads are applied and defibrillator charged
+                                    <ol>
+                                        {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol>
+                                            {% if keys.ptAdult %}
+                                                <li>Adults: defibrillate @ <dose style="color:#f4b02a;font-weight:500">150 Joules</dose> <u>as soon as pads are applied & charged</u></li>
+                                            {% else %}
+                                                {% if keys.ptMax75 %}
+                                                    <li>Pediatric <red><b>maximum</b></red>: defibrillate @ <dose style="color:#f4b02a;font-weight:500">150 Joules</dose> <u>as soon as pads are applied & charged</u></li>
+                                                {% else %}
+                                                    <li>Pediatrics: defibrillate @ <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*2 )|int}} Joules</dose> <u>as soon as pads are applied & charged</u></li>
+                                                {% endif %}
+                                            {% endif %}
+                                        </ol>
+                                        {% else %}
+                                            <li>Adults: defibrillate @ 150 Joules <u>as soon as pads are applied & charged</u></li>
+                                            <li>Pediatrics: defibrillate @ 2 Joules/kg <u>as soon as pads are applied & charged</u></li>
+                                        {% endif %}
+                                    </ol>
+                                </li>
+                                <li>If defibrillation pads are already in place &#8594; immediately defibrillate</li>
+                                <li>Immediately resume CPR post-shock delivery</li>
+                                <li>Perform ventilations
+                                    <ol>
+                                        <li>Adults: one ventilation every 20th compression</li>
+                                        <li>Pediatrics: one ventilation every 10th compression</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                        <div><b>Unwitnessed by EMS provider:</b>
+                            <ol>
+                                <li>Perform CPR for 200 compressions
+                                    <ol>
+                                        <li>Rate: 110 compressions per minute</li>
+                                    </ol>
+                                </li>
+                                <li>Pre-charge defibrillator at compression #180
+                                    
+                                        {% if keys.ptYears > 0 %}
+                                            {% if keys.ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                <ol>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 200 Joules</dose></li>
+                                                    <li>May utilize first responder AED if applied and nearing end of 200 compression cycle</li>
+                                                </ol>
+                                            {% else %}
+                                                {% if keys.ptMax37 %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ol>
+                                                        <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 150 Joules</dose></li>
+                                                        <li>May utilize first responder AED if applied and nearing end of 200 compression cycle</li>
+                                                    </ol>
+                                                {% else %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ol>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*4 )|int}} Joules</dose></li>
+                                                        <li>May utilize first responder AED if applied and nearing end of 200 compression cycle</li>
+                                                    </ol>
+                                                {% endif %}
+                                            {% endif %}
+                                        {%else %}
+                                            <ol>
+                                                <li>Adults: 200 Joules</li>
+                                                <li>Pediatrics: 4 Joules/kg (maximum 150 Joules)</a></li>
+                                                <li>May utilize first responder AED if applied and nearing end of 200 compression cycle</li>
+                                            </ol>    
+                                        {% endif %}
+                                    
+                                </li>
+                                <li>Perform defibrillation</li>
+                                <li>Immediately resume CPR post-shock delivery</li>
+                                <li>Perform ventilations at rate of 6 ventilations/minute for adults
+                                    <ol>
+                                        <li>One ventilation should occur each 20th compression</li>
+                                    </ol>
+                                </li>
+                                <li>Perform ventilations at rate of 12 ventilations/minute for pediatric patients (&le; 14-years)
+                                    <ol>
+                                        <li>One ventilation should occur each 10th compression</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="cardiac1Additional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for="cardiac1Additional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Ensure hyperventilation / over-ventilation does not occur
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>VF, Pulseless VT Present/Persisting after Initial Intervention</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="cardiacOneAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for="cardiacOneAdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <div>
+                            <ol>
+                                <li>Continue CPR for 200 compressions</li>
+                                <li>Pre-charge defibrillator at compression #180</li>
+                                <li>Check rhythm
+                                    <ol>
+                                        <li>Organized &#8594; check pulses
+                                            <ol>
+                                                <li>No pulse present &#8594; continue CPR for cycle of 200 compressions</li>
+                                                <li>Pulse present &#8594; referred to <a FIXME: href="#">Post-Resuscitation Protocol</a></li>
+                                            </ol>
+                                        </li>
+                                        <li>Persistent VF/VT without pulse &#8594; Perform defibrillation
+                                                {% if keys.ptYears > 0 %}
+                                                    {% if keys.ptAdult %}
+                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                        <ol>
+                                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 200 Joules</dose></li>
+                                                        </ol>
+                                                    {% else %}
+                                                        {% if keys.ptMax37 %}
+                                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                            <ol>
+                                                                <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 150 Joules</dose></li>
+                                                            </ol>
+                                                        {% else %}
+                                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                            <ol>
+                                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*4 )|int}} Joules</dose></li>
+                                                            </ol>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {%else %}
+                                                <ol>
+                                                    <li>Adults: 200 Joules</li>
+                                                    <li>Pediatrics: 4 Joules/kg (maximum 150 Joules)</a></li>
+                                                </ol>
+                                                {% endif %}
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>Immediately resume CPR post-shock deliver</li>
+                                <li>Continue with cycles of 200 compressions between rhythm/pulse checks</li>
+                                <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> every 5 minutes
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax100 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                <ol>
+                                                    <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                                </ol>
+                                            {% else %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                <ol>
+                                                    <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>
+                                            <li>Adult: 1 mg IV, IO</li>
+                                            <li>Pediatric: 0.01 mg/kg; (0.1 ml/kg) IV, IO (maximum: 1 mg; 1 ml)</li>
+                                        </ol>
+                                    {% endif %}
+                                </li>
+                                <li>For persistent VF/VT
+                                    
+                                        {% if keys.ptYears > 0 %}
+                                            {% if keys.ptAdult %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs*3)/2) }} mg IV, IO</dose></li>
+                                                    <li>Repeat x1 additional dose of <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/2) }} mg</dose> in 5 - 10 minutes as indicated</li>
+                                                    <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a><dose style="color:#f4b02a;font-weight:500"> 2 grams IV, IO</dose> over 2 minutes</li>
+                                                </ol>
+                                            {% else %}
+                                                {% if keys.ptMax40 %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs*3)/2) }} mg IV, IO</dose></li>
+                                                        <li>Repeat x1 additional dose of <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/2) }} mg</dose> in 5 - 10 minutes as indicated</li>
+                                                        <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 grams IV, IO</dose> over 2 minutes</li>
+                                                    </ol>
+                                                {% else %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs*3)/2) }} mg IV, IO</dose></li>
+                                                        <li>Repeat x1 additional dose of <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/2) }} mg</dose> in 5 - 10 minutes as indicated</li>
+                                                        <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs*50)/1000) }} grams IV, IO</dose> over 2 minutes</li>
+                                                    </ol>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% else %}
+                                        <ol>
+                                            <li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> 1.5 mg/kg IV, IO</li>
+                                            <li>Repeat x1 additional dose at 0.5 mg/kg in 5 - 10 minutes as indicated</li>
+                                            <li><a href="{{url_for('medications.magnesium')}}">Magenesium Sulfate</a>
+                                                <ol>
+                                                    <li>Adult: 2 grams IV, IO over 2 minutes</li>
+                                                    <li>Pediatric: 50 mg/kg IV, IO over 2 minutes (maximum 2 grams)</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                        {% endif %}
+                                        
+                                </li>
+                                <li>Total arrest time > 15 minutes
+                                        {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            {% if keys.ptAdult %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            {% else %}
+                                                {% if keys.ptMax50 %}
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                        <li>Repeat every 10 minutes</li>
+                                                    </ol>
+                                                {% else %}
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs) }} mEq/ml IV, IO</dose></li>
+                                                        <li>Repeat every 10 minutes</li>
+                                                    </ol>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% else %}
+                                        <ol>
+                                            <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>
+                                                <ol>
+                                                    <li>Adult: 50 mEq (50 ml) IV, IO</li>
+                                                    <li>Pediatric: 1 mEq/kg (1 ml/kg); max 50 mEq (50 ml) IV, IO</li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                        {% endif %}
+                                </li>
+                                <li>If rhythm converts to organized rhythm with palpable pulses and <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> has not previously been administered: <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> at dose outlined above</li>
+                                <li>Total ACLS resuscitation time &gt; 20 minutes, no ROSC, and ETCO<sub>2</sub> &lt; 20 mmHg
+                                    <ol><li>Patients with refractory/recurrent ventricular fibrillation/tachycardia should be transported to the closest emergency department with continued resuscitative efforts</li></ol>
+                                </li>
+                                <li>Any time rhythm changes to alternate rhythm refer to the appropriate protocol</li>
+                            </ol>
+                        </div>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="cardiacONEAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for="cardiacONEAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <div class="additional-content">
+                            <ul>
+                                <li>Following three (3) unsuccessful defibrillation attempts, (any combination of AED and/or manual defibrillation) 
+                                    change location of defibrillation pads (from right upper-apex to anterior-posterior)</li>
+                            </ul>
+                            <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/pad_placement.jpg') }}" alt="Pad Placement"></div>
+                        </div>
+                        
+                    </div>
+                    
+            </div>
+        </div>
+
+        <h2>Torsades de Points</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="torsadesAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for="torsadesAdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Pulseless and witnessed by EMS provider:
+                                <ol>
+                                    <li>Initiate CPR as defibrillation pads are applied and defibrillator charged
+                                            {% if keys.ptYears > 0 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                <ol>
+                                                    {% if keys.ptAdult %}
+                                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 150 Joules</dose></li>
+                                                    {% else %}
+                                                        {% if keys.ptMax75 %}
+                                                            <li>Pediatric <red><b>maximum</b></red>: defibrillate @ <dose style="color:#f4b02a;font-weight:500">150 Joules</dose> <u>as soon as pads are applied & charged</u></li>
+                                                        {% else %}
+                                                            <li>Pediatrics: defibrillate @ <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*2 )|int }} Joules</dose> <u>as soon as pads are applied & charged</u></li>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </ol>
+                                            {%else %}
+                                            <ol>
+                                                <li>Adults: defibrillate @ 150 Joules as soon as pads are applied & charged</li>
+                                                <li>Pediatrics: defibrillate @ 2 Joules/kg as soon as pads are on & charged</a></li>
+                                            </ol>    
+                                            {% endif %}
+                                            
+                                    </li>
+                                    <li>If defibrillation pads are already in place &#8594; immediately defibrillate</li>
+                                    <li>Immediately resume CPR post-shock delivery</li>
+                                    <li>Perform ventilations at rate of 6 ventilations per minute</li>
+                                </ol>
+                            </li>
+                            <li>Pulseless and unwitnessed by EMS provider
+                                <ol>
+                                    <li>Perform CPR for 200 compressions</li>
+                                    <li>Perform defibrillation
+                                            {% if keys.ptYears > 0 %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ol>
+                                                        {% if keys.ptAdult %}
+                                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> defibrillate @ 150 Joules</dose></li>
+                                                        {% else %}
+                                                            {% if keys.ptMax75 %}
+                                                                <li>Pediatric <red><b>maximum</b></red>: defibrillate @ <dose style="color:#f4b02a;font-weight:500">150 Joules</dose></li>
+                                                            {% else %}
+                                                                <li>Pediatrics: defibrillate @ <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*2 )|int }} Joules</dose></li>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </ol>
+                                            {%else %}
+                                            <ol>
+                                                <li>Adults: defibrillate @ 150 Joules</li>
+                                                <li>Pediatrics: defibrillate @ 2 Joules/kg</li>
+                                            </ol>
+                                            {% endif %}
+                                    </li>
+                                    <li>Immediately resume CPR post-shock delivery</li>
+                                    <li>Perform ventilations at rate of 6 ventilations per minute (adult)
+                                        <ol><li>Rate of 12 ventilations per minute (pediatrics &le; 14-years)</li></ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.magnesium')}}">Magenesium Sulfate</a>
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        {% if keys.ptAdult %}
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 grams IV, IO</dose></li>
+                                        <li>Repeat in 5 - 10 minutes if Torsades persists</li>
+                                        {% else %}
+                                            {% if keys.ptMax40 %}
+                                                <li>Pediatric <red><b>maximum</b></red>:<dose style="color:#f4b02a;font-weight:500">2 grams IV, IO</dose></li>
+                                            {% else %}
+                                                <li>Pediatrics: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs*50)/1000) }} grams IV, IO</dose></li>
+                                            {% endif %}
+                                        {% endif %}
+                                    </ol>
+                                    {% else %}
+                                    </ol>
+                                        <li>Adult: 2 grams IV, IO over 2 minutes</li>
+                                        <li>Pediatric: 50 mg/kg IV, IO over 2 minutes (maximum 2 grams)</li>
+                                    </ol>
+                                    {% endif %}
+                                    
+                            </li>
+                            <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> every 5 minutes
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 1 mg IV, IO</li>
+                                        <li>Pediatric: 0.01 mg/kg; (0.1 ml/kg) IV, IO (maximum: 1 mg; 1 ml)</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Continue CPR for 200 compressions</li>
+                            <li>Pre-charge defibrillator at compression #180</li>
+                            <li>Check rhythm
+                                <ol>
+                                    <li>Organized &#8594; check pulses
+                                        <ol>
+                                            <li>No pulse present &#8594; continue CPR for cycle of 200 compressions</li>
+                                            <li>Pulse present &#8594; referred to <a FIXME: href="#">Post-Resuscitation Protocol</a></li>
+                                        </ol>
+                                    </li>
+                                    <li>Persistent VF/VT without pulse &#8594; Perform defibrillation
+                                            {% if keys.ptYears > 0 %}
+                                                {% if keys.ptAdult %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ol>
+                                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 200 Joules</dose></li>
+                                                    </ol>
+                                                {% else %}
+                                                    {% if keys.ptMax37 %}
+                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                        <ol>
+                                                            <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 150 Joules</dose></li>
+                                                        </ol>
+                                                    {% else %}
+                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                        <ol>
+                                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*4 )|int}} Joules</dose></li>
+                                                        </ol>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {%else %}
+                                            <ol>
+                                                <li>Adults: 200 Joules</li>
+                                                <li>Pediatrics: 4 Joules/kg (maximum 150 Joules)</a></li>
+                                            </ol>
+                                            {% endif %}
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Immediately resume CPR post-shock delivery</li>
+                            <li>Continue with cycles of 200 compressions between rhythm/pulse checks</li>
+                            <li>Total arrest time > 15 minutes
+                                <ol>
+                                    {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                <li>Repeat every 10 minutes</li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax50 %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs) }} mEq/ml IV, IO</dose></li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>
+                                            <ol>
+                                                <li>Adult: 50 mEq (50 ml) IV, IO</li>
+                                                <li>Pediatric: 1 mEq/kg (1 ml/kg); max 50 mEq (50 ml) IV, IO</li>
+                                                <li>Repeat every 10 minutes</li>
+                                            </ol>
+                                        </li>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                            <li>If rhythm converts to organized rhythm with palpable pulses and <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> has not previously been administered: <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> at dose outlined above</li>
+                            <li>Total ACLS resuscitation time &gt; 20 minutes, no ROSC, and ETCO<sub>2</sub> &lt; 20 mmHg
+                                <ol><li>Patients with refractory/recurrent ventricular fibrillation/tachycardia should be transported to the closest emergency department with continued resuscitative efforts</li></ol>
+                            </li>
+                            <li> ALL pediatric patients should be transported to the closest emergency department</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Pulseless Electrical Activity</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" peaAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for=" peaAdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Perform CPR for 200 compressions</li>
+                            <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> every 5 minutes
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                            <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                        </ul>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% else %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 1 mg IV, IO</li>
+                                        <li>Pediatric: 0.01 mg/kg; (0.1 ml/kg) IV, IO (maximum: 1 mg; 1 ml)</li>
+                                        <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Check rhythm
+                                <ol>
+                                    <li>Organized &#8594; check pulses
+                                        <ol>
+                                            <li>No pulse present &#8594; continue CPR for cycle of 200 compressions</li>
+                                            <li>Pulse present &#8594; referred to <a FIXME: href="#">Post-Resuscitation Protocol</a></li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Continue with cycles of 200 compressions between rhythm/pulse checks
+                                <ol><li>Pre-charge defibrillator at compression #180</li></ol>
+                            </li>
+                            <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> every 5 minutes
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                            <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                        </ul>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% else %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 1 mg IV, IO</li>
+                                        <li>Pediatric: 0.01 mg/kg; (0.1 ml/kg) IV, IO (maximum: 1 mg; 1 ml)</li>
+                                        <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Consider administration of:</a>
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV</dose></li>
+                                                <div><b>OR</b></div>
+                                                <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> 10 - 20 mcg/kg/min IV</dose></li>
+                                            </ul>
+                                    {% else %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>: <b style="color:#D2042D;font-weight:600">must contact </b><a FIXME: href="#">Medical Control Ring Central</a></li>
+                                                <div><b>OR</b></div>
+                                                <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a>: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>                                                    
+                                            </ul>
+                                    {% endif %}
+                                {% else %}
+                                    <div><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>:
+                                            <ol>
+                                                <li>Adult: 2 - 10 mcg/min IV</li>
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">must contact </b><a FIXME: href="#">Medical Control Ring Central</a></li>
+                                            </ol>
+                                    </div>
+                                    <div><b>OR</b></div>
+                                    <div><a href="{{url_for('medications.dopamine')}}">Dopamine:</a>
+                                        <ol>
+                                            <li>Adult or Pediatric: 2 - 10 mcg/min IV for hypotension</li>
+                                        </ol>
+                                    </div>
+                                {% endif %}
+                                    
+                                <div class="add-margin-L"><u><b>ONLY</b></u> if concern for pseudo-PEA (extreme hypotension)</div>
+                            </li>
+                            <li>Total arrest time > 15 minutes
+                                    {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                <li>Repeat every 10 minutes</li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax50 %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs) }} mEq/ml IV, IO</dose></li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>
+                                            <ol>
+                                                <li>Adult: 50 mEq (50 ml) IV, IO</li>
+                                                <li>Pediatric: 1 mEq/kg (1 ml/kg); max 50 mEq (50 ml) IV, IO</li>
+                                                <li>Repeat every 10 minutes</li>
+                                            </ol>
+                                        </li>
+                                    {% endif %}
+                            </li>
+                            <li>Consider causes of PEA and their associated treatment:
+                                <ol>
+                                    <li>Hypoxia: oxygenation</li>
+                                    <li>Hypovolemia: <a FIXME: href="#">IVF</a> bolus</li>
+                                    <li>Hyperkalemia: <a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a>
+                                        {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            {% if keys.ptAdult %}
+                                                <ol>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 grams  IV of 10% solution IV (20 ml)</dose></li>
+                                                </ol>
+                                            {% else %}
+                                                {% if keys.ptMax100 %}
+                                                    <ol>
+                                                        <li>Pediatric <red><b> maximum dose </b></red>: <dose style="color:#f4b02a;font-weight:500">2 grams  IV of 10% solution IV (20 ml)</dose></li>
+                                                    </ol>
+                                                {% else %}
+                                                    <ol>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs*20)/1000) }} grams IV of 10% solution IV</dose></li>
+                                                    </ol>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% else %}
+                                        <ol>
+                                            <li>Adult: 2 grams of 10% solution IV (20 ml)</li>
+                                            <li>Pediatric: 20 mg/kg IO, IV (0.2 ml/kg); maximum 2 grams (20 ml)</li>
+                                        </ol>
+                                        {% endif %}
+                                    </li>
+                                    <li>Hypothermia: active rewarming</li>
+                                    <li>Acidosis: <a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>:
+                                        {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                {% if keys.ptAdult %}
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">e 1 mEq/kg (maximum 50 mEq) IV, IO</dose></li>
+                                                {% else %}
+                                                    {% if keys.ptMax50 %}
+                                                        <li>Pediatric<red><b> maximum dose </b></red>:<dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                    {% else %}
+                                                        <li>Pediatric<dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs) }} mEq/ml IV, IO</dose></li>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>1 mEq/kg (maximum 50 mEq) IV, IO</li>
+                                            </ol>
+                                        {% endif %}
+                                    </li>
+                                    <li>Overdose: drug specific therapies
+                                        <ol>
+                                            <li>Tricyclic Antidepressant (TCA): <a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a></li>
+                                            <li>Opioid: <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> 2 mg IV, IO
+                                                <ul><li>Consider post-resuscitation in other cases if patient hypoventilating</li></ul>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li>Acute Myocardial infarction: <a FIXME: href="#">Chest Pain: Cardiac & STEMI Protocol</a></li>
+                                    <li>Cardiac tamponade: <a FIXME: href="#">IVF</a> bolus</li>
+                                    <li>Tension pneumothorax: chest needle decompression</li>
+                                    <li>Pulmonary embolus: maximize oxygenation</li>
+                                </ol>
+                            </li>
+                            <li>Total ACLS resuscitation time &gt; 20 minutes, no ROSC, and ETCO<sub>2</sub> &lt; 20 mmHg
+                                <ol>
+                                    <li>May pronounce dead on scene (only)</li>
+                                    <li>Notify police if not already on scene</li>
+                                </ol>
+                            </li>
+                            <li>Total ACLS resuscitation time &gt; 20 minutes: ALL pediatric patients and adults not pronounced on scene should be transported to the closest emergency department</li>
+                            <li>Any time rhythm changes to alternate rhythm refer to the appropriate protocol</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Asystole</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" asystoleAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for=" asystoleAdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Initiate CPR for 200 compressions</li>
+                            <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> every 5 minutes
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 mg  IV, IO</dose></li>
+                                            <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                        </ul>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% else %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 1 mg IV, IO</li>
+                                        <li>Pediatric: 0.01 mg/kg; (0.1 ml/kg) IV, IO (maximum: 1 mg; 1 ml)</li>
+                                        <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Check rhythm
+                                <ol>
+                                    <li>Organized &#8594; check pulses
+                                        <ol>
+                                            <li>No pulse present &#8594; continue CPR for cycle of 200 compressions</li>
+                                            <li>Pulse present &#8594; referred to <a FIXME: href="#">Post-Resuscitation Protocol</a></li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Continue with cycles of 200 compressions between rhythm/pulse checks
+                                <ol>
+                                    <li>Compressions must NOT be interrupted for airway management</li>
+                                    <li>Limit time off the chest to &lt; 10 seconds during rhythm checks</li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> every 5 minutes
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 mg  IV, IO</dose></li>
+                                            <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                        </ul>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% else %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 1 mg IV, IO</li>
+                                        <li>Pediatric: 0.01 mg/kg; (0.1 ml/kg) IV, IO (maximum: 1 mg; 1 ml)</li>
+                                        <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Total arrest time > 15 minutes
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                <li>Repeat every 10 minutes</li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax50 %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs) }} mEq/ml IV, IO</dose></li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <div><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>
+                                            <ol>
+                                                <li>Adult: 50 mEq (50 ml) IV, IO</li>
+                                                <li>Pediatric: 1 mEq/kg (1 ml/kg); max 50 mEq (50 ml) IV, IO</li>
+                                                <li>Repeat every 10 minutes</li>
+                                            </ol>
+                                        </div>
+                                    {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.glucose')}}">Dextrose (D10)</a> IV for hypoglycemia:
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 100 ml IV, IO</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptYears7 %}
+                                            {% if keys.ptMax20 %}
+                                                <ol>
+                                                    <li>Pediatric &ge; 8 years old <red><b>maximum weight dose</b></red>: <dose style="color:#f4b02a;font-weight:500"> 100 ml IV, IO</dose></li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li>Pediatric &ge; 8 years old: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs*5) }} ml IV, IO</dose></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if keys.ptMax50 %}
+                                                <ol>
+                                                    <li>Pediatric &lt; 8 years old <red><b>maximum weight dose</b></red>: <dose style="color:#f4b02a;font-weight:500"> 100 ml IV, IO</dose></li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li>Pediatric &lt; 8 years old: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs*2) }} ml IV, IO</dose></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                <ol>
+                                    <li>Adult: 100 ml IV, IO</li>
+                                    <li>Pediatric:
+                                        <ol>
+                                            <li>&ge; 8 years: 5 ml/kg IV, IO (maximum 100 ml)</li>
+                                            <li>31 days - 8 years: 2 ml/kg IV, IO (maximum 100 ml)</li>
+                                            <li>0 - 30 days of age: 2 ml/kg IV, IO</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                                {% endif %}
+                            </li>
+                            <li>Total ACLS resuscitation time &gt; 20 minutes, no ROSC, and ETCO<sub>2</sub> &lt; 20 mmHg
+                                <ol>
+                                    <li>May pronounce dead on scene (only)</li>
+                                    <li>Notify police if not already on scene</li>
+                                </ol>
+                            </li>
+                            <li>Total ACLS resuscitation time &gt; 20 minutes: ALL pediatric patients and adults not pronounced on scene should be transported to the closest emergency department</li>
+                            <li>Any time rhythm changes to alternate rhythm refer to the appropriate protocol</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Pulseless Wide-complex bradycardia, prolonged QT-interval, or sine wave possibly resulting from hyperkalemia</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" arrestOtherAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for=" arrestOtherAdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Initiate CPR</li>
+                            <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate (10%)</a>
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 grams (20 ml) IV, IO</dose> over 2 minutes</li>
+                                            <li>Repeat in 10 minutes as indicated by patient condition and rhythm</li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                            <ol>
+                                                <li>Pediatric <red><b> maximum dose </b></red>: <dose style="color:#f4b02a;font-weight:500">2 grams (20 ml) IV, IO</dose> over 2 minutes</li>
+                                                <li>Repeat in 10 minutes as indicated by patient condition and rhythm</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs*20)/1000) }} grams IV, IO</dose> over 2 minutes</li>
+                                                <li>Repeat in 10 minutes as indicated by patient condition and rhythm</li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                <ol>
+                                    <li>Adult: 2 grams (20 ml) IV, IO over 2 minutes</li>
+                                    <li>Pediatric: 20 mg/kg IV, IO (0.2 ml/kg) maximum 2 grams (20ml) over 2 minutes</li>
+                                    <li>Repeat in 10 minutes as indicated by patient condition and rhythm</li>
+                                </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>:
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}                                            
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                <li>Repeat every 10 minutes</li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax50 %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs) }} mEq/ml IV, IO</dose></li>
+                                                    <li>Repeat every 10 minutes</li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <div><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>
+                                            <ol>
+                                                <li>Adult: 50 mEq (50 ml) IV, IO</li>
+                                                <li>Pediatric: 1 mEq/kg (1 ml/kg); max 50 mEq (50 ml) IV, IO</li>
+                                                <li>Repeat every 10 minutes</li>
+                                            </ol>
+                                        </div>
+                                    {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> every 5 minutes
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 mg  IV, IO</dose></li>
+                                            <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                        </ul>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% else %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                                <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 1 mg IV, IO</li>
+                                        <li>Pediatric: 0.01 mg/kg; (0.1 ml/kg) IV, IO (maximum: 1 mg; 1 ml)</li>
+                                        <li>Administration early as possible in resuscitation of non-shockable rhythms</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Total ACLS resuscitation time &gt; 20 minutes, no ROSC, and ETCO<sub>2</sub> &lt; 20 mmHg
+                                <ol>
+                                    <li>May pronounce dead on scene (only)</li>
+                                    <li>Notify police if not already on scene</li>
+                                </ol>
+                            </li>
+                            <li>Total ACLS resuscitation time &gt; 20 minutes: ALL pediatric patients and adults not pronounced on scene should be transported to the closest emergency department</li>
+                            <li>Any time rhythm changes to alternate rhythm refer to the appropriate protocol</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" arrestOtherAdditional" class="accordian__input" checked="checked">
+            <label for=" arrestOtherAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Patients at risk for hyperkalemia
+                                <ul>
+                                    <li>Renal failure (especially if patient has missed scheduled dialysis)</li>
+                                    <li>DKA</li>
+                                    <li>Crush syndrome/rhabdomyolysis</li>
+                                    <li>Severe burns</li>
+                                </ul>
+                            </li>
+                            <li>Rate of rhythm associated with hyperkalemia may be slow, normal, or fast
+                            </li>
+                        </ul>
+                    <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/hyperK.jpg') }}" alt="Hyperkalemia ECG Findings"></div>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Adult Blunt Trauma Arrest</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" adultBluntAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for=" adultBluntAdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>For patient found to be pulseless, apneic, and without signs of life, may pronounce dead on scene</li>
+                            <li>If patient noted at any time to have palpable pulse attempt resuscitation & transport</li>
+                            <li>If patient becomes pulseless and apneic on scene:
+                                <ol>
+                                    <li>For blunt trauma to the torso with suspicion for tension pneumothorax perform chest needle thoracostomy bilaterally</li>
+                                    <li>For asystole or wide complex PEA, no signs of life, and transport to trauma center is &gt; 5 minutes, may pronounce dead on the scene</li>
+                                    <li>For narrow complex PEA or shockable rhythm, initiate/continue resuscitative efforts and transport to the trauma center</li>
+                                </ol>
+                            </li>
+                            <li>If the patient becomes pulseless and apneic during transport:
+                                <ol>
+                                    <li>Perform bilateral needle decompression - for blunt chest trauma</li>
+                                    <li>For asystole or wide complex PEA, no signs of life, and transport to trauma center is &gt; 5 minutes, may pronounce dead</li>
+                                    <li>For narrow complex PEA or shockable rhythm, initiate/continue resuscitative efforts and transport to the trauma center</li>
+                                    <li>Notify receiving facility and continue transport</li>
+                                </ol>
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href=""FIXME:>Airway: Intubation Protocol</a></li>
+                                    <li><a FIXME:href=""FIXME:>Airway: BIAD Protocol</a></li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Adult Penetrating Trauma Arrest</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" adultPenetratingAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for=" adultPenetratingAdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>For patient found to be pulseless, apneic, and without signs of life, may pronounce dead on scene</li>
+                            <li>If patient noted at any time to have palpable pulses, continue resuscitation and transport</li>
+                            <li>If patient becomes pulseless and apneic and transport time to trauma center is &lt; 15 minutes, continue resuscitation and transport</li>
+                            <li>For penetrating trauma to the upper torso with suspicion for tension pneumothorax perform chest needle thoracostomy
+                                <ol>
+                                    <li>Notify receiving facility and continue transport</li>
+                                    <li>If patient becomes pulseless and apneic and transport time to trauma center is &gt; 15 minutes, contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                    <li>For narrow complex PEA or shockable rhythm, initiate/continue resuscitative efforts and transport to the trauma center</li>
+                                    <li>Notify receiving facility and continue transport</li>
+                                </ol>
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href=""FIXME:>Airway: Intubation Protocol</a></li>
+                                    <li><a FIXME:href=""FIXME:>Airway: BIAD Protocol</a></li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Pediatric Blunt or Penetrating Trauma Arrest</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" pedTraumaAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for=" pedTraumaAdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Initiate resuscitation and transport</li>
+                            <li>Evaluate rhythm and treat per appropriate protocol</li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href=""FIXME:>Airway: Intubation Protocol</a></li>
+                                    <li><a FIXME:href=""FIXME:>Airway: BIAD Protocol</a></li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>For blunt or penetrating trauma to the torso with suspicion for tension pneumothorax perform chest needle thoracostomy</li>
+                            <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> every 5 minutes
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ul>
+                                            <li>Adult: <red><b>This is a Pediatric Protocol</b></red></li>
+                                        </ul>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                            </ul>
+                                        {% else %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Pediatric: 0.01 mg/kg; (0.1 ml/kg) IV, IO (maximum: 1 mg; 1 ml)</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Total arrest time > 15 minutes
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li>Adult: <red><b>This is a Pediatric Protocol</b></red></li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax50 %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs) }} mEq/ml IV, IO</dose></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <div><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>
+                                            <ol>
+                                                <li>Pediatric: 1 mEq/kg (1 ml/kg); max 50 mEq (50 ml) IV, IO</li>
+                                            </ol>
+                                        </div>
+                                    {% endif %}
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" pedTraumaAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for=" pedTraumaAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Epinephrine and/or atropine are NOT indicated in the resuscitation of <b>ADULT</b> cardiac arrest as the result of blunt or penetrating trauma
+                                <ul>
+                                    <li>Exception: For the traumatic event believed to be the result of a cardiac event - treat dysrhythmia as per medical cardiac arrest guidelines</li>
+                                </ul>
+                            </li>
+                            <li>Unlike adult traumatic cardiac arrest, ACLS medications may be indicated in pediatric traumatic cardiac arrest</li>
+                            <li> For traumatic cardiac arrest transport should be expedited with resuscitation efforts performed enroute vs. remaining on scene
+                                <ul>
+                                    <li>Traumatic arrest requires expedited transport for definitive care
+                                        <ul><li>This may include operative intervention, massive blood transfusion protocols, or emergency department thoracotomy</li></ul>
+                                    </li>
+                                    <li>Traumatic arrest etiology is distinctly different from that of medical arrests for whom performing resuscitative efforts on scene is more beneficial for patients</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Post-Resuscitation Care</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" postResusAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for=" postResusAdvancedTreatment" class="accordian__label">Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Traumatic Cardiac Arrest</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Post resuscitation from traumatic cardiac arrest continue with destination as per <a FIXME: href="#">Trauma Triage Destination</a> and with trauma care as per appropriate protocol</li>
+                        </ol>
+                    </div>
+                <h3>Medical Cardiac Arrest - PRIOR to Patient Movement from Point of Resuscitation</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Assess mental status</li>
+                            <li>12-lead ECG</li>
+                            <li>Assess cardiac rhythm and vital signs (ensure manual BP measurement)</li>
+                            <li>Provide supplemental oxygen to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                            <li>Ensure adequate IV access (2 sites)</li>
+                            <li>Assess blood glucose level: <a href="{{url_for('medications.glucose')}}">Dextrose (D10)</a> as indicated</li>
+                            <li>Hypotension
+                                <ol>
+                                    <li>Ensure adequate volume resuscitation</li>
+                                        {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                {% if keys.ptAdult %}
+                                                    <li>Adult: <a FIXME: href="#">IVF</a> at wide open rate (2 liters chilled normal saline initial choice)</li>
+                                                    <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a> @ 2 - 10 mcg/min IV <b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a> @ 10 - 20 mcg/kg/min</li>
+                                                {% else %}
+                                                    <li>Pediatric: <a FIXME: href="#">IVF</a> <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs*20) }} ml</dose> bolus</li>
+                                                    <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a>: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>
+                                                    <div><b>OR</b></div>
+                                                    <div><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>: <b style="color:#D2042D;font-weight:600">must contact </b><a FIXME: href="#">Medical Control Ring Central</a></div>
+                                                {% endif %}
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Adult: <a FIXME: href="#">IVF</a> at wide open rate (2 liters chilled normal saline initial choice)</li>
+                                                <li>Pediatric: 20 ml/kg <a FIXME: href="#">IVF</a> bolus</li>
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a> @ 2 - 10 mcg/min IV <b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a> @ 10 - 20 mcg/kg/min</li>
+                                            </ol>
+                                        {% endif %}
+                                </ol>
+                            </li>
+                            <li>Bradycardia (Symptomatic):
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol><li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 0.5 mg IV, IO</dose></li></ol>
+                                    {% else %}
+                                        <ol>
+                                            {% if keys.ptMax100 %}
+                                                <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a>: <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                            {% else %}
+                                                <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a>: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                            {% endif %}
+
+                                            {% if keys.ptMax50 %}
+                                                <li>For continued bradycardia: <a href="{{url_for('medications.atropine')}}">Atropine</a> <red><b>maximum </b></red><dose style="color:#f4b02a;font-weight:500"> 1 mg IV, IO</dose></li>
+                                            {% elif keys.ptMax5 %}
+                                                <li>For continued bradycardia: <a href="{{url_for('medications.atropine')}}">Atropine</a> <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/100) }} mg IV, IO</dose></li>
+                                            {% else %}
+                                                <li>For continued bradycardia: <a href="{{url_for('medications.atropine')}}">Atropine</a> <red><b>minimum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 0.1 mg IV, IO</dose></li>
+                                            {% endif %}
+
+                                            <li>HR &lt; 60: initiate chest compressions</li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult:  Atropine 0.5 mg IV, IO</li>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> 0.01 mg/kg IV, IO (maximum 1 mg)</li>
+                                                <li>For continued bradycardia: <a href="{{url_for('medications.atropine')}}">Atropine</a> 0.02 mg/kg IV, IO (min 0.1 mg, max 1 mg)</li>
+                                                <li>HR &lt; 60: initiate chest compressions</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li> Adult 2<sup>nd</sup> degree type II or 3<sup>rd</sup> degree heart block
+                                <ol><li><a FIXME: href="#">Transcutaneous Pacing Protocol</a></li></ol>
+                            </li>
+                            <li>Continue to treat dysrhythmias as per appropriate protocol</li>
+                            <li>Do NOT hyper/over ventilate
+                                <li>Ensure ventilation rate maintained @ 6 - 10 per minute</li>
+                                <li>For pediatrics (&le; 14-years) ensure rate maintained @ 12 - 20 per minute</li>
+                                <li> Goal is normalization of ETCO<sub>2</sub> 35 - 45 mmHg</li>
+                            </li>
+                            <li>Plan/arrange for most appropriate method for transition from scene to ambulance</li>
+                            <li>Do not attempt scene transition until full patient assessment and resuscitation has been completed (ECG, BP, IVF, vasopressor, anti-dysrhythmic, transcutaneous pacing)</li>
+                            <li>Ensure consistent palpation of pulse during patient transition from scene to ambulance
+                                <ol><li>Reassess at multiple points during egress from scene</li></ol>
+                            </li>
+                            <li>. Ensure consistent evaluation of rhythm during patient transition from scene to ambulance
+                                <ol><li>Reassess at multiple points during egress from scene</li></ol>
+                            </li>
+                            <li>Continue to treat any presumptive diagnosis being treated prior to cardiac arrest</li>
+                            <li>Reassess frequently during transport</li>
+                            <li>Plan/arrange for most appropriate method for transition from ambulance to hospital</li>
+                            <li>Ensure consistent evaluation of pulse and rhythm during transition from ambulance</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" postResusAdditional" class="accordian__input" checked="checked">
+            <label for=" postResusAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>For cardiac arrest from a medical etiology, it is better to attempt resuscitation and stabilization on the scene rather than in a moving ambulance</li>
+                            <li>For cardiac arrest from a trauma etiology, it is better to attempt resuscitation as indicated during transport to the trauma center</li>
+                            <li>While rapid defibrillation is the treatment of choice for ventricular fibrillation, CPR should be performed on all adult unwitnessed cardiac arrests prior to administering shock</li>
+                            <li>Chest compressions should be hard and fast, bringing the hand the upstroke off the chest for maximum recoil
+                                <ol><li>Chest compressions should be started immediately after each shock</li></ol>
+                            </li>
+                            <li>Chest compressions should NEVER be interrupted except when performing rhythm analysis or delivering defibrillation shock
+                                <ul>
+                                    <li>When compressions are interrupted for rhythm analysis or defibrillation shock this time should be limited to &lt; 6 seconds</li>
+                                    <li>Provider performing compressions must count aloud every 20<sup>th</sup> compression</li>
+                                    <li>Defibrillator should be pre-charged at compression #180</li>
+                                    <li>Providers must change positions every 200 compressions</li>
+                                </ul>
+                            </li>
+                            <li>Feedback in the form of end-tidal CO<sub>2</sub> and verbal queues are important to the provider administering the ventilations to avoid hyperventilation</li>
+                            <li>In any patient in cardiac arrest, consider hypoglycemia
+                                <ul><li>Assess glucose level or consider administration of <a href="{{url_for('medications.glucose')}}">Dextrose (D10)</a> IV</li></ul>
+                            </li>
+                            <li>Use of <a href="{{url_for('medications.magnesium')}}"> Magnesium Sulfate</a> is <red><b>contraindicated</b></red> in patients with renal insufficiency or on dialysis <u>except</u> in cases of Torsades de Points</li>
+                            <li>If peripheral access is unobtainable and the patient has access via a central intravenous line or dialysis catheter, this may be used for fluid and medication administration</li>
+                            <li>If the patient &gt: 70-years of age, the cardiac arrest was witnessed, and the suspected etiology of cardiac arrest is a pulmonary embolism (based on risk factors, sudden onset of symptoms, young age, absent premorbid conditions), MEDIC should consider continued resuscitation, transport, and not pronounce dead
+                                <ul><li>The patient should be prepared for transport as expeditiously as possible for possible thrombolytic administration immediately following hospital arrival</li></ul>
+                            </li>
+                            <li>For suspicion of opioid associated cardiac arrest: administer <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a>
+                                <ul><li>Attention must be on airway, oxygenation, ventilation, and cardiac arrest care</li></ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Focused Cardiac Arrest</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" responderAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for=" responderAdvancedTreatment" class="accordian__label">First Responder</label>
+            <div class="advancedTreatmentSection">
+                <h3>First Responder Arrives Prior to Medic</h3>
+                    <div>
+                        <ul>
+                            <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                            <li>Firefighter-1 or designee will check for pulses
+                                <ol><li>If absent, will begin chest compressions.</li></ol>
+                            </li>
+                            <li>Firefighter-2 or designee will check for responsiveness and breathing
+                                <ol>
+                                    <li>If absent will perform the following:
+                                        <ol>
+                                            <li>Adult: Insert the blind insertion airway device and begin ventilations
+                                                <ol><li>Insert orogastric tube and connect to suction</li></ol>
+                                            </li>
+                                            <li>Pediatric: Provide assisted ventilations with BVM and 100% oxygen</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>The Captain or designee will attach the automatic external defibrillator, deploy the QCPR meter, and activate immediately for first responder witnessed arrests or after 200 chest compressions have been performed for arrests not witnessed by First Responder</li>
+                            <li>Ensure CPR is being performed for 200 compressions while applying defibrillator (AED)</li>
+                            <li>Follow AED prompts for potential defibrillation in coordination with compression cycles</li>
+                            <li>Provider performing compressions will count aloud the first compression “1” and subsequently count aloud every 20th compression (i.e. “20”, “40”, “60”, …)</li>
+                            <li>Provider performing ventilations will provide one ventilation with every 20th chest compression (provide one ventilation every 10 compressions for pediatrics &le; 14-years)</li>
+                            <li>Captain: check for femoral pulse during compressions “180” through “200” and perform defibrillation as indicated by the AED rhythm analyzation after compression “200”
+                                <ol><li>Ensure timely defibrillation after analyzation and immediately resume compressions post-shock</li></ol>
+                            </li>
+                            <li>The engineer will take a ready position to assume compressions following the initial set of 200 chest compressions</li>
+                            <li>After each defibrillator shock, chest compressions should commence immediately</li>
+                            <li>Following 200 compressions each provider will move to the next role
+                                <ol>
+                                    <li>As provider performing compressions announces “180”, providers will prepare to move to the next role</li>
+                                    <li>Immediately after compression 200, provider performing compressions will move to the head of the patient to assume ventilations</li>
+                                    <li>Immediately after compression 200, provider performing ventilations will move the patient's side (“on deck”) and prepare for assuming compressions at the next position change</li>
+                                    <li>Captain will perform defibrillation as indicated by the AED</li>
+                                    <li>The provider who was “on deck” and is now prepared to provide compressions will perform compressions after AED analyzation and shock (if shock indicated)</li>
+                                    <li>Provider now performing compressions will count aloud the first compression “1” and subsequently count aloud every 20th compression</li>
+                                </ol>
+                            </li>
+                            <li>Perform ventilations at a rate of 6 ventilations per minute (every 20<sup>th</sup> compression)
+                            <ol><li>Provide one ventilation every 10 compressions for pediatrics &le; 14-years</li></ol></li>
+                            <li>Analyze rhythm after every 200 compressions cycle of CPR</li>
+                            <li>Repeat defibrillation as indicated</li>
+                            <li>Each provider will change rotated position after every 200-compression cycle of CPR</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" medicAdvancedTreatment" class="accordian__input" checked="checked">
+            <label for=" medicAdvancedTreatment" class="accordian__label">Advanced Medical Care</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div>
+                        <ul>
+                            <li>Upon Paramedic crew arrival
+                                <ol>
+                                    <li>Attending paramedic will proceed to the patient's side and initiate intravenous (IV) or <a FIXME: href="#">Parenteral Access: Venous-Extremity</a> intraosseous (IO) line per <a FIXME: href="#">Parenteral Access: Venous-Extremity</a> and ACLS interventions as indicated</li>
+                                    <li>After current round of compressions completed and AED has delivered shock or noted non-shockable rhythm, EMT-Basic or Non-Crew Chief Paramedic will deploy the cardiac monitor including Medic defibrillation pads, CPR feedback device, SpO2 monitor and ETCO2 adaptor</li>
+                                </ol>
+                            </li>
+                            <li>EMT-Basic or Non-Crew Chief will prepare IVF for infusion then assume ready position to assume ventilations at the next position change following 200 compressions cycle of CPR and enter same rotation through positions with first responders</li>
+                            <li>While rapid defibrillation is the treatment of choice for ventricular fibrillation, CPR should be performed on all adult unwitnessed cardiac arrests regardless of initial rhythm for at least 200 compressions prior to defibrillation attempt</li>
+                            <li>For pediatric ventricular fibrillation arrest, early defibrillation is more important
+                                <ol>
+                                    <li>Ventricular fibrillation is seen in cardiomyopathies, myocarditis, hypoxia, or intoxication</li>
+                                    <li>Airway control and oxygenation are of paramount importance</li>
+                                    <li>Pediatric patients in cardiac arrest from a medical etiology should not be expeditiously carried to the ambulance when it arrives the scene with two or more rescuers performing CPR</li></ol>
+                                    </li>
+                                    <li>Resuscitation and transport should be performed on all pediatric cardiac arrest patients regardless of etiology - medical or trauma</li>
+                                    <li>Indicated ALS medications should be administered for both pediatric medical and trauma arrest</li>
+                                </ol>
+                            </li>
+                            <li>Ensure every 20<sup>th</sup> compression is being counted aloud (“20”, “40”, “60”, …)</li>
+                            <li>“Pre-charge defibrillator” with compression #180</li>
+                            <li>Palpate femoral pulse compressions #180 - 200</li>
+                            <li>Analyze rhythm immediately following compression #200:
+                                <ol>
+                                    <li>For ventricular fibrillation or ventricular tachycardia without a pulse immediately defibrillate @ 150 J</li>
+                                    <li>For asystole or PEA immediately resume compressions and disarm defibrillator
+                                        <ol><li>Ensure providers have rotated positions</li></ol>
+                                    </li>
+                                    <li>For perfusing rhythm, immediately initiate post-resuscitation care</li>
+                                </ol>
+                            </li>
+                            <li>Repeat 5 through 8 as indicated by rhythm every 200 compressions</li>
+                            <li>Perform ventilations at a rate of 6 ventilations/minute (adults) 12/minute pediatrics &le; 14 years</li>
+                            <li>The Captain or designee will initiate documentation and continue throughout the resuscitation period on the scene</li>
+                        </ul>
+                    </div>
+
+                <h3>Medic Arrives Prior to First Responder</h3>
+                    <div>
+                        <ul>
+                            <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                            <li>Immediately following arrival on the scene, the attending paramedic (or EMTCC) will proceed directly to the patient
+                                <ol>
+                                    <li>Once at the patient's side, check for pulses and breathing
+                                        <ol>
+                                            <li>If absent, will begin chest compressions</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>The non-attending EMT or Paramedic will bring in equipment, proceed directly to the patient's airway and check for breathing
+                                <ol>
+                                    <li>If absent, perform the following:
+                                        <ol>
+                                            <li>Adult
+                                                <ol>
+                                                    <li>Insert BIAD airway device and begin ventilations</li>
+                                                    <li>Utilize BVM and 100% oxygen for ventilations</li>
+                                                    <li>Insert orogastric tube and connect to suction</li>
+                                                </ol>
+                                            </li>
+                                            <li>Pediatric
+                                                <ol><li>Provide ventilations with BIAD or bag-valve-mask & 100% oxygen</li></ol>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li>Do NOT interrupt compression for airway management</li>
+                                </ol>
+                            </li>
+                            <li>For BLS crew: apply AED
+                                <ol><li>Follow AED prompts for potential defibrillation in coordination with compression cycles</li></ol>
+                            </li>
+                            <li>For ALS crew: deploy the cardiac monitor including defibrillation pads, CPR meter, SpO<sub>2</sub> monitor and ETCO<sub>2</sub> adaptor</li>
+                            <li>Ensure every 20<sup>th</sup> compression is being counted aloud (“20”, “40”, “60”, …)</li>
+                            <li>“Pre-charge defibrillator” with compression #180</li>
+                            <li>Palpate femoral pulse compressions #180 - 200</li>
+                            <li>Analyze rhythm immediately following compression #200:
+                                <ol>
+                                    <li>For ventricular fibrillation or ventricular tachycardia without a pulse immediately defibrillate @ 150 J</li>
+                                    <li>For asystole or PEA immediately resume compressions and disarm defibrillator
+                                        <ol><li>Ensure providers have rotated positions</li></ol>
+                                    </li>
+                                    <li>For perfusing rhythm, immediately initiate post-resuscitation care</li>
+                                </ol>
+                            </li>
+                            <li>Repeat 5 through 8 as indicated by rhythm every 200 compressions</li>
+                            <li>Perform ventilations at a rate of 6 ventilations/minute - adults
+                                <ol><li>Perform ventilations at 12 ventilations/minute - pediatrics &le; 14-years</li></ol>
+                            </li>
+                            <li>Upon arrival of first responder have personnel proceed immediately to their pre-designated positions as in <b>First Responder Arrives Prior to Medic</b> (see above)</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id="focusedAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <label for="focusedAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>For cardiac arrest witnessed by EMS provider immediately initiate chest compressions while AED/cardiac monitor and pads are deployed
+                                <ul>
+                                    <li>For initial rhythm that is shockable (ventricular fibrillation, pulseless ventricular tachycardia), defibrillate immediately then resume chest compressions for 200 compression cycle</li>
+                                    <li>For rhythm that is NON-shockable perform 200 compression cycle and continue as outlined above</li>
+                                </ul>
+                            </li>
+                            <li>Chest compressions goals:
+                                <ul>
+                                    <li>Limit time to defibrillation to &lt; 6 seconds
+                                        <ul><li>There is an 18% increase in survival to hospital discharge for every 5 second decrease in time to defibrillation following chest compressions</li></ul>
+                                    </li>
+                                    <li>Compressions should be performed > 90% of the time during the resuscitation efforts</li>
+                                    <li>Limit time “off the chest” to &lt; 6 seconds for position rotations</li>
+                                    <li>Utilize CPR feedback to ensure adequate rate, depth, and release of chest</li>
+                                </ul>
+                            </li>
+                            <li>Ventilation goals:
+                                <ul>
+                                    <li>Hyper/over ventilation must be avoided
+                                        <ul><li>Must avoid any increase in intrathoracic pressure which will in turn decrease coronary perfusion</li></ul>
+                                    </li>
+                                    <li>Maintain ETCO<sub>2</sub> 35 - 45 mmHg</li>
+                                    <li>For First Responder or BLS only crews on scene, ventilate at rate of 6 breaths per minute (every 20th compression) - adults</li>
+                                    <li>Provide one ventilation every 10th compression for pediatrics &le; 14-years</li>
+                                </ul>
+                            </li>
+                            <li>Epinephrine during cardiac arrest care:
+                                <ul><li>Maximum total amount for adult cardiac arrest = 5 mg</li></ul>
+                            </li>
+                            <li>Documentation
+                                <ul>
+                                    <li>Witnessed or unwitnessed</li>
+                                    <li>Record initial rhythm</li>
+                                    <li>Record any change in rhythm during the resuscitation</li>
+                                    <li>Medication(s) administered</li>
+                                    <li>Defibrillation(s) performed</li>
+                                    <li>Record the final rhythm</li>
+                                </ul>
+                            </li>
+                            <li>Opioid associated cardiac arrest:
+                                <ul>
+                                    <li><a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> is only indicated for patients with suspicion of narcotic overdose as the cause of their cardiac arrest</li>
+                                    <li>Attention must be on airway, oxygenation, ventilation, and cardiac arrest care</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -105,3 +105,32 @@
 <!-- Format to 2 decimal points -->
 
 {{ '%0.2f'| format((ptKgs)/100) }}
+
+<!-- Initial Assessment LI line -->
+
+<li><a FIXME:href=""FIXME:>Medical Initial Assessment Protocol</a> or <a FIXME:href=""FIXME:>Pediatric Initial Assessment Protocol</a></li>
+
+<!-- Trauma Assessment LI line -->
+
+<li><a FIXME:href="">Trauma Initial Assessment Protocol</a> or <a FIXME:href="">Pediatric Trauma Assessment Protocol</a></li>
+
+<!-- IF ptYears -->
+
+{% if keys.ptYears > 0 %}
+{% else %}
+{% endif %}
+
+<!-- IF ptAdult -->
+
+{% if keys.ptAdult %}
+{% else %}
+{% endif %}
+
+<!-- Combined -->
+
+{% if keys.ptYears > 0 %}
+    {% if keys.ptAdult %}
+    {% else %}
+    {% endif %}
+{% else %}
+{% endif %}
