@@ -17,9 +17,7 @@
                 <h3>Introduction</h3>
                     <div class="introText">
                         <ul>
-                            <li>True anaphylaxis is a severe systemic reaction to an allergen causing a massive release 
-                                of histamine and other chemical mediators
-                            </li>
+                            <li>True anaphylaxis is a severe systemic reaction to an allergen causing a massive release of histamine and other chemical mediators</li>
                             <li> Although anything can cause anaphylaxis, the most common offenders include:
                                 <ul>
                                     <li>Antibiotics (penicillins, sulfa, vancomycin)</li>
@@ -38,7 +36,7 @@
                                     <li>Upper airway obstruction due to edema</li>
                                 </ul>
                             </li>
-                        </ul><br>
+                        </ul>
                     </div>
                 <h3>Clinical Presentation</h3>
                         <ul class="presentationText">
@@ -50,7 +48,7 @@
                             <li>Urticaria with or without pruritus</li>
                             <li>Rapidly progressing upper airway edema with stridor, increased secretions, dysphagia</li>
                             <li>Wheezing</li>
-                        </ul><br>
+                        </ul>
                 <h3>Differential Diagnosis</h3>
                         <ul class="differentialText">
                             <li>Angioedema</li>
@@ -76,26 +74,23 @@
                         <li>Attempt to remove source of exposure (e.g. stinger) as possible</li>
                         <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:1000)</a> IM for any evidence of anaphylaxis
                             {% if keys.ptYears > 0 %}
-                                {% if keys.ptAdult %}
-                                    <ul>
                                         <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                            <ul>
+                                {% if keys.ptAdult %}
+                                            <ol>
                                                 <li>Adult: <dose style="color:#f4b02a;font-weight:500">0.3 mg</dose></li>
-                                            </ul>
+                                            </ol>
                                                 <ul>
                                                     <li style="margin-left:20px">Consider decreasing dose to 0.15 mg IM in patients with coronary artery disease or patients > 55-years and CAD risk factors</li>
                                                 </ul>
-                                    </ul>
                                 {% else %}
-                                    <ul>
-                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>                                        
-                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">0.15mg IM</dose></li></ul>
-                                    </ul>
+                                    <ol>                                      
+                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">0.15mg IM</dose></li>
+                                    </ol>
                                 {% endif %}
                             {% else %}
                                 <ol>
                                     <li>Adult: 0.3 mg
-                                        <ul><li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li></ul>
+                                        <li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li>
                                     </li>
                                     <li>Pediatric: 0.01 mg/kg IM</li>
                                 </ol>
@@ -104,17 +99,16 @@
                         
                         <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
                             {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                 {% if keys.ptAdult %}
-                                    <ul>
-                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
-                                            <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
-                                    </ul>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li>
+                                        <li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li>
+                                    </ol>
                                 {% else %}
-                                    <ul>
-                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                        <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
-                                    </ul>
+                                    <ol>
+                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li>
+                                    </ol>
                                 {% endif %}
                             {% else %}
                                 <ol>
@@ -130,23 +124,21 @@
 
                         <li><a href="{{url_for('medications.diphenhydramine')}}">Diphenhydramine (Benadryl®)</a> for uncomplicated allergic reaction (urticaria, flushing, itching only)
                             {% if keys.ptYears > 0 %}
-                                {% if keys.ptAdult %}
-                                    <ul>
                                         <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">50mg PO</dose></li></ul>
-                                    </ul>
+                                {% if keys.ptAdult %}
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">50mg PO</dose></li>
+                                    </ol>
                                 {% else %}
                                     {% if keys.ptMax50 %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">50mg PO</dose></li></ul>
-                                        </ul>
+                                        <ol>
+                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">50mg PO</dose></li>
+                                        </ol>
                                     {% else %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs) }} mg PO</dose></li></ul>
+                                        <ol>
+                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs) }} mg PO</dose></li>
                                                 <ul><li><b style="color:#D2042D;font-weight:600">Contraindicated in children under 9 months</b></li></ul>
-                                        </ul>
+                                        </ol>
                                     {% endif %}
                                 {% endif %}
                             {% else %}
@@ -173,23 +165,21 @@
                                 <ol>
                                     <li><a href="{{url_for('medications.diphenhydramine')}}">Diphenhydramine (Benadryl®)</a>; if not already administered
                                         {% if keys.ptYears > 0 %}
-                                            {% if keys.ptAdult %}
-                                                <ul>
                                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                    <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">25 - 50mg PO, IV, IM</dose></li></ul>
-                                                </ul>
+                                            {% if keys.ptAdult %}
+                                                <ol>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">25 - 50mg PO, IV, IM</dose></li>
+                                                </ol>
                                             {% else %}
                                                 {% if keys.ptMax50 %}
-                                                    <ul>
-                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">50mg PO, IV, IM</dose></li></ul>
-                                                    </ul>
+                                                    <ol>
+                                                        <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">50mg PO, IV, IM</dose></li>
+                                                    </ol>
                                                 {% else %}
-                                                    <ul>
-                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs) }}mg PO, IV, IM</dose></li></ul>
+                                                    <ol>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs) }}mg PO, IV, IM</dose></li>
                                                             <ul><li><b style="color:#D2042D;font-weight:600">Contraindicated in children under 9 months</b></li></ul>
-                                                    </ul>
+                                                    </ol>
                                                 {% endif %}
                                             {% endif %}
                                     {% else %}
@@ -201,24 +191,20 @@
                                     </li>
                                     <li><a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a>
                                         {% if keys.ptYears > 0 %}
-                                            {% if keys.ptAdult %}
-                                                <ul>
                                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                        <ul>
-                                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">16 mg IV, PO</dose></li>
-                                                        </ul>
-                                                </ul>
+                                            {% if keys.ptAdult %}
+                                                <ol>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">16 mg IV, PO</dose></li>
+                                                </ol>
                                             {% else %}
                                                 {% if keys.ptMax26 %}
-                                                    <ul>
-                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">16 mg IV, PO</dose></li></ul>
-                                                    </ul>
+                                                    <ol>
+                                                        <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">16 mg IV, PO</dose></li>
+                                                    </ol>
                                                 {% else %}
-                                                    <ul>
-                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 0.6) }} mg IV, PO</dose></li></ul>
-                                                    </ul>
+                                                    <ol>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 0.6) }} mg IV, PO</dose></li>
+                                                    </ol>
                                                 {% endif %}
                                             {% endif %}
                                         {% else %}
@@ -234,30 +220,26 @@
                                 <ol>
                                     <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:1000)</a>
                                         {% if keys.ptYears > 0 %}
-                                            {% if keys.ptAdult %}
-                                                <ul>
                                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                        <ul>
-                                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">0.3 mg IM</dose></li>
-                                                        </ul>
-                                                            <ul>
-                                                                <li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li>
-                                                                <li style="margin-left:20px">May repeat every 5 - 10 minutes depending on patient response</li>
-                                                            </ul>
-                                                            
-                                                </ul>
+                                            {% if keys.ptAdult %}
+                                                <ol>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">0.3 mg IM</dose></li>
+                                                    <ul>
+                                                        <li>Consider decreasing dose to 0.15 mg IM in patients with coroinary artery disease or patients > 55-years and CAD risk factors</li>
+                                                        <li style="margin-left:20px">May repeat every 5 - 10 minutes depending on patient response</li>
+                                                    </ul>
+                                                </ol>
+                                                
                                             {% else %}
                                                 {% if keys.ptMax30 %}
-                                                    <ul>
-                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">0.3 mg IM</dose></li></ul>
-                                                    </ul>
+                                                    <ol>
+                                                        <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">0.3 mg IM</dose></li>
+                                                    </ol>
                                                 {% else %}
-                                                    <ul>
-                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                        <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 0.01) }}mg IM</dose></li></ul>
-                                                        <ul><li style="margin-left:20px">May repeat every 5 - 10 minutes depending on patient response</li></ul>
-                                                    </ul>
+                                                    <ol>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 0.01) }}mg IM</dose></li>
+                                                        <li style="margin-left:20px">May repeat every 5 - 10 minutes depending on patient response</li>
+                                                    </ol>
                                                 {% endif %}
                                             {% endif %}
                                         {% else %}
@@ -272,19 +254,17 @@
                                         
                                     </li>
                                     <li><a FIXME:href=""FIXME:>IVF</a> as indicated
-                                        <ol>
                                             {% if keys.ptYears > 0 %}
-                                                {% if keys.ptAdult %}
                                                         <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                                            <ul>
-                                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">wide open</dose></li>
-                                                            </ul>
+                                                {% if keys.ptAdult %}
+                                                    <ol>
+                                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">wide open</dose></li>
+                                                    </ol>
                                                 {% else %}
-                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>                                      
-                                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 20) }} ml</dose></li></ul>
-                                                            <ul>
-                                                                <li style="margin-left:20px">reassess and re-bolus as clinically indicated</li>
-                                                            </ul>
+                                                    <ol>                                     
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 20) }} ml</dose></li>
+                                                        <li style="margin-left:20px">reassess and re-bolus as clinically indicated</li>
+                                                    </ol>
                                                 {% endif %}
                                             {% else %}
                                                 <ol>                                                    
@@ -292,7 +272,6 @@
                                                     <li>Pediatric: 20 ml/kg and reassess, re-bolus as clinically indicated</li>
                                                 </ol>
                                             {% endif %}
-                                        </ol>
                                     </li>
                                     <li><a href="{{url_for('medications.diphenhydramine')}}">Diphenhydramine (Benadryl®)</a> & <a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a> as above, if not yet administered</li>
 
@@ -301,17 +280,16 @@
                             
                             <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> for associated bronchospasm via hand-held or mask nebulizer:
                                 {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                     {% if keys.ptAdult %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                            <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
-                                                <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose> as indicated by patient's condition</li></ul>
-                                        </ul>
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li>
+                                            <li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose> as indicated by patient's condition</li>
+                                        </ol>
                                     {% else %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
-                                        </ul>
+                                        <ol>
+                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li>
+                                        </ol>
                                     {% endif %}
                                 {% else %}
                                     <ol>

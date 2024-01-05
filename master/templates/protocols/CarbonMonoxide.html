@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container content1">
     <div class="accordian">
-        <H1>Carbon Monoxide / Cyanide / Hazmat Exposure {{ ptYears }} {{ ptYears != 0 }}</H1><hr>
+        <H1>Carbon Monoxide / Cyanide / Hazmat Exposure {{ keys.ptYears }} {{ keys.ptYears != 0 }}</H1><hr>
         <div>
             <input type="checkbox" name="accordian" id="carbonNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
             <label for="carbonNarrative" class="accordian__label">Narrative Protocol</label>
@@ -24,7 +24,7 @@
                                     <li>Industrial exposure</li>
                                 </ul>
                             </li>
-                        </ul><br>
+                        </ul>
                     </div>
                 <h3>Considerations</h3>
                     <div class="considerationsText">
@@ -33,7 +33,7 @@
                             <li>Duration of exposure</li>
                             <li>Past medical history</li>
                             <li>Pregnancy</li>
-                        </ul><br>
+                        </ul>
                     </div>
                 <h3>Signs & Symptoms</h3>
                         <ul class="presentationText">
@@ -47,7 +47,7 @@
                             <li>Nausea</li>
                             <li>Seizure</li>
                             <li>Syncope</li>
-                        </ul><br>
+                        </ul>
                 <h3>Differential Diagnosis</h3>
                         <ul class="differentialText">
                             <li>Anaphylaxis</li>
@@ -94,17 +94,16 @@
                         <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                         <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
                             {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                 {% if keys.ptAdult %}
-                                    <ul>
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
-                                            <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
-                                    </ul>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li>
+                                        <li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li>
+                                    </ol>
                                 {% else %}
-                                    <ul>
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                        <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
-                                    </ul>
+                                    <ol>
+                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li>
+                                    </ol>
                                 {% endif %}
                             {% else %}
                                 <ol>
@@ -161,20 +160,18 @@
                             <li>12-lead ECG and refer to appropriate protocol as indicated</li>
                             <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
                             <li><a FIXME:href=""FIXME:>IVF</a> as indicated
-                                <ol>
                                     {% if keys.ptYears > 0 %}
-                                        {% if keys.ptAdult %}Here I am
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                    <ul>
-                                                        <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
-                                                        <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
-                                                    </ul>
-                                        {% else %}No Here I am
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
-                                                <ul>
-                                                    <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> {{ ptKgs*20 }} ml bolus</dose></li>
-                                                    <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
-                                                </ul>
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
+                                                <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
+                                            </ol>
+                                        {% else %}                                     
+                                            <ol>
+                                                <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                                <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
+                                            </ol>
                                         {% endif %}
                                     {% else %}
                                         <ol>                                                    
@@ -192,26 +189,23 @@
                                             </li>
                                         </ol>
                                     {% endif %}
-                                </ol>
                             </li>
                             <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
                                 {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                     {% if keys.ptAdult %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</dose></li></ul>
-                                        </ul>
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</dose></li>
+                                        </ol>
                                     {% else %}
                                         {% if keys.ptMax26 %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 4 mg PO, IV, IM</dose></li></ul>
-                                            </ul>
+                                            <ol>
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 4 mg PO, IV, IM</dose></li>
+                                            </ol>
                                         {% else %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs * 3)/20) }}mg PO, IV, IM</dose></li></ul>
-                                            </ul>
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs * 3)/20) }}mg PO, IV, IM</dose></li>
+                                            </ol>
                                         {% endif %}
                                     {% endif %}
                             {% else %}
@@ -295,24 +289,22 @@
             <label for=" cyanideAdvancedTreatment" class="accordian__label">ALS Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
-                    <p class="advancedCare orderedList">
+                    <div class="advancedCare orderedList">
                         <ol>
                             <li><a FIXME:href=""FIXME:>Airway: Adult</a> or  <a FIXME:href=""FIXME:>Airway: Pediatric Protocol</a></li>
                             <li><a FIXME:href=""FIXME:>IVF</a> as indicated
-                                <ol>
                                     {% if keys.ptYears > 0 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         {% if keys.ptAdult %}
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                    <ul>
-                                                        <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
-                                                        <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
-                                                    </ul>
-                                        {% else %}
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>                                      
-                                                <ul>
-                                                    <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> {{ ptKgs*20 }} ml bolus</dose></li>
-                                                    <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
-                                                </ul>
+                                            <ol>
+                                                <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
+                                                <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
+                                            </ol>
+                                        {% else %}                                     
+                                            <ol>
+                                                <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                                <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> IVF @ maintenance rate</dose></li>
+                                            </ol>
                                         {% endif %}
                                     {% else %}
                                         <ol>                                                    
@@ -329,27 +321,23 @@
                                             </li>
                                         </ol>
                                     {% endif %}
-                                </ol>
                             </li>
                             <li>Treatment: <a href="{{url_for('medications.sodiumThiosulfate')}}">Sodium Thiosulfate</a>
-                                <ol>
                                     {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         {% if keys.ptAdult %}
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul>
-                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
-                                                </ul>
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                            </ol>
                                         {% else %}
                                             {% if keys.ptMax50 %}
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                    <ul>
-                                                        <li> Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
-                                                    </ul>
+                                                <ol>
+                                                    <li> Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                                </ol>
                                             {% else %}
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                    <ul>
-                                                        <li> Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*250)/1000) }} grams IV over 10 minutes</dose></li>
-                                                    </ul>
+                                                <ol>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs*250)/1000) }} grams IV over 10 minutes</dose></li>
+                                                </ol>
                                             {% endif %}
                                         {% endif %}
                                     {% else %}
@@ -358,9 +346,8 @@
                                         <li>Pediatric: 250 mg/kg IV (maximum 12.5 grams) over 10 minutes</li>
                                     </ul>
                                     {% endif %}
-                                </ol>
                             </li>
-                    </p><hr><br>
+                        </div><hr><br>
             </div>
         </div>
 
@@ -381,7 +368,7 @@
             </div>
         </div>
 
-        <H3>Vesicants</H3>
+        <H2>Vesicants</H2>
         <div>
             <input type="checkbox" name="accordian" id=" vesicantsNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
             <label for=" vesicantsNarrative" class="accordian__label">Narrative Protocol</label>
@@ -422,17 +409,16 @@
                                 <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                                 <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
                                     {% if keys.ptYears > 0 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         {% if keys.ptAdult %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
-                                                    <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
-                                            </ul>
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li>
+                                                <li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li>
+                                            </ol>
                                         {% else %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
-                                            </ul>
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li>
+                                            </ol>
                                         {% endif %}
                                     {% else %}
                                         <ol>
@@ -449,22 +435,20 @@
                         </li>
                         <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
                             {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                 {% if keys.ptAdult %}
-                                    <ul>
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
-                                    </ul>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li>
+                                    </ol>
                                 {% else %}
                                     {% if keys.ptMax43 %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
-                                        </ul>
+                                        <ol>
+                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li>
+                                        </ol>
                                     {% else %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
-                                        </ul>
+                                        <ol>
+                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs * 15 }}mg PO</dose></li>
+                                        </ol>
                                     {% endif %}
                                 {% endif %}
                         {% else %}
@@ -489,41 +473,30 @@
                             <li>Additional care as per appropriate medical or trauma condition protocol</li>
                             <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
                                 {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                     {% if keys.ptAdult %}
                                         {% if keys.ptMax100 %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul>
-                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
-                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
-                                                </ul>
-                                            </ul>
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
+                                                <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                            </ol>
                                         {% else %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul>
-                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
-                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
-                                                </ul>
-                                            </ul>
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                            </ol>
                                         {% endif %}
                                     {% else %}
                                         {% if keys.ptMax100 %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
-                                                <ul>
-                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
-                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
-                                                </ul>
-                                            </ul>
+                                            <ol>
+                                                <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
                                         {% else %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul>
-                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </dose></li>
-                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
-                                                </ul>
-                                            </ul>
+                                            <ol>
+                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
                                         {% endif %}
                                     {% endif %}
                             {% else %}
@@ -558,7 +531,7 @@
             </div>
         </div>
 
-        <H3>Pulmonary Agents</H3>
+        <H2>Pulmonary Agents</H2>
         <div>
             <input type="checkbox" name="accordian" id=" pulmNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
             <label for=" pulmNarrative" class="accordian__label">Narrative Protocol</label>
@@ -572,7 +545,7 @@
                         </ul>
                     </div>
                 <h3>Symptoms</h3>
-                    <div class="presentationText">
+                    <div class="symptomsText">
                         <ul>
                             <li>Eyes - irritation and burning</li>
                             <li>Respiratory - cough, shortness of breath, dyspnea, chest pain</li>
@@ -599,17 +572,16 @@
                                 <li>Suction as indicated</li>
                                 <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
                                     {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         {% if keys.ptAdult %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
-                                                    <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
-                                            </ul>
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li>
+                                                <li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li>
+                                            </ol>
                                         {% else %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
-                                            </ul>
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li>
+                                            </ol>
                                         {% endif %}
                                     {% else %}
                                         <ol>
@@ -638,41 +610,30 @@
                             <li>Additional care as per appropriate medical or trauma condition protocol</li>
                             <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
                                 {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                     {% if keys.ptAdult %}
                                         {% if keys.ptMax100 %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul>
-                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
-                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
-                                                </ul>
-                                            </ul>
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
+                                                <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                            </ol>
                                         {% else %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul>
-                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
-                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
-                                                </ul>
-                                            </ul>
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                            </ol>
                                         {% endif %}
                                     {% else %}
                                         {% if keys.ptMax100 %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs): </div>
-                                                <ul>
-                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
-                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
-                                                </ul>
-                                            </ul>
+                                            <ol>
+                                                <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
                                         {% else %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul>
-                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs / 2 }} - {{ ptKgs * 1 }} mcg IV, IM, IN </dose></li>
-                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
-                                                </ul>
-                                            </ul>
+                                            <ol>
+                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
                                         {% endif %}
                                     {% endif %}
                             {% else %}
@@ -711,7 +672,7 @@
             </div>
         </div>
 
-        <H3>Riot Control Agents</H3>
+        <H2>Riot Control Agents</H2>
         <div>
             <input type="checkbox" name="accordian" id=" riotNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
             <label for=" riotNarrative" class="accordian__label">Narrative Protocol</label>
@@ -748,22 +709,20 @@
                             <ul><li> Copious irrigation with normal saline or water</li></ul>
                         </li>
                         <li>Respiratory tract exposure
-                            <ol>
                                 <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                                 <li>Suction as indicated</li>
                                 <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via hand-held or mask nebulizer as per patient condition
                                     {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         {% if keys.ptAdult %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li></ul>
-                                                    <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
-                                            </ul>
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li>
+                                                <li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li>
+                                            </ol>
                                         {% else %}
-                                            <ul>
-                                                <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                                <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li></ul>
-                                            </ul>
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li>
+                                            </ol>
                                         {% endif %}
                                     {% else %}
                                         <ol>
@@ -776,26 +735,23 @@
                                         </ol>
                                     {% endif %}
                                 </li>
-                            </ol>
                         </li>
                         <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
                             {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                 {% if keys.ptAdult %}
-                                    <ul>
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li></ul>
-                                    </ul>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li>
+                                    </ol>
                                 {% else %}
                                     {% if keys.ptMax43 %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li></ul>
-                                        </ul>
+                                        <ol>
+                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li>
+                                        </ol>
                                     {% else %}
-                                        <ul>
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ ptKgs * 15 }}mg PO</dose></li></ul>
-                                        </ul>
+                                        <ol>
+                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs * 15 }}mg PO</dose></li>
+                                        </ol>
                                     {% endif %}
                                 {% endif %}
                         {% else %}
@@ -839,8 +795,8 @@
             </div>
         </div>
 
-        <H3>WMD - Nerve Agent Exposure</H3><hr>
-        <b>Chemical Nerve Agents, Organophosphates, Carbamates</b>
+        <H2>WMD - Nerve Agent Exposure</H2><hr>
+        <b>Chemical Nerve Agents, Organophosphates, Carbamates</b><br><br>
         <div>
             <input type="checkbox" name="accordian" id=" nerveNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
             <label for=" nerveNarrative" class="accordian__label">Narrative Protocol</label>
@@ -869,45 +825,49 @@
                         <li>Initiate decontamination procedures</li>
                         {% if keys.ptYears > 0 %}
                             {% if keys.ptAdult %}
-                            <div class="currentPatient">Current Pt ({{ ptYears }} years), Adult:
-                                <li>Mild effects (miosis, rhinorrhea, nausea, vomiting)
-                                    <ul><li><dose style="color:#f4b02a;font-weight:500">1 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
-                                </li>
-                                <li>Moderate effects (shortness of breath)
-                                    <ul><li><dose style="color:#f4b02a;font-weight:500">2 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
-                                </li>
-                                <li>Severe effects (seizures, vomiting, apnea)
-                                    <ul><li><dose style="color:#f4b02a;font-weight:500">3 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
-                                </li>
-                            </div>
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Adult:</div>
+                                <ol>
+                                    <li>Mild effects (miosis, rhinorrhea, nausea, vomiting)
+                                        <ul><li><dose style="color:#f4b02a;font-weight:500">1 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                    </li>
+                                    <li>Moderate effects (shortness of breath)
+                                        <ul><li><dose style="color:#f4b02a;font-weight:500">2 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                    </li>
+                                    <li>Severe effects (seizures, vomiting, apnea)
+                                        <ul><li><dose style="color:#f4b02a;font-weight:500">3 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                    </li>
+                                </ol>
                             {% else %}
                                 {% if keys.ptYears14 %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years), Pediatric &gt; 14 years:
-                                        <ul><li><dose style="color:#f4b02a;font-weight:500">3 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
-                                    </div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Pediatric &gt; 14 years:</div>
+                                    </ol>
+                                        <li><dose style="color:#f4b02a;font-weight:500">3 - atropine/2-Pralidoxime IM via auto-injector</dose></li>
+                                    </ol>
                                 {% elif keys.ptYears7 %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years), Pediatric 7 - 14 years:
-                                        <ul><li><dose style="color:#f4b02a;font-weight:500">2 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
-                                    </div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Pediatric 7 - 14 years:</div>
+                                    <ol>
+                                        <li><dose style="color:#f4b02a;font-weight:500">2 - atropine/2-Pralidoxime IM via auto-injector</dose></li>
+                                    </ol>
                                 {% else %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years), Pediatric &lt; 7 years:
-                                        <ul><li><dose style="color:#f4b02a;font-weight:500">1 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
-                                    </div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Pediatric &lt; 7 years:</div>
+                                    <ol>
+                                        <li><dose style="color:#f4b02a;font-weight:500">1 - atropine/2-Pralidoxime IM via auto-injector</dose></li>
+                                    </ol>
                                 {% endif %}
                             {% endif %}
                         {% else %}
                         <li>Treatment Adult:
-                            <ul>
+                            <ol>
                                 <li>Mild effects (miosis, rhinorrhea, nausea, vomiting)
-                                    <ol><li>1 - atropine/2-Pralidoxime IM via auto-injector</li></ol>
+                                    <ol><li>1 - atropine/2-Pralidoxime IM via auto-injectors</li></ol>
                                 </li>
                                 <li>Moderate effects (shortness of breath)
-                                    <ol><li>2 - atropine/2-Pralidoxime IM via auto-injector</li></ol>
+                                    <ol><li>2 - atropine/2-Pralidoxime IM via auto-injectors</li></ol>
                                 </li>
                                 <li>Severe effects (seizures, vomiting, apnea)
-                                    <ol><li>3 - atropine/2-Pralidoxime IM via auto-injector</li></ol>
+                                    <ol><li>3 - atropine/2-Pralidoxime IM via auto-injectors</li></ol>
                                 </li>
-                            </ul>
+                            </ol>
                         </li>
                         <li>Treatment Pediatric:
                             <ol>
@@ -927,75 +887,77 @@
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
                     <div class="advancedCare orderedList">
-                        <ol>
                             {% if keys.ptYears > 0 %}
-                                {% if keys.ptAdult %}
-                                <li>
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years), Adult:
-                                        <div>
-                                            <div>Mild effects:
-                                                <ol><li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li></ol>
-                                            </div>
-                                            <div>Moderate effects:
-                                                <ol><li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li></ol>
-                                            </div>
-                                            <div>Severe effects:
-                                                <ol><li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 6 mg IV, IM, IO</dose></li></ol>
-                                            </div>
-                                            <div>Seizures:
-                                                <ol><li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><dose style="color:#f4b02a;font-weight:500"> 10 mg IM, IN</dose></li></ol>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                {%else %}
-                                <li>
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs) Pediatric:
+                            <ol>
+                                <li><div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                                <div>Mild effects:
+                                                    <ul>
+                                                        <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li>
+                                                    </ul>
+                                                </div>
+                                                <div>Moderate effects:
+                                                    <ul>
+                                                        <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
+                                                    </ul>
+                                                </div>
+                                                <div>Severe effects:
+                                                    <ul>
+                                                        <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> 6 mg IV, IM, IO</dose></li>
+                                                    </ul>
+                                                </div>
+                                                <div>Seizures:
+                                                    <ul>
+                                                        <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><dose style="color:#f4b02a;font-weight:500"> 10 mg IM, IN</dose></li>
+                                                    </ul>
+                                                </div>
+                                            </ol>
+                                        </li>
+                                    {%else %}
                                         {% if keys.ptMax300 %}
                                             <div>Mild - moderate symptoms
-                                                <ol>
+                                                <ul>
                                                     <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                    <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose> as indicated</li>
+                                                </ul>
                                             </div>
                                             <div>Severe symptoms
-                                                <ol>
+                                                <ul>
                                                     <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 6 mg IV, IM, IO</dose></li>
-                                                </ol>
-                                            </ol>
+                                                </ul>
                                             <div>Seizures:
-                                                <ol>
+                                                <ul>
                                                     <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
-                                                </ol>
+                                                </ul>
                                             </div>
                                         {% elif keys.ptMax200 %}
                                             <div>Mild - moderate symptoms
-                                                    <ol>
-                                                        <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
-                                                        <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li>
-                                                    </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
+                                                    <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO as indicated</dose></li>
+                                                </ul>
                                             </div>
                                             <div>Severe symptoms
-                                                    <ol>
-                                                        <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - 6 mg IV, IM, IO</dose></li>
-                                                    </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} - 6 mg IV, IM, IO</dose></li>
+                                                </ul>
                                             </div>
                                             <div>Seizures:
-                                                    <ol>
-                                                        <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
-                                                    </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
+                                                </ul>
                                             </div>
                                             {% elif keys.ptMax120 %}
                                             <div>Mild - moderate symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 4 mg IV, IM, IO</dose></li>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} - 4 mg IV, IM, IO</dose></li>
+                                                    <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose> as indicated</li>
+                                                </ul>
                                             </div>
                                             <div>Severe symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - 6 mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} - 6 mg IV, IM, IO</dose></li>
+                                                </ul>
                                             </div>
                                             <div>Seizures:
                                                 <ul>
@@ -1004,15 +966,15 @@
                                             </div>
                                             {% elif keys.ptMax100 %}
                                             <div>Mild - moderate symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - 4.00 mg IV, IM, IO</dose></li>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs)/50) }} - 4.00 mg IV, IM, IO</dose></li>
+                                                    <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IM, IO</dose> as indicated</li>
+                                                </ul>
                                             </div>
                                             <div>Severe symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} - {{ '%0.2f'| format(( keys.ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ul>
                                             </div>
                                             <div>Seizures:
                                                 <ul>
@@ -1021,15 +983,15 @@
                                             </div>
                                             {% elif keys.ptMax80 %}
                                             <div>Mild - moderate symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - 4.00 mg IV, IM, IO</dose></li>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs)/50) }} - 4.00 mg IV, IM, IO</dose></li>
+                                                    <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} mg IV, IM, IO</dose> as indicated</li>
+                                                </ul>
                                             </div>
                                             <div>Severe symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} - {{ '%0.2f'| format(( keys.ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ul>
                                             </div>
                                             <div>Seizures:
                                                 <ul>
@@ -1038,15 +1000,15 @@
                                             </div>
                                             {% elif keys.ptMax66 %}
                                             <div>Mild - moderate symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs)/50) }} - {{ '%0.2f'| format(( keys.ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                    <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} mg IV, IM, IO</dose> as indicated</li>
+                                                </ul>
                                             </div>
                                             <div>Severe symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} - {{ '%0.2f'| format(( keys.ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ul>
                                             </div>
                                             <div>Seizures:
                                                 <ul>
@@ -1055,43 +1017,44 @@
                                             </div>
                                             {% elif keys.ptMax50 %}
                                             <div>Mild - moderate symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs)/50) }} - {{ '%0.2f'| format(( keys.ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                    <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} mg IV, IM, IO</dose> as indicated</li>
+                                                </ul>
                                             </div>
                                             <div>Severe symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} - {{ '%0.2f'| format(( keys.ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ul>
                                             </div>
                                             <div>Seizures:
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs*3)/20) }} IM <b>or</b> 10 mg IN</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs*3)/20) }} IM <b>or</b> 10 mg IN</dose></li>
+                                                </ul>
                                             </div>
                                             {% else %}
                                             <div>Mild - moderate symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs)/50) }} - {{ '%0.2f'| format(( keys.ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                    <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} mg IV, IM, IO</dose> as indicated</li>
+                                                </ul>
                                             </div>
                                             <div>Severe symptoms
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><red><b> maximum dose </b></red><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs)/50) }} - {{ '%0.2f'| format((ptKgs)/20) }} mg IV, IM, IO</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.atropine')}}">Atropine</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs)/50) }} - {{ '%0.2f'| format(( keys.ptKgs)/20) }} mg IV, IM, IO</dose></li>
+                                                </ul>
                                             </div>
                                             <div>Seizures:
-                                                <ol>
-                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((ptKgs*3)/20) }} IM <b>or</b> {{ '%0.2f'| format((ptKgs)/5) }} IN</dose></li>
-                                                </ol>
+                                                <ul>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam</a><dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(( keys.ptKgs*3)/20) }} IM <b>or</b> {{ '%0.2f'| format(( keys.ptKgs)/5) }} IN</dose></li>
+                                                </ul>
                                             </div>   
                                         {% endif %}
-                                    </div>
+                                    {% endif %}
                                 </li>
                                 <li>Repeat atropine every 3-5 minutes as indicated</li>
-                                {% endif %}
+                            </ol>
+                            
                             {% else %}
                                 <li>Treatment Adult:
                                     <ol>
@@ -1119,7 +1082,6 @@
                                 </li>
                                 <li>Repeat atropine every 3-5 minutes as indicated</li>
                             {% endif %}
-                        </ol>
                     </div><hr><br>
             </div>
         </div>
@@ -1147,7 +1109,7 @@
         <h3>Radiation Incident</h3>
 
         <div>
-            <input type="checkbox" name="accordian" id=" radiationBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" radiationBasicTreatment" class="accordian__input" checked="checked">
             <label for=" radiationBasicTreatment" class="accordian__label">BLS Treatment</label>                
             <div class="basicTreatmentSection">
                 <h3>Basic Medical Care</h3>

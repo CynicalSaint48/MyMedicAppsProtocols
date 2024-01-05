@@ -923,6 +923,11 @@ red {
    color:#D2042D;
 }
 
+dope {
+   color: var(--teal-accent);
+   font-weight: 700;
+}
+
 .bsaLists {
    display: flex;
    flex-wrap: wrap;

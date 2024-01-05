@@ -34,14 +34,14 @@ def get_key_list():
         keys['ptAdult'] = True
 
     elif ptYears > 14:
-        keys['ptYears7'] = False
+        keys['ptYears7'] = True
         keys['ptYears14'] = True
-        keys['ptAdult'] = True
+        keys['ptAdult'] = False
 
     elif ptYears > 7:
-        keys['ptYears7'] = False
+        keys['ptYears7'] = True
         keys['ptYears14'] = False
-        keys['ptAdult'] = True
+        keys['ptAdult'] = False
 
     else:
         keys['ptYears7'] = False
