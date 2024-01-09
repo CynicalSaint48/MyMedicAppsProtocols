@@ -1,0 +1,387 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Diabetic Problems</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" diabetesNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" diabetesNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Diabetic Ketoacidosis (DKA)</H3>
+                    <div class="objectivelist">
+                        <ul>
+                            <li>Results from inadequate supply of insulin</li>
+                            <li>Results in hyperglycemia, osmotic diuresis, dehydration, electrolyte abnormalities, ketone production, and metabolic acidosis</li>
+                            <li>Causes:
+                                <ul class="differentialText">
+                                    <li>Burns</li>
+                                    <li>Infection</li>
+                                    <li>Myocardial infarction</li>
+                                    <li>Non-compliance</li>
+                                    <li>Pregnancy</li>
+                                    <li>Stroke</li>
+                                    <li>Surgery</li>
+                                    <li>Trauma</li>
+                                </ul>
+                            </li>
+                            <li>Clinical Presentation (DKA):
+                                <ul class="differentialText">
+                                    <li>Acidosis</li>
+                                    <li>Hyperglycemia</li>
+                                    <li>Hyperkalemia</li>
+                                    <li>Hypotension</li>
+                                    <li>Kussmaul respirations</li>
+                                    <li>Polydipsia</li>
+                                    <li>Polyuria</li>
+                                    <li>Tachycardia</li>
+                                    <li>Tachypnea</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                <H3>Diabetic Ketoacidosis (DKA)</H3>
+                    <div class="objectivelist">
+                        <ul>
+                            <li>Results from inadequate supply of insulin</li>
+                            <li>Results in severe hyperglycemia, hyperosmolality, osmotic diuresis, dehydration without ketone production or acidosis</li>
+                            <li>Causes:
+                                <ul class="differentialText">
+                                    <li>Same as DKA</li>
+                                </ul>
+                            </li>
+                            <li>Clinical Presentation (HNKH):
+                                <ul class="differentialText">
+                                    <li>Altered mental status</li>
+                                    <li>Dehydration</li>
+                                    <li>Hyperglycemia</li>
+                                    <li>Hyperosmolality</li>
+                                    <li>Hypotension</li>
+                                    <li>Nausea/vomiting</li>
+                                    <li>Tachycardia</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                <H3>Hypoglycemia</H3>
+                    <div class="objectivelist">
+                        <ul>
+                            <li>Definition: serum glucose &lt; 60 mg/dl</li>
+                            <li>Causes:
+                                <ul class="differentialText">
+                                    <li>Adrenal insufficiency</li>
+                                    <li>Hypothermia</li>
+                                    <li>Inadequate intake</li>
+                                    <li>Infection (Sepsis)</li>
+                                    <li>Insulinoma</li>
+                                    <li>Medication Overdose</li>
+                                </ul>
+                            </li>
+                            <li>Clinical Presentation (HNKH):
+                                <ul class="differentialText">
+                                    <li>Altered mental status</li>
+                                    <li>Coma</li>
+                                    <li>Diaphoresis</li>
+                                    <li>Disorientation</li>
+                                    <li>History of diabetes</li>
+                                    <li>Lethargy</li>
+                                    <li>Seizure</li>
+                                    <li>Tachycardia</li>
+                                    <li>Tremors</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <h2>Hypoglycemia</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" diabetesHypoBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" diabetesHypoBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" diabetesHypoAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" diabetesHypoAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><a href="{{url_for('medications.glucose')}}">D10</a> for hypoglycemia
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">100 ml IV, IO</dose>
+                                                <ol>
+                                                    <li>Reassess mental status/recheck glucose</li>
+                                                    <li>As indicated repeat D10 @ 100 ml IV, IO</li>
+                                                    <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptYears >= 8 %}
+                                            {% if keys.ptMax20 %}
+                                                <ol>
+                                                    <li>Pediatric &ge; 8 Years: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">100 ml IV, IO</dose>
+                                                        <ol>
+                                                            <li>Reassess mental status/recheck glucose</li>
+                                                            <li>As indicated repeat D10 @ 5 ml/kg IV, IO (maximum 100 ml)</li>
+                                                            <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li>Pediatric &ge; 8 Years: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*5)|int }} ml IV, IO</dose>
+                                                        <ol>
+                                                            <li>Reassess mental status/recheck glucose</li>
+                                                            <li>As indicated repeat D10 @ 5 ml/kg IV, IO (maximum 100 ml)</li>
+                                                            <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if ptMax50 %}
+                                                <ol>
+                                                    <li>Pediatric &lt; 8 Years: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">100 ml IV, IO</dose>
+                                                        <ol>
+                                                            <li>Reassess mental status/recheck glucose</li>
+                                                            <li>As indicated repeat D10 @ 2 ml/kg IV, IO (maximum 100 ml)</li>
+                                                            {% if ptMax20 %}
+                                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
+                                                            {% else %}
+                                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">0.5 mg IM</dose></li>
+                                                            {% endif %}
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                            {% else %}
+                                            <ol>
+                                                <li>Pediatric &lt; 8 Years:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*2)|int }} ml IV, IO</dose>
+                                                    <ol>
+                                                        <li>Reassess mental status/recheck glucose</li>
+                                                        <li>As indicated repeat D10 @ 2 ml/kg IV, IO (maximum 100 ml)</li>
+                                                        {% if ptMax20 %}
+                                                            <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
+                                                        {% else %}
+                                                            <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">0.5 mg IM</dose></li>
+                                                            <div class="add-margin-L"><red><b>Contraindicated in Neonates &lt; 1 month old</b></red></div>
+                                                        {% endif %}
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: D10 @ 100 ml IV, IO
+                                            <ol>
+                                                <li>Reassess mental status/recheck glucose</li>
+                                                <li>As indicated repeat D10 @ 100 ml IV, IO</li>
+                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> 1 mg IM</li>
+                                            </ol>
+                                        </li>
+                                        <li>Pediatric &ge; 8 years: D10 @ 5 ml/kg IV, IO (maximum 100 ml)
+                                            <ol>
+                                                <li>Reassess mental status/recheck glucose</li>
+                                                <li>As indicated repeat D10 @ 5 ml/kg IV, IO (maximum 100 ml)</li>
+                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> 1 mg IM</li>
+                                            </ol>
+                                        </li>
+                                        <li>Pediatric 31 days - 8 years: D10 @ 2 ml/kg IV, IO (maximum 100 ml)
+                                            <ol>
+                                                <li>Reassess mental status/recheck glucose</li>
+                                                <li>As indicated repeat D10 @ 2 ml/kg IV, IO (maximum 100 ml)</li>
+                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a>
+                                                    <ul>
+                                                        <li>&le; 20 kg: 0.5 mg IM</li>
+                                                        <li>&gt; 20 kg: 1 mg IM</li>
+                                                    </ul>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                        <li>Neonate (0 - 30 days of age): D10 @ 2 ml/kg IV, IO
+                                            <ol>
+                                                <li>Reassess/recheck glucose</li>
+                                                <li>Repeat D10 @ 2 ml/kg IV, IO as indicated per mental status and blood glucose level
+                                                    </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Obtain rhythm strip and refer to appropriate protocol as indicated</li>
+                            <li>Considers causes of hypoglycemia and treat per appropriate protocol</li>
+                        </ol>
+                        <div class="medication-dose-group">
+                            <div>
+                            <ul>
+                                <li>If D10 unavailable:
+                                    <ul>
+                                        <li>Dilute D50 to D25 (D12.5 for neonates &lt; 30 days old)
+                                            <ul>
+                                                <li>Adults = D25 @ 50 ml, IV, IO</li>
+                                                <li>&gt; 8 years = D25 @ 50ml IV, IO</li>
+                                                <li>31 days - 8 years = D25 @ 2 ml/kg IV, IO (maximum 50ml)</li>
+                                                <li>&lt; 30 days old = D12.5 @ 2 ml/kg IV, IO</li>
+                                            </ul>
+                                        </li>
+                                        <li>Reassess and repeat as indicated based on patient condition and blood glucose level</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div><hr><br>
+            </div>
+        </div>
+        <h2>Hyperglycemia</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" diabetesHyperBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" diabetesHyperBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Assess blood glucose level</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" diabetesHyperAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" diabetesHyperAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            {% if keys.ptYears > 0 %}
+                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <li><a FIXME: href="#">IVF</a>:
+                                        <ul>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 500 - 1000 ml</dose> bolus and reassess</li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    {% if keys.ptMax100 %}                                     
+                                        <ol>
+                                            <li>Pediatric:<dose style="color:#f4b02a;font-weight:500"> 500 - 1000 ml </dose>as per patient condition</li>
+                                        </ol>
+                                    {% elif keys.ptMax50 %}                                     
+                                        <ol>
+                                            <li>Pediatric:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - 1000 ml</dose></li>
+                                        </ol>
+                                    {% else %}                                     
+                                        <ol>
+                                            <li>Pediatric:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }} ml</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                            {% endif %}
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax26 %}
+                                            <ol>
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 4 mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs * 3)/20) }}mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 4 - 8 mg PO, IV, IM </li>
+                                    <li> Pediatric dose = 0.15 mg/kg PO, IV, IM (maximum 4 mg) </li>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Consider causes of hyperglycemia and treat per appropriate protocol</li>
+                            <li>Obtain 12-lead ECG if patient presentation consistent with DKA</li>
+                            <li>Administer <a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a">2 grams</dose> IV for ECG changes of suspected hyperkalemia</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" diabetesAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" diabetesAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Blood glucose should be assessed on all patients with an altered level of consciousness</li>
+                            <li>For hypoglycemic patients post treatment and refusing transport ensure the following:
+                                <ul>
+                                    <li>Glucose level &gt; 80</li>
+                                    <li>History of diabetes on insulin therapy (not on oral agents)</li>
+                                    <li>Patient access to food and ability to eat</li>
+                                    <li>Capacity to make an informed healthcare decision</li>
+                                    <li>If all the above are not met, contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                </ul>
+                            </li>
+                            <li>Patients on oral hypoglycemic agents are at increased risk for recurrent hypoglycemia and therefore should be transported for further evaluation and/or treatment</li>
+                            <li>Hyperglycemia resulting in diabetic ketoacidosis may be associated with hyperkalemia
+                                <ul><li>This may result in cardiac dysrhythmias, therefore cardiac monitoring is essential in these patients</li></ul>
+                            </li>
+                            <li>If intravascular access is required for resuscitative purposes and peripheral intravenous lines are unobtainable after two attempts, and glucagon is ineffective, an intraosseous line should be initiated</li>
+                        </ul>
+                    </div>
+                    <h3>Hypoglycemic Agents</h3>
+                    <div>
+                        <ul>
+                            <li>Oral Agents
+                                <div class="proto-image">
+                                    <div><img src="{{ url_for('static', filename='images/protocol/hypoglycemia1.jpg') }}" alt="Hypoglycemic Agents Oral"></div>
+                                </div>
+                            </li>
+                            <li>Insulins
+                                <div class="proto-image">
+                                    <div><img src="{{ url_for('static', filename='images/protocol/hypoglycemia2.jpg') }}" alt="Insulins"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

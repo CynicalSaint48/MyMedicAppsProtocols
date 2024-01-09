@@ -442,3 +442,10 @@ def convulsions():
     keys = get_key_list()
 
     return render_template('/protocols/Convulsions.html', keys=keys, varTitle="Convulsions/Seizures")
+
+@protocols.route("/protocols/Diabetic")
+def diabetic():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Diabetic.html', keys=keys, varTitle="Diabetic Problems")
