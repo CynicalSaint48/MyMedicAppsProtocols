@@ -35,26 +35,26 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <div class="add-margin-L">Adult:</div>
                                             <ul>
-                                                {% if ptMax50 %}
+                                                {% if keys.ptMax50 %}
                                                     <li><dose style="color:#f4b02a;font-weight:500">50 mEq </mEnu></dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 amp</dose></li>
                                                 {% else %}
-                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ ptKgs }} mEq </mEnu></dose>&emsp;to&emsp;<dose style="color:#f4b02a;font-weight:500">1 amp</dose></li>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs }} mEq </mEnu></dose>&emsp;to&emsp;<dose style="color:#f4b02a;font-weight:500">1 amp</dose></li>
                                                 {% endif %}
                                             </ul>
                                 {% else %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <div class="add-margin-L">Pediatric:</div>
                                             <ul>
-                                                {% if ptMax50 %}
+                                                {% if keys.ptMax50 %}
                                                     <li><dose style="color:#f4b02a;font-weight:500">50 mEq </mEnu></dose>&emsp;-&emsp;<dose style="color:#f4b02a;font-weight:500">1 amp</dose></li>
                                                 {% else %}
-                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ ptKgs }} mEq </mEnu></dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ ptKgs }} ml</dose></li>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs }} mEq </mEnu></dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs }} ml</dose></li>
                                                 {% endif %}
                                             </ul>
                                 {% endif %}

@@ -60,23 +60,23 @@
             </div> 
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                    {% if ptMax100 %}
+                                {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptMax100 %}
                                         <ul>
                                             <li>Adult: <b style="color:#D2042D;font-weight:600">maximum </b><dose style="color:#f4b02a;font-weight:500">300 mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">3 ml</dose></li>
                                             <div>&emsp;Single repeat dose: <b style="color:#D2042D;font-weight:600">maximum </b><dose style="color:#f4b02a;font-weight:500">150 mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1.5 ml</dose></div>
                                         </ul>
                                     {% else %}
                                     <ul>
-                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(ptKgs * 3) }} mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs * 3)/100) }} ml</dose></li>
-                                        <div>&emsp;Single repeat dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format ((ptKgs * 3)/2) }} mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs * 3)/200) }} ml</dose></div>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 3) }} mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs * 3)/100) }} ml</dose></li>
+                                        <div>&emsp;Single repeat dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format ((keys.ptKgs * 3)/2) }} mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs * 3)/200) }} ml</dose></div>
                                     </ul>
                                     {% endif%}
                                 {% else %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <ul>
                                             <li>Pediatric: <b style="color:#D2042D;font-weight:600">Requires consultation with Medical Director or EMS Fellow</b> <a FIXME: href="" FIXME:>Medical Control - Ring Central</a></li>
                                         </ul>

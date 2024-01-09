@@ -35,14 +35,14 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <div class="add-margin-L">Adult:</div>
                                             <ul><li><dose style="color:#f4b02a;font-weight:500">50:50 mixture via self-administered device</dose></li></ul>
                                 {% else %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <div class="add-margin-L">Pediatric:</div>
                                             <ul><li><dose style="color:#f4b02a;font-weight:500">50:50 mixture via self-administered device</dose></li></ul>
                                     {% endif %}

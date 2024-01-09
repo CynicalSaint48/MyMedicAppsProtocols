@@ -67,28 +67,28 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <ul>
                                             <li>Cardiac
-                                            <div class="add-margin-L">Initial Dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*3)/4) }} - {{ '%0.2f'| format((ptKgs*3)/2) }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs*3)/4)/20) }} - {{ '%0.2f'| format(((ptKgs*3)/2)/20) }} ml</dose></div>
-                                            <div class="add-margin-L">Repeat Dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/2) }} - {{ '%0.2f'| format((ptKgs*3)/4) }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs)/2)/20) }} - {{ '%0.2f'| format(((ptKgs*3)/4)/20) }} ml</dose></div>
+                                            <div class="add-margin-L">Initial Dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.1f'| format((keys.ptKgs*3)/4) }} - {{ '%0.1f'| format((keys.ptKgs*3)/2) }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((keys.ptKgs*3)/4)/20) }} - {{ '%0.2f'| format(((keys.ptKgs*3)/2)/20) }} ml</dose></div>
+                                            <div class="add-margin-L">Repeat Dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.1f'| format((keys.ptKgs)/2) }} - {{ '%0.1f'| format((keys.ptKgs*3)/4) }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((keys.ptKgs)/2)/20) }} - {{ '%0.2f'| format(((keys.ptKgs*3)/4)/20) }} ml</dose></div>
                                             </li>
                                             <li>IO Analgesia
                                                 <div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">20 - 40 mg IO</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 - 2 ml</dose></div>
                                             </li>
                                         </ul>
                                 {% else %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <ul>
                                             <li>Cardiac
-                                            <div class="add-margin-L">Initial Dose: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs*3)/4)/20) }} - {{ '%0.2f'| format(((ptKgs*3)/2)/20) }} ml</dose></div>
-                                            <div class="add-margin-L">Repeat Dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/2) }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs)/2)/20) }} ml</dose></div>
+                                            <div class="add-margin-L">Initial Dose: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.1f'| format(((keys.ptKgs*3)/4)/20) }} - {{ '%0.2f'| format(((keys.ptKgs*3)/2)/20) }} ml</dose></div>
+                                            <div class="add-margin-L">Repeat Dose: <dose style="color:#f4b02a;font-weight:500">{{ '%0.1f'| format((keys.ptKgs)/2) }} mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((keys.ptKgs)/2)/20) }} ml</dose></div>
                                             </li>
                                             <li>IO Analgesia
-                                                <div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/2) }} mg IO</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(((ptKgs)/2)/20) }} ml</dose></div>
+                                                <div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">{{ '%0.1f'| format((keys.ptKgs)/2) }} mg IO</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.1f'| format(((keys.ptKgs)/2)/20) }} ml</dose></div>
                                             </li>
                                         </ul>
                                 {% endif %}

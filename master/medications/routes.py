@@ -1,676 +1,209 @@
 from flask import render_template, Blueprint
 from flask import session
+from decimal import *
+from master.protocols.routes import get_key_list
 
 medications = Blueprint('medications', __name__)
 
 @medications.route("/medications/acetaminophen")
 def acetaminophen():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax43 = False
-    if ptYears >= 18:
-        ptAdult = True
-        ptMax43 = False
-    else:
+    
+    keys = get_key_list()
 
-        if ptKgs >= 43:
-            ptAdult = False
-            ptMax43 = True
-        else:
-            ptMax43 = False
-
-    return render_template('/medications/acetaminophen.html', ptAdult=ptAdult, ptMax43=ptMax43, ptYears=ptYears, ptKgs=ptKgs, varTitle="Acetaminophen")
+    return render_template('/medications/acetaminophen.html', keys=keys, varTitle="Acetaminophen")
 
 @medications.route("/medications/adenosine")
 def adenosine():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax60 = False
-    if ptYears >= 18:
-        ptAdult = True
-        ptMax60 = False
-    else:
+    
+    keys = get_key_list()
 
-        if ptKgs >= 60:
-            ptAdult = False
-            ptMax60 = True
-        else:
-            ptMax60 = False
-
-    return render_template('/medications/adenosine.html', ptAdult=ptAdult, ptMax60=ptMax60, ptYears=ptYears, ptKgs=ptKgs, varTitle="Adenosine")
+    return render_template('/medications/adenosine.html', keys=keys, varTitle="Adenosine")
 
 @medications.route("/medications/albuterol")
 def albuterol():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
+    
+    keys = get_key_list()
 
-    return render_template('/medications/albuterol.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Albuterol")
+    return render_template('/medications/albuterol.html', keys=keys, varTitle="Albuterol")
 
 @medications.route("/medications/aspirin")
 def aspirin():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
+    
+    keys = get_key_list()
 
-    return render_template('/medications/aspirin.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Aspirin")
+    return render_template('/medications/aspirin.html', keys=keys, varTitle="Aspirin")
 
 @medications.route("/medications/atropine")
 def atropine():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
+    
+    keys = get_key_list()
 
-    ptAdult = False
-    ptYrs8 = False
-    ptKg5Min = False
-    ptMax25 = False
-    ptMax50 = False
-
-    if ptYears <= 8:
-        ptAdult = False
-        ptYrs8 = False
-
-    elif ptYears >= 18:
-        ptAdult = True
-        ptYrs8 = True
-    else:
-        ptAdult = False
-        ptYrs8 = True
-
-
-    if ptKgs >= 50:
-        ptKg5Min = True
-        ptMax25 = True
-        ptMax50 = True
-
-    elif ptKgs >= 25:
-        ptKg5Min = True
-        ptMax25 = True
-        ptMax50 = False
-
-    elif ptKgs >= 5:
-        ptKg5Min = True
-        ptMax25 = False
-        ptMax50 = False
-
-    else:
-        ptKg5Min = False
-        ptMax25 = False
-        ptMax50 = False
-
-   
-
-    return render_template('/medications/atropine.html', ptAdult=ptAdult, ptYears=ptYears, ptYrs8=ptYrs8, ptKgs=ptKgs, ptMax50=ptMax50, ptMax25=ptMax25, ptKg5Min=ptKg5Min, varTitle="Atropine")
+    return render_template('/medications/atropine.html', keys=keys, varTitle="Atropine")
 
 @medications.route("/medications/calcium")
 def calcium():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax100 = False
-    if ptYears >= 18:
-        ptAdult = True
-        ptMax100 = False
-    else:
+    
+    keys = get_key_list()
 
-        if ptKgs >= 100:
-            ptAdult = False
-            ptMax100 = True
-        else:
-            ptMax100 = False
-
-    return render_template('/medications/calcium.html', ptAdult=ptAdult, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Calcium")
+    return render_template('/medications/calcium.html', keys=keys, varTitle="Calcium")
 
 @medications.route("/medications/cefazolin")
 def cefazolin():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptKgsMin = False
-    ptKgsMax = False
+    
+    keys = get_key_list()
 
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 120:
-        ptKgsMax = True
-        ptKgsMin = True
-    elif ptKgs >= 40:
-        ptKgsMax = False
-        ptKgsMin = True
-    else:
-        ptKgsMax = False
-        ptKgsMin = False
-
-    return render_template('/medications/cefazolin.html', ptAdult=ptAdult, ptKgsMax=ptKgsMax, ptKgsMin=ptKgsMin, ptYears=ptYears, ptKgs=ptKgs, varTitle="Cefazolin")
+    return render_template('/medications/cefazolin.html', keys=keys, varTitle="Cefazolin")
 
 @medications.route("/medications/dexamethasone")
 def dexamethasone():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax26 = False
-    if ptYears >= 18:
-        ptAdult = True
-        ptMax26 = False
-    else:
+    
+    keys = get_key_list()
 
-        if ptKgs > 26.6:
-            ptAdult = False
-            ptMax26 = True
-        else:
-            ptMax26 = False
-
-    return render_template('/medications/dexamethasone.html', ptAdult=ptAdult, ptMax26=ptMax26, ptYears=ptYears, ptKgs=ptKgs, varTitle="Dexamethasone")
+    return render_template('/medications/dexamethasone.html', keys=keys, varTitle="Dexamethasone")
 
 @medications.route("/medications/diltiazem")
 def diltiazem():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
+    
+    keys = get_key_list()
 
-    return render_template('/medications/diltiazem.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Diltiazem")
+    return render_template('/medications/diltiazem.html', keys=keys, varTitle="Diltiazem")
 
 @medications.route("/medications/diphenhydramine")
 def diphenhydramine():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax50 = False
+    
+    keys = get_key_list()
 
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 50:
-        ptMax50 = True
-    else:
-        ptMax50 = False
-
-    return render_template('/medications/diphenhydramine.html', ptAdult=ptAdult, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs, varTitle="Diphenhydramine")
+    return render_template('/medications/diphenhydramine.html', keys=keys, varTitle="Diphenhydramine")
 
 @medications.route("/medications/dopamine")
-def dopamine():    
+def dopamine():
 
-    return render_template('/medications/dopamine.html', varTitle="Dopamine")
+    keys = get_key_list()
+
+    return render_template('/medications/dopamine.html', keys=keys, varTitle="Dopamine")
 
 @medications.route("/medications/droperidol")
-def droperidol():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
+def droperidol():
 
-    return render_template('/medications/droperidol.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Droperidol")
+    keys = get_key_list()
+
+    return render_template('/medications/droperidol.html', keys=keys, varTitle="Droperidol")
 
 @medications.route("/medications/epinephrine")
-def epinephrine():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
+def epinephrine():
 
-    ptAdult = False
-    ptMax5 = False
-    ptMax30 = False
-    ptMax100 = False
+    keys = get_key_list()
 
-
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 100:
-        ptMax5 = True
-        ptMax30 = True
-        ptMax100 = True
-    elif ptKgs >= 30:
-        ptMax5 = True
-        ptMax30 = True
-        ptMax100 = False
-    elif ptKgs >= 5:
-        ptMax5 = True
-        ptMax30 = False
-        ptMax100 = False
-    else:
-        ptMax5 = False
-        ptMax30 = False
-        ptMax100 = False
-
-    return render_template('/medications/epinephrine.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, ptMax5=ptMax5, ptMax30=ptMax30, ptMax100=ptMax100, varTitle="Epinephrine")
+    return render_template('/medications/epinephrine.html', keys=keys, varTitle="Epinephrine")
 
 @medications.route("/medications/fentanyl")
-def fentanyl():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax100 = False
-    if ptYears >= 18:
-        ptAdult = True
-        ptMax100 = False
-    else:
+def fentanyl():
 
-        if ptKgs >= 100:
-            ptAdult = False
-            ptMax100 = True
-        else:
-            ptMax100 = False
+    keys = get_key_list()
 
-    return render_template('/medications/fentanyl.html', ptAdult=ptAdult, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Fentanyl")
+    return render_template('/medications/fentanyl.html', keys=keys, varTitle="Fentanyl")
 
 @medications.route("/medications/glucagon")
-def glucagon():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax20 = False
-    if ptYears >= 18:
-        ptAdult = True
-        ptMax20 = False
-    else:
+def glucagon():
 
-        if ptKgs >= 20:
-            ptAdult = False
-            ptMax20 = True
-        else:
-            ptMax20 = False
+    keys = get_key_list()
 
-    return render_template('/medications/glucagon.html', ptAdult=ptAdult, ptMax20=ptMax20, ptYears=ptYears, ptKgs=ptKgs, varTitle="Glucagon")
+    return render_template('/medications/glucagon.html', keys=keys, varTitle="Glucagon")
 
 @medications.route("/medications/glucose")
-def glucose():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
+def glucose():
+    
+    keys = get_key_list()  
 
-    ptAdult = False
-    ptYears8 = False
-    ptMax20 = False
-    ptMax100 = False
-
-    if ptYears >= 18:
-        ptAdult = True
-        ptYears8 = True
-    elif ptYears > 8:
-        ptAdult = False
-        ptYears8 = True
-    else:
-        ptAdult = False
-        ptYears8 = False
-
-
-    if ptKgs >= 100:
-        ptMax20 = True
-        ptMax100 = True
-    elif ptKgs >= 20:
-        ptMax20 = True
-        ptMax100 = False
-    else:
-        ptMax20 = False
-        ptMax100 = False
-
-    return render_template('/medications/glucose.html', ptAdult=ptAdult, ptYears=ptYears, ptYears8=ptYears8, ptKgs=ptKgs, ptMax20=ptMax20, ptMax100=ptMax100, varTitle="Glucose")
+    return render_template('/medications/glucose.html', keys=keys, varTitle="Glucose")
 
 @medications.route("/medications/ibuprophen")
-def ibuprophen():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax26 = False
-    if ptYears >= 18:
-        ptAdult = True
-    else:
+def ibuprophen():
+    
+    keys = get_key_list()  
 
-        if ptKgs >= 26:
-            ptAdult = False
-            ptMax26 = True
-        else:
-            ptMax26 = False
-
-    return render_template('/medications/ibuprophen.html', ptAdult=ptAdult, ptMax26=ptMax26, ptYears=ptYears, ptKgs=ptKgs, varTitle="Ibuprophen")
+    return render_template('/medications/ibuprophen.html', keys=keys, varTitle="Ibuprophen")
 
 @medications.route("/medications/ketamine")
-def ketamine():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax100 = False
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
+def ketamine():
+    
+    keys = get_key_list()  
 
-    if ptKgs >= 100:
-        ptMax100 = True
-    else: 
-        ptMax100 = False
-
-    return render_template('/medications/ketamine.html', ptAdult=ptAdult, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Ketamine")
+    return render_template('/medications/ketamine.html', keys=keys, varTitle="Ketamine")
 
 @medications.route("/medications/labetalol")
-def labetalol():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
+def labetalol():
+    
+    keys = get_key_list()  
 
-    return render_template('/medications/labetalol.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Labetalol")
+    return render_template('/medications/labetalol.html', keys=keys, varTitle="Labetalol")
 
 @medications.route("/medications/lidocaine")
-def lidocaine():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax100 = False
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
+def lidocaine():
+    
+    keys = get_key_list()  
 
-    if ptKgs >= 100:
-        ptMax100 = True
-    else: 
-        ptMax100 = False
-
-    return render_template('/medications/lidocaine.html', ptAdult=ptAdult, ptMax100=ptMax100, ptYears=ptYears, ptKgs=ptKgs, varTitle="Lidocaine")
+    return render_template('/medications/lidocaine.html', keys=keys, varTitle="Lidocaine")
 
 @medications.route("/medications/magnesium")
-def magnesium():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax20 = False
-    ptMax40 = False
+def magnesium():
+    
+    keys = get_key_list()  
 
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 40:
-        ptMax20 = True
-        ptMax40 = True
-    elif ptKgs >= 20:
-        ptMax20 = True
-        ptMax40 = False
-    else: 
-        ptMax20 = False
-        ptMax40 = False
-
-    return render_template('/medications/magnesium.html', ptAdult=ptAdult, ptMax20=ptMax20, ptMax40=ptMax40, ptYears=ptYears, ptKgs=ptKgs, varTitle="Magnesium")
+    return render_template('/medications/magnesium.html', keys=keys, varTitle="Magnesium")
 
 @medications.route("/medications/midazolam")
-def midazolam():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax33 = False
-    ptMax50 = False
+def midazolam():
+    
+    keys = get_key_list()  
 
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 50:
-        ptMax33 = True
-        ptMax50 = True
-    elif ptKgs >= 33:
-        ptMax33 = True
-        ptMax50 = False
-    else: 
-        ptMax33 = False
-        ptMax50 = False
-
-    return render_template('/medications/midazolam.html', ptAdult=ptAdult, ptMax33=ptMax33, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs, varTitle="Midazolam")
+    return render_template('/medications/midazolam.html', keys=keys, varTitle="Midazolam")
 
 @medications.route("/medications/naloxone")
-def naloxone():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax20 = False
+def naloxone():
+    
+    keys = get_key_list()  
 
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 20:
-        ptMax20 = True
-    else: 
-        ptMax20 = False
-
-    return render_template('/medications/naloxone.html', ptAdult=ptAdult, ptMax20=ptMax20, ptYears=ptYears, ptKgs=ptKgs, varTitle="Naloxone")
+    return render_template('/medications/naloxone.html', keys=keys, varTitle="Naloxone")
 
 @medications.route("/medications/nitroglycerin")
-def nitroglycerin():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
+def nitroglycerin():
+    
+    keys = get_key_list()  
 
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-
-    return render_template('/medications/nitroglycerin.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Nitroglycerin")
+    return render_template('/medications/nitroglycerin.html', keys=keys, varTitle="Nitroglycerin")
 
 @medications.route("/medications/nitrous")
-def nitrous():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
+def nitrous():
+    
+    keys = get_key_list()  
 
-    ptAdult = False
-
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-
-    return render_template('/medications/nitrous.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Nitrous")
+    return render_template('/medications/nitrous.html', keys=keys, varTitle="Nitrous")
 
 @medications.route("/medications/norepinephrine")
-def norepinephrine():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
+def norepinephrine():
+    
+    keys = get_key_list()  
 
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-
-    return render_template('/medications/norepinephrine.html', ptAdult=ptAdult, ptYears=ptYears, ptKgs=ptKgs, varTitle="Norepinephrine")
+    return render_template('/medications/norepinephrine.html', keys=keys, varTitle="Norepinephrine")
 
 @medications.route("/medications/ondansetron")
-def ondansetron():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax26 = False
-    if ptYears >= 18:
-        ptAdult = True
-    else:
+def ondansetron():
+    
+    keys = get_key_list()  
 
-        if ptKgs >= 26:
-            ptAdult = False
-            ptMax26 = True
-        else:
-            ptMax26 = False
-
-    return render_template('/medications/ondansetron.html', ptAdult=ptAdult, ptMax26=ptMax26, ptYears=ptYears, ptKgs=ptKgs, varTitle="Ondansetron")
+    return render_template('/medications/ondansetron.html', keys=keys, varTitle="Ondansetron")
 
 @medications.route("/medications/bicarb")
 def bicarb():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax50 = False
+    
+    keys = get_key_list()
 
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 50:
-        ptMax50 = True
-    else:
-        ptMax50 = False
-
-    return render_template('/medications/bicarb.html', ptAdult=ptAdult, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs, varTitle="Sodium Bicarb")
+    return render_template('/medications/bicarb.html', keys=keys, varTitle="Sodium Bicarb")
 
 @medications.route("/medications/sodium_thiosulfate")
 def sodiumThiosulfate():    
-    if not session['ptYears']:
-        ptYears = 0
-        ptKgs = 0.0
-    else:
-        ptYears = session['ptYears']
-        ptKgs = session['ptKgs']
-    ptAdult = False
-    ptMax50 = False
+    
+    keys = get_key_list()
 
-    if ptYears >= 18:
-        ptAdult = True
-    else:
-        ptAdult = False
-
-    if ptKgs >= 50:
-        ptMax50 = True
-    else:
-        ptMax50 = False
-
-    return render_template('/medications/sodium_thiosulfate.html', ptAdult=ptAdult, ptMax50=ptMax50, ptYears=ptYears, ptKgs=ptKgs, varTitle="Sodium Thiosulfate")
+    return render_template('/medications/sodium_thiosulfate.html', keys=keys, varTitle="Sodium Thiosulfate")

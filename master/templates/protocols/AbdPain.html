@@ -4,7 +4,7 @@
     <div class="accordian">
         <H1>Abdominal Pain, Vomiting & Diarrhea</H1><hr>
         <div>
-            <input type="checkbox" name="accordian" id=" abdominalNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" abdominalNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" abdominalNarrative" class="accordian__label">Narrative Protocol</label>
             <div class="narrativeSection">
                 <H3>Differential Diagnosis</H3>
@@ -77,7 +77,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" abdominalBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" abdominalBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" abdominalBasicTreatment" class="accordian__label">BLS Treatment</label>                
             <div class="basicTreatmentSection">
                 <h3>Basic Medical Care</h3>
@@ -100,7 +100,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" abdominalAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" abdominalAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" abdominalAdvancedTreatment" class="accordian__label">ALS Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -201,7 +201,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" abdominalAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" abdominalAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" abdominalAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>

@@ -4,7 +4,7 @@
     <div class="accordian">
         <H1>Back Pain</H1><hr>
         <div>
-            <input type="checkbox" name="accordian" id=" backPainNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" backPainNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" backPainNarrative" class="accordian__label">Narrative Protocol</label>
             <div class="narrativeSection">
                 <h3>Differential Diagnosis</h3>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" backPainBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" backPainBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" backPainBasicTreatment" class="accordian__label">BLS Treatment</label>                
             <div class="basicTreatmentSection">
                 <h3>Basic Medical Care</h3>
@@ -105,7 +105,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" backPainAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" backPainAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" backPainAdvancedTreatment" class="accordian__label">ALS Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -218,7 +218,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" backPainAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" backPainAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" backPainAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>

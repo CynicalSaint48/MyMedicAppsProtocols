@@ -65,20 +65,20 @@
                 
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <ul>
                                                 <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 grams IV 20</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">ml of 10% solution</dose></li>
                                             </ul>
                                 {% else %}
-                                    {% if ptMax100 %}
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    {% if keys.ptMax100 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">2 grams IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500"></dose>20 ml of 10% solution</dose></li></ul>
                                     {% else %}
-                                            <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs * 2)/100) }} g IV;</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{(ptKgs * 20)/100 }} ml</dose></li></ul>
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs * 2)/100) }} g IV;</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{(keys.ptKgs * 20)/100 }} ml</dose></li></ul>
                                     {% endif %}
                                 {% endif %}
                                 <hr>

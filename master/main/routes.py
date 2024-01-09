@@ -4,6 +4,7 @@ from decimal import *
 from master.users.forms import updatePtForm
 from flask_login import login_user, logout_user, login_required, current_user
 from master.models import UpdatePost
+from master.protocols.routes import get_key_list
 
 
 main = Blueprint('main', __name__)
@@ -95,6 +96,6 @@ def updatePt():
 def siteUpdates():
 
     updates = UpdatePost.query.order_by(UpdatePost.date_posted.desc())
-    keys = setPt()
+    keys = getPt()
 
     return render_template('site_updates.html', varTitle='Updates', updates=updates, keys=keys)

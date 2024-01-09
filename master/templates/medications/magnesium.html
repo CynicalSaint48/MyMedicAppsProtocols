@@ -61,24 +61,24 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <ul>
-                                            <li>Obstetric Indications: </li><div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">4 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">4 vials (total 8ml) in 150 ml Normal Saline</dose></div>
+                                            <li>Obstetric Indications: </li><div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">4 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">4 vials (total 8ml) in 150 ml NS</dose> over 15 minutes</div>
                                             <li>Cardiac Indications: </li><div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">1 - 2 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 -2 vials (total of 2 - 4 ml) IV</dose></div>
-                                            <li>Pulmonary indications: </li><div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">1 - 2 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 -2 vials (total of 2 - 4 ml) IV</dose></div>
+                                            <li>Pulmonary indications: </li><div class="add-margin-L"><dose style="color:#f4b02a;font-weight:500">1 - 2 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 -2 vials (total of 2 - 4 ml) IV in 150 ml NS</dose> over 10 minutes</div>
                                         </ul>
                                 {% else %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <ul>
-                                            {% if ptMax40 %}
-                                                <li><div class="add-margin-L">Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b><dose style="color:#f4b02a;font-weight:500"> 1 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 vial (2.0 ml)</dose></div>
-                                            {% elif ptMax20 %}
-                                                <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - 1.00 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/500) }} - 2.0 ml </dose></div>
+                                            {% if keys.ptMax40 %}
+                                                <li><div class="add-margin-L">Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b><dose style="color:#f4b02a;font-weight:500"> 1 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 vial (2.0 ml)</dose> diluted; over 5 - 10 minutes</div>
+                                            {% elif keys.ptMax20 %}
+                                                <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs*25)/1000) }} - 1.00 g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs*25)/500) }} - 2.0 ml </dose> diluted; over 5 - 10 minutes</div>
                                             {% else %}
-                                            <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/1000) }} - {{ '%0.2f'| format((ptKgs*50)/1000) }} g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs*25)/500) }} - {{ '%0.2f'| format((ptKgs*50)/500) }} ml</dose></div>
+                                            <li><div class="add-margin-L">Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs*25)/1000) }} - {{ '%0.2f'| format((keys.ptKgs*50)/1000) }} g IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs*25)/500) }} - {{ '%0.2f'| format((keys.ptKgs*50)/500) }} ml</dose> diluted; over 5 - 10 minutes</div>
                                             {% endif %}
                                         </ul>
                                 {% endif %}

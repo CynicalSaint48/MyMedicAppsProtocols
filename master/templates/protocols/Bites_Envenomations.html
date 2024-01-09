@@ -5,7 +5,7 @@
         <H1>Bites & Envenomations</H1><hr>
         <h2>Snake Bite</h2>
         <div>
-            <input type="checkbox" name="accordian" id=" snakeBiteNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" snakeBiteNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" snakeBiteNarrative" class="accordian__label">Narrative Protocol</label>
             <div class="narrativeSection">
                 <h3>Introduction</h3>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" snakeBiteBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" snakeBiteBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" snakeBiteBasicTreatment" class="accordian__label">BLS Treatment</label>                
             <div class="basicTreatmentSection">
                 <h3>Basic Medical Care</h3>
@@ -72,7 +72,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" snakeBiteAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" snakeBiteAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" snakeBiteAdvancedTreatment" class="accordian__label">ALS Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -147,7 +147,7 @@
 
         <H2> Marine Envenomation/Injury </H2>
         <div>
-            <input type="checkbox" name="accordian" id=" marineNarrative" class="accordian__input" {% if current_user.showNarrative %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" marineNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" marineNarrative" class="accordian__label">Narrative Protocol</label>
             <div class="narrativeSection">
                 <H3> Sources </H3>
@@ -187,7 +187,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" marineBasicTreatment" class="accordian__input" {% if current_user.showBasic %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" marineBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" marineBasicTreatment" class="accordian__label">BLS Treatment</label>                
             <div class="basicTreatmentSection">
                 <h3>Basic Medical Care</h3>
@@ -249,7 +249,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id=" marineAdvancedTreatment" class="accordian__input" {% if current_user.showAdvanced %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" marineAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" marineAdvancedTreatment" class="accordian__label">ALS Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -353,7 +353,7 @@
 
 
         <div>
-            <input type="checkbox" name="accordian" id=" biteEnvenomationsAdditional" class="accordian__input" {% if current_user.showAdditional %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" biteEnvenomationsAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
             <label for=" biteEnvenomationsAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>

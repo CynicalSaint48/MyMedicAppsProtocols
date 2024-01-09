@@ -33,24 +33,24 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears >  0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <ul>
                                                 <li>Adult: <dose style="color:#f4b02a;font-weight:500">650 mg - 975 mg orally</dose></li>
                                                 <thing>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">4 - 6 tablets</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">2 - 3 containers Oral Solution</dose></thing>
                                             </ul>
                                 {% else %}
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            {% if ptMax43 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            {% if keys.ptMax43 %}
                                                     <ul>
                                                         <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">650 mg - 975 mg orally</dose></li>
                                                         <thing>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">4 - 6 tablets</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">2 - 3 containers Oral Solution</dose></thing>
                                                     </ul>
                                             {% else %}
                                                     <ul>
-                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ ptKgs * 15 }} mg orally</dose></li>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs * 15 }} mg orally</dose></li>
                                                         <thing>&nbsp &nbsp <dose style="color:#f4b02a;font-weight:500">see table below</dose></thing>
                                                     </ul>
                                             {% endif %}

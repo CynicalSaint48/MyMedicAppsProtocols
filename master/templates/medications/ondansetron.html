@@ -36,18 +36,18 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <div class="add-margin-L">Adult:</div>
                                             <ul>
                                                 <li><dose style="color:#f4b02a;font-weight:500">4 - 8 mg IV, IM</dose>&emsp;-&emsp;<dose style="color:#f4b02a;font-weight:500">2 - 4 ml</dose></li>
                                                 <li><dose style="color:#f4b02a;font-weight:500">4 - 8 mg PO</dose>&emsp;-&emsp;<dose style="color:#f4b02a;font-weight:500">1 - 2 tablets</dose></li>
                                             </ul>
                                 {% else %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                        {% if ptMax26 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptMax26 %}
                                             <div class="add-margin-L">Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b>
                                                 <ul>
                                                     <li><dose style="color:#f4b02a;font-weight:500">4 mg IV, IM</dose>&emsp;-&emsp;<dose style="color:#f4b02a;font-weight:500">2 ml</dose></li>
@@ -57,7 +57,7 @@
                                         {% else %}
                                             <div class="add-margin-L">Pediatric:
                                                 <ul>
-                                                    <li><dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format((ptKgs*3)/20) }} mg IV, IM</dose>&emsp;-&emsp;<dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(((ptKgs*3)/20)/2) }} ml</dose></li>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format((keys.ptKgs*3)/20) }} mg IV, IM</dose>&emsp;-&emsp;<dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(((keys.ptKgs*3)/20)/2) }} ml</dose></li>
                                                 </ul>
                                              </div>                                                   
                                         {% endif%}

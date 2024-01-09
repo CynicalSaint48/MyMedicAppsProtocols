@@ -58,13 +58,13 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <ul>
                                                 <li>Adult: <dose style="color:#f4b02a;font-weight:500">15 mg IV over 2 minutes;</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ 15/5 }} ml</dose></li>
-                                                <thing>&nbsp &nbsp then <dose style="color:#f4b02a;font-weight:500">20 mg IV over 2 minutes;</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ 20/5 }} ml</dose></thing>
+                                                <thing>&nbsp &nbsp if not resolved after 15 minutes: <dose style="color:#f4b02a;font-weight:500">20 mg IV over 2 minutes;</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ 20/5 }} ml</dose></thing>
                                             </ul>
                                 {% else %}
                                         <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">Contraindicated in Pediatric Patients</b></li></ul>

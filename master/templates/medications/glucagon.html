@@ -35,16 +35,20 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <ul>
                                                 <li>Adult: <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
                                             </ul>
                                 {% else %}
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
-                                            {% if ptMax20 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            {% if keys.ptKgs == 20 %}
+                                                    <ul>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">0.5 mg IM</dose></li>
+                                                    </ul>
+                                            {% elif keys.ptMax20 %}
                                                     <ul>
                                                         <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
                                                     </ul>

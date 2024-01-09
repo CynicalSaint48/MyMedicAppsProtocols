@@ -56,17 +56,17 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                        <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <div>Adult: 
                                             <ul>
                                                 <li><dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min continuous infusion</dose></li>
                                             </ul>
                                             </div>
                                 {% else %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <div>Pediatric:
                                             <ul><li><b style="color:#D2042D;font-weight:600">Must Contact </b><a FIXME: href="" FIXME:>Medical Control Ring Central</a></li></ul>
                                         </div>                                    

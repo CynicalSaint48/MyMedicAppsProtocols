@@ -6,12 +6,15 @@ from master.users.forms import RegistrationForm, LoginForm, AccountForm
 from master import db, bcrypt
 from master.models import User, UpdatePost
 from flask_login import login_user, logout_user, login_required, current_user
+from master.protocols.routes import get_key_list
 
 
 users = Blueprint('users', __name__)
 
 @users.route("/register", methods=['GET', 'POST'])
 def register():
+
+    keys = get_key_list()
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
 
@@ -24,10 +27,11 @@ def register():
         flash(f'Your account has been created!', 'message_success')
         return redirect(url_for('users.login'))
     
-    return render_template('register.html', varTitle='Register', form=form)
+    return render_template('register.html', keys=keys, varTitle='Register', form=form)
 
 @users.route("/login", methods=['GET', 'POST'])
 def login():
+    keys = get_key_list()
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
     
@@ -41,7 +45,7 @@ def login():
         else:
             flash('Login Unsuccessful.  Please check your email and password', 'danger')        
     
-    return render_template('login.html', varTitle='Login', form=form)
+    return render_template('login.html', keys=keys, varTitle='Login', form=form)
 
 @users.route("/logout")
 def logout():
@@ -51,6 +55,7 @@ def logout():
 @users.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
+    keys = get_key_list()
     form = AccountForm()
     if form.validate_on_submit():
         current_user.displayName = form.displayName.data
@@ -68,4 +73,4 @@ def account():
         form.showAdvanced.data = current_user.showAdvanced
         form.showAdditional.data = current_user.showAdditional
 
-    return render_template('account.html', varTitle='Account', form=form)
+    return render_template('account.html', keys=keys, varTitle='Account', form=form)

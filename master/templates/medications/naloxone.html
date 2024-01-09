@@ -31,24 +31,24 @@
                 </div>
                 <div class="medication-dose-group">
                     <div>
-                        {% if ptYears %}
+                        {% if keys.ptYears > 0 %}
                             <div class="med-info-title">Dose for Current Pt:</div>
-                                {% if ptAdult %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <div class="add-margin-L">Adult:</div>
                                             <ul>
                                                 <li><dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IN, IO, IM</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 - 2 ml</dose></li>
                                             </ul>
                                 {% else %}
-                                    <div class="currentPatient">Current Pt ({{ ptYears }} years, {{ ptKgs }}kgs):</div>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                         <div class="add-margin-L">Pediatric:</div>
-                                            {% if ptMax20 %}
+                                            {% if keys.ptMax20 %}
                                                 <ul>
-                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(ptKgs/100) }} - 2.00 mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/100) }} - 2.00 ml</dose></li>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs/100) }} - 2.00 mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs)/100) }} - 2.00 ml</dose></li>
                                                 </ul>
                                             {% else %}
                                                 <ul>
-                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(ptKgs/100) }} - {{ ptKgs/10 }} mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((ptKgs)/100) }} - {{ '%0.2f'| format((ptKgs)/10) }} ml</dose></li>
+                                                    <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs/100) }} - {{ keys.ptKgs/10 }} mg</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs)/100) }} - {{ '%0.2f'| format((keys.ptKgs)/10) }} ml</dose></li>
                                                 </ul>                                                    
                                             {% endif%}
                                     {% endif %}
