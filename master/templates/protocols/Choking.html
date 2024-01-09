@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Choking</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" chokingNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" chokingNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                    <ul class="differentialText">
+                        <li>Anaphylaxis</li>
+                        <li>Angioedema</li>
+                        <li>Asthma</li>
+                        <li>Cerebrovascular accident</li>
+                        <li>Croup</li>
+                        <li>Epiglottitis</li>
+                        <li>Foreign body aspiration</li>
+                        <li>Upper respiratory infection</li>
+                    </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" chokingBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" chokingBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Attempt to remove source of exposure (e.g. stinger) as possible</li>
+                        <li>Partial or complete airway obstruction due to foreign body
+                            <ol>
+                                <li>Patient conscious
+                                    <ol>
+                                        <li>Encourage coughing</li>
+                                        <li>Coughing ineffective &#8594; deliver 5 sub diaphragmatic abdominal thrusts</li>
+                                        <li>Sub diaphragmatic thrusts ineffective (or pregnant patient) &#8594; deliver chest thrusts</li>
+                                        <li>Continue thrusts until obstruction is relieved or unconsciousness occurs</li>
+                                    </ol>
+                                </li>
+                                <li>Infant &lt; 1 year of age conscious
+                                    <ol>
+                                        <li>If child coughing or making sounds, observe for further obstruction</li>
+                                        <li>If choking progresses and cough is ineffective &#8594; deliver 5 back blows then 5 less forceful chest thrusts</li>
+                                        <li>Continue cycle of back blows and chest thrusts until obstruction relieved</li>
+                                    </ol>
+                                </li>
+                                <li>Patient unconscious
+                                    <ol>
+                                        <li>Open airway using head tilt-chin lift and check oral cavity for foreign body</li>
+                                        <li>Use finger sweep as indicated if material is visualized
+                                            <ul><li>Do not perform blind finger sweeps</li></ul>
+                                        </li>
+                                        <li>Attempt ventilations</li>
+                                        <li>Reposition airway as indicated to optimized ventilations</li>
+                                        <li>Repeat above until obstruction relieved or intubation equipment prepped</li>
+                                        <li>Initiate CPR as indicated by patient condition</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" chokingAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" chokingAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>For unconscious patients with airway obstruction unrelieved by methods outlined above, use laryngoscope to visualize posterior pharynx and larynx
+                                <ol><li>Remove any observed foreign material with suction or Magill forceps</li></ol>
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Obtain rhythm strip and refer to appropriate protocol as indicated</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" chokingAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" chokingAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Many choking episodes will be resolved prior to EMS arrival on the scene
+                                <ul>
+                                    <li>A thorough assessment should be performed on all patients regardless of symptoms</li>
+                                </ul>
+                            </li>
+                            <li>Blind finger sweeps without direct visualization of foreign material are <red><b>contraindicated</b></red> in all patients</li>
+                            <li>Any infant choking episode associated with a period of apnea or cyanosis should be transported regardless of appearance on arrival</li>
+                            <li>Choking may be an early sign for stroke onset</li>
+                            <li>Aspiration is often associated with a choking episode</li>
+                            <li>In situations where a complete obstruction is below the level of the vocal cords, the only option may be to perform intubation via standard technique and advance the endotracheal tube into a mainstem bronchus in effort to advance the foreign body into that bronchus
+                                <ul>
+                                    <li>Then withdrawal the endotracheal tube so the distal end is at typical depth within the trachea and ventilate as usual</li>
+                                    <li>Provider will only be ventilating one lung in this instance, but effective oxygenation and ventilation can still occur utilizing a single lung</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

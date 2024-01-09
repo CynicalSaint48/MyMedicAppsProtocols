@@ -421,3 +421,24 @@ def cardiacArrest():
     keys = get_key_list()
 
     return render_template('/protocols/CardiacArrest.html', keys=keys, varTitle="Cardiac Arrest")
+
+@protocols.route("/protocols/ChestPain")
+def chestPain():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/ChestPain.html', keys=keys, varTitle="Chest Pain")
+
+@protocols.route("/protocols/Choking")
+def choking():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Choking.html', keys=keys, varTitle="Choking")
+
+@protocols.route("/protocols/Convulsions")
+def convulsions():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Convulsions.html', keys=keys, varTitle="Convulsions/Seizures")

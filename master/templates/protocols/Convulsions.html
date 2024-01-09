@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Convulsions-Seizures</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" seizureNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" seizureNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul>
+                            <li>Potential Causes  
+                                <ul class="differentialText">
+                                    <li>CNS mass lesions</li>
+                                    <li>CNS trauma</li>
+                                    <li>CVA</li>
+                                    <li>Drug intoxication/overdose</li>
+                                    <li>Drug withdrawal</li>
+                                    <li>Eclampsia</li>
+                                    <li>Epilepsy</li>
+                                    <li>Fever (age: 6 mos. - 6 years)</li>
+                                    <li>Hyperthermia</li>
+                                    <li>Hypoglycemia</li>
+                                    <li>Hyponatremia</li>
+                                    <li>Hypotension/Hypertension</li>
+                                    <li>Hypoxia</li>
+                                    <li>Infection (meningitis/encephalitis)</li>
+                                    <li>Metabolic</li>
+                                </ul><br>
+                            </li>
+                            <li>Status epilepticus = continuous seizure activity lasting &gt; 5 minutes or recurrent seizure activity without clearing to normal mental status between episodes</li>
+                        </ul>
+                    </div>
+                <h3>Clinical Presentation</h3>
+                    <div class="presentationText">
+                        <ul>
+                            <li>Involuntary, non-purposeful, tonic-clonic muscle activity (Grand Mal Seizure)</li>
+                            <li>Unconsciousness or inability to respond (Absence or Petit Mal seizure)</li>
+                            <li>Breath-holding spells</li>
+                            <li>Bowel / Bladder incontinence</li>
+                            <li>Focal or generalized</li>
+                            <li>Tongue biting</li>
+                            <li>Post-ictal confusion</li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" seizureBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" seizureBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li>For patient actively seizing, ensure patient's safety
+                            <ol>
+                                <li>Do not attempt to restrain seizure activity</li>
+                                <li>Protect patient from potential injury by surroundings</li>
+                            </ol>
+                        </li>
+                        <li>Allow conscious patients to maintain in position of comfort</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" seizureAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" seizureAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> for actively seizing or status epilepticus
+                                {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax50 %}
+                                                <ol>
+                                                    <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose></li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs*3)/5) }} mg IM, IN</dose></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                {% else %}
+                                <ol>
+                                    <li>Adult: 10 mg IM, IN</li>
+                                    <li>Pediatric: 0.2 mg/kg IM, IN (maximum 10mg)</li>
+                                </ol>
+                                {% endif %}
+                            </li>
+                            <li>Assess blood glucose level after midazolam (Versed®) administration
+                                <ol>
+                                    <li>For continued seizure activity 5-minutes after initial <a href="{{url_for('medications.midazolam')}}">Midazolam</a> dose and glucose &gt; 60 mg/dL; repeat <a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> administration IM, IN</li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.midazolam')}}">D10</a> for hypoglycemia
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">100 ml IV, IO</dose>
+                                                <ol>
+                                                    <li>Reassess mental status/recheck glucose</li>
+                                                    <li>As indicated repeat D10 @ 100 ml IV, IO</li>
+                                                    <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptYears >= 8 %}
+                                            {% if keys.ptMax20 %}
+                                                <ol>
+                                                    <li>Pediatric &ge; 8 Years: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">100 ml IV, IO</dose>
+                                                        <ol>
+                                                            <li>Reassess mental status/recheck glucose</li>
+                                                            <li>As indicated repeat D10 @ 5 ml/kg IV, IO (maximum 100 ml)</li>
+                                                            <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li>Pediatric &ge; 8 Years: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*5)|int }} ml IV, IO</dose>
+                                                        <ol>
+                                                            <li>Reassess mental status/recheck glucose</li>
+                                                            <li>As indicated repeat D10 @ 5 ml/kg IV, IO (maximum 100 ml)</li>
+                                                            <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if ptMax50 %}
+                                                <ol>
+                                                    <li>Pediatric &lt; 8 Years: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">100 ml IV, IO</dose>
+                                                        <ol>
+                                                            <li>Reassess mental status/recheck glucose</li>
+                                                            <li>As indicated repeat D10 @ 2 ml/kg IV, IO (maximum 100 ml)</li>
+                                                            {% if ptMax20 %}
+                                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
+                                                            {% else %}
+                                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">0.5 mg IM</dose></li>
+                                                            {% endif %}
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                            {% else %}
+                                            <ol>
+                                                <li>Pediatric &lt; 8 Years:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*2)|int }} ml IV, IO</dose>
+                                                    <ol>
+                                                        <li>Reassess mental status/recheck glucose</li>
+                                                        <li>As indicated repeat D10 @ 2 ml/kg IV, IO (maximum 100 ml)</li>
+                                                        {% if ptMax20 %}
+                                                            <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
+                                                        {% else %}
+                                                            <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">0.5 mg IM</dose></li>
+                                                            <div class="add-margin-L"><red><b>Contraindicated in Neonates &lt; 1 month old</b></red></div>
+                                                        {% endif %}
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: D10 @ 100 ml IV, IO
+                                            <ol>
+                                                <li>Reassess mental status/recheck glucose</li>
+                                                <li>As indicated repeat D10 @ 100 ml IV, IO</li>
+                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> 1 mg IM</li>
+                                            </ol>
+                                        </li>
+                                        <li>Pediatric &ge; 8 years: D10 @ 5 ml/kg IV, IO (maximum 100 ml)
+                                            <ol>
+                                                <li>Reassess mental status/recheck glucose</li>
+                                                <li>As indicated repeat D10 @ 5 ml/kg IV, IO (maximum 100 ml)</li>
+                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> 1 mg IM</li>
+                                            </ol>
+                                        </li>
+                                        <li>Pediatric 31 days - 8 years: D10 @ 2 ml/kg IV, IO (maximum 100 ml)
+                                            <ol>
+                                                <li>Reassess mental status/recheck glucose</li>
+                                                <li>As indicated repeat D10 @ 2 ml/kg IV, IO (maximum 100 ml)</li>
+                                                <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a>
+                                                    <ul>
+                                                        <li>&le; 20 kg: 0.5 mg IM</li>
+                                                        <li>&gt; 20 kg: 1 mg IM</li>
+                                                    </ul>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                        <li>Neonate (0 - 30 days of age): D10 @ 2 ml/kg IV, IO
+                                            <ol>
+                                                <li>Reassess/recheck glucose</li>
+                                                <li>Repeat D10 @ 2 ml/kg IV, IO as indicated per mental status and blood glucose level
+                                                    </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>For suspected eclampsia (patient 20 weeks pregnant or &le; 1-month post-partum):
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> <dose style="color:#f4b02a;font-weight:500">4 grams IV</dose> over 15 minutes</li>
+                                            <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> <dose style="color:#f4b02a;font-weight:500">10mg IM, IN</dose></li>
+                                        </ol>
+                                    {% else %}
+                                    <red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red>
+                                        {% if keys.ptMax50 %}
+                                        <ol>
+                                            <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> <dose style="color:#f4b02a;font-weight:500">4 grams IV</dose> over 15 minutes</li>
+                                            <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> <dose style="color:#f4b02a;font-weight:500">10mg IM, IN</dose></li>
+                                        </ol>
+                                        {% else %}
+                                        <ol>
+                                            <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> <dose style="color:#f4b02a;font-weight:500">4 grams IV</dose> over 15 minutes</li>
+                                            <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs*3)/5) }} IM, IN</dose></li>
+                                        </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> 4 grams IV over 15 minutes</li>
+                                        <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> 10mg IM, IN</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> for suspected narcotic overdose
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IO, IN</dose></li></ol>
+                                    {% else %}
+                                        {% if keys.ptMax20 %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> 2 mg IV, IO, IN</dose></li></ol>
+                                        {% else %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs)/10) }} mg IV, IO, IN</dose></li></ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                <ol>
+                                    <li>Adult: 2 mg IV, IO, IN</li>
+                                    <li>Pediatric: 0.1 mg/kg IV, IO, IN (maximum 2 mg)</li>
+                                </ol>
+                                {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Obtain 4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>For patient with a vagus nerve stimulator (VNS) implanted for refractory seizures
+                                <ol>
+                                    <li>Place magnet over the VNS for recurrent/continued seizures
+                                        <ol><li>This will turn the VNS on</li></ol>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" seizureAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" seizureAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Administration of midazolam is indicated for patients actively seizing or in status epilepticus
+                                <ul>
+                                    <li>Status = continuous seizure activity for greater than 5 minutes or 2 or more sequential seizures without full recovery of consciousness between episodes</li>
+                                    <li>Since seizure activity often prompts the 911 call, give midazolam immediately to the patient if they are having continuous seizure activity upon arrival</li>
+                                </ul>
+                            </li>
+                            <li>Continuous nasal cannula ETCO2 monitoring should be utilized following <a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> administration</li>
+                            <li>Treatment for status seizures should be initiated on scene with transport initiated as soon as possible</li>
+                            <li>Do not force objects into the oral cavity during a seizure or during the post-ictal period</li>
+                            <li>Partial seizures may involve muscle twitching in an isolated digit or extremity, various neurological complaints (auditory or visual hallucinations), or repetitive movements (chewing, repetitive hand movements or speech patterns)</li>
+                            <li>Complex or generalized seizures are more common and involve full-body movements</li>
+                            <li>Partial and complex seizures should be treated the same by administering midazolam and then reassessing as above</li>
+                            <li>Suspect cardiac etiology or stroke in patient &gt; 50-years of age with seizure activity
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

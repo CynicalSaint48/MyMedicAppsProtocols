@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Chest Pain (Medical)</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" chestPainNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" chestPainNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Angina</li>
+                            <li>Aortic dissection</li>
+                            <li>Asthma</li>
+                            <li>Bronchitis</li>
+                            <li>Bronchospasm</li>
+                            <li>Cocaine abuse</li>
+                            <li>COPD</li>
+                            <li>Dysrhythmia</li>
+                            <li>Esophageal spasm</li>
+                            <li>Esophagitis</li>
+                            <li>Marijuana abuse</li>
+                            <li>Musculoskeletal pain</li>
+                            <li>Myocardial infarction</li>
+                            <li>Pericarditis</li>
+                            <li>Pneumonia</li>
+                            <li>Pneumothorax</li>
+                            <li>Pulmonary embolus</li>
+                            <li>Rib contusion/fracture</li>
+                            <li>Sickle cell anemia crisis</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" chestPainBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" chestPainBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li><a FIXME:href="">Trauma Initial Assessment Protocol</a> or <a FIXME:href="">Pediatric Trauma Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Allow all conscious patients to sit in a position of comfort</li>
+                        <li>For chest pain considered to be of cardiac etiology refer to <a FIXME: href="#">Heart Problems Protocol</a></li>
+                        <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
+                            {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li>
+                                    </ol>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ol>
+                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        <ol>
+                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs * 15) }} mg PO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% endif %}
+                        {% else %}
+                            <ol>
+                                <li> Adult: 650 - 975 mg PO</li>
+                                <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                </li>
+                            </ol>                           
+                        {% endif %}
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" chestPainAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" chestPainAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>12-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> bolus for signs of hypotension/dehydration
+                                    {% if keys.ptYears > 0 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> 500 - 1000 ml </dose>as per patient condition</li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax100 %}                                     
+                                                <ol>
+                                                    <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> 500 - 1000 ml </dose>as per patient condition</li>
+                                                </ol>
+                                            {% elif keys.ptMax50 %}                                     
+                                                <ol>
+                                                    <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - 1000 ml</dose></li>
+                                                </ol>
+                                            {% else %}                                     
+                                                <ol>
+                                                    <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }} ml</dose></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>                                                    
+                                            <li>Adult:
+                                                <ol>
+                                                    <li>500 - 1000 ml as per patient condition</li>
+                                                </ol>
+                                            </li>
+                                            <li>Pediatric:
+                                                <ol>
+                                                    <li>10 - 20 ml/kg</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    {% endif %}
+                            </li>
+                            <li>Persistent Hypotension:</a>
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV</dose></li>
+                                                <div><b>OR</b></div>
+                                                <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> 10 - 20 mcg/kg/min IV</dose></li>
+                                            </ul>
+                                    {% else %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ul>
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>: <b style="color:#D2042D;font-weight:600">must contact </b><a FIXME: href="#">Medical Control Ring Central</a></li>
+                                                <div><b>OR</b></div>
+                                                <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a>: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>                                                    
+                                            </ul>
+                                    {% endif %}
+                                {% else %}
+                                    <div><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>:
+                                            <ol>
+                                                <li>Adult: 2 - 10 mcg/min IV</li>
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">must contact </b><a FIXME: href="#">Medical Control Ring Central</a></li>
+                                            </ol>
+                                    </div>
+                                    <div><b>OR</b></div>
+                                    <div><a href="{{url_for('medications.dopamine')}}">Dopamine:</a>
+                                        <ol>
+                                            <li>Adult or Pediatric: 2 - 10 mcg/min IV for hypotension</li>
+                                        </ol>
+                                    </div>
+                                {% endif %}
+                                    
+                                <div class="add-margin-L"><u><b>ONLY</b></u> if concern for pseudo-PEA (extreme hypotension)</div>
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg </b></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ol>
+                                                <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg </b></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>                                        
+                                        </ul>
+                                    <li> Pediatric: </li>
+                                        <ul>
+                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                        </ul>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li>For chest pain considered to be of cardiac etiology refer to <a FIXME: href="#">Heart Problems Protocol</a></li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" chestPainAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" chestPainAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Patients with suspected cardiac chest pain should have the 12-lead ECG performed immediately while on the scene</li>
+                            <li>Patients above the age of 30-years with chest pain or any patient with a recent history of cocaine or crack use with chest pain should be considered at risk for cardiac disease
+                                <ul>
+                                    <li>These patients should have a 12-lead ECG performed</li>
+                                    <li>ECG interpretation should be noted during radio report to medical control</li>
+                                    <li>Paramedic interpretation that is different than the computer interpretation should also be verbalized</li>
+                                </ul>
+                            </li>
+                            <li>An on-scene 12-lead ECG that appears normal or interpreted as unremarkable should never be used to convince a patient that their condition is stable
+                                <ul>
+                                    <li>~ 50% of acute myocardial infarctions will present with an unremarkable ECG</li>
+                                </ul>
+                            </li>
+                            <li>Pain from an aortic dissection may be described as ripping or tearing in nature
+                                <ul>
+                                    <li>In this context, the examination should include bilateral blood pressures along with upper and lower extremity pulse assessments</li>
+                                </ul>
+                            </li>
+                            <li>Patients at risk for pulmonary embolism (patients on oral contraceptives, prolonged immobilization, recent surgery, prior history of clotting disorders) may show signs of tachycardia and tachypnea
+                                <ul>
+                                    <li>The ECG may reflect the S1, Q3, T3 pattern
+                                        <ul>
+                                            <li>Although pattern is classical it may not be present in patients with a PE</li>
+                                        </ul>
+                                    </li>
+                                    <li>Patients may also have an ECG reflecting incomplete RBBB or right heart strain</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
