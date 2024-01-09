@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Submersion-Drowning / Diving Accident</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" drowningNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" drowningNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Definitions</H3>
+                    <div class="objectivelist">
+                        <ul>
+                            <li>Fatal downing = death by suffocation from submersion event</li>
+                            <li>Non-fatal drowning = survival, at least temporarily, following suffocation by submersion</li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" drowningBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" drowningBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Confirm scene safety and ensure a protective environment for yourself and the patient</li>
+                        <li>For patient still in water, prepare for resuscitation once rescue is affected
+                            <ol>
+                                <li>Always ensure that the scene is safe before approaching the patient</li>
+                                <li>For patient in cool, adverse environment, move to appropriate warmer setting</li>
+                            </ol>
+                        </li>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li><a FIXME:href="">Trauma Initial Assessment Protocol</a> or <a FIXME:href="">Pediatric Trauma Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>If apneic and pulseless, initiate CPR for the following conditions:
+                            <ol>
+                                <li>Submersion time &lt; 30 minutes in all patients</li>
+                                <li>Submersion time &lt; 45 minutes and water temperature is less than 50<sup>o</sup> F</li>
+                                <li>If submersion time unclear initiate resuscitative efforts</li>
+                            </ol>
+                        </li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> via nebulizer for respiratory distress related to reactive airway disease
+                            {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg Nebulized</dose></li>
+                                            <ul><li style="margin-left:20px">Repeat <dose style="color:#f4b02a;font-weight:500">5 mg</dose> as indicated by patient's condition</li></ul>
+                                    </ol>
+                                {% else %}
+                                    <ol>
+                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg Nebulized</dose></li>
+                                    </ol>
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>Adult: 5 mg</li>
+                                    <li>Pediatric: 2.5 - 5 mg</li>
+                                </ol>
+                            {% endif %}
+                        </li>
+                        <li><a FIXME: href="#">CPAP</a> for persistent or severe respiratory distress per <a FIXME: href="#">Respiratory: NIPPV Protocol</a>
+                            <ol>
+                                <li>Continue <a href="{{url_for('medications.albuterol')}}">Albuterol</a> in-line via <a FIXME: href="#">CPAP</a> as indicated by patient condition</li>
+                            </ol>
+                        </li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li>For suspected trauma to head or spine (history of fall from height, boating or other 
+                            watercraft accident, diving accident), protect and maintain control of the cervical spine, 
+                            and the thoracolumbar spine (with manual spinal motion restriction) until cervical collar 
+                            placed and patient firmly secured to transport stretcher
+                            <ol><li>Attempt to remove patient from water in a horizontal position</li></ol>
+                        </li>
+                        <li>Remove appropriate clothing to fully inspect extremities, chest, and abdomen for any 
+                            significant injuries
+                            <ol><li>For any illnesses or trauma is noted, refer to appropriate protocol</li></ol>
+                        </li>
+
+                        <li>For patient determined to be hypothermic, provide the following:
+                            <ol>
+                                <li>Place patient in most comfortable position and remove any wet or damp clothes</li>
+                                <li>Insulate patient as much as possible with blanket</li>
+                                <li>Move patient to warm ambulance as soon as possible
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" drowningAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" drowningAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>For hypoglycemia treat as per <a href="{{url_for('protocols.diabetic')}}">Diabetic Problems Hypoglycemia Protocol</a></li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Additional care per appropriate protocol based on patient’s presentation</li>    
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" drowningAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" drowningAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Consider pre-existing medical condition as precipitant to submersion episode
+                                <ul>
+                                    <li>Drug intoxication / overdose</li>
+                                    <li>Hypoglycemia</li>
+                                    <li>Seizure</li>
+                                    <li>Syncope</li>
+                                    <li>Trauma</li>
+                                </ul>
+                            </li>
+                            <li>Intubated patients may likely require elevated levels of PEEP</li>
+                            <li>Document length of time under water and temperature of water (if known)</li>
+                            <li>Some patients, particularly children, can survive extended periods of submersion in very 
+                                cold water
+                                <ul>
+                                    <li>Even in situations where the patient's pupils were fixed and dilated, and the 
+                                        resuscitation was prolonged, patients have had good clinical outcomes</li>
+                                    <li>Rewarming techniques must be initiated to achieve core body temperature greater 
+                                        than 86<sup>o</sup> F before resuscitation can be stopped</li>
+                                </ul>
+                            </li>
+                            <li>All non-fatal patients, with or without aspiration, should be transported to the hospital for 
+                                observation and to evaluate for laryngospasm, pulmonary edema, and Acute Respiratory 
+                                Distress Syndrome (ARDS)
+                                <ul><li>Any submersion event patient should be encouraged re: transport to an ED</li></ul>
+                            </li>
+                            <li>When using <a FIXME: href="#">CPAP</a> for non-fatal drowning with possible aspiration, apply positive end-expiratory pressure by starting at 0 cmH<sub>2</sub>O of pressure and slowly titrating to achieve a 
+                                desirable and tolerated positive pressure reading (usually 5-10 cmH<sub>2</sub>O; maximum 10 
+                                cmH<sub>2</sub>O)</li>
+                            <li>Foam often is present in airway and may be copious, DO NOT waste time attempting to 
+                                suction
+                                <ul><li>Ventilate with BVM through foam (suction water and vomit only when present)</li></ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

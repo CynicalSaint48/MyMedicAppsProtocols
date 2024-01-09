@@ -449,3 +449,17 @@ def diabetic():
     keys = get_key_list()
 
     return render_template('/protocols/Diabetic.html', keys=keys, varTitle="Diabetic Problems")
+
+@protocols.route("/protocols/Drowning")
+def drowning():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Drowning.html', keys=keys, varTitle="Drowning")
+
+@protocols.route("/protocols/Electrocution")
+def electrocution():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Electrocution.html', keys=keys, varTitle="Electrocution")
