@@ -1,0 +1,1101 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Heart Problems</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" heartProblemsNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" heartProblemsNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Angina</li>
+                            <li>Aortic dissection</li>
+                            <li>Asthma</li>
+                            <li>Cardiac arrest</li>
+                            <li>Chest wall injury</li>
+                            <li>Cocaine abuse</li>
+                            <li>Congenital heart abnormality</li>
+                            <li>COPD</li>
+                            <li>Esophageal spasm</li>
+                            <li>Electrolyte abnormality</li>
+                            <li>GI pathology</li>
+                            <li>Marijuana abuse</li>
+                            <li>Methamphetamine abuse</li>
+                            <li>Musculoskeletal pain</li>
+                            <li>Myocardial infarction</li>
+                            <li>Pericarditis</li>
+                            <li>Pneumothorax</li>
+                            <li>Pulmonary embolus</li>
+                        </ul>
+                
+                <H3>Differential</H3>
+                <div class="differentialText">
+                    <div><li><b>History</b></li>
+                        <ul>
+                            <li>Age</li>
+                            <li>Cardiac risk factors</li>
+                            <li>Medications</li>
+                            <li>Onset of discomfort</li>
+                            <li>Provocation/relief</li>
+                            <li>Social history</li>
+                        </ul>    
+                    </div>
+                    <div><b>Signs and Symptoms</b>
+                        <ul>
+                            <li>Chest pain</li>
+                            <li>Chest pressure, tightness</li>
+                            <li>Diaphoresis</li>
+                            <li>Jaw pain</li>
+                            <li>Nausea/vomiting</li>
+                            <li>Shortness of breath, dyspnea</li>
+                        </ul>    
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" heartProblemsBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" heartProblemsBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Additional care as per specific presumptive diagnosis, patient condition, cardiac disorder</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" heartProblemsAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" heartProblemsAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>12-lead ECG and refer to appropriate protocol as indicated
+                                <ol><li>Scene to ECG time should be &lt; 8 minutes</li></ol>
+                            </li>
+                            <li>Additional care per specific entity</li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Additional Care as per specific presumptive diagnosis, patient condition, cardiac disorder</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Chest Pain Considered due to Myocardial Ischemia</h2>
+        
+        <div>
+            <input type="checkbox" name="accordian" id=" MIBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" MIBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="{{url_for('medications.aspirin')}}">Aspirin</a> <dose style="color:#f4b02a;font-weight:500"> 324 mg PO</dose></li>
+                        <li><a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a><dose style="color:#f4b02a;font-weight:500"> 0.4 mg SL</dose> (EMT may administer to patients prescribed nitroglycerin)
+                            <ol>
+                                <li>Repeat <dose style="color:#f4b02a;font-weight:500"> 0.4 mg SL</dose> every 5 minutes until pain resolves</li>
+                                <li>Hold for SBP &lt; 100 mm Hg</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" MIAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" MIAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>ECG: normal or non-specific ST-segment/T-wave changes, or ST-segment depression of &gt; 1 mm in two or more contiguous leads (inferior, septal, anterior, or lateral)</li>
+                            <li>For patient unable to tolerate SL <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a>, apply <a href="{{url_for('medications.nitroglycerin')}}">Nitro Paste</a> to upper chest
+                                <ol>
+                                    <li>SBP &gt; 200 mm Hg: apply 2 inches</li>
+                                    <li>SBP 150 - 200 mm Hg: apply 1.5 inches</li>
+                                    <li>SBP 100 - 150 mm Hg: apply 1 inch</li>
+                                    <li>Hold/remove for SBP &lt; 100 mm Hg</li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control if pain persists following 2 doses of <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a>
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg</dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                    <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg)</li>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as per patient condition
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
+                                            <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                     
+                                        <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Hemodynamically unstable: IVF wide open</li>
+                                        <li>Hemodynamically stable: TKO</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea and/or vomiting
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult:<dose style="color:#f4b02a;font-weight:500"> 4 - 8 mg IV, IM, PO</dose></li>
+                                        </ol>
+                                    {% else %}                                     
+                                        <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult: 4 - 8 mg IV, IM, PO</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href=""FIXME:>Airway: Intubation Protocol</a></li>
+                                    <li><a FIXME:href=""FIXME:>Airway: BIAD Protocol</a></li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" MIAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" MIAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Patients with suspected cardiac chest pain should have the 12-lead ECG performed immediately while on the scene</li>
+                            <li>Any patient > of 30-years of age with chest pain or any patient with a recent history of cocaine or crack use with chest pain should be considered at risk for cardiac disease
+                                <ul>
+                                    <li>These patients should have a 12-lead ECG performed</li>
+                                </ul>
+                            </li>
+                            <li>Female, geriatric, and patients with diabetes with myocardial ischemia (or infarction) often present with atypical symptoms and not frank chest pain
+                                <ul>
+                                    <li>Dyspnea, weakness/fatigue, jaw pain</li>
+                                </ul>
+                            </li>
+                            <li>Patients considered to have an Acute Coronary Syndrome should have <a href="{{url_for('medications.aspirin')}}">Aspirin</a> and <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a> administered immediately and transport performed expeditiously</li>
+                            <li><a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a> is <red><b>contraindicated</b></red> for any patient who has taken sildenafil (Viagra®), tadalafil 
+                                (Cialis®), or vardenafil (Levitra®) within the past 24 hours</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>STEMI</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" STEMIBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" STEMIBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Computer ECG interpretation reports <b>“***STEMI***”</b></li>
+                        <li><a href="{{url_for('medications.aspirin')}}">Aspirin</a> <dose style="color:#f4b02a;font-weight:500"> 324 mg PO</dose></li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" STEMIAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" STEMIAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>ECG:
+                                <ol>
+                                    <li>ST-segment elevation &gt; 1 mm in two or more continuous leads (inferior, septal, anterior, or lateral)</li>
+                                    <li>R-wave and ST-segment depression in V1, V2 suggesting posterior MI</li>
+                                    <li>Computer ECG interpretation reports <b>“***STEMI***”</b></li>
+                                </ol>
+                            </li>
+                            <li>Repeat ECG as indicated per patient presentation / change in presentation</li>
+                            <li><a href="{{url_for('medications.aspirin')}}">Aspirin</a> <dose style="color:#f4b02a;font-weight:500"> 324 mg PO</dose></li>
+                            <li>For patient unable to tolerate SL <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a>, apply <a href="{{url_for('medications.nitroglycerin')}}">Nitro Paste</a> to upper chest
+                                <ol>
+                                    <li>SBP &gt; 200 mm Hg: apply 2 inches</li>
+                                    <li>SBP 150 - 200 mm Hg: apply 1.5 inches</li>
+                                    <li>SBP 100 - 150 mm Hg: apply 1 inch</li>
+                                    <li>Hold/remove for SBP &lt; 100 mm Hg</li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control if pain persists following 2 doses of <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a>
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg </b></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                        <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg)</li>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li>IV access per <a FIXME:href="#">Venous Access Protocol</a>
+                                <ol><li>LEFT arm preferred as catheterization often performed via right radial artery</li></ol>
+                            </li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as per patient condition
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable:<dose style="color:#f4b02a;font-weight:500"> IVF wide open</dose></li>
+                                            <li>Hemodynamically stable:<dose style="color:#f4b02a;font-weight:500"> TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                     
+                                        <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Hemodynamically unstable: IVF wide open</li>
+                                        <li>Hemodynamically stable: TKO</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Consider placing defibrillation/pacing pads on patient
+                                <ol>
+                                    <li>Should be placed on all patients with an anterior or septal STEMI
+                                        <ul><li>These patients are at increased risk of heart blocks necessitating TCP</li></ul>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a>:
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult:<dose style="color:#f4b02a;font-weight:500"> {{ ((keys.ptKgs*3)/2)|int }} IV</dose></li>
+                                            <li>Repeat at {{ ((keys.ptKgs)/2)|int }} IV every 5 minutes for dysrhythmia that continues until dysrhythmia resolves or a total of 3 mg/kg has been administered</li>
+                                        </ol>
+                                    {% else %}
+                                        <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>1.5 mg/kg IV </li>
+                                        <li>Repeat 0.5 mg/kg IV every 5 minutes for dysrhythmia that continues until dysrhythmia resolves or a total of 3 mg/kg has been administered</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" STEMIAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" STEMIAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>During the radio report to medical control, the ECG interpretation should be verbalized
+                                <ul><li>The paramedic interpretation should be reported & emphasized if STEMI</li></ul>
+                            </li>
+                            <li>ECG findings which warrant discussion with medical control at a PCI facility (see below)
+                                <ul>
+                                    <li><b>aVR ST-segment elevation with widespread ST depression</b>
+                                        <ul>
+                                            <li>Suggestive of multi-vessel or left main coronary artery disease</li>
+                                            <li>Patient should be transport to a PCI facility</li>
+                                            <li>Even though NOT a code STEMI, should be transported to a PCI center</li>
+                                        </ul>
+                                    </li>
+                                    <li><b>DeWinter T-wave</b>
+                                        <ul>
+                                            <li>Anterior STEMI equivalent without obvious ST segment elevation</li>
+                                            <li>Tall, prominent, symmetrical T waves in precordial leads</li>
+                                            <li>Upsloping ST segment depression &gt; 1mm at the J point in precordial leads</li>
+                                            <li>Absence of ST elevation in the precordial leads</li>
+                                        </ul>
+                                    </li>
+                                    <li><b>Modified Sgarbossa Criteria Left bundle branch block (LBBB) or Paced</b>
+                                        <ul>
+                                            <li>New LBBB does NOT equal STEMI</li>
+                                            <li>Concordant ST elevation &gt; 1mm in leads with positive QRS</li>
+                                            <li>Concordant ST depression in lead V1 - V3</li>
+                                            <li>Proportionally excessive discordant STE in &ge; 1 lead anywhere with &ge; 1 mm STE, as defined by &ge; 25% of the depth of the preceding S-wave</li>
+                                            <li>ECG should be faxed to and discussed with medical control physician</li>
+                                        </ul>
+                                    </li>
+                                    <li><b>Wellens' syndrome</b>
+                                        <ul><li>Biphasic or deep inverted T-wave V2 - V3; potential proximal LAD disease</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Chest pain is the most common manifestation of acute MI
+                                <ul>
+                                    <li>May be described as burning, heavy, pain, pressure, squeezing, or tightness</li>
+                                </ul>
+                            </li>
+                            <li>12-lead ECG assessment
+                                <ul>
+                                    <li>Inferior - leads II, III, aVF</li>
+                                    <li>Septal - leads V1, V2</li>
+                                    <li>Anterior - leads V3, V4</li>
+                                    <li>Lateral - leads V5, V6, I, aVL</li>
+                                    <li>Posterior - leads V1, V2, V3</li>
+                                </ul>
+                            </li>
+                            <li>Patients with myocardial chest pain & 12-lead ECG that reflects &gt; 1 mm of ST-segment elevation in &gt; 2 contiguous precordial leads, should be transported immediately
+                                <ul>
+                                    <li>Scene to ECG time should be &lt; 8 minutes</li>
+                                    <li>Total scene time should be &lt; 15 minutes</li>
+                                </ul>
+                            </li>
+                            <li>An on-scene 12-lead ECG that is interpreted as normal or unremarkable should never be used to convince a patient that their condition is stable
+                                <ul>
+                                    <li>50% of acute myocardial infarctions will initially present with an unremarkable ECG (non-ST elevation MI)</li>
+                                </ul>
+                            </li>
+                            <li>Patients with an inferior MI are at risk for right ventricle infarct and nitroglycerin should be used with caution as patients are prone to develop hypotension
+                                <ul>
+                                    <li>Nitroglycerin is NOT contraindicated, but increased caution must be used</li>
+                                    <li>Inferior infarctions typically require normal saline IVF boluses</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                <h3>Special ECG Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>aVR Sign
+                                <ul>
+                                    <li>aVR ST elevation with widespread ST depression</li>
+                                </ul>
+                                <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/avr_sign.jpg') }}" alt="aVR Sign EKG"></div>
+                            </li>
+                            <li>DeWinter T-wave
+                                <ul>
+                                    <li>Tall, prominent, symmetrical T waves with upsloping ST segment depression in precordial leads</li>
+                                    <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/dewinter_image.jpg') }}" alt="DeWinter T-wave EKG"></div>
+                                </ul>
+                            </li>
+                            <li>Modified Sgarbossa criteria
+                                <div class="proto-image">
+                                    <img src="{{ url_for('static', filename='images/protocol/sgarbossa_image1.jpg') }}" alt="Sgarbossa Image 1">
+                                    <img src="{{ url_for('static', filename='images/protocol/sgarbossa_image2.jpg') }}" alt="Sgarbossa Image 2">
+                                </div>
+                            </li>
+                            <li>Wellens' criteria
+                                <ul>
+                                    <li>Biphasic or deep inverted T-wave V2 - V3
+                                        <div class="proto-image">
+                                            <img src="{{ url_for('static', filename='images/protocol/wellens_image1.jpg') }}" alt="Wellens Image 1">
+                                            <img src="{{ url_for('static', filename='images/protocol/wellens_image2.jpg') }}" alt="Wellens Image 2">
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Chest Pain Associated with Cocaine Use</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" cocaineAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" cocaineAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>12-lead ECG with further management as per interpretation</li>
+                            <li><a FIXME:href="#">IVF</a>: <dose style="color:#f4b02a;font-weight:500">500 - 1000 ml bolus</dose></li>
+                            <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a></a>: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM or 10 mg IN</dose></li>
+                            <li>Reassess with repeat treatment as indicated</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" cocaineAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" cocaineAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Patients must also be evaluated for risk factors for coronary artery disease unrelated to cocaine usage
+                                <ul>
+                                    <li>Age</li>
+                                    <li>Diabetes</li>
+                                    <li>Family history</li>
+                                    <li>Hypercholesterolemia</li>
+                                    <li>Hypertension</li>
+                                    <li>Known coronary artery disease</li>
+                                    <li>Smoking</li>
+                                </ul>
+                            </li>
+                            <li>Patients at risk for coronary artery disease should be treated as any patient with suspected myocardial ischemia
+                                <ul>
+                                    <li><a href="{{url_for('medications.aspirin')}}">Aspirin</a> <dose style="color:#f4b02a;font-weight:500"> 324 mg PO</dose></li>
+                                    <li><a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a><dose style="color:#f4b02a;font-weight:500">0.4 mg SL</dose>
+                                        <ul>
+                                            <li>Repeat <dose style="color:#f4b02a;font-weight:500">0.4 mg SL </dose>every 5 minutes until pain resolves</li>
+                                            <li>Hold for SBP &lt; 100 mm Hg</li>
+                                            <li>EMT may administer to patients with a current prescription for <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>For patient unable to tolerate SL <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a>, apply <a href="{{url_for('medications.nitroglycerin')}}">Nitro Paste</a> to upper chest
+                                        <ol>
+                                            <li>SBP &gt; 200 mm Hg: apply 2 inches</li>
+                                            <li>SBP 150 - 200 mm Hg: apply 1.5 inches</li>
+                                            <li>SBP 100 - 150 mm Hg: apply 1 inch</li>
+                                            <li>Hold/remove for SBP &lt; 100 mm Hg</li>
+                                        </ol>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Supraventricular Tachycardia - Stable</h2>
+        <b>[Including undifferentiated REGULAR wide complex]</b><br><br>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" svtNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" svtNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>SVT (Narrow) Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Sinus tachycardia</li>
+                            <li>Atrial fibrillation</li>
+                            <li>Atrial flutter</li>
+                            <li>Multifocal atrial tachycardia</li>
+                            <li>AV-Nodal reentrant tachycardia (“PSVT”)</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" svtAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" svtAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG</li>
+                            <li>12-lead as indicated</li>
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                    <li>Perform vagal maneuvers
+                                        <ol>
+                                            <li>Valsalva maneuver:
+                                                <ul>
+                                                    <li>Breath holding and bearing down or have patient blow into syringe</li>
+                                                </ul>
+                                            </li>
+                                            <li>Modified Valsava maneuver:
+                                                <ul>
+                                                    <li>Have patient blow into a syringe while witting upright for 10-15 seconds</li>
+                                                    <li>Quickly lay patient supine and passively elevate legs 45 degrees</li>
+                                                </ul>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                {% else %}
+                                {% endif %}
+                            {% else %}
+                            {% endif %}
+                            <li><a href="{{url_for('medications.adenosine')}}">Adenosine (Adenocard®)</a> - ensure monitor recording strip is printing
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li><dose style="color:#f4b02a;font-weight:500">6 mg IV</dose> rapid push initial dose
+                                                <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                            </li>
+                                            <li><dose style="color:#f4b02a;font-weight:500">12 mg IV</dose> rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                            </li>
+                                            <li><dose style="color:#f4b02a;font-weight:500">12 mg IV</dose> rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                            </li>
+                                            <li>If no conversion occurs but AV block was achieved, assess underlying rhythm evident during AV block and treat per appropriate protocol</li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax60 %}
+                                            <ol>
+                                                <li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">6 mg IV</dose> rapid push initial dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">12 mg IV</dose> rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">12 mg IV</dose> rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>If no conversion occurs but AV block was achieved, assess underlying rhythm evident during AV block and treat per appropriate protocol</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 10) }} mg IV</dose> rapid push initial dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IV</dose> rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IV</dose> rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>If no conversion occurs but AV block was achieved, assess underlying rhythm evident during AV block and treat per appropriate protocol</li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult:
+                                            <ul>
+                                                <li>6 mg IV rapid push followed by saline flush
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>12 mg IV rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>12 mg IV rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>If no conversion occurs but AV block was achieved, assess underlying rhythm evident during AV block and treat per appropriate protocol</li>
+                                            </ul>
+                                        </li>
+                                        <li>Pediatric:
+                                            <ul>
+                                                <li>0.1 mg/kg IV (maximum 6 mg) rapid push followed by saline flush
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>0.2 mg/kg IV (maximum 12 mg) rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>0.2 mg/kg IV (maximum 12 mg) rapid push followed by saline flush if SVT continues and no AV block was achieved with previous dose
+                                                    <ul><li>Transport and monitor if rhythm converts</li></ul>
+                                                </li>
+                                                <li>If no conversion occurs but AV block was achieved, assess underlying rhythm evident during AV block and treat per appropriate protocol</li>
+                                            </ul>
+                                        </li>
+                                        <li>Additional care as per specific rhythm protocol</li>
+                                        <li>If any rhythm change occurs refer to appropriate protocol</li>
+                                        <li>Contact Medical Control if rhythm fails to convert following 3<sup>rd</sup> dose of adenosine</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Supraventricular Tachycardia - Unstable</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" unstableSVTAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" unstableSVTAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> sedation as patient status permits
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li></ol>
+                                    {% else %}
+                                        {% if keys.ptMax50 %}
+                                            <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li></ol>
+                                        {% elif keys.ptMax33 %}
+                                            <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                        {% else %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 10) }} mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult:
+                                            <ol><li>5 mg IV, IM or 10 mg IN</li></ol>
+                                        </li>
+                                        <li>Pediatric:
+                                            <ol><li>0.15 mg/kg IV, IM (max 5 mg) or 0.2 mg/kg IN (max 10 mg)</li></ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}"> Fentanyl (Sublimaze®)</a> for pain control as patient status permits
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if keys.ptMax200 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IN, IM, IO</li>
+                                            </ol>
+                                        {% elif keys.ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IN, IM, IO</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose> IV, IN, IM, IO</li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if keys.ptMax200 %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
+                                            </ol>
+                                        {% elif keys.ptMax100 %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose> IV, IO, IN</li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                        <li>Pediatric: 0.5 - 1 mcg/kg IV, IO, IN (maximum 100 mcg)</li>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li>Synchronized cardioversion
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li><dose style="color:#f4b02a;font-weight:500">50 Joules</dose></li>
+                                            <li><dose style="color:#f4b02a;font-weight:500">100 Joules</dose> if dysrhythmia continues</li>
+                                            <li><dose style="color:#f4b02a;font-weight:500">150 Joules</dose> if dysrhythmia continues (initial setting for Atrial Fib)</li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500">50 Joules</dose></li>
+                                                <li><dose style="color:#f4b02a;font-weight:500">100 Joules</dose> if dysrhythmia continues</li>
+                                                <li><dose style="color:#f4b02a;font-weight:500">150 Joules</dose> if dysrhythmia continues (initial setting for Atrial Fib)</li>
+                                            </ol> 
+                                        {% elif keys.ptMax75 %}
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs/2)|int }} Joules</dose></li>
+                                                <li><dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs)|int }} Joules</dose> if dysrhythmia continues</li>
+                                                <li><dose style="color:#f4b02a;font-weight:500">150 Joules</dose> if dysrhythmia continues (initial setting for Atrial Fib)</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs/2)|int }} Joules</dose></li>
+                                                <li><dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs)|int }} Joules</dose> if dysrhythmia continues</li>
+                                                <li><dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*2)|int }} Joules</dose> if dysrhythmia continues (initial setting for Atrial Fib)</li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adults:
+                                            <ol>
+                                                <li>50 Joules</li>
+                                                <li>100 Joules if dysrhythmia continues</li>
+                                                <li>150 Joules if dysrhythmia continues (initial setting for Atrial Fib)</li>
+                                            </ol>
+                                        </li>
+                                        <li>Pediatrics: 
+                                            <ol>
+                                                <li>0.5 J/kg</li>
+                                                <li>1 J/kg if dysrhythmia continues</li>
+                                                <li>2 J/kg if dysrhythmia continues</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> if dysrhythmia persists following above treatment</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" unstableSVTAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" unstableSVTAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Do <b>NOT</b> administer adenosine to any heart transplant patient</li>
+                            <li><a href="{{url_for('medications.diltiazem')}}">Diltiazem</a> may be harmful in patients with a history of pre-excitation syndromes (WPW)</li>
+                            <li>Judicious use of cardioversion should be used in patients currently on digitalis or digoxin</li>
+                            <li>Contact medical control prior to attempting cardioversion in a patient who has been in 
+                                chronic atrial fibrillation (&gt; 48<sup>o</sup>
+                                ) without therapeutic anticoagulation as restoration of 
+                                normal sinus rhythm increases the risk for embolization in this patient group</li>
+                            <li>Sedation with <a href='{{url_for("medications.midazolam")}}'>Midazolam (Versed®)</a> & <a href="{{url_for('medications.fentanyl')}}">Fentanyl</a> should be attempted before cardioversion 
+                                unless the patient is extremely unstable or unconscious</li>
+                            <li>If cardioversion performed, ensure equipment for airway management readily available</li>
+                            <li>Rapid ventricular response with possible accessory pathway conduction that is irregular &
+                                wide complex or polymorphic (WPW with atrial fib) do NOT treat with adenosine, beta 
+                                blockers, or calcium channel blockers which may increase conduction through the 
+                                accessory pathway
+                                <ul>
+                                    <li>If unstable - synchronized cardioversion @ 150 Joules</li>
+                                    <li>If unable to synchronize - defibrillate @ 150 Joules</li>
+                                </ul>
+                            </li>
+                            <li>Supraventricular tachycardia is the most common dysrhythmia causing cardiovascular 
+                                instability during infancy
+                                <ul>
+                                    <li>Supraventricular tachycardia with aberrant conduction that produces a wide 
+                                        complex tachycardia is rare in infants and children</li>
+                                    <li>Wide complex tachycardia should be treated as ventricular in origin</li>
+                                </ul>
+                            </li>
+                            <li>In older children, may consider Valsalva while setting up for more aggressive therapy</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Atrial Fibrillation or Atrial Flutter with RVR</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" afibAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" afibAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><b>Stable</b>
+                                <ol>
+                                    <li>4-lead ECG</li>
+                                    <li>12-lead ECG as indicated</li>
+                                        {% if keys.ptYears > 0 %}
+                                            {% if keys.ptAdult %}
+                                            <li>Adult:
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.diltiazem')}}">Diltiazem (Cardizem®)</a> <dose style="color:#f4b02a;font-weight:500">15 mg IV</dose> over 2 minutes</li>
+                                                    <li>For no response within 15 minutes: <a href="{{url_for('medications.diltiazem')}}">Diltiazem (Cardizem®)</a> <dose style="color:#f4b02a;font-weight:500">20 mg IV</dose> over 2 minutes</li>
+                                                </ol>
+                                            </li>
+                                            {% else %}
+                                            <li>Pediatric:
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                                {% endif %}
+                                            </li>
+                                        {% else %}
+                                            <li>Adult:
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.diltiazem')}}">Diltiazem (Cardizem®)</a> 15 mg IV over 2 minutes</li>
+                                                    <li>For no response within 15 minutes: <a href="{{url_for('medications.diltiazem')}}">Diltiazem (Cardizem®)</a> 20 mg IV over 2 minutes</li>
+                                                </ol>
+                                            </li>
+                                        {% endif %}
+                                    <li>For no response: contact <a FIXME:href="#">Medical Control Ring Central</a></li>
+                                    <li><a FIXME:href="#">IVF</a>: TKO</li>
+                                </ol>
+                            </li><br>
+                            <li><b>Unstable</b>
+                                <ol>
+                                    <li>4-lead ECG</li>
+                                    <li>12-lead ECG as indicated</li>
+                                        {% if keys.ptYears > 0 %}
+                                            {% if keys.ptAdult %}
+                                            <li>Adult:
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li>
+                                                    <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a>
+                                                        {% if keys.ptMax100 %}
+                                                            <ol><li>{{'%0.2f'| format(keys.ptKgs / 2) }} - 100 mcg IV, IN, IM. IO</li></ol>
+                                                        {% else %}
+                                                            <ol><li>{{'%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs) }} mcg/kg IV, IN, IM. IO</li></ol>
+                                                        {% endif %}
+                                                    </li>
+                                                    <li>Synchronized cardioversion
+                                                        <ol>
+                                                            <li>Atrial fibrillation: @ <dose style="color:#f4b02a;font-weight:500">150 Joules</dose></li>
+                                                            <li>Atrial flutter: @ <dose style="color:#f4b02a;font-weight:500">50 Joules</dose></li>
+                                                        </ol>
+                                                    </li>
+                                                    <li>Contact medical control prior to attempting cardioversion in a patient who has been in chronic atrial fibrillation (> 48<sup>o</sup>) without therapeutic anticoagulation
+                                                        <ol><li>Restoration of normal sinus rhythm increases the risk for embolization in this patient group</li></ol>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            {% else %}
+                                            <li>Pediatric:
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <div class="add-margin-L"><red><div class="add-margin-L"><b>This Protocol is Specific to Adult Patients</b></div></red>
+                                                        <div class="add-margin-L">Contact <a FIXME:href="#">Medical Control Ring Central</a></div>
+                                                    </div>
+                                                {% endif %}
+                                            </li>
+                                        {% else %}
+                                            <li>Adult:
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.diltiazem')}}">Diltiazem (Cardizem®)</a> 15 mg IV over 2 minutes</li>
+                                                    <li>For no response within 15 minutes: <a href="{{url_for('medications.diltiazem')}}">Diltiazem (Cardizem®)</a> 20 mg IV over 2 minutes</li>
+                                                </ol>
+                                            </li>
+                                        {% endif %}
+                                    
+                                    <li><a FIXME:href="#">IVF</a> for hypotension: <dose style="color:#f4b02a;font-weight:500">wide open</dose></li>
+                                    <li>For unstable dysrhythmia that continues perform <dose style="color:#f4b02a;font-weight:500">Synchronized Cardioversion @ 150 Joules</dose></li>
+                                    <li>If any rhythm change occurs refer to appropriate protocol</li>
+                                    <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for rhythm that fails to convert</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" afibAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" afibAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Signs of instability
+                                <ul>
+                                    <li>Acute congestive heart failure</li>
+                                    <li>Altered mental status</li>
+                                    <li>Hypotension</li>
+                                    <li>Ischemic chest pain</li>
+                                    <li>Seizure</li>
+                                    <li>Syncope</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Bradycardia</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" bradyAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" bradyAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><b>Symptomatic Sinus Bradycardia or Type-I 2<sup>nd</sup> degree heart block</b>
+                                <ol>
+                                    <li>4-lead ECG</li>
+                                    <li>12-lead ECG as indicated</li>
+                                    <li>Ensure adequate oxygenation</li>
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
+                                        <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li><a href="{{url_for('medications.atropine')}}">Atropine</a> 0.5 mg IV, IO</li>
+                                                <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a> 0.5 mg IV every 5 minutes until dysrhythmia resolves or total dose of 3 mg (or 0.04 mg/kg) has been administered
+                                                <ul>
+                                                    <li>Hold if occurs in the setting of acute MI and wide-complex rhythm</li>
+                                                    <li>Hold if occurs in the setting of cardiac transplantation</li>
+                                                </ul>
+                                            </li>
+                                            </ol>
+                                        </li>
+                                        {% else %}
+                                        {% endif %}
+                                    {% else %}
+                                    <li>Pediatric: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol>
+                                            <li><a href="{{url_for('medications.epinephrine')}}">Epinephrine (1:10,000)</a> 0.01 mg/kg (0.1 ml/kg) IV, IO</li>
+                                            <li><a href="{{url_for('medications.atropine')}}">Atropine</a> 0.02 mg/kg IV, IO (minimum 0.1 mg, max 0.5 mg)</li>
+                                            <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a> 0.02 mg/kg IV, IO (minimum 0.1 mg, max 0.5 mg) in 5 minutes x1 additional dose</li>
+                                            <li>Initiate CPR for continued bradycardia and heart rate &lt; 60 bpm</li>
+                                        </ol>
+                                    </li>
+                                    {% endif %}
+                                    <li><a FIXME:href="#">IVF</a> as indicated per patient hemodynamics
+                                        {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            {% if keys.ptAdult %}
+                                                <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li></ol>
+                                            {% else %}
+                                                <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }}</dose></li></ol>
+                                            {% endif %}
+                                        {% else %}
+                                        <ol>
+                                            <li>Adult: IVF wide open</li>
+                                            <li>Pediatric: 10-20 ml/kg bolus</li>
+                                        </ol>
+                                        {% endif %}
+                                    </li>
+                                </ol>
+                            </li><br>
+                            <li><b>Type-II 2<sup>nd</sup> degree or 3<sup>rd</sup> degree heart block</b>
+                                <ol>
+                                    <li>4-lead ECG</li>
+                                    <li>12-lead ECG as indicated</li>
+                                    <li>Ensure adequate oxygenation</li>
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
+                                        <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li>
+                                                <li>Transcutaneous pacing per <a FIXME:href="#">Cardiac: External Pacing Protocol</a></li>
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                    <ol>
+                                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>
+                                                        <div><b>OR</b></div>
+                                                        <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> 10 - 20 mcg/kg/min</dose></li>
+                                                    </ol>
+                                                </li>
+                                                <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a;font-weight:500">2 grams </dose>(20 ml of 10% solution) for continued hemodynamically unstable and patient on calcium channel blocker medication</li>
+                                            </ol>
+                                        </li>
+                                        {% else %}
+                                        <li>Pediatric: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a>:
+                                                    {% if keys.ptMax50 %}
+                                                        <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li></ol>
+                                                    {% elif keys.ptMax33 %}
+                                                        <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                                    {% else %}
+                                                        <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 10) }} mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                                    {% endif %}
+                                                </li>
+                                                <li>Transcutaneous pacing per <a FIXME:href="#">Cardiac: External Pacing Protocol</a></li>
+                                                <li>Initiate CPR for continued bradycardia & heart rate &lt; 60 bpm</li>
+                                            </ol>
+                                        </li>
+                                        {% endif %}
+                                    {% else %}
+                                        <li>
+                                            <ol>
+                                                <li>Adult:
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> 5 mg IV, IM or 10 mg IN</li>
+                                                        <li>Transcutaneous pacing per <a FIXME:href="#">Cardiac: External Pacing Protocol</a></li>
+                                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>
+                                                        <div><b>OR</b></div>
+                                                        <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> 10 - 20 mcg/kg/min</dose></li>
+                                                        <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a;font-weight:500">2 grams </dose>(20 ml of 10% solution) for continued hemodynamically unstable and patient on calcium channel blocker medication</li>
+                                                    </ol>
+                                                </li>
+                                                <li>Pediatric:
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> 0.15 mg/kg IV, IM (max 5 mg) or 0.2 mg/kg IN (max 10 mg)</li>
+                                                        <li>Transcutaneous pacing per <a FIXME:href="#">Cardiac: External Pacing Protocol</a></li>
+                                                        <li>Initiate CPR for continued bradycardia & heart rate &lt; 60 bpm</li>
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    {% endif %}
+                                </ol>
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" bradyAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" bradyAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Asymptomatic sinus bradycardia and/or first-degree heart block does not require any treatment</li>
+                            <li>Symptoms necessitating treatment
+                                <ul>
+                                    <li>Altered mental status</li>
+                                    <li>Hypotension</li>
+                                    <li>Ischemic chest pain</li>
+                                    <li>Syncope</li>
+                                </ul>
+                            </li>
+                            <li>Always consider early application of pacing pads in elderly patients having bradycardic rhythms</li>
+                            <li>Any patient noted to be hemodynamically unstable and in Type II second degree or third degree heart block should be paced immediately
+                                <ul><li>Provide sedation and analgesia in patients undergoing transcutaneous pacing</li></ul>
+                            </li>
+                            <li>2<sup>o</sup> AVB type II and 3<sup>o</sup> AVB may deteriorate to asystole
+                                <ul><li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> is <red><b>contraindicated</b></red> with these blocks</li></ul>
+                            </li>
+                            <li>Patients at risk for brady-dysrhythmias
+                                <ul>
+                                    <li>Anterior MI</li>
+                                    <li>Inferior MI</li>
+                                    <li>Patients taking beta-blockers, calcium channel blockers, or digoxin</li>
+                                </ul>
+                            </li>
+                            <li>Consider treatable causes for bradycardia
+                                <ul>
+                                    <li>Beta Blocker OD</li>
+                                    <li>Calcium Channel Blocker OD</li>
+                                </ul>
+                            </li>
+                            <li>Hypoxia is a common etiology for symptomatic bradycardia in children, therefore, attention to airway and oxygenation is of paramount importance</li>
+                            <li>Sinus bradycardia is a common pre-terminal event in children, therefore attention to airway and oxygenation is of paramount importance</li>
+                            <li>Most maternal medications pass through breast milk to the infant so maintain high-index of suspicion for OD-toxins</li>
+                            <li>Hypoglycemia, severe dehydration and narcotic effects may produce bradycardia
+                                <ul><li>Many agents a child ingests can cause bradycardia, often in a single dose</li></ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

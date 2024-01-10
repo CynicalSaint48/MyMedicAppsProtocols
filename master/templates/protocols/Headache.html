@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Headache</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" headacheNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" headacheNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Brain abscess</li>
+                            <li>Brain tumor</li>
+                            <li>Cerebrovascular accident</li>
+                            <li>Cluster headache</li>
+                            <li>Encephalitis</li>
+                            <li>Epidural hemorrhage</li>
+                            <li>Hypertensive crisis</li>
+                            <li>Intracerebral hemorrhage</li>
+                            <li>Meningitis</li>
+                            <li>Migraine</li>
+                            <li>Sinus infection</li>
+                            <li>Subarachnoid hemorrhage</li>
+                            <li>Subdural hemorrhage</li>
+                            <li>Tension headache</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" headacheBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" headacheBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li> Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li><a href="{{url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain Control
+                            {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li>
+                                    </ol>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ol>
+                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        <ol>
+                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs * 15) }} mg PO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 650 - 975 mg PO</li>
+                                    <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                    </li>
+                                </ol>                           
+                            {% endif %}
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" headacheAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" headacheAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li><b>CAUTIOUSLY</b> consider <a href="{{url_for('medications.fentanyl')}}">Fentanyl</a> for pain control (administer <a href="{{url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> as first line)
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if ptMax200 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 200 mcg IN</dose></li>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> up to <b style="color:#D2042D;font-weight:600">maximum dose</dose> of 100 mcg IV, IM, IO</b></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>
+                                            </ol>
+                                        {% elif ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum dose</b> of 200 mcg IN</dose></li>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg IV, IM, IO</dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs) }} - {{'%0.2f'| format(keys.ptKgs * 2) }} mcg IN</dose></li>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg IV, IM, IO</dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ol>
+                                                <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg IV, IN, IM, IO</dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg IV, IN, IM, IO</dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li> Adult: </li>
+                                            <ul>
+                                                <li>1 - 2 mcg/kg IN (maximum 200 mcg)</li>
+                                                <li>0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                            </ul>
+                                        <li> Pediatric: </li>
+                                            <ul>
+                                                <li>0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                <li>Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                            </ul>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax26 %}
+                                            <ol>
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 4 mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs * 3)/20) }}mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 4 - 8 mg PO, IV, IM </li>
+                                    <li> Pediatric dose = 0.15 mg/kg PO, IV, IM (maximum 4 mg) </li>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href=""FIXME:>Airway: Intubation Protocol</a></li>
+                                    <li><a FIXME:href=""FIXME:>Airway: BIAD Protocol</a></li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" headacheAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" headacheAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Migraine headache
+                                <ul>
+                                    <li>Typically, unilateral and described as pounding or throbbing pain</li>
+                                    <li>Often associated with photophobia or sensitivity to noise or odors</li>
+                                    <li>Often associated with blurred vision, nausea or vomiting</li>
+                                    <li>Sometimes preceded by an aura</li>
+                                </ul>
+                            </li>
+                            <li>Tension headache
+                                <ul>
+                                    <li>Typically, constant band-like pain or pressure</li>
+                                    <li>Affects the front, top or sides of the head</li>
+                                    <li>Usually begins gradually, and often occurs in the middle of the day</li>
+                                </ul>
+                            </li>
+                            <li>Cluster headache
+                                <ul>
+                                    <li>Recurs over a period of time</li>
+                                    <li>Typically, intense one-sided pain described as having a burning or piercing</li>
+                                    <li>Usually located behind one eye or in the eye region, without changing sides</li>
+                                    <li>Persons experience an episode one to three times per day during a period of time (the cluster period), which may last from two weeks to three months</li>
+                                    <li>Headaches may disappear completely for months or years, only to recur</li>
+                                    <li>Often respond to high flow oxygen via non-rebreather</li>
+                                </ul>
+                            </li>
+                            <li>Sinus Infection Headache
+                                <ul>
+                                    <li>Typically associated with a deep and constant pain in the cheekbones, forehead, or bridge of the nose</li>
+                                    <li>Pain usually intensifies with sudden head movement or leaning forward</li>
+                                    <li>Usually accompanied by nasal discharge, fever, and/or facial swelling</li>
+                                </ul>
+                            </li>
+                            <li>Subarachnoid hemorrhage
+                                <ul>
+                                    <li>Classically presents as a sudden onset of “the worst headache of my life”</li>
+                                    <li>Usually caused by ruptured aneurysm</li>
+                                    <li>May occur as the result of head trauma</li>
+                                    <li>Often associated with nausea or vomiting</li>
+                                    <li>May present with photophobia, altered mental status, or focal neurologic deficit</li>
+                                </ul>
+                            </li>
+                            <li>Meningitis, encephalitis, brain abscess
+                                <ul>
+                                    <li>Associated symptoms of include sudden fever, headache, vomiting, photophobia, stiff neck, confusion, impaired judgment, and/or altered mental status</li>
+                                    <li>Necessary precautions should be considered</li>
+                                </ul>
+                            </li>
+                            <li>Epidural, subdural hemorrhage
+                                <ul>
+                                    <li>Result of head trauma (subdural may occur with minor head trauma in patients on anticoagulation)</li>
+                                    <li>Epidural: classically loss of consciousness, a lucid interval, then decline in mental status as hemorrhage enlarges</li>
+                                    <li>Subdural: may be slowly progressive or associated with rapid symptoms; typically older patients; may present with frequent falls</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -463,3 +463,31 @@ def electrocution():
     keys = get_key_list()
 
     return render_template('/protocols/Electrocution.html', keys=keys, varTitle="Electrocution")
+
+@protocols.route("/protocols/EyeProblems")
+def eyeProblems():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/EyeProblems.html', keys=keys, varTitle="Eye Problems")
+
+@protocols.route("/protocols/Falls")
+def falls():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Falls.html', keys=keys, varTitle="Falls /  Back Injury")
+
+@protocols.route("/protocols/Headache")
+def headache():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Headache.html', keys=keys, varTitle="Headache")
+
+@protocols.route("/protocols/HeartProblems")
+def heartProblems():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/HeartProblems.html', keys=keys, varTitle="Heart Problems")

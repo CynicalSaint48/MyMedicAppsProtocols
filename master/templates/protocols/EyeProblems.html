@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Eye Problems</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" eyeProblemsNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" eyeProblemsNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                    <ul class="differentialText">
+                        <li>Allergies</li>
+                        <li>CVA</li>
+                        <li>Foreign body</li>
+                        <li>Glaucoma</li>
+                        <li>Infection</li>
+                        <li>Trauma</li>
+                        <li>Vision blurred/loss</li>
+                    </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" eyeProblemsBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" eyeProblemsBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Assess vital signs</li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>For suspected trauma to head or spine, protect and maintain control of the cervical spine, (with manual spinal motion restriction), and the thoracolumbar spine until cervical collar placed and patient secured to the transport stretcher</li>
+                        <li>For chemical burn, riot control agent exposure, or foreign body in eye, copiously irrigate gently with normal saline</li>
+                        <li>For open globe injury or globe protruding/not appropriately in the socket, cover the affected eye with a sterile, moist dressing
+                            <ol>
+                                <li>Be sure to NOT apply any direct pressure to the globe</li>
+                                <li>Then cover uninjured eye</li>
+                            </ol>
+                        </li>
+                        <li>For foreign body protruding from the eye, stabilize object as possible and cover both eyes
+                            <ol><li>Attempts to remove any large foreign body from the eye should not be performed</li></ol>
+                        </li>
+                        <li><a href="{{url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain Control
+                            {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li>
+                                    </ol>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ol>
+                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        <ol>
+                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs * 15) }} mg PO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 650 - 975 mg PO</li>
+                                    <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                    </li>
+                                </ol>                           
+                            {% endif %}
+                        </li>
+                        <li> Alternative pain control: <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide </a>via patient-controlled inhalation </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" eyeProblemsAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" eyeProblemsAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg </b></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if ptMax100 %}
+                                            <ol>
+                                                <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg </b></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li> Adult: </li>
+                                            <ul>
+                                                <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>                                        
+                                            </ul>
+                                        <li> Pediatric: </li>
+                                            <ul>
+                                                <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                            </ul>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax26 %}
+                                            <ol>
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 4 mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs * 3)/20) }}mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 4 - 8 mg PO, IV, IM </li>
+                                    <li> Pediatric dose = 0.15 mg/kg PO, IV, IM (maximum 4 mg) </li>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" eyeProblemsAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" eyeProblemsAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>When impalement injuries are noted to one eye, both eyes should be covered
+                                <ul>
+                                    <li>This limits bilateral or consensual eye movements</li>
+                                    <li>Ensure that pressure is not being applied to the injured eye by the covering</li>
+                                    <li>Do <b>not</b> apply pressure directly to the eye
+                                        <div class="proto-image">
+                                            <div><img src="{{ url_for('static', filename='images/protocol/eye_problems1.jpg') }}" alt="Eye Problems 1"></div>
+                                            <div><img src="{{ url_for('static', filename='images/protocol/eye_problems2.jpg') }}" alt="Eye Problems 2"></div>
+                                        </div>
+                                    </li>
+                                    <li>Chemical injuries
+                                        <ul>
+                                            <li>Bases (lye) cause more severe injuries than acids</li>
+                                            <li>In both circumstances, the eyes should be flushed gently with copious amounts of normal saline</li>
+                                        </ul>
+                                    </li>
+                                    <li>A retinal detachment is a serious threat to the patient's vision, and may or may not result from a traumatic insult
+                                        <ul>
+                                            <li>The patient may describe seeing flashes of light, floating strands or particles, or a visual field defect described as a shadow or a curtain</li>
+                                            <li>Detachment is typically not painful</li>
+                                        </ul>
+                                    </li>
+                                    <li>Unilateral, transient, painless blurred vision may be the warning sign for impending cerebrovascular accident (amaurosis fugax)
+                                        <ul>
+                                            <li>Unilateral, painless blindness may be the result of an embolic event to the retinal artery</li>
+                                            <li>This must be evaluated immediately</li>
+                                        </ul>
+                                    </li>
+                                    <li>Acute glaucoma is an emergency
+                                        <ul>
+                                            <li>Patient will complain of severe pain, headache, blurred vision, halos around lights, and nausea and vomiting</li>
+                                            <li>Typically dilated pupil with cloudy appearing cornea</li>
+                                            <li>Blindness may result
+                                                <div class="proto-image">
+                                                    <div><img src="{{ url_for('static', filename='images/protocol/eye_problems3.jpg') }}" alt="Eye Problems 3"></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <li>TODO: ADDITIONAL ITEM 2
+                                <ul>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </li>
+                            <li>TODO: ADDITIONAL ITEM 3
+                                <ul>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
