@@ -963,6 +963,13 @@ dope {
    flex-grow: 0;
 }
 
+.lvads {
+   display: flex;
+   flex-wrap: wrap;
+   margin-bottom: 20px;
+   gap: 20px;
+   width: 100vw;
+}
 
 
 @media (max-width: 950px){

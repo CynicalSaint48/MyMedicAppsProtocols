@@ -1364,6 +1364,482 @@
             </div>
         </div>
 
+        <h2>Congestive Heart Failure</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" CHFNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" CHFNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Anaphylaxis</li>
+                            <li>Aspiration</li>
+                            <li>Asthma</li>
+                            <li>Congestive Heart Failure</li>
+                            <li>Myocardial Infarction</li>
+                            <li>Pericardial effusion/tamponade</li>
+                            <li>Pleural effusion</li>
+                            <li>Pneumonia</li>
+                            <li>Pulmonary embolus</li>
+                            <li>Toxic exposure</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        
+        <div>
+            <input type="checkbox" name="accordian" id=" CHFAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" CHFAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>12-lead ECG</li>
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li><a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a> <dose style="color:#f4b02a;font-weight:500">0.4 mg SL</dose>
+                                            <ol><li>Hold for SBP &lt: 100 mm Hg</li></ol>
+                                        </li>
+                                        <li>For patient unable to tolerate SL <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a>, apply <a href="{{url_for('medications.nitroglycerin')}}">Nitro Paste</a> to upper chest
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500">SBP &gt; 200 mm Hg: apply 2 inches</dose></li>
+                                                <li><dose style="color:#f4b02a;font-weight:500">SBP 150 - 200 mm Hg: apply 1.5 inches</dose></li>
+                                                <li><dose style="color:#f4b02a;font-weight:500">SBP 100 - 150 mm Hg: apply 1 inch</dose></li>
+                                                <li>Hold/remove for SBP &lt; 100 mm Hg</li>
+                                            </ol>
+                                        </li>
+                                        <li><a FIXME:href="#">CPAP</a> per <a FIXME: href="#">Respiratory: NIPPV Protocol</a> for patient awake and has not responded to above measures</li>
+                                    </ol>
+                                </li>
+                                {% else %}
+                                <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Position patient with head of be elevated 30-45<sup>o</sup></li></li>
+                                        <li>Consider placing patient with hips and knees flexed</li>
+                                    </ol>
+                                </li>
+                                {% endif %}
+                            {% else %}
+                            <li>Adult:
+                                <ol>
+                                    <li><a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a> 0.4 mg SL
+                                        <ol><li>Hold for SBP &lt; 100 mm Hg</li></ol>
+                                    </li>
+                                    <li>For patient unable to tolerate SL <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a>, apply <a href="{{url_for('medications.nitroglycerin')}}">Nitro Paste</a> to upper chest
+                                        <ol>
+                                            <li>SBP &gt; 200 mm Hg: apply 2 inches</li>
+                                            <li>SBP 150 - 200 mm Hg: apply 1.5 inches</li>
+                                            <li>SBP 100 - 150 mm Hg: apply 1 inch</li>
+                                            <li>Hold/remove for SBP &lt; 100 mm Hg</li>
+                                        </ol>
+                                    </li>
+                                    <li><a FIXME:href="#">CPAP</a> per <a FIXME: href="#">Respiratory: NIPPV Protocol</a> for patient awake and has not responded to above measures</li>
+                                </ol>
+                            </li>
+                            <li>Pediatric:
+                                <ol>
+                                    <li>Position patient with head of be elevated 30-45<sup>o</sup></li>
+                                    <li>Consider placing patient with hips and knees flexed</li>
+                                </ol>
+                            </li>
+                            {% endif %}
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose></li>
+                                        <li>Discontinue <a FIXME: href="#">CPAP</a> if already instituted</li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% else %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Pediatric: Contact<a FIXME: href="#">Medical Control Ring Central</a></li>
+                                        <li>Discontinue <a FIXME: href="#">CPAP</a> if already instituted</li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% endif %}
+                            {% else %}
+                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                <ol>
+                                    <li>Adult: 2 - 10 mcg/min IV</li>
+                                    <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                    <li>Discontinue <a FIXME: href="#">CPAP</a> if already instituted</li>
+                                </ol>
+                                <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                            </li>
+                            {% endif %}
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" CHFAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" CHFAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Any patient noted to be in congestive heart failure should be considered at risk for coronary artery disease
+                                <ul>
+                                    <li>Consideration should be given as to the etiology (ischemia/infarction, dysrhythmia)</li>
+                                </ul>
+                            </li>
+                            <li>When hypotension is present in patients suspected of being in congestive heart failure, judicious use of IV fluid is important
+                                <ul>
+                                    <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a> may be considered as initial intervention in these instances</li>
+                                </ul>
+                            </li>
+                            <li>Pediatric patient considerations
+                                <ul>
+                                    <li>Tetralogy of Fallot, transposition of the great arteries, coarctation of the aorta, ventricular septal defects, atrial septal defects, myocarditis, pericarditis, SVT</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Left Ventricular Assist Device (LVAD)</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" LVADNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" LVADNarrative" class="accordian__label">Narrative</label>
+            <div class="additionalSection">
+                <h3>Introduction</h3>
+                    <div>
+                        <ul>
+                            <li>Left Ventricular Assist Device (LVAD's) are placed in patients with severe heart failure
+                                <ul>
+                                    <li>Most are awaiting heart transplantation</li>
+                                </ul>
+                            </li>
+                            <li>There are internal components (connected to the heart) and external components (batteries, drive-line, controller device)</li>
+                            <li>Several types exist
+                                <ul>
+                                    <li>Patients should have documentation of the type of their LVAD</li>
+                                    <li>Contact numbers for coordinator for assistance with management</li>
+                                    <li>Both patient and at least one family member is extensively educated on LVAD system and alarms before discharge from the hospital</li>
+                                </ul>
+                            </li>
+                            <li>Patients may or may not have a palpable pulse
+                                <ul>
+                                    <li>Non-pulsatile device (Heartmate II) = may NOT have a pulse and BP may only be measurable via Doppler</li>
+                                    <li>Pulsatile device (HeartMate III or Total Artificial Heart) = will have a pulse and measurable BP</li>
+                                </ul>
+                            </li>
+                            <li>All LVADs are preload dependent, give fluids as needed for hypotension</li>
+                            <li>Potential complications include:
+                                <ul>
+                                    <li>Bleeding</li>
+                                    <li>Dysrhythmia</li>
+                                    <li>Hemolysis</li>
+                                    <li>Infection</li>
+                                    <li>Pump failure</li>
+                                    <li>Thrombosis</li>
+                                </ul>
+                            </li>
+                            <li>LVAD patients are anti-coagulated
+                                <ul><li>May present with GI bleeding or other significant hemorrhage</li></ul>
+                            </li>
+                            <li>Ensure both batteries are NEVER disconnected at the same time</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h3>Left Ventricular Assist Devices</h3>
+
+        <div class="lvads">
+            <div><b>HeartMate III</b> (pulsatile flow)</div>
+            <div><img src="{{ url_for('static', filename='images/protocol/heartmateIII.jpg') }}" alt="HeartMate III">
+                 <img src="{{ url_for('static', filename='images/protocol/heartmateIII_2.jpg') }}" alt="HeartMate III">
+            </div>
+        </div>
+        <div class="lvads">
+            <div><b>HeartMate II</b> (continuous flow non-pulsatile)</div>
+            <div><img src="{{ url_for('static', filename='images/protocol/heartmateII.jpg') }}" alt="HeartMate II">
+                 <img src="{{ url_for('static', filename='images/protocol/heartmateII_2.jpg') }}" alt="HeartMate II">
+            </div>
+        </div>
+        <div class="lvads">
+            <div><b>HeartMate XVE</b> (pulsatile)</div>
+            <div><img src="{{ url_for('static', filename='images/protocol/heartmateXVE.jpg') }}" alt="HeartMate XVE">
+                 <img src="{{ url_for('static', filename='images/protocol/heartmateXVE_2.jpg') }}" alt="HeartMate XVE">
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" LVADBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" LVADBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess level of consciousness
+                            <ol>
+                                <li>Patient may be awake and alert despite no palpable pulse
+                                    <ol>
+                                        <li>May or may not have a palpable pulse at baseline</li>
+                                        <li>Do not rely on pulses to determine if patient has had a cardiac arrest</li>
+                                        <li>Check to see if patient is breathing, if breathing NO CPR</li>
+                                    </ol>
+                                </li>
+                                <li>If unconscious, pulseless, and apneic
+                                    <ol>
+                                        <li>Initiate focused cardiac arrest protocol and apply AED</li>
+                                        <li>Do <red><b>NOT</b></red> place pads directly over LVAD</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemenmtal oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Additional care as per specific presumptive diagnosis, patient condition, cardiac disorder</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" LVADAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" LVADAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li><a FIXME: href="#">IVF</a>: LVADs are preload dependent and IVF resuscitation is indicated for signs of hypotension and/or volume depletion
+                                {% if keys.ptYears > 0 %}
+                                    {% if keys.ptAdult %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 500-1000 ml IV, IO</dose> as per patient condition</li>
+                                        <li>Repeat <a FIXME: href="#">IVF</a> bolus as indicated per patient condition</li>
+                                    </ol>
+                                    {% else %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*10)|int }} ml IV, IO</dose> as per patient condition</li>
+                                        <li>Repeat <a FIXME: href="#">IVF</a> bolus as indicated per patient condition</li>
+                                    </ol>
+                                    {% endif %}
+                                {% else %}
+                                {% endif %}
+                            </li>
+                            <li>For persistent hypotension following IVF administration
+                                <ol><li><a href="{{url_for('medications.dopamine')}}">Dopamine</a> <dose style="color:#f4b02a;font-weight:500">@ 10 - 20 mcg/kg/min IV</dose></li></ol>
+                            </li>
+                            <li>Dysrhythmias: Treat the patient NOT the monitor
+                                <ol>
+                                    <li>Defibrillation/cardioversion only if patient compromised
+                                        <ol><li>Do <red><b>NOT</b></red> place pads directly over LVAD</li></ol>
+                                    </li>
+                                    <li>Patient may be awake and alert despite ventricular arrhythmia (VF or VT)</li>
+                                    <li>Ventricular Tachycardia: treat with IV medication per protoco</li>
+                                    <li>Ventricular Fibrillation: treat the patient
+                                        <ol>
+                                            <li>Check to see if patient is breathing, if breathing NO CPR</li>
+                                            <li>If patient is unresponsive, apneic, and failure of defibrillation attempt (as indicated) initiate CPR</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Additional Care as per specific presumptive diagnosis, patient condition, cardiac disorder</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" LVADAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" LVADAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Patients are anti-coagulated and prone to bleeding</li>
+                            <li>GI bleeding being a common complication</li>
+                            <li>Persistent bleeding following minor trauma may occur</li>
+                            <li>An LVAD is an invasive device and is prone to infection
+                                <ul>
+                                    <li>Source of infection to consider is the “Drive Line” (connects the internal device to the external controller)
+                                        <ul><li>DO NOT TOUCH the drive line but look for signs of infection at site</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Bring all LVAD equipment during transport</li>
+                            <li>Allow patient's family member who is educated on LVAD use and alarms to accompany patient during ambulance transport</li>
+                            <li>Consult LVAD documentation regarding any alarms on controller device</li>
+                            <li>HeartMate advisory alarms
+                                <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/heartmate_advisory.jpg') }}" alt="HeartMate Advisory Alarms"></div>
+                            </li>
+                            <li>HeartMate hazard alarms
+                                <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/heartmate_hazard.jpg') }}" alt="HeartMate Hazard Alarms"></div>
+                            </li>
+                            <li>With pulsatile flow devices a systolic and diastolic blood pressure may be obtained</li>
+                            <li>With continuous flow devices a mean arterial pressure (MAP) will be the only blood pressure obtained</li>
+                        </ul>
+                        
+                    </div>
+            </div>
+        </div>
+
+        <h2>Total Artificial Heart</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" totalHeartNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" totalHeartNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Objective</H3>
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul>
+                            <li>Serves as a bridge to heart transplantation for patients at risk of death from biventricular failure</li>
+                            <li>Device features: 
+                                <ul>
+                                    <li>Both right and left ventricles + all heart valves removed (atria remain)</li>
+                                    <li>Same blood flow pathway as native heart</li>
+                                    <li>Patients WILL have a pulse</li>
+                                    <li>Patients WILL NOT have a cardiac rhythm</li>
+                                </ul>
+                            </li>
+                            <li>BP cuff should be utilized for monitoring</li>
+                            <li>CPR is NOT effective and should not be performed</li>
+                            <li>NO vasopressors should be utilized in the field</li>
+                            <li>Patients are anticoagulated</li>
+                        </ul>
+                    </div>
+                <div class="proto-image">
+                    <img src="{{ url_for('static', filename='images/protocol/total_heart1.jpg') }}" alt="External Artificial Heart">
+                    <img src="{{ url_for('static', filename='images/protocol/total_heart2.jpg') }}" alt="External Artificial Heart">
+                </div>
+                <h3>Troubleshooting</h3>
+                    <div class="troubleshootingText">
+                        <ul>
+                            <li>Alarms
+                                <ul>
+                                    <li>Battery: beeping audible alarm and blinking yellow light
+                                        <ul>
+                                            <li>One or more batteries with &lt; 30% charge or incorrectly installed</li>
+                                            <li>Replace battery(ies) <b>ONE AT A TIME</b> or connect to external power</li>
+                                        </ul>
+                                    </li>
+                                    <li>Temperature: beeping audible alarm and blinking red light
+                                        <ul>
+                                            <li>Remove any debris blocker filter cover and/or fan</li>
+                                            <li>Move device to a cooler (or warmer) area</li>
+                                        </ul>
+                                    </li>
+                                    <li>Fault: constant audible alarm and solid red light
+                                        <ul>
+                                            <li>If secondary to Valsalva/straining - have patient relax, interrupt Valsalva</li>
+                                            <li>If secondary to kinked drivelines - straighten drivelines</li>
+                                            <li>If disconnected from external power without battery - insert battery or connect to external power</li>
+                                            <li>If 1 or more batteries &lt; 30% charge - replace battery</li>
+                                            <li>Driver malfunction - transport to hospital</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Zoll LifeVest® Wearable Defibrillator</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" lifeVestNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" lifeVestNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul>
+                            <li>LifeVest is a wearable cardioverter defibrillator for patients at risk for sudden cardiac arrest</li>
+                            <li>The vest is worn under clothes directly against the patient's body  
+                                <ul>
+                                    <li>ECG (4) electrodes continuously monitor the heart rhythm</li>
+                                    <li>Therapy pads deliver treatment shocks when indicated
+                                        <ul><li>Therapy pads release a BlueTM gel prior to a treatment shock to improve shock conduction and mitigate burning</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>After LifeVest detects a treatable arrhythmia, the time to treatment will be between 25 and 60 seconds depending on the type and rate of the dysrhythmia and whether the patient presses the “response buttons”
+                                <ul>
+                                    <li>Depression of the response button will prevent a shock from being delivered</li>
+                                    <li>Only the patient should ever press the response buttons</li>
+                                </ul>
+                            </li>
+                            <li>Emergency personnel can be shocked by the vest if it delivers a shock while personnel are in contact with the patient
+                                <ul>
+                                    <li>No one should touch the patient while a treatment shock is delivered</li>
+                                    <li>LifeVest will warn bystanders with both a siren alert and a voice command stating “Bystanders, do not interfere” before a shock is delivered</li>
+                                </ul>
+                            </li>
+                            <li>Prior to delivering an external shock the monitor should be disconnected from the electrode belt
+                                <ul><li>The garment and belt do not need to be removed</li></ul>
+                            </li>
+                            <li>If possible, the patient should bring the LifeVest, charger or charger and hotspot, and extra battery to the hospital</li>
+                        </ul>
+                    </div>
+                    <div class="proto-image">
+                        <div><img src="{{ url_for('static', filename='images/protocol/zoll_vest1.jpg') }}" alt="Zoll Life Vest"></div>
+                        <div><img src="{{ url_for('static', filename='images/protocol/zoll_vest2.jpg') }}" alt="Zoll Life Vest"></div>
+                        <div><img src="{{ url_for('static', filename='images/protocol/zoll_vest3.jpg') }}" alt="Zoll Life Vest"></div>
+                        <div><img src="{{ url_for('static', filename='images/protocol/zoll_vest4.jpg') }}" alt="Zoll Life Vest"></div>
+                    </div>
+                <h3>Life Vest Alerts Sequence</h3>
+                    <div class="alertsText">
+                        <ul>
+                            <li>Vibration alert</li>
+                            <li>Single tone siren</li>
+                            <li>Two tone siren</li>
+                            <li>Voice prompt</li>
+                        </ul>
+                    </div>
+                    <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/zoll_vest5.jpg') }}" alt="Zoll Life Vest"></div>
+                <h3>Management</h3>
+                        <div class="manageText">
+                            <ol>
+                                <li>Proceed with standard evaluation and treatment measures</li>
+                                <li>CPR can be performed as long as the device is not broadcasting:
+                                    <ol>
+                                        <li>“Press response buttons to delay treatment”</li>
+                                        <li>“Bystanders, do not interfere”</li>
+                                    </ol>
+                                </li>
+                                <li>When external defibrillation is available, remove the LifeVest wearable defibrillator and monitor/treat the patient with AED or MEDIC monitor/defibrillator</li>
+                                <li>To remove the device
+                                    <ol>
+                                        <li>First pull out the battery</li>
+                                        <li>Remove the garment from the patient</li>
+                                    </ol>
+                                </li>
+                                <li>When performing manual CPR ensure the battery has been removed from the LifeVest to prevent shock delivery during CPR</li>
+                            </ol>
+                            <div class="proto-image">
+                                <div><img src="{{ url_for('static', filename='images/protocol/zoll_vest6.jpg') }}" alt="Zoll Life Vest"></div>
+                                <div><img src="{{ url_for('static', filename='images/protocol/zoll_vest7.jpg') }}" alt="Zoll Life Vest"></div>
+                            </div>
+                        </div><hr><br>
+            </div>
+        </div>
+
     </div>
 </div>
 {% endblock %}
