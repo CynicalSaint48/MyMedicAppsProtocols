@@ -491,3 +491,10 @@ def heartProblems():
     keys = get_key_list()
 
     return render_template('/protocols/HeartProblems.html', keys=keys, varTitle="Heart Problems")
+
+@protocols.route("/protocols/HeatCold")
+def heatCold():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/HeatCold.html', keys=keys, varTitle="Heat/Cold Exposure")

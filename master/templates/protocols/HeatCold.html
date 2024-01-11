@@ -1,0 +1,519 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Heat/Cold Exposure</H1><hr>
+        <h2>Heat Exposure</h2>
+        <div>
+            <input type="checkbox" name="accordian" id=" heatNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" heatNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul>
+                            <li>Heat illnesses encompass a spectrum of disorders from simple muscle cramps and heat  exhaustion to life-threatening heat stroke</li>
+                            <li>Temperatures more than 107oF do not occur from infectious sources and require aggressive treatment to cool the patient</li><br>
+                            <li><b>Differential Diagnosis</b><br>
+                                <ul class="differentialText">
+                                    <li>CNS lesion</li>
+                                    <li>Dehydration</li>
+                                    <li>Delirium tremens</li>
+                                </ul>
+                            </li><br>
+                            <li><b>Risk Factors</b><br>
+                                <ul class="differentialText">
+                                    <li>Drugs
+                                        <ul>
+                                            <li>Amphetamines</li>
+                                            <li>Anticholinergics</li>
+                                            <li>Aspirin</li>
+                                            <li>Cocaine</li>
+                                            <li>Neuroleptics</li>
+                                        </ul>
+                                    </li>
+                                    <li>Endocrine disorders
+                                        <ul>
+                                            <li>Exertion</li>
+                                            <li>Heat exposure</li>
+                                            <li>Hyperthyroidism</li>
+                                            <li>Status epilepticus</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li><br>
+                            <li><b>Clinical Presentation</b><br>
+                                <ul>
+                                    <li>Heat cramps
+                                        <ul>
+                                            <li>Benign muscle cramping</li>
+                                            <li>Body temperature normal, typically no dehydration</li>
+                                            <li>Warm, moist skin</li>
+                                            <li>Secondary to hyponatremia</li>
+                                        </ul>
+                                    </li><br>
+                                    <li>Heat exhaustion
+                                        <ul>
+                                            <li>Dehydration</li>
+                                            <li>Headache</li>
+                                            <li>Malaise, irritability</li>
+                                            <li>Nausea, vomiting</li>
+                                            <li>Profuse sweating</li>
+                                            <li>Tachycardia</li>
+                                        </ul>
+                                    </li><br>
+                                    <li>Heat stroke
+                                        <ul>
+                                            <li>Altered mental status (confusion to coma)</li>
+                                            <li>Elevated temperature</li>
+                                            <li>Often dry skin</li>
+                                            <li>Tachycardia, tachypnea</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" heatBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" heatBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Confirm scene safety</li>
+                        <li>Ensure a cool protective environment for yourself and the patient & initiate cooling</li>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs  including temperature</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>As available, an ice water immersion tank should be utilized for patients with heat exhaustion or heat stroke to cool to &lt; 102<sup>o</sup> F prior to transport
+                            <ol><li>Must maintain protection of patient from head dropping beneath water surface</li></ol>
+                        </li>
+                        <li>Immediately initiate cooling central body regions with ice packs
+                            <ol><li>Axilla, groin, scalp, chest, abdomen</li></ol>
+                        </li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li>Expose patient and mist skin wet with room temperature saline
+                            <ol><li>Apply fan / cool air blow-by (hold if patient begins to shiver)</li></ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" heatAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" heatAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead, 12-lead ECG as indicated and refer to appropriate protocol as indicated</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax26 %}
+                                            <ol>
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 4 mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs * 3)/20) }}mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 4 - 8 mg PO, IV, IM </li>
+                                    <li> Pediatric dose = 0.15 mg/kg PO, IV, IM (maximum 4 mg) </li>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            {% if keys.ptMax100 %}
+                                                <ol>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                    <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if keys.ptMax100 %}
+                                                <ol>
+                                                    <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                    <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <ol>
+                                            <li> Adult: </li>
+                                                <ul>
+                                                    <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                    <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                                </ul>
+                                            <li> Pediatric: </li>
+                                                <ul>
+                                                    <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                    <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                                </ul>
+                                        </ol>                           
+                                    {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Additional care as per appropriate protocol</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" heatAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" heatAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Initiate cooling activities immediately
+                                <ul>
+                                    <li>An ice water immersion tank should be utilized for patients with heat exhaustion or heat stroke to cool to &lt; 102<sup>o</sup> F prior to transport</li>
+                                    <li>Must maintain protection of patient from head dropping beneath water surface</li>
+                                </ul>
+                            </li>
+                            <li>Extremes of age are more prone to heat related emergencies</li>
+                            <li>Assess for predisposing factors
+                                <ul>
+                                    <li>Cocaine, amphetamines, salicylates, tricyclic antidepressants, phenothiazines, anticholinergic medications</li>
+                                </ul>
+                            </li>
+                            <li>A thermometer should be used for patients where clinical signs and symptoms of hyperthermia are not apparent, and a body temperature reading would alter clinical decision-making in the prehospital environment</li>
+                            <li>There is no role for antipyretics such as acetaminophen or ibuprofen in patients with non-infectious causes of hyperthermia</li>
+                            <li>Heat cramps = benign muscle cramping due to dehydration & typically not associated with elevated temperature</li>
+                            <li>Heat exhaustion = dehydration, salt depletion, dizziness, fever, cramping, N/V</li>
+                            <li>Heat stroke = altered mental status, dehydration, elevated temperature</li>
+                        </ul>
+                    </div>
+            </div>
+        </div><hr><br>
+
+        <h2>Cold Exposure</h2>
+        <div>
+            <input type="checkbox" name="accordian" id=" coldNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" coldNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Introduction</H3>
+                    <div>
+                        <ul>
+                            <li><b>Definitions</b><br>
+                                <ul>
+                                    <li>Body core temperature &lt; 95oF (35<sup>o</sup>C)</li>
+                                    <li>Primary hypothermia = due to cold environment exposure</li>
+                                    <li>Secondary hypothermia = illness that impairs thermoregulation</li>
+                                    <li>Mild hypothermia: temperature 90<sup>o</sup>-95<sup>o</sup>F (32<sup>o</sup>-35<sup>o</sup>C)</li>
+                                    <li>Moderate hypothermia: temperature 82<sup>o</sup>-90<sup>o</sup>F (28<sup>o</sup>-32<sup>o</sup>C)</li>
+                                    <li>Severe hypothermia: temperature &lt; 82<sup>o</sup>F (28<sup>o</sup>C)</li>
+                                </ul>
+                            </li><br>
+                            <li><b>Differential Diagnosis</b><br>
+                                <ul>
+                                    <li>CNS dysfunction</li>
+                                    <li>Environment exposure</li>
+                                    <li>Hypoglycemia</li>
+                                    <li>Hypothyroidism</li>
+                                    <li>Hypoadrenalism</li>
+                                    <li>Sepsis</li>
+                                </ul>
+                            </li><br>
+                            <li><b>Clinical Presentation</b><br>
+                                <ul>
+                                    <li>Cold exposure</li>
+                                    <li>Shivering (may be absent in severe hypothermia)</li>
+                                    <li>Altered consciousness</li>
+                                    <li>Dehydration</li>
+                                    <li>Tachypnea then bradypnea</li>
+                                    <li>Bradycardia to cardiac arrest</li>
+                                </ul>
+                            </li><br>
+                            <li><b>Risk Factors</b><br>
+                                <ul>
+                                    <li>Exhaustion</li>
+                                    <li>Age extremes</li>
+                                    <li>Very young age</li>
+                                    <li>Alcohol and drug use</li>
+                                    <li>Mental health illnesses</li>
+                                    <li>Medications
+                                        <ul>
+                                            <li>Antidepressants</li>
+                                            <li>Antipsychotics</li>
+                                            <li>Opioids</li>
+                                            <li>Sedatives</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+                
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" coldBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" coldBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Confirm scene safety</li>
+                        <li>Ensure a warm protective environment for yourself and the patient & initiate cooling</li>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs  including temperature</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li>Remove all wet clothing</li>
+                        <li>Initiate re-warming
+                            <ol>
+                                <li>Passive external: Provide warm environment, insulate from further heat loss</li>
+                                <li>Active external: Heater, warm blankets</li>
+                            </ol>
+                        </li>
+                        <li>Assess for associated trauma</li>
+                        <li>Remove rings, bracelets, or constricting items on any extremity with potential frostbite</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" coldAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" coldAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Correct hypoglycemia as per <a href="{{url_for('protocols.diabetic')}}">Diabetic Problems Protocol</a></li>
+                            <li><a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> for suspected narcotic use
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                    {% else %}
+                                        {% if keys.ptMax200 %}
+                                            <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                        {% elif keys.ptMax20 %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2'|format (keys.ptKgs/100) }} - 2 mg IV, IO, IN</dose></li></ol>
+                                        {% else %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2'|format (keys.ptKgs/100) }} - {{ '%0.2'|format (keys.ptKgs/10) }} mg IV, IO, IN</dose></li></ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 1 - 2 mg IV, IO, IN</li>
+                                        <li>Pediatric: 0.01 - 0.1 mg/kg IV, IO, IN</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Assess for associated trauma</li>
+                            <li>Additional care as per appropriate protocol</li>
+                            <li>For suspected frostbite
+                                <ol>
+                                    <li>Do not rub affected part</li>
+                                    <li>Do not break or open blisters</li>
+                                    <li>Apply sterile dressing</li>
+                                    <li>Do not attempt to thaw frozen area <u>unless ensured area will not refreeze</u> prior to arrival to definitive care</li>
+                                    <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                        {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                {% if keys.ptAdult %}
+                                                    {% if keys.ptMax100 %}
+                                                        <ol>
+                                                            <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN, IO </b></li>
+                                                            <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                        </ol>
+                                                    {% else %}
+                                                        <ol>
+                                                            <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IM, IN, IO </dose></li>
+                                                            <li> May repeat x1 in 15 minutes as indicated <b style="color:#D2042D;font-weight:600">(maximum 100 mcg maximum any route) </b></li>
+                                                        </ol>
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% if keys.ptMax100 %}
+                                                        <ol>
+                                                            <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg IV, IM, IN </b></li>
+                                                            <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                        </ol>
+                                                    {% else %}
+                                                        <ol>
+                                                            <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IM, IN </dose></li>
+                                                            <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                                        </ol>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% else %}
+                                                <ol>
+                                                    <li> Adult: </li>
+                                                        <ul>
+                                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                            <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route) </li>                                        
+                                                        </ul>
+                                                    <li> Pediatric: </li>
+                                                        <ul>
+                                                            <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                            <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                                        </ul>
+                                                </ol>                           
+                                            {% endif %}
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>For patient in cardiac arrest
+                                <ol>
+                                    <li>Continue CPR until core temperature &gt; 90<sup>o</sup>F</li>
+                                    <li>Defibrillation typically unsuccessful at temperature &gt; 90<sup>o</sup>F</li>
+                                    <li>Hold ACLS medications until core temperature &gt;86<sup>o</sup>F</li>
+                                    <li>Consider withholding CPR if patient has organized rhythm or has other signs of life
+                                        <ol><li>Contact <a FIXME:href="">Medical Control Ring Central</a></li></ol>
+                                    </li>
+                                    <li>Consider: no patient is dead until warm and dead (temp &gt; 93.2<sup>o</sup>F; 32<sup>o</sup>C)</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" coldAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" coldAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Extremes of age are more susceptible to cold emergencies</li>
+                            <li>Osborn ( J ) waves = ECG: slow positive defection at the end of QRS complex, occur at temperature &lt; 90<sup>o</sup>F (32<sup>o</sup>C)</li>
+                            <li>ADysrhythmias classically progress:
+                                <ul>
+                                    <li>NSR &#8594; SB &#8594; AFIB with slow ventricular response &#8594; VFIB &#8594; asystole</li>
+                                </ul>
+                            </li>
+                            <li>Obtain as much information from bystanders as possible
+                                <ul>
+                                    <li>Duration of exposure, any immersion</li>
+                                    <li>Drug or alcohol history</li>
+                                </ul>
+                            </li>
+                            <li>Hypothermic patients should be handled with caution
+                                <li>Dysrhythmias, primarily ventricular fibrillation, are commonplace at core temperatures &lt; 86<sup>o</sup>F, and may be precipitated with careless handling of the patient</li>
+                            </li>
+                            <li>HA thermometer should be used for patients where clinical signs and symptoms of hypothermia are not apparent, and a body temperature reading would alter clinical decision-making in the prehospital environment</li>
+                            <li>In cardiac arrest the primary treatment is active core rewarming
+                                <ul>
+                                    <li>The hypothermic heart is usually unresponsive to most cardiac medications, defibrillation, and pacing</li>
+                                    <li>If the patient is below 86<sup>o</sup>F or 30<sup>o</sup>C only defibrillate once if defibrillation is required</li>
+                                    <li>Normal defibrillation procedure may resume once patient reaches 86<sup>o</sup>F (30<sup>o</sup>C)</li>
+                                    <li>Below 86<sup>o</sup>F (30<sup>o</sup>C) anti-dysrhythmics may not work and, if given, should be given at reduced intervals contact medical control before they are administered</li>
+                                    <li>Below 86<sup>o</sup>F (30<sup>0</sup>C) or pacing should not be performed</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
