@@ -948,6 +948,21 @@ dope {
    width: 350px;
 }
 
+.capture {
+   display: flex;
+   flex-direction: column;
+   width: 350px;
+   margin-bottom: 20px;
+}
+
+.capture div {
+   max-width: 350px;
+}
+
+.capture img {
+   flex-grow: 0;
+}
+
 
 
 @media (max-width: 950px){

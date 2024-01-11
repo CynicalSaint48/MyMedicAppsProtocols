@@ -1096,6 +1096,274 @@
             </div>
         </div>
 
+        <h2>Wide Complex Tachycardia (VT)</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" VTAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" VTAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><b>Stable</b>
+                                <ol>
+                                    <li>4-lead ECG</li>
+                                    <li>12-lead ECG as indicated</li>
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
+                                        <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a><dose style="color:#f4b02a;font-weight:500"> {{ ((keys.ptKgs*3)/2)|int }} mg IV, IO</dose></li>
+                                                <li>Repeat <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> <dose style="color:#f4b02a;font-weight:500"> {{ ((keys.ptKgs)/2)|int }} mg IV, IO</dose> every 5 minutes for ventricular tachycardia that continues until tachycardia resolves or total of 3 mg/kg has been given</li>
+                                                <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a><dose style="color:#f4b02a;font-weight:500"> 2 grams IV, IO</dose> over 2 minutes for ventricular tachycardia that continues or is polymorphic</li>
+                                            </ol>
+                                        </li>
+                                        {% else %}
+                                        <li>Pediatric: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a><dose style="color:#f4b02a;font-weight:500"> {{ ((keys.ptKgs))|int }} mg IV, IO</dose></li>
+                                                <li>Repeat <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> <dose style="color:#f4b02a;font-weight:500"> {{ ((keys.ptKgs)/2)|int }} mg IV, IO</dose> every 5 minutes for ventricular tachycardia that continues until tachycardia resolves or total of 3 mg/kg has been given</li>
+                                            </ol>
+                                        </li>
+                                        {% endif %}
+                                    {% else %}
+                                        <li>
+                                            <ol>
+                                                <li>Adult:
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a>Lidocaine 1.5 mg/g IV, IO</li>
+                                                        <li>Repeat <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> 0.5 mg/kg IV, IO every 5 minutes for ventricular tachycardia that continues until tachycardia resolves or total of 3 mg/kg has been given</li>
+                                                        <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> 2 grams IV, IO over 2 minutes for ventricular tachycardia that continues or is polymorphic</li>
+                                                        </ol>
+                                                </li>
+                                                <li>Pediatric:
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.lidocaine')}}">Lidocaine</a>Lidocaine 1 mg/g IV, IO</li>
+                                                        <li>Repeat <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> 0.5 mg/kg IV, IO every 5 minutes for ventricular tachycardia that continues until tachycardia resolves or total of 3 mg/kg has been given</li>
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    {% endif %}
+                                    <li>For any rhythm change occurs refer to appropriate protocol</li>
+                                </ol>
+                            </li><br>
+                            <li><b>Unstable</b>
+                                <ol>
+                                    <li>4-lead ECG</li>
+                                    <li>12-lead ECG as indicated</li>
+                                    {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
+                                        <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a><dose style="color:#f4b02a;font-weight:500">  5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">  10 mg IN</dose></li>
+                                                {% if ptMax100 %}
+                                                        <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl</a>: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
+                                                {% else %}
+                                                        <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl</a>: <dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs)|int }} mcg IV, IO, IN</dose></li>
+                                                {% endif %}
+                                                <li><dose style="color:#f4b02a;font-weight:500">Synchronized cardioversion @ 100 Joules</dose></li>
+                                                <li>For ventricular that tachycardia resolves: <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> <dose style="color:#f4b02a;font-weight:500">{{ ((keys.ptKgs*3)/2)|int }} mg IV, IO</dose></li>
+                                                <li>Repeat <dose style="color:#f4b02a;font-weight:500">Cardioversion @ 150 Joules</dose> for VT that continues</li>
+                                                <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> <dose style="color:#f4b02a;font-weight:500">2 grams IV, IO</dose> over 2 minutes for ventricular tachycardia that continues or is polymorphic</li>
+                                                <li>For ventricular tachycardia that is polymorphic (Torsades) or monitor cannot synchronize, perform <dose style="color:#f4b02a;font-weight:500">Defibrillation @ 150 Joules</dose>
+                                                    <ol><li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> <dose style="color:#f4b02a;font-weight:500">2 grams IV</dose></li></ol>
+                                                </li>
+                                                <li>Contact <a FIXME:href="#">Medical Control Ring Central</a></li>
+                                            </ol>
+                                        </li>
+                                        {% else %}
+                                        <li>Pediatric: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <ol>
+                                                <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a>:
+                                                    {% if keys.ptMax50 %}
+                                                        <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li></ol>
+                                                    {% elif keys.ptMax33 %}
+                                                        <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                                    {% else %}
+                                                        <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 10) }} mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                                    {% endif %}
+                                                </li>
+                                                {% if ptMax100 %}
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl</a>: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
+                                                    </ol>
+                                                {% else %}
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl</a>: <dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs)|int }} IV, IO, IN</dose></li>
+                                                    </ol>
+                                                {% endif %}
+                                                <li><dose style="color:#f4b02a;font-weight:500">Synchronized cardioversion @ {{ ((keys.ptKgs)/2) }} Joules</dose></li>
+                                                <li>For ventricular that tachycardia resolves: <a href="{{url_for('medications.lidocaine')}}"> {{ (keys.ptKgs)|int }} IV, IO</li>
+                                                <li>Repeat <dose style="color:#f4b02a;font-weight:500">Cardioversion @ {{ (keys.ptKgs)|int }} Joules</dose> for VT that continues</li>
+                                                {% if keys.ptMax75 %}
+                                                    <li>Repeat <dose style="color:#f4b02a;font-weight:500">Cardioversion @ 150 Joules</dose> for VT that continues</li>
+                                                {% else %}
+                                                    <li>Repeat <dose style="color:#f4b02a;font-weight:500">Cardioversion @ {{ (keys.ptKgs*2)|int }} Joules</dose> for VT that continues</li>
+                                                {% endif %}
+                                                {% if keys.ptMax37 %}
+                                                    <li>For ventricular tachycardia that is polymorphic (Torsades) or monitor cannot synchronize, perform <dose style="color:#f4b02a;font-weight:500">Defibrillation @ 150 Joules</dose>
+                                                        <ol><li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate<dose style="color:#f4b02a;font-weight:500"></a> 2 grams IV</dose></li></ol>
+                                                    </li>
+                                                {% else %}
+                                                    <li>For ventricular tachycardia that is polymorphic (Torsades) or monitor cannot synchronize, perform <dose style="color:#f4b02a;font-weight:500">Defibrillation @ {{ (keys.ptKgs*4)|int }} Joules</dose>
+                                                        {% if keys.ptMax40 %}
+                                                            <ol><li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate<dose style="color:#f4b02a;font-weight:500"></a> 2 grams IV</dose></li></ol>
+                                                        {% else %}
+                                                            <ol><li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate<dose style="color:#f4b02a;font-weight:500"></a> {{'%0.2f'| format((keys.ptKgs*50)/1000) }} grams IV</dose></li></ol>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endif %}
+                                                <li>Contact <a FIXME:href="#">Medical Control Ring Central</a></li>
+                                            </ol>
+                                        </li>
+                                        {% endif %}
+                                    {% else %}
+                                        <li>
+                                            <ol>
+                                                <li>Adult:
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> 5 mg IV, IM or 10 mg IN</li>
+                                                        <li><a href="{{url_for('medications.midazolam')}}">Fentanyl (Sublimaze®)</a> 1 mcg/kg IV, IO, IN (max 100 mcg) as patient condition permits</li>
+                                                        <li>Synchronized cardioversion @ 100 Joules</li>
+                                                        <li>For ventricular tachycardia that resolves: <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> 1.5 mg/kg IV, IO</li>
+                                                        <li>Repeat cardioversion @150 Joules for VTach that continues</li>
+                                                        <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> 2 grams IV, IO over 2 minutes for ventricular tachycardia that continues or is polymorphic</li>
+                                                        <li>For ventricular tachycardia that is polymorphic (Torsades) or monitor cannot synchronize, perform defibrillation @ 150 Joules
+                                                            <ol><li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> 2 grams IV</li></ol>
+                                                        </li>
+                                                        <li>Contact <a FIXME:href="#">Medical Control Ring Central</a></li>
+                                                    </ol>
+                                                </li>
+                                                <li>Pediatric:
+                                                    <ol>
+                                                        <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> 0.15 mg/kg IV, IM (max 5 mg) or 0.2 mg/kg IN (max 10 mg)</li>
+                                                        <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl</a>: 1 mcg/kg IV, IO, IN (max 100 mcg) as patient condition permits</li>
+                                                        <li>Synchronized cardioversion @ 0.5 J/kg</li>
+                                                        <li>For ventricular tachycardia that resolves: <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> 1 mg/kg IV, IO</li>
+                                                        <li>Repeat cardioversion @ 1 Joules/kg for VT that continues</li>
+                                                        <li>Repeat cardioversion @ 2 Joules/kg for VT that continues</li>
+                                                        <li>For ventricular tachycardia that is polymorphic (Torsades) or monitor cannot synchronize, perform defibrillation @ 4 Joules/kg (maximum 150 Joules)
+                                                            <ol><li><li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> 50 mg/kg IV (maximum 2 grams)</li></li></ol>
+                                                        </li>
+                                                        <li>Contact <a FIXME:href="#">Medical Control Ring Central</a></li>
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    {% endif %}
+                                    <li>For any rhythm change occurs refer to appropriate protocol</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Wide-complex, prolonged QT-interval, or sine-wave consistent with hyperkalemia</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" hyperKAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" hyperKAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a;font-weight:500">2 grams (20 ml of 10% solution) IV</dose> over 2 minutes</li>
+                                        <li>Repeat <a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a;font-weight:500">2 grams</dose> for dysrhythmia that continues</li>
+                                        <li><a href="{{url_for('medications.bicarb')}}">Sodium Bicarbonate</a> <dose style="color:#f4b02a;font-weight:500">50 mEq (50 ml) IV, IO</dose></li>
+                                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> <dose style="color:#f4b02a;font-weight:500">5 mg </dose>via nebulizer</li>
+                                    </ol>
+                                </li>
+                                {% else %}
+                                <li>Pediatric: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        {% if keys.ptMax100 %}
+                                            <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a;font-weight:500">2 grams (20 ml of 10% solution) IV</dose> over 2 minutes</li>
+                                        {% else %}
+                                            <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs*20)/1000)}} grams IV</dose> over 2 minutes</li>
+                                        {% endif %}
+                                        <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg </dose>via nebulizer</li>
+                                    </ol>
+                                </li>
+                                {% endif %}
+                            {% else %}
+                            {% endif %}
+                            <li> If any rhythm change occurs refer to appropriate protocol</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" heartProblemsAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" heartProblemsAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>When ventricular escape beats are observed in the presence of bradycardia, <red><b>do not</b></red> treat with <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a>
+                                <ul>
+                                    <li>Escape beats are attempting to sustain the patient</li>
+                                    <li>Treat the bradycardia with <a href="{{url_for('medications.atropine')}}">Atropine</a></li>
+                                </ul>
+                            </li>
+                            <li>If unable to differentiate the rhythm between supraventricular and ventricular, treat as ventricular</li>
+                            <li>Bolus of <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> is more efficacious and safer than <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> drips in suppressing ventricular ectopy</li>
+                            <li>Prophylactic <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> therapy is <red><b>NOT</b></red> indicated for routine use when PVCs are associated with acute MI</li>
+                            <li>Any dysrhythmia can provoke a pulmonary edema/CHF exacerbation in a patient with a compromised heart
+                                <ul>
+                                    <li>Treat the dysrhythmia first</li>
+                                    <li>For patient that demonstrates signs of respiratory distress and is determined to be in congestive heart failure or pulmonary edema, obtain 12-lead ECG on-scene
+                                        <ul><li>For acute injury or infarction noted, immediately transport</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Patients with a history of congestive heart failure, liver disease, shock, or advanced age (>70 years old) should receive half (0.75 mg/kg) the normal bolus of <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a>
+                                <ul><li>Repeat doses should be reduced to 0.5 mg/kg</li></ul>
+                            </li>
+                            <li>Consider hypoglycemia in any patient progressing into cardiac arrest
+                                <ul><li>Consider <a href="{{url_for('medications.glucose')}}">D10</a> @ 25 grams (100 ml) IV, IO</li></ul>
+                            </li>
+                            <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> is <red><b>contraindicated</b></red> in patients with renal insufficiency or on dialysis except in cases of Torsades</li>
+                            <li>Hyperkalemia is a dangerous electrolyte abnormality and can lead to peaked T-waves, PR segment prolongation, absent p-waves, widening QRS interval, and heart blocks
+                                <ul>
+                                    <li>Causes include renal failure, noncompliance with dialysis, acidosis, medications, and significant crush or burn injuries</li>
+                                    <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> and <a href="{{url_for('medications.bicarb')}}">Sodium Bicarbonate</a> are emergently required as treatment</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                <h3>VT vs. SVT with Aberrancy</h3>
+                    <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/heart_problems.jpg') }}" alt="VT vs SVT with Aberrancy"></div>
+                    <div class="proto-image">
+                        <div class="capture">
+                            <div><b>Capture Beat</b></div>
+                            <div>Normal sinus beat captured in rhythm</div>
+                            <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/capture_beat.jpg') }}" alt="Capture Beat ECG"></div>
+                        </div>
+                        <div class="capture">
+                            <div><b>Fusion Beat</b></div>
+                            <div>Sinus beat coinciding with VT beat (hybrid)</div>
+                            <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/fusion_beat.jpg') }}" alt="Fusion Beat ECG"></div>
+                        </div>
+                        <div class="capture">
+                            <div><b>Brugada's sign</b> - distance from start of QRS complex to lowest point of S-wave &gt; 100 msec</div>
+                            <div><b>Josephson's sign</b> - notch near the nadir of the S-wave</div>
+                            <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/brugada_josephson.jpg') }}" alt="Brugada's and Josephson's Sign"></div>
+                        </div>
+                        <div class="capture">
+                            <div><b>RSR'</b> - VT taller on LEFT side of complex</div>
+                            <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/rsr_vt.jpg') }}" alt="RSR in VT"></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
     </div>
 </div>
 {% endblock %}
