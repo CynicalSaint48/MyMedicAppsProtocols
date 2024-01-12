@@ -322,28 +322,28 @@
                             <!-- FIXME: Protocol Error? 1g for Adult, max 2g for Ped?  FIXME: -->
                             <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> for severe muscle spasms
                                 {% if keys.ptYears > 0 %}
-                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                    {% if keys.ptAdult %}
-                                        <ol>
-                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 gram (10 ml of 10% solution) IV, IO </dose></li>
-                                        </ol>
-                                    {% else %}
-                                        {% if ptMax50 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
                                             <ol>
-                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 1 gram (10 ml of 10% solution) IV, IO </dose></li>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 gram (10 ml of 10% solution) IV, IO </dose></li>
                                             </ol>
                                         {% else %}
-                                            <ol>
-                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs * 2)/100) }}g IV, IO </dose></li>
-                                            </ol>
+                                            {% if ptMax50 %}
+                                                <ol>
+                                                    <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 1 gram (10 ml of 10% solution) IV, IO </dose></li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs * 2)/100) }}g IV, IO </dose></li>
+                                                </ol>
+                                            {% endif %}
                                         {% endif %}
-                                    {% endif %}
-                            {% else %}
-                                <ol>
-                                    <li> Adult: 1 gram (10 ml of 10% solution) IV, IO </li>
-                                    <li> Pediatric: 20 mg/kg IV, IO (0.2 ml/kg of 10% solution); maximum 2 grams (20ml) </li>
-                                </ol>                           
-                            {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li> Adult: 1 gram (10 ml of 10% solution) IV, IO </li>
+                                        <li> Pediatric: 20 mg/kg IV, IO (0.2 ml/kg of 10% solution); maximum 2 grams (20ml) </li>
+                                    </ol>                           
+                                {% endif %}
                             </li>
                         </ol>
                     </p><hr><br>

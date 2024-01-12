@@ -390,9 +390,9 @@
                                         {% if keys.ptMax200 %}
                                             <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
                                         {% elif keys.ptMax20 %}
-                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2'|format (keys.ptKgs/100) }} - 2 mg IV, IO, IN</dose></li></ol>
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - 2 mg IV, IO, IN</dose></li></ol>
                                         {% else %}
-                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2'|format (keys.ptKgs/100) }} - {{ '%0.2'|format (keys.ptKgs/10) }} mg IV, IO, IN</dose></li></ol>
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - {{ '%0.2f'| format (keys.ptKgs/10) }} mg IV, IO, IN</dose></li></ol>
                                         {% endif %}
                                     {% endif %}
                                 {% else %}

@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Industrial Accident</H1><hr>
+        
+        <div>
+            <input type="checkbox" name="accordian" id=" industrialBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" industrialBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li> Confirm scene safety</li>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%
+                            <ol>
+                                <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                            </ol>
+                        </li>
+                        <li>Control any active external bleeding with direct pressure
+                            <ol>
+                                <li>Apply MEDIC tourniquet for presumed life-threatening extremity hemorrhage not controlled with direct pressure</li>
+                            </ol>
+                        </li>
+                        <li>Splint any long bone deformity or area where crush injury has occurred
+                            <ol>
+                                <li>Dislocated joints should be splinted in position of deformity</li>
+                                <li>Fractures should be realigned and splinted from joint above through joint below</li>
+                                <li>Distal pulses should be assessed before and after realignment and splinting</li>
+                            </ol>
+                        </li>
+                        <li>Ensure spinal motion restriction as indicated by mechanism of injury and presentation</li>
+                        <li>Attempt to locate any amputated appendage or part
+                            <ol>
+                                <li>Gently irrigate with normal saline and wrap in normal saline moistened gauze</li>
+                                <li>Place in plastic bag and put bag on ice (as available) and transport with patient</li>
+                                <li>Amputated parts should never be in direct contact with ice</li>
+                            </ol>
+                        </li>
+                        <li><a href="{{url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain Control
+                            {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li>
+                                    </ol>
+                                {% else %}
+                                    {% if ptMax43 %}
+                                        <ol>
+                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        <ol>
+                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs * 15) }} mg PO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 650 - 975 mg PO</li>
+                                    <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                    </li>
+                                </ol>                           
+                            {% endif %}
+                        </li>
+                        <li>Alternative pain control: <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide </a>via patient-controlled inhalation </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" industrialAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" industrialAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}"> Fentanyl (Sublimaze®)</a> for pain control as patient status permits
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if keys.ptMax200 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IN, IM, IO</li>
+                                            </ol>
+                                        {% elif keys.ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IN, IM, IO</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose> IV, IN, IM, IO</li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if keys.ptMax200 %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
+                                            </ol>
+                                        {% elif keys.ptMax100 %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose> IV, IO, IN</li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                        <li>Pediatric: 0.5 - 1 mcg/kg IV, IO, IN (maximum 100 mcg)</li>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO2 and ventilate with 100% oxygen</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

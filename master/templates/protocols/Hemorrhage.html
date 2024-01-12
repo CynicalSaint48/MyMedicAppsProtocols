@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Hemorrhage</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" bleedingNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" bleedingNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Etiologies</h3>
+                        <ul class="differentialText">
+                            <li>Dental hemorrhage</li>
+                            <li>Dialysis access hemorrhage</li>
+                            <li>Epistaxis</li>
+                            <li>Hematemesis</li>
+                            <li>Hematochezia / melena</li>
+                            <li>Hematuria</li>
+                            <li>Hemoptysis</li>
+                            <li>Intracranial hemorrhage</li>
+                        </ul>
+
+                <h3>Differential Diagnosis</h3>
+                <ul class="differentialText">
+                    <li>Medical Shock
+                        <ul>
+                            <li>Anaphylaxis</li>
+                            <li>Cardiogenic</li>
+                            <li>Drug induced</li>
+                            <li>Hypovolemic</li>
+                            <li>Neurogenic</li>
+                            <li>Sepsis</li>
+                        </ul>
+                    </li>
+                    <li>Traumatic Shock
+                        <ul>
+                            <li>External hemorrhage</li>
+                            <li>Internal hemorrhage</li>
+                            <li>Cardiac tamponade</li>
+                            <li>Neurogenic</li>
+                        </ul>
+                    </li>
+                </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" bleedingBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" bleedingBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Confirm scene safety</li>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Additional care as per etiology of hemorrhage</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Dental Hemorrhage</h2><hr>
+
+        <div>
+            <ol>
+                <li>Have patient bite down on gauze packing</li>
+                <li>Assess for trauma and treat as per appropriate protocol</li>
+                <li>For avulsed tooth
+                    <ol>
+                        <li>Gently irrigate and attempt to replace into socket
+                            <ol><li>Do <u>NOT</u> rub or scrub tooth</li></ol>
+                        </li>
+                        <li>If unable to replace into socket have patient hold tooth in their cheek
+                            <ol>
+                                <li>Patient must have normal mental status</li>
+                                <li>Otherwise place tooth in milk or normal saline</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+
+        <h2>Dialysis Access Hemorrhage</h2><hr>
+
+        <div>
+            <ol>
+                <li>Apply direct pressure to site</li>
+                <li>Apply MEDIC tourniquet for presumed life-threatening hemorrhage not controlled with direct pressure
+                    <ol>
+                        <li>Be sure to apply proximal to the shunt (<b>NOT</b> directly on the shunt)</li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+
+        <h2>Epistaxis</h2><hr>
+
+        <div>
+            <ol>
+                <li>Have patient forcibly blow nose
+                    <ol><li>Immediately apply direct pressure by pinching nostrils & tilting head forward</li></ol>
+                </li>
+                <li>Suction as necessary</li>
+                <li>Assess for trauma and treat as per appropriate protocol</li>
+                <li><a FIXME:href="#">IVF</a> bolus as indicated per patient condition
+                    {% if keys.ptYears > 0 %}
+                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                        {% if keys.ptAdult %}
+                            <ol><li>Adult:  <dose style="color:#f4b02a;font-weight:500">500 - 1000 ml</dose></li></ol>
+                        {% else %}
+                            <ol><li>Pediatric:  <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }}ml</dose></li></ol>
+                        {% endif %}
+                    {% else %}
+                    {% endif %}
+                </li>
+            </ol>
+        </div>
+
+        <h2>Gastrointestinal Hemorrhage</h2><hr>
+
+        <div>
+            <ol>
+                <li>Maintain patient in position to maximum airway protection and patient comfort</li>
+                <li>Provide suctioning as indicated</li>
+                <li><a FIXME:href="#">IVF</a> bolus for signs of hypotension/dehydration
+                    {% if keys.ptYears > 0 %}
+                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                        {% if keys.ptAdult %}
+                            <ol><li>Adult:  <dose style="color:#f4b02a;font-weight:500">500 - 1000 ml</dose></li></ol>
+                        {% else %}
+                            <ol><li>Pediatric:  <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }}ml</dose></li></ol>
+                        {% endif %}
+                    {% else %}
+                    {% endif %}
+                </li>
+                <li> Reassess vital signs following IVF bolus</li>
+                <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                    {% if keys.ptYears > 0 %}
+                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                        {% if keys.ptAdult %}
+                            <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500"></dose>4 - 8 mg PO, IV, IM</li></ol>
+                        {% else %}
+                            {% if keys.ptMax26 %}
+                                <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500"></dose>4 mg PO, IV, IM</li></ol>
+                            {% else %}
+                                <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500"></dose>{{ '%0.2f'| format((ptKgs*3)/20) }} mg PO, IV, IM</li></ol>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                    {% endif %}
+                </li>
+            </ol>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" bleedingAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" bleedingAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose></li>
+                                        <li>Discontinue <a FIXME: href="#">CPAP</a> if already instituted</li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% else %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Pediatric: Contact<a FIXME: href="#">Medical Control Ring Central</a></li>
+                                        <li>Discontinue <a FIXME: href="#">CPAP</a> if already instituted</li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% endif %}
+                            {% else %}
+                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                <ol>
+                                    <li>Adult: 2 - 10 mcg/min IV</li>
+                                    <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                    <li>Discontinue <a FIXME: href="#">CPAP</a> if already instituted</li>
+                                </ol>
+                                <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                            </li>
+                            {% endif %}
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500"></dose>4 - 8 mg PO, IV, IM</li></ol>
+                                    {% else %}
+                                        {% if keys.ptMax26 %}
+                                            <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500"></dose>4 mg PO, IV, IM</li></ol>
+                                        {% else %}
+                                            <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500"></dose>{{ '%0.2f'| format((ptKgs*3)/20) }} mg PO, IV, IM</li></ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}"> Fentanyl (Sublimaze®)</a> for pain control as patient status permits
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if keys.ptMax200 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IN, IM, IO</li>
+                                            </ol>
+                                        {% elif keys.ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IN, IM, IO</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose> IV, IN, IM, IO</li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if keys.ptMax200 %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
+                                            </ol>
+                                        {% elif keys.ptMax100 %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg </dose> IV, IO, IN</li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                        <li>Pediatric: 0.5 - 1 mcg/kg IV, IO, IN (maximum 100 mcg)</li>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO2 and ventilate with 100% oxygen</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" bleedingAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" bleedingAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Hypertension typically does not cause epistaxis; however, it may worsen the condition
+                                <ul>
+                                    <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for <a href="{{url_for('medications.labetalol')}}">Labetalol</a> for patient that is significantly hypertensive</li>
+                                </ul>
+                            </li>
+                            <li>Primary avulsed teeth (&lt; 5 years of age) are not replaced</li>
+                            <li>Secondary (permanent) avulsed teeth may be replanted after irrigating with tap water or saline
+                                <ul>
+                                    <li>Irrigation should be done gently without debriding or scrubbing the tooth</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

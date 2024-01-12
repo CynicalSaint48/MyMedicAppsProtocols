@@ -498,3 +498,24 @@ def heatCold():
     keys = get_key_list()
 
     return render_template('/protocols/HeatCold.html', keys=keys, varTitle="Heat/Cold Exposure")
+
+@protocols.route("/protocols/Hemorrhage")
+def hemorrhage():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Hemorrhage.html', keys=keys, varTitle="Hemorrhage")
+
+@protocols.route("/protocols/IndustrialAccident")
+def industrial():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/IndustrialAccident.html', keys=keys, varTitle="Industrial Accident")
+
+@protocols.route("/protocols/Overdose")
+def overdose():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Overdose.html', keys=keys, varTitle="Overdose")

@@ -1,0 +1,487 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Overdose</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" overdoseNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" overdoseNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                    <ul class="differentialText">
+                        <li>Acetaminophen</li>
+                        <li>Alcohols</li>
+                        <li>Anticholinergics</li>
+                        <li>Cardiac medications</li>
+                        <li>Caustics</li>
+                        <li>Illicit drugs</li>
+                        <li>Opioids</li>
+                        <li>Organophosphates</li>
+                        <li>Solvents</li>
+                        <li>Stimulants</li>
+                        <li>Tricyclic Antidepressants</li>
+                        <li>Other medications</li>
+                    </ul><br>
+                <h3>Clinical Presentation</h3>
+                    <div>
+                        <ul class="differentialText">
+                            <li>Ingestions
+                                <ul>
+                                    <li>Abdominal pain</li>
+                                    <li>Altered mental status</li>
+                                    <li>Miosis / mydriasis</li>
+                                    <li>Nausea, vomiting, diarrhea</li>
+                                    <li>Oral burns</li>
+                                    <li>Respiratory depression</li>
+                                    <li>Salivation</li>
+                                    <li>Seizures</li>
+                                </ul>
+                            </li>
+                            <li>Inhalation
+                                <ul>
+                                    <li>Cyanosis</li>
+                                    <li>Dizziness</li>
+                                    <li>Headache</li>
+                                    <li>Lethargy</li>
+                                    <li>Nausea / vomiting</li>
+                                </ul>
+                            </li>
+                            <li>Injection
+                                <ul>
+                                    <li>Edema</li>
+                                    <li>Euphoria / drowsiness</li>
+                                    <li>Hypotension</li>
+                                    <li>Nausea / vomiting</li>
+                                    <li>Puncture</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" overdoseBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" overdoseBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li> Confirm scene safety</li>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li><a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> for presumed narcotic - opioid overdose
+                            {% if keys.ptYears > 0 %}
+                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                {% else %}
+                                    {% if keys.ptMax200 %}
+                                        <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                    {% elif keys.ptMax20 %}
+                                        <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - 2 mg IV, IO, IN</dose></li></ol>
+                                    {% else %}
+                                        <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - {{ '%0.2f'| format (keys.ptKgs/10) }} mg IV, IO, IN</dose></li></ol>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>Adult: 1 - 2 mg IV, IO, IN</li>
+                                    <li>Pediatric: 0.01 - 0.1 mg/kg IV, IO, IN</li>
+                                </ol>
+                            {% endif %}
+                        </li>
+                        <li>Determine nature of ingestion
+                            <ol><li>Bring any pill bottles found to the emergency department with the patient</li></ol>
+                        </li>
+                        <li>For evidence of contamination, immediately decontaminate
+                            <ol>
+                                <li>Ensure personal protection during decontamination</li>
+                                <li>Remove patient from source</li>
+                                <li>Remove clothing</li>
+                                <li>Wash skin and hair</li>
+                                <li>Flush eyes and mucous membranes</li>
+                            </ol>
+                        </li>
+                        <li>Additional care as per substance ingestion/exposure</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" overdoseAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" overdoseAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li><a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> for presumed narcotic - opioid overdose
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                    {% else %}
+                                        {% if keys.ptMax200 %}
+                                            <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                        {% elif keys.ptMax20 %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - 2 mg IV, IO, IN</dose></li></ol>
+                                        {% else %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - {{ '%0.2f'| format (keys.ptKgs/10) }} mg IV, IO, IN</dose></li></ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 1 - 2 mg IV, IO, IN</li>
+                                        <li>Pediatric: 0.01 - 0.1 mg/kg IV, IO, IN</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>For hypoglycemia treatment as per <a href="{{url_for('protocols.diabetic')}}">Diabetic Problems Protocol</a></li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO2 and ventilate with 100% oxygen</li>
+                            <li>Additional care as per substance ingestion/exposure</li>
+                        </ol>
+                    </div><br>
+
+                <h2>Poison Specific Therapies</h2><hr>
+
+                <ol>
+                    <li>Opioids (narcotics)
+                        <ol>
+                            <li><a href="{{url_for('medications.naloxone')}}"></a>Naloxone (Narcan®)</li>
+                            {% if keys.ptYears > 0 %}
+                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                {% else %}
+                                    {% if keys.ptMax200 %}
+                                        <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                    {% elif keys.ptMax20 %}
+                                        <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - 2 mg IV, IO, IN</dose></li></ol>
+                                    {% else %}
+                                        <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - {{ '%0.2f'| format (keys.ptKgs/10) }} mg IV, IO, IN</dose></li></ol>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>Adult: 1 - 2 mg IV, IO, IN</li>
+                                    <li>Pediatric: 0.01 - 0.1 mg/kg IV, IO, IN</li>
+                                </ol>
+                            {% endif %}
+                            <li>May repeat every 5 minutes to maximum of 10 mg</li>
+                        </ol>
+                    </li>
+                    <li>Tricyclic antidepressants
+                        <ol>
+                            <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li><dose style="color:#f4b02a;font-weight:500"> 50 - 100 mEq (50 - 100 ml) IV, IO</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax50 %}
+                                            <ol>
+                                                <li>Pediatric <red><b> maximum dose </b></red>:<dose style="color:#f4b02a;font-weight:500"> 50 mEq (50 ml) IV, IO</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs) }} mEq/ml IV, IO</dose></li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                <ol>
+                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a>
+                                        <ol>
+                                            <li>Adult: 50 mEq (50 ml) IV, IO</li>
+                                            <li>Pediatric: 1 mEq/kg (1 ml/kg); max 50 mEq (50 ml) IV, IO</li>
+                                            <li>Repeat every 10 minutes</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                                {% endif %}
+                            </li>
+                            <li>Give based on presence of tachycardia, hypotension with QRS widening</li>
+                        </ol>
+                    </li>
+                    <li>Stimulants/sympathomimetics (cocaine associated agitation)
+                        <ol>
+                            <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> sedation as patient status permits
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li></ol>
+                                    {% else %}
+                                        {% if keys.ptMax50 %}
+                                            <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li></ol>
+                                        {% elif keys.ptMax33 %}
+                                            <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                        {% else %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 10) }} mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult:
+                                            <ol><li>5 mg IV, IM or 10 mg IN</li></ol>
+                                        </li>
+                                        <li>Pediatric:
+                                            <ol><li>0.15 mg/kg IV, IM (max 5 mg) or 0.2 mg/kg IN (max 10 mg)</li></ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>May repeat in 10 - 15 minutes for continued or worsening symptoms</li>
+                        </ol>
+                    </li>
+                    <li>Organophosphates
+                        <ol>
+                            <li>Duo-dote kit (atropine/Pralidoxime) IM</li>
+                            <li><a href="{{url_for('medications.atropine')}}">Atropine</a>
+                                {% if keys.ptYears > 0 %}
+                                        {% if keys.ptAdult %}
+                                            <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                <ol>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 mg IV, IO</dose></li>
+                                                </ol>
+                                            </li>
+                                        {% else %}
+                                            {% if ptYrs8 %}
+                                                {% if keys.ptMax50 %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">1mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">10ml</dose></li></ul>
+                                                {% else %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ul><li>Pediatric: <dose style="color:#f4b02a">{{'%0.2f'| format(keys.ptKgs/50) }}mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs/50)*10) }} ml</dose></li></ul>
+                                                {% endif %}
+                                            {% else %}
+                                                {% if keys.ptMax25 %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">0.5mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">5 ml</dose></li></ul>
+                                                {% else %}
+                                                        {% if keys.ptMax5 %}
+                                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                            <ul><li>Pediatric: <dose style="color:#f4b02a">{{'%0.2f'| format(keys.ptKgs/50) }}mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs/50)*10) }} ml</dose></li></ul>
+                                                        {% else %}
+                                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                            <ul><li>Pediatric: <b style="color:#D2042D;font-weight:600">minimum dose</b>; <dose style="color:#f4b02a">0.1mg IV</dose>&emsp;or&emsp;<dose style="color:#f4b02a;font-weight:500">1 ml</dose></li></ul>
+                                                        {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                {% else %}
+                                <ol>
+                                    <li>Adult: 2 mg IV, IM</li>
+                                    <li>Pediatric: 0.02 mg/kg IV (minimum 0.1 mg; maximum 1 mg)</li>
+                                </ol>
+                                {% endif %}
+                            <li>May repeat every 5 minutes until drying of secretions occurs</li>
+                        </ol>
+                    </li>
+                    <li>Calcium Channel Blockers / Beta Blockers
+                        <ol>
+                            <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> for severe muscle spasms
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 1 gram (10 ml of 10% solution) IV, IO </dose></li>
+                                            </ol>
+                                        {% else %}
+                                            {% if ptMax50 %}
+                                                <ol>
+                                                    <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 1 gram (10 ml of 10% solution) IV, IO </dose></li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format((keys.ptKgs * 2)/100) }} g IV, IO </dose></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li> Adult: 1 gram (10 ml of 10% solution) IV, IO </li>
+                                        <li> Pediatric: 20 mg/kg IV, IO (0.2 ml/kg of 10% solution); maximum 2 grams (20ml) </li>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.glucagon')}}">Glucagon</a>
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 mg IV</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax40 %}
+                                            <ol>
+                                                <li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">2 mg IV</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(ptKgs/5) }} mg IV</dose></li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                {% endif %}
+                            </li>
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose></li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% else %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Pediatric: Contact<a FIXME: href="#">Medical Control Ring Central</a></li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% endif %}
+                            {% else %}
+                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                <ol>
+                                    <li>Adult: 2 - 10 mcg/min IV</li>
+                                    <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                </ol>
+                                <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                            </li>
+                            {% endif %}
+                        </ol>
+                    </li>
+                    <li>Cyanide
+                        <ol>
+                            <li><a href="{{url_for('medications.sodiumThiosulfate')}}">Sodium Thiosulfate</a>
+                                {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li> Adult: <dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if ptMax50 %}
+                                            <ol>
+                                                <li> Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">12.5 grams IV over 10 minutes</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format((keys.ptKgs*250)/1000) }} grams IV over 10 minutes</dose></li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                <ol>
+                                    <li>Adult: 12.5 grams IV over 10 minutes</li>
+                                    <li>Pediatric: 250 mg/kg IV (maximum 12.5 grams) over 10 minutes</li>
+                                </ol>
+                                {% endif %}
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div>
+            <input type="checkbox" name="accordian" id=" overdoseAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" overdoseAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Consider contacting <red><b>North Carolina State Poison Control Center</b></red>
+                                <ul>
+                                    <li><red><b>800-222-1222</b></red></li>
+                                </ul>
+                            </li>
+                            <li>Do NOT induce vomiting
+                                <ul>
+                                    <li>Ipecac is not to be utilized unless directed by Poison Center or Medical Control</li>
+                                </ul>
+                            </li>
+                            <li>Secure remaining medications away from patient</li>
+                            <li>For incidents involving industrial or chemical spills, radiation accidents, or other incidents where hazardous materials are involved, strict communication with the fire department/hazardous materials team should be established</li>
+                            <li>Sedation for patients noted to be extremely agitated should be emergently considered because rapid decompensation is possible</li>
+                            <li>Intentional overdoses often involve multiple agents taken simultaneously and providers must keep a degree of suspicion for poly-pharmacy overdose and treat accordingly</li>
+                            <li>Consider restraints as per Patient Restraints Protocol</li>
+                            <li>Effort should be made to obtain any possible medications on scene of intentional ingestions</li>
+                            <li>Airway management and ventilatory assistance remains paramount and must be performed while preparing naloxone for administration</li>
+                            <li><a href="{{url_for('medications.naloxone')}}">Naloxone</a> administration may precipitate narcotic withdrawal in patients who chronically abuse narcotics
+                                <ul><li>Providers must be prepared to manage acute agitation and/or nausea/vomiting that may result from narcotic withdrawal following naloxone administration</li></ul>
+                            </li>
+                            <li>Many overdoses may involve multiple agents and therefore naloxone administration may not fully restore adequate respiratory effort
+                                <ul><li>Provider must be prepared to continue to manage the airway and assist ventilations as indicated</li></ul>
+                            </li>
+                            <li>Signs/symptoms (toxidromes):
+                                <ul>
+                                    <li><b>Anticholinergics</b>: AMS, dilated pupils, hyperthermia, dry skin</li>
+                                    <li><b>Aspirin</b>: tachypnea, altered mental status</li>
+                                    <li><b>Cardiac medications</b>: dysrhythmias, bradycardia/tachycardia, hypotension</li>
+                                    <li><b>Cyanide</b>: altered mental status, hypotension, severe acidemia</li>
+                                    <li><b>Depressants</b>: hypotension, respiratory depression</li>
+                                    <li><b>Opioids</b>: respiratory depression, miosis, altered mental status</li>
+                                    <li><b>Organophosphates</b>: salivation, lacrimation, urination, defecation, GI distress, emesis (SLUDGE)</li>
+                                    <li><b>Stimulants</b>: tachycardia, tachypnea, hypertension, hyperthermia, AMS</li>
+                                    <li><b>TCA's</b>: dysrhythmia, hypotension, altered mental status, seizure</li>
+                                </ul>
+                            </li>
+                            <li><a href="{{url_for('medications.naloxone')}}">Naloxone IM</a> is a to be reserved as a last option as its absorption and it anti-opioid affects are inconsistent when given IM and therefore creates difficulty in ascertaining which effect will 
+                                clear first (opioid vs. naloxone) which then leads to difficulty in determining appropriateness for release
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
