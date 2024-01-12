@@ -284,11 +284,10 @@
                             <li><a href="{{url_for('medications.atropine')}}">Atropine</a>
                                 {% if keys.ptYears > 0 %}
                                         {% if keys.ptAdult %}
-                                            <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                 <ol>
                                                     <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 mg IV, IO</dose></li>
                                                 </ol>
-                                            </li>
                                         {% else %}
                                             {% if ptYrs8 %}
                                                 {% if keys.ptMax50 %}
@@ -319,6 +318,7 @@
                                     <li>Pediatric: 0.02 mg/kg IV (minimum 0.1 mg; maximum 1 mg)</li>
                                 </ol>
                                 {% endif %}
+                            </li>
                             <li>May repeat every 5 minutes until drying of secretions occurs</li>
                         </ol>
                     </li>
