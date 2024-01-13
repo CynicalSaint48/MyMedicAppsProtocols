@@ -29,6 +29,8 @@ a {
     --light-txt: #aeb2b7;
     --fifty-border: #aeb2b750;
     --light-offset: #f4b02a;
+    --highlight-yellow: #FFFF5C;
+    --highlight-blue:  #8AFFFF;
     --header-height: 50px;
     --sidebar-width-open: 265px;
     --sidebar-width: 60px;
@@ -36,6 +38,19 @@ a {
     --animation-timing-curve: ease-in-out;
  }
 
+ .highlight-yellow {
+   background-color: var(--highlight-yellow);
+   color: #000000;
+   padding-left: 3px;
+   padding-right: 3px;
+ }
+
+ .highlight-blue {
+   background-color: var(--highlight-blue);
+   color: #000000;
+   padding-left: 3px;
+   padding-right: 3px;
+ }
 
  .header {
     display: flex;
@@ -917,6 +932,18 @@ hr {
    margin-left: 20px;
 }
 
+.addFiveBottom {
+   margin-bottom: 5px;
+}
+
+.addFiveBottom > li {
+   margin-bottom: 5px;
+}
+
+.no-margin {
+   margin: 0;
+}
+
 .img-helper {
    margin-bottom: 20px;
 }
@@ -976,6 +1003,18 @@ dope {
 
 .differentialText li {
    margin-right: 20px;
+}
+
+.BARStable {
+   display: grid;
+   grid-template-columns: 50px 500px;
+   margin: 20px;
+}
+
+.BARStable div {
+   border: 1px solid var(--fifty-border);
+   display: flex;
+   justify-content: center;
 }
 
 

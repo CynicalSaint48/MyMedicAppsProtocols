@@ -1,0 +1,753 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Psychiatric / Behavioral</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" psychiatricNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" psychiatricNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>History</H3>
+                        <ul class="differentialText">
+                            <li>Drug/alcohol addiction/abuse</li>
+                            <li>Psychiatric disorder diagnosis</li>
+                            <li>Psychiatric medications</li>
+                            <li>Situational crisis</li>
+                        </ul>
+                <h3>Introduction</h3>
+                        <ul class="differentialText">
+                            <li>Agitation</li>
+                            <li>Anxiety</li>
+                            <li>Bizarre behavior or thought patterns</li>
+                            <li>Combative or violent</li>
+                            <li>Confusion</li>
+                            <li>Delusions</li>
+                            <li>Hallucinations</li>
+                            <li>Homicidal thoughts</li>
+                            <li>Suicidal thoughts</li>
+                        </ul>
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Adverse medication reaction</li>
+                            <li>Anxiety disorder</li>
+                            <li>Bipolar disorder</li>
+                            <li>Depression disorder</li>
+                            <li>Drug / Alcohol intoxication</li>
+                            <li>Drug withdrawal</li>
+                            <li>Hemodynamic instability</li>
+                            <li>Hypoglycemia</li>
+                            <li>Hypoxia</li>
+                            <li>Infection</li>
+                            <li>Medication effect</li>
+                            <li>Medication overdose</li>
+                            <li>Post-ictal seizure</li>
+                            <li>Psychosis disorder (schizophrenia)</li>
+                            <li>Trauma</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" psychiatricBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" psychiatricBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li> Ensure scene safety
+                            <ol>
+                                <li>Screen for weapons
+                                    <ol>
+                                        <li>Remove any objects in the immediate area which may be potential weapon</li>
+                                        <li>Do not attempt to remove any weapon from patient</li>
+                                    </ol>
+                                </li>
+                                <li>Maintain appropriate distance between you and patient per circumstances</li>
+                                <li>Withdrawal a safe distance from patient as circumstances dictate (if patient becomes threatening or violent) and coordinate assistance
+                                    <ol><li>Maintain visualization of the patient from a safe distance</li></ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>Remove patient from stressful environment & attempt to calm by reassurance
+                            <ol><li>Utilize verbal de-escalation strategies (see accompanying section)</li></ol>
+                        </li>
+                        <li>Establish rapport with patient
+                            <ol>
+                                <li>As safety permits limit number of providers assessing the patient at one time</li>
+                                <li>Limit the amount of external stimuli
+                                    <ol>
+                                        <li>Radio communications</li>
+                                        <li>Conversations by others on scene</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>Set limits in a positive, matter-of-fact; non-threatening manner
+                            <ol>
+                                <li>Ensure patient that providers are there to help</li>
+                                <li>As indicated, inform patient that harm to self or providers will not be tolerated</li>
+                            </ol>
+                        </li>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Treat suspected trauma or medical illness per appropriate protocol</li>
+                        <li>Assess vital signs as patient permits</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li>If restraints are required to control aggressive behavior, only use authorized restraints
+                            <ol>
+                                <li>Modification devices or attempting to restrain patients using so called “homemade” devices or techniques is prohibited</li>
+                                <li>Tape will not be used unless required to secure an authorized restraint</li>
+                                <li>Patients will <b>NEVER</b> be restrained prone (face down)</li>
+                                <li>If patient is handcuffed by law enforcement, law enforcement officer must accompany patient in transport to the hospital</li>
+                            </ol>
+                        </li>
+                        <li>Personal protective masks may be applied to patients threatening to spit</li>
+                        <li>For hanging or suspected trauma to head or spine
+                            <ol>
+                                <li>Immediately remove constricting device</li>
+                                <li>Protect and maintain control of the cervical spine with manual motion restriction until cervical collar is placed and patient secured to transport stretcher
+                                    <ol><li>Cervical spinal cord and bony injuries are most common in hangings that involve a fall from a distance greater than the height of the victim</li></ol>
+                                </li>
+                                <li>Suicidal hangings are typically strangulation events, representing vascular 
+                                    congestion and asphyxiation as causes of morbidity/mortality - though trauma 
+                                    must be considered; management is more often medical in nature
+                                    </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" psychiatricAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" psychiatricAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated per patient's presentation</li>
+                            <li><a FIXME:href="#">IVF</a> as indicated per patient condition</li>
+                            <li>For hypoglycemia, treat as per <a href="{{url_for('protocols.diabetic')}}">Diabetic Problems Protocol</a></li>
+                            <li>Assess <i>Behavioral Activity Rating Scale (BARS)</i>
+                                <div class="BARStable">
+                                    <div><thing>1</thing></div>
+                                    <div>Difficult or unable to awaken</div>
+                                    <div>2</div>
+                                    <div>Asleep - normally responsive to voice or physical stimuli</div>
+                                    <div>3</div>
+                                    <div>Drowsy - appears sedated</div>
+                                    <div>4</div>
+                                    <div>Quiet and awake (normal activity)</div>
+                                    <div class="highlight-yellow">5</div>
+                                    <div class="highlight-yellow">Overt activity (verbal or physical) - calms with instructions</div>
+                                    <div class="highlight-yellow">6</div>
+                                    <div class="highlight-yellow">Extremely or continuously active - but not requiring restraint</div>
+                                    <div class="highlight-blue">7</div>
+                                    <div class="highlight-blue">Violent - requires restraint</div>
+                                </div>
+                            </li>
+                            <li>For agitation associated with substance abuse/withdrawal or <mark class="highlight-yellow">BARS score 5-6</mark>
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a>
+                                                <ol>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li>
+                                                    <li>Repeat x1 as indicated per patient response</li>
+                                                    <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for further sedation following 2<sup>nd</sup> dose</li>
+                                                    <li>Nasal cannula ETCO<sub>2</sub> monitoring must be utilized</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    {% else %}
+                                        <ol>
+                                        {% if keys.ptMax50 %}
+                                            <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">10 mg IN</dose></li></ol>
+                                        {% elif keys.ptMax33 %}
+                                            <ol><li>Pediatric <b style="color:#D2042D;font-weight:600">maximum</b>: <dose style="color:#f4b02a;font-weight:500">5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                        {% else %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 10) }} mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
+                                        {% endif %}
+                                        <li>Repeat x1 as indicated per patient response</li>
+                                        <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for further sedation following 2<sup>nd</sup> dose</li>
+                                        <li>Nasal cannula ETCO<sub>2</sub> monitoring must be utilized</li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 5 mg IV, IM or 10 mg IN</li>
+                                        <li>Pediatric: 0.15 mg/kg IV, IM (max 5 mg) or 0.2 mg/kg IN (max 10 mg)</li>
+                                        <li>Repeat x1 as indicated per patient response</li>
+                                        <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for further sedation following 2<sup>nd</sup> dose</li>
+                                        <li>Nasal cannula ETCO<sub>2</sub> monitoring must be utilized</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>For significant agitation associated with <mark class="highlight-blue">BARS score = 7</mark> or extreme agitation
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                    <ol>
+                                        {% if keys.ptMax100 %}
+                                            <li><a href="{{url_for('medications.ketamine')}}"></a>Ketamine (Ketalar®)
+                                                <ol>
+                                                    <li>Adult <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">300 mg IM</dose>
+                                                        <ol>
+                                                            <li>May repeat once after 5 minutes: <dose style="color:#f4b02a;font-weight:500">150 mg IM</dose> ( <red><b>maximum</b></red> )</li>
+                                                        </ol>
+                                                    </li>
+                                                    <li>Nasal cannula ETCO<sub>2</sub> monitoring must be utilized</li>
+                                                </ol>
+                                            </li>
+                                        {% else %}
+                                            <li><a href="{{url_for('medications.ketamine')}}">Ketamine (Ketalar®)</a>
+                                                <ol>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*3)|int }} mg IM</dose>
+                                                        <ol>
+                                                            <li>May repeat once after 5 minutes: <dose style="color:#f4b02a;font-weight:500">{{ ((keys.ptKgs*3)/2)|int }} mg IM</dose></li>
+                                                        </ol>
+                                                    </li>
+                                                    <li>Nasal cannula ETCO<sub>2</sub> monitoring must be utilized</li>
+                                                </ol>
+                                            </li>
+                                        {% endif %}
+                                        <div class="add-margin-L"><b>OR</b></div>
+                                        <li><a href="{{url_for('medications.droperidol')}}">Droperidol (Inapsine®)</a>
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg IM</dose></li>
+                                                <li>May repeat x1 in 5 - 10 minutes as indicated ( <red><b>maximum total dose 10mg</b></red> )</li>
+                                            </ol>
+                                        </li>
+                                    {% else %}
+                                        <li><a href="{{url_for('medications.ketamine')}}">Ketamine (Ketalar®)</a>
+                                            <ol><li>Pediatric: Must contact <a FIXME:href="#">Medical Control Ring Central</a></li></ol>
+                                        </li>
+                                        <div class="add-margin-L"><b>OR</b></div>
+                                        <li><a href="{{url_for('medications.droperidol')}}">Droperidol (Inapsine®)</a>
+                                            <ol>
+                                                <li>Pediatric: <red><b>Contraindicated in Pediatric Patients</b></red></li>
+                                            </ol>
+                                        </li>
+                                    {% endif %}
+                                    </ol>
+                                {% else %}
+                                    <ol>
+                                        <li><a href="{{url_for('medications.ketamine')}}">Ketamine (Ketalar®)</a>
+                                            <ol>
+                                                <li>Adult: 3 mg/kg IM (maximum 300 mg)
+                                                    <ol><li>May repeat once after 5 minutes: 1.5 mg/kg IM (maximum 150 mg)</li></ol>
+                                                </li>
+                                                <li>Pediatric: Must contact <a FIXME:href="#">Medical Control Ring Central</a></li>
+                                                <li>Nasal cannula ETCO<sub>2</sub> monitoring must be utilized</li>
+                                            </ol>
+                                        </li>
+                                        <div class="add-margin-L"><b>OR</b></div>
+                                        <li><a href="{{url_for('medications.droperidol')}}">Droperidol (Inapsine®)</a>
+                                            <ol>
+                                                <li>Adult: 2.5 - 5 mg IM</li>
+                                                <li>May repeat x1 in 5 - 10 minutes as indicated (maximum total dose 10mg)
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Contact medical control for any additional sedation administration for patients remaining significantly combative/agitated and/or posing risk to the patient and/or providers</li>
+                            <li>For dystonic reaction following use of antipsychotic medication
+                                <ol>
+                                    <li><a href="{{url_for('medications.diphenhydramine')}}">Diphenhydramine (Benadryl®)</a>; if not already administered
+                                        {% if keys.ptYears > 0 %}
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            {% if keys.ptAdult %}
+                                                <ol>
+                                                    <li>Adult: <dose style="color:#f4b02a;font-weight:500">25 - 50mg IV, IM</dose></li>
+                                                </ol>
+                                            {% else %}
+                                                {% if keys.ptMax50 %}
+                                                    <ol>
+                                                        <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">50mg IV, IM</dose></li>
+                                                    </ol>
+                                                {% else %}
+                                                    <ol>
+                                                        <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs) }}mg PO, IV, IM</dose></li>
+                                                            <ul><li><b style="color:#D2042D;font-weight:600">Contraindicated in children under 9 months</b></li></ul>
+                                                    </ol>
+                                                {% endif %}
+                                            {% endif %}
+                                    {% else %}
+                                        <ol>
+                                            <li>Adult: 25 - 50 mg PO, IV, IM (maximum 50 mg)</li>
+                                            <li>Pediatric: > 9 months of age: 1 mg/kg PO, IV, IM (maximum 50 mg)</li>
+                                        </ol>                           
+                                    {% endif %}
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href=""FIXME:>Airway: Intubation Protocol</a></li>
+                                    <li><a FIXME:href=""FIXME:>Airway: BIAD Protocol</a></li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Additional care as indicated by patient presentation</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" psychiatricAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" psychiatricAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addFiveBottom">
+                            <li>Any patient receiving <a href="{{url_for('medications.midazolam')}}">Midazolam</a> or <a href="{{url_for('medications.ketamine')}}">Ketamine</a> for sedation must be transported to the emergency department (<a href="{{url_for('medications.ketamine')}}">Ketamine</a> = hospital emergency department only)</li>
+                            <li>Maintain a high index of suspicion of medical/traumatic cause of behavioral disturbance
+                                <ul>
+                                    <li>Abnormal vital signs or new onset psychiatric symptoms should be considered to have a medical cause until proven otherwise</li>
+                                    <li>12 - 25% of patients with behavioral symptoms have medical cause</li>
+                                </ul>
+                            </li>
+                            <li>Sedation medications will only be given for medical care concerns</li>
+                            <li>Dystonic reactions
+                                <ul>
+                                    <li>Characterized as an altered mental status displaying features of anxiety, facial grimacing, and torticollis (rigidity) of the neck</li>
+                                    <li>Typically results from antipsychotic medications (haloperidol - Haldol®, fluphenazine - Prolixin®), antiemetics (prochlorperazine - Compazine®)</li>
+                                </ul>
+                            </li>
+                            <li>Patient must have the mental capacity to refuse medical care
+                                <ul>
+                                    <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for any concerns as to the patient's level of capacity to comprehend risks of refusing care and benefits accepting care</li>
+                                </ul>
+                            </li>
+                            <li>Always be aware of the possibility of domestic violence and/or abuse</li>
+                            <li>Documentation must include the indications for sedation administration - <a href="{{url_for('medications.midazolam')}}">Midazolam</a> or <a href="{{url_for('medications.ketamine')}}">Ketamine</a></li>
+                        </ul>
+                    </div><hr><br>
+
+                <h3><b>Hyperactive Delirium with Extreme Agitation</b></h3>
+
+                <div>
+                    <ul class="addFiveBottom">
+                        <li>Signs/symptoms
+                            <ul class="differentialText">
+                                <li>Disorientation</li>
+                                <li>Hallucinations</li>
+                                <li>Hyper-aggression</li>
+                                <li>Hyperthermia</li>
+                                <li>Paranoia</li>
+                                <li>Tachycardia</li>
+                                <li>Possibly increased strength</li>
+                            </ul>
+                        </li>
+                        <li>Most commonly seen in males with history of mental illness and/or drug use
+                            <ul><li>Especially with cocaine, crack, methamphetamine, or amphetamine use</li></ul>
+                        </li>
+                        <li>Potentially life-threatening</li>
+                        <li>Requires aggressive sedation and <a FIXME:href="#">IVF</a>
+                           <ul><li>Often accompanied by rhabdomyolysis requiring <a FIXME:href="#">IVF</a> resuscitation</li></ul>
+                        </li>
+                        <li>May involve hyperthermia requiring cooling measures</li>
+                        <li>Physical restraints must be used with caution
+                            <ul>
+                                <li>Ensure patient does not continue to struggle against any physical restraints</li>
+                                <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for additional sedation orders</li>
+                            </ul>
+                        </li>
+                        <li>Sedation for patients noted to be extremely agitated should be emergently considered because rapid decompensation is possible
+                            <ul><li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for additional sedation orders</li></ul>
+                        </li>
+                        <li>Combative patients resulting from acute psychosis or intoxication are at increased risk for lactic acidosis, positional asphyxiation, and subsequent cardiac arrest
+                            <ul>
+                                <li>If physical restraints are necessary, such patients will always be placed and transported in the lateral or supine position (<b>NEVER</b> prone)</li>
+                                <li>Restrained patients will never be left unattended</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div><hr><br>
+
+                <h3>Verbal De-escalation Strategies</h3>
+                <div>
+                    <ul class="addFiveBottom">
+                        <li>Protect personal space of the patient
+                            <ul>
+                                <li>Maintain distance from the patient (~4 - 6 feet)</li>
+                                <li>Do not position yourself between patient and only exit</li>
+                                <li>Provider and patient should have ability to exit without feeling “boxed-in”</li>
+                            </ul>
+                        </li>
+                        <li>Do not provoke the patient
+                            <ul>
+                                <li>Body language should convey that there is not intent to inflict harm
+                                    <ul>
+                                        <li>Hands/arm visible</li>
+                                        <li>Align at an angle to the patient</li>
+                                        <li>Avoid prolonged eye contact/staring</li>
+                                    </ul>
+                                </li>
+                                <li>Ensure others on scene are not provoking the patient</li>
+                            </ul>
+                        </li>
+                        <li>Maintain verbal contact with the patient
+                            <ul>
+                                <li>Introduce provider(s) and explain provider role(s)
+                                    <ul><li>One provider should take lead and limit others conversing with the patient</li></ul>
+                                </li>
+                                <li>Emphasize goal to keep the patient safe</li>
+                                <li>Ask patient how they wish to be addressed</li>
+                            </ul>
+                        </li>
+                        <li>Be concise
+                            <ul>
+                                <li>Keep conversations short and simple</li>
+                                <li>Allow time for patient to process information</li>
+                                <li>Repeat statements as needed to ensure understanding</li>
+                            </ul>
+                        </li>
+                        <li>Identify patient's needs/feelings
+                            <ul>
+                                <li>Ask why 911 was called; identifying the patient's acute need
+                                    <ul>
+                                        <li>“How do you think we can help you today?”</li>
+                                        <li>“We would like to know what caused you to become upset so we can help”</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Listen to the patient
+                            <ul>
+                                <li>As needed repeat back to the patient what they have said
+                                    <ul>
+                                        <li>“Let me make sure I understand what you said”</li>
+                                        <li>“Tell me if I have this right”</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Agree or agree to disagree
+                            <ul>
+                                <li>If statements deemed truthful, agree with those truths
+                                    <ul>
+                                        <li>Agree in principle if concern statements are not true</li>
+                                        <li>Do not agree with delusions - agree to disagree at that point</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Set clear limits of behavior
+                            <ul>
+                                <li>Set limits in positive, non-threatening manner</li>
+                                <li>Inform that patient harm to self or providers cannot/will not be tolerated</li>
+                                <li>If behavior frightening to providers, inform patient their behavior is concerning</li>
+                                <li>Remind patient providers are there to help but providers cannot be abused</li>
+                            </ul>
+                        </li>
+                        <li>Offer reasonable choices
+                            <ul>
+                                <li>Offer items of comfort: blanket, drink, etc.</li>
+                                <li>Offer options of medication administration: PO, IV, IM, IN</li>
+                            </ul>
+                        </li>
+                        <li>Inform patient of potential interventions
+                            <ul>
+                                <li>If chemical or physical restraint may be required (why, how, what)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><hr><br>
+
+                <h3>Atrium Health Behavioral Health Charlotte Transfers</h3>
+                <div>
+                    <ul class="addFiveBottom">
+                        <li>Patients at the Atrium Health - Behavioral Health Charlotte may require additional medical screening or treatment for possible medical conditions</li>
+                        <li>When MEDIC is requested to conduct these transports:
+                            <ul>
+                                <li>Prior to transfer, AHBHC staff will discuss medical clearance plans with the patient, collectively deciding on hospital destination</li>
+                                <li>Upon MEDIC arrival, the physician or nurse will discuss the destination facility with the crew with the patient in attendance so that all agree</li>
+                                <li>Ensure appropriate portions of the medical record accompany the patient to the destination hospital</li>
+                                <li>If, while enroute, the patient changes their mind and requests an alternative destination; that request will <b><u>NOT</u></b> be honored - transport will continue to the previously determined destination</li>
+                            </ul>
+                        </li>
+                        <li>MEDIC personnel will not alter the destination decision
+                            <ul>
+                                <li>If patient condition changes while enroute such that it necessitates a change in destination, this must be immediately communicated (e.g. patient develops ST-segment elevation in route necessitating diversion to a PCI capable hospital)</li>
+                            </ul>
+                        </li>
+                        <li>If patient becomes aggressive or combative
+                            <ul>
+                                <li>Ensure crew safety</li>
+                                <li>Utilize verbal de-escalation as outline above</li>
+                                <li>Assess <i>Behavioral Activity Rating Scale (BARS)</i> with sedation as indicated as outlined above</li>
+                                <li>Request local law enforcement for assistance as necessary</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><hr><br>
+
+
+            </div>
+        </div>
+
+        <h2>Community Policing Crisis Response Team</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" CPCRTNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" CPCRTNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Purpose</H3>
+                    <div class="objectivelist">
+                        <ul class="addFiveBottom">
+                            <li>Provide an alternate destination for patients with isolated psychiatric complaints who meet certain criteria</li>
+                            <li>Permit EMS providers to safely leave a patient meeting criteria in the care of CMPD or the 
+                                jurisdictional police department while awaiting Community Policing Crisis Response Team 
+                                (CPCRT) or Community Mobile Crisis Team (CMCT) evaluation, with the understanding 
+                                that at any time, EMS may be called to return to the scene</li>
+                        </ul>
+                    </div>
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul class="addFiveBottom">
+                            <li>The CPCRT is an initiative by the Charlotte Mecklenburg Police Department (CMPD) to 
+                                provide an alternative to EMS transport to the emergency department for patients 
+                                requiring mental health evaluation or treatment
+                            </li>
+                            <li>CPCRT is typically available 0700 - 0200 within the jurisdiction of the CMPD</li>
+                            <li>CPCRT is composed of licensed metal health workers that can arrange either outpatient 
+                                treatment and resources or inpatient evaluation at a mental health facility, including 
+                                involuntary commitment</li>
+                            <li>For those patients deemed by CPCRT to require inpatient treatment, CPCRT also arranges 
+                                transport to inpatient psychiatric facilities without utilizing EMS</li>
+                            <li>CPCRT may be requested to respond to the scene by either CMPD or EMS providers on the scene of a mentally ill patient once police are also on scene
+                                <ul><li>CPCRT may be requested either by speaking directly with the on-scene police 
+                                    officer or by contacting CMPD dispatch through CMED or the shift supervisor</li></ul>
+                            </li>
+                            <li>CMCT which serves an identical role to the CPCRT outside of CMPD jurisdictions and may be requested to the scene by the jurisdictional police department
+                                <ul><li>Police should be on scene before contact CPCRT and CMCT</li></ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" CPCRTBasicTreatment" class="accordian__input" checked="checked">
+            <label for=" CPCRTBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety
+                            <ol><li>If determined it is unsafe the leave the patient in the care of police or CPCRT/CMCT without medical personnel, transport per appropriate protocol</li></ol>
+                        </li>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Assess vital signs</li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li>The following criteria must be met
+                            <ol>
+                                <li>GCS = 15</li>
+                                <li>Temperature &lt; 101.0<sup>o</sup> F</li>
+                                <li>HR = 60 - 120</li>
+                                <li>SBP = 100 - 180</li>
+                                <li>RR = 12 - 24</li>
+                                <li>SpO<sub>2</sub> = 94 - 100%</li>
+                                <li>Blood glucose level = 60 - 300</li>
+                                <li>No “medical” complaints (e.g. chest pain, abdominal pain, etc.)</li>
+                                <li>No external signs of trauma and no history of trauma reported by the patient, police, or bystanders
+                                    <ul><li>Includes, but not limited to: evidence of recent self-injury or strangulation</li></ul>
+                                </li>
+                                <li>No evidence of ingestion, intoxication, or exposure and no history of ingestion, intoxication or exposure reported
+                                    <ul>
+                                        <li>Includes, but not limited to: ingestion of medication beyond what is 
+                                            instructed/prescribed</li>
+                                        <li>Includes, but not limited to: exposures to carbon monoxide or other toxic 
+                                            substances</li>
+                                        <li>Includes no medication administration by EMS</li>
+                                    </ul>
+                                </li>
+                                <li>No acute agitation and no requirement for physical or chemical restraints</li>
+                                <li>CPCRT or CMCT have been contacted and are available at the time</li>
+                                <li>Police on scene and willing to assume responsibility for patient while awaiting 
+                                    CPCRT or CMCT</li>
+                                <div class="add-margin-L"><b>AND</b></div>
+                                <li>Police ensure that the patient will not be left unattended unless deemed safe 
+                                    following CPCRT or CMCT evaluation</li>
+                            </ol>
+                        </li>
+                        <li>Unit may clear the call and become available under the premises of “cancellation”
+                            <ol><li>With appropriate PCR documentation</li></ol>
+                        </li>
+                        <li>If system status permits, EMS unit may remain on scene with the patient until evaluation has been completed by CPCRT or CMCT
+                            <ol>
+                                <li>Unit may then clear the call and become available under the premises of “cancellation”
+                                    <ul><li>With appropriate PCR documentation</li></ul>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" CPCRTAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" CPCRTAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addFiveBottom">
+                            <li>CPCRT or CMCT may be contacted by CMPD or jurisdictional police prior to EMS arrival
+                                <ul>
+                                    <li>Do not cancel CPCRT/CMCT unless the patient requires immediate transport to the hospital or does not meet all of the above criteria (#5)</li>
+                                </ul>
+                            </li>
+                            <li>CPCRPT or CMCT may arrange transport to a psychiatric facility through CMPD or jurisdictional police or another resource</li>
+                            <li>CPCRT or CMCT may deem the patient safe to stay on scene and not requiring additional evaluation/treatment and appropriate for outpatient resources and treatment</li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>AH Behavioral Health Charlotte Destination Supplement</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" cmcRandolphNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" cmcRandolphNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Introduction</H3>
+                    <div class="objectivelist">
+                        <ul class="addFiveBottom">
+                            <li>This protocol is a supplement to the Psychiatric / Behavioral protocol</li>
+                            <li>This protocol is a supplement to the Community Policing Crisis Response Team protocol</li>
+                            <li>This protocol is intended to identify patients that are appropriate for transport directly to Atrium Heath - Behavioral Health Charlotte Emergency Department</li><br>
+                            <li class="no-margin">Patients must meet all inclusion criteria with no exclusion criteria as outlined below
+                                <div class="add-margin-L"><b>AND</b></div>
+                            </li>
+                            <li class="no-margin">Patient requests transport to either Atrium Health's CMC, AH-Mercy, or AH-South Park
+                                <div class="add-margin-L"><b>OR</b></div>
+                            </li>
+                            <li>For patients without a preference and Atrium Health's CMC, AH-Mercy, or AH-South Park is the closest facility per mobile mapping data</li><br>
+                            <li>For patients requesting any other Atrium Health facility (other than the three listed above) transport should be to that requested AH facility (AH-UC, AH-P, AH-SC, AH-H)</li>
+                            <li>For patients without a preference and an Atrium Health facility (other than the three listed above) or any Novant Health facility is the closest facility per mobile mapping, the patient should be transported to that closest facility</li>
+                        </ul><br>
+                    </div>
+                <h3>Inclusion Criteria</h3>
+                    <div class="introText">
+                        <ul class="addFiveBottom">
+                            <li>Isolated psychiatric / behavioral health complaint
+                                <ul>
+                                    <li>Suicidal or homicidal ideation without current attempt
+                                        <ul><li>Abrasions from “cutting” not requiring any significant care are permitted</li></ul>
+                                    </li>
+                                    <li>Known psychiatric disorder with exacerbation of symptoms
+                                        <ul>
+                                            <li>Known psychiatric disorder with auditory/visual hallucinations</li>
+                                            <li>Known psychiatric disorder with depression/mania symptoms</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Age &gt; 12 &lt; 65-years</li>
+                            <li>GCS = 15</li>
+                            <li>Temperature &lt; 100.4o F</li>
+                            <li>HR = 60 - 120</li>
+                            <li>SBP = 100 - 180</li>
+                            <li>RR = 12 - 24</li>
+                            <li>SpO2 = 94 - 100%</li>
+                            <li>Negative EIDS field screen</li>
+                        </ul>
+                    </div>
+                    <h3>Exclusion Criteria</h3>
+                    <div class="introText">
+                        <ul class="addFiveBottom">
+                            <li>Non-psychiatric complaints
+                                <ul><li>e.g. chest pain, abdominal pain, shortness of breath, any new onset pain</li></ul>
+                            </li>
+                            <li>External signs of trauma or history of trauma reported by the patient, police or bystanders
+                                <ul>
+                                    <li>Includes, but not limited to: evidence of recent self-injury or strangulation
+                                        <ul><li>Lacerations from “cutting” requiring repair are excluded</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Evidence of ingestion, intoxication, or exposure or history of ingestion, intoxication or exposure reported
+                                <ul>
+                                    <li>Includes, but not limited to: ingestion of medication beyond what is instructed/prescribed</li>
+                                    <li>Includes, but not limited to: exposures to carbon monoxide or other toxic substances</li>
+                                </ul>
+                            </li>
+                            <li>Any medication administration by EMS</li>
+                            <li>Acute agitation or requirement for physical or chemical restraints</li>
+                            <li>Positive EIDS field screen</li>
+                            <li>COVID-19 testing performed with unknown result
+                                <ul><li>If tested at an Atrium Health testing site; contact medical control at CMC to see if results are available</li></ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" cmcRandolphBasicTreatment" class="accordian__input" checked="checked">
+            <label for=" cmcRandolphBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety</li>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Remove patient from stressful environment & attempt to calm by reassurance</li>
+                        <li>Treat per standard psychiatric - behavioral health protocol</li>
+                        <li>Assess vital signs</li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li>When transporting directly to AH-BHC report should be called via CMED patch to:
+                            <ol>
+                                <li>Primary contact: AH-BHC charge nurse @ 704-444-5975</li>
+                                <li>Secondary contact: AH-BHC ED desk @ 704-358-2800</li>
+                            </ol>
+                        </li>
+                        <li>Completed PCRs will be faxed to HIPAA secure fax @ 704-444-2515</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" cmcRandolphAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" cmcRandolphAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addFiveBottom">
+                            <li>Appropriate patients should be referred to the Community Policing Crisis Response Team thereby potentially eliminating any need for transport</li>
+                            <li>Discussion should occur with CMPD on scene for possible transport by CMPD to AH-BHC</li>
+                            <li>Upon arrival to AH-BHC
+                                <ul>
+                                    <li>Follow signs clearly marking the Emergency entrance
+                                        <ul><li>Parking area and entry door that to utilize are to the far left of the building</li></ul>
+                                    </li>
+                                    <li>Parking area for use is marked as “Law Enforcement Parking”
+                                        <ul><li>Units will either back into the area or pull directly in to space</li></ul>
+                                    </li>
+                                    <li>Door for entry to the building will be directly to the right</li>
+                                    <li>Providers will assist the patient in exiting the unit and walk them inside
+                                        <ul><li>Wheelchairs are available if necessary</li></ul>
+                                    </li>
+                                    <li>The door is secured and locked and crews will need to ring the bell, with having called report ahead of time, security will be awaiting their arrival</li>
+                                    <li>Once entry to the ED is made, the first room on the right will be where EMS patients are triaged and report taken by nursing or physician staff</li>
+                                    <li>Their report will be signed upon completion of verbal report</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div><hr><br>
+
+    </div>
+</div>
+{% endblock %}

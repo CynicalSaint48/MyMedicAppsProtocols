@@ -526,3 +526,10 @@ def pregnancyChildbirth():
     keys = get_key_list()
 
     return render_template('/protocols/PregnancyChildbirth.html', keys=keys, varTitle="PregnancyChildbirth")
+
+@protocols.route("/protocols/Psychiatric")
+def psychiatric():
+
+    keys = get_key_list()
+
+    return render_template('/protocols/Psychiatric.html', keys=keys, varTitle="Psychiatric")
