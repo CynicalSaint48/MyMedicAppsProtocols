@@ -78,7 +78,13 @@ def clrPt():
 
     keys = setPt()
 
-    return render_template('home.html', varTitle='Home', keys=keys, latest_update=latest_update)
+    if session['path']:
+        path = session['path']
+        return redirect(url_for(f'{path}'))
+        
+    else:
+
+        return redirect(url_for('main.home'))
 
 @main.route("/updatePt", methods=['GET', 'POST'])
 def updatePt():
@@ -87,7 +93,14 @@ def updatePt():
     form = updatePtForm()
     if form.validate_on_submit():
         setPt(form.ptYears.data, form.ptLbs.data)
-        return redirect(url_for('main.home'))
+
+        if session['path']:
+            path = session['path']
+            return redirect(url_for(f'{path}'))
+        
+        else:
+
+            return redirect(url_for('main.home'))
     
     return render_template('updatePt.html', varTitle='Add Patient', form=form, legend='New Patient', subButton='Save', latest_update=latest_update, keys=keys)
 

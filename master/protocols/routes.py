@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint
-from flask import session
+from flask import session, request
 
 protocols = Blueprint('protocols', __name__)
 
@@ -357,12 +357,14 @@ def get_key_list():
 def allergy():
 
     keys = get_key_list()
+    session['path'] = 'protocols.allergy'
     return render_template('/protocols/AllergicReaction.html', keys=keys, varTitle="Allergic Reaction")
 
 @protocols.route("/protocols/abdominal_pain")
 def abdominal():
 
     keys = get_key_list()
+    session['path'] = 'protocols.abdominal'
 
     return render_template('/protocols/AbdPain.html', keys=keys, varTitle="Abdominal Pain")
 
@@ -370,6 +372,7 @@ def abdominal():
 def bites():
 
     keys = get_key_list()
+    session['path'] = 'protocols.bites'
 
     return render_template('/protocols/Bites_Envenomations.html', keys=keys, varTitle="Bites & Envenomations")
 
@@ -377,6 +380,7 @@ def bites():
 def animalBites():
 
     keys = get_key_list()
+    session['path'] = 'protocols.animalBites'
 
     return render_template('/protocols/AnimalBites.html', keys=keys, varTitle="Animal Bites")
 
@@ -384,6 +388,7 @@ def animalBites():
 def assault():
 
     keys = get_key_list()
+    session['path'] = 'protocols.assault'
 
     return render_template('/protocols/Assault.html', keys=keys, varTitle="Assault")
 
@@ -391,6 +396,7 @@ def assault():
 def backPain():
 
     keys = get_key_list()
+    session['path'] = 'protocols.backPain'
 
     return render_template('/protocols/BackPain.html', keys=keys, varTitle="Back Pain")
 
@@ -398,6 +404,7 @@ def backPain():
 def breathingProblems():
 
     keys = get_key_list()
+    session['path'] = 'protocols.breathingProblems'
 
     return render_template('/protocols/BreathingProblems.html', keys=keys, varTitle="Breathing Problems")
 
@@ -405,6 +412,7 @@ def breathingProblems():
 def burns():
 
     keys = get_key_list()
+    session['path'] = 'protocols.burns'
 
     return render_template('/protocols/Burns.html', keys=keys, varTitle="Burns")
 
@@ -412,6 +420,7 @@ def burns():
 def hazmat():
 
     keys = get_key_list()
+    session['path'] = 'protocols.hazmat'
 
     return render_template('/protocols/CarbonMonoxide.html', keys=keys, varTitle="Hazardous Materials")
 
@@ -419,6 +428,7 @@ def hazmat():
 def cardiacArrest():
 
     keys = get_key_list()
+    session['path'] = 'protocols.cardiacArrest'
 
     return render_template('/protocols/CardiacArrest.html', keys=keys, varTitle="Cardiac Arrest")
 
@@ -426,6 +436,7 @@ def cardiacArrest():
 def chestPain():
 
     keys = get_key_list()
+    session['path'] = 'protocols.chestPain'
 
     return render_template('/protocols/ChestPain.html', keys=keys, varTitle="Chest Pain")
 
@@ -433,6 +444,7 @@ def chestPain():
 def choking():
 
     keys = get_key_list()
+    session['path'] = 'protocols.choking'
 
     return render_template('/protocols/Choking.html', keys=keys, varTitle="Choking")
 
@@ -440,6 +452,7 @@ def choking():
 def convulsions():
 
     keys = get_key_list()
+    session['path'] = 'protocols.convulsions'
 
     return render_template('/protocols/Convulsions.html', keys=keys, varTitle="Convulsions/Seizures")
 
@@ -447,6 +460,7 @@ def convulsions():
 def diabetic():
 
     keys = get_key_list()
+    session['path'] = 'protocols.diabetic'
 
     return render_template('/protocols/Diabetic.html', keys=keys, varTitle="Diabetic Problems")
 
@@ -454,6 +468,7 @@ def diabetic():
 def drowning():
 
     keys = get_key_list()
+    session['path'] = 'protocols.drowning'
 
     return render_template('/protocols/Drowning.html', keys=keys, varTitle="Drowning")
 
@@ -461,6 +476,7 @@ def drowning():
 def electrocution():
 
     keys = get_key_list()
+    session['path'] = 'protocols.electrocution'
 
     return render_template('/protocols/Electrocution.html', keys=keys, varTitle="Electrocution")
 
@@ -468,6 +484,7 @@ def electrocution():
 def eyeProblems():
 
     keys = get_key_list()
+    session['path'] = 'protocols.eyeProblems'
 
     return render_template('/protocols/EyeProblems.html', keys=keys, varTitle="Eye Problems")
 
@@ -475,6 +492,7 @@ def eyeProblems():
 def falls():
 
     keys = get_key_list()
+    session['path'] = 'protocols.falls'
 
     return render_template('/protocols/Falls.html', keys=keys, varTitle="Falls /  Back Injury")
 
@@ -482,6 +500,7 @@ def falls():
 def headache():
 
     keys = get_key_list()
+    session['path'] = 'protocols.headache'
 
     return render_template('/protocols/Headache.html', keys=keys, varTitle="Headache")
 
@@ -489,6 +508,7 @@ def headache():
 def heartProblems():
 
     keys = get_key_list()
+    session['path'] = 'protocols.heartProblems'
 
     return render_template('/protocols/HeartProblems.html', keys=keys, varTitle="Heart Problems")
 
@@ -496,6 +516,7 @@ def heartProblems():
 def heatCold():
 
     keys = get_key_list()
+    session['path'] = 'protocols.heatCold'
 
     return render_template('/protocols/HeatCold.html', keys=keys, varTitle="Heat/Cold Exposure")
 
@@ -503,6 +524,7 @@ def heatCold():
 def hemorrhage():
 
     keys = get_key_list()
+    session['path'] = 'protocols.hemorrhage'
 
     return render_template('/protocols/Hemorrhage.html', keys=keys, varTitle="Hemorrhage")
 
@@ -510,6 +532,7 @@ def hemorrhage():
 def industrial():
 
     keys = get_key_list()
+    session['path'] = 'protocols.industrial'
 
     return render_template('/protocols/IndustrialAccident.html', keys=keys, varTitle="Industrial Accident")
 
@@ -517,6 +540,7 @@ def industrial():
 def overdose():
 
     keys = get_key_list()
+    session['path'] = 'protocols.overdose'
 
     return render_template('/protocols/Overdose.html', keys=keys, varTitle="Overdose")
 
@@ -524,6 +548,7 @@ def overdose():
 def pregnancyChildbirth():
 
     keys = get_key_list()
+    session['path'] = 'protocols.pregnancyChildbirth'
 
     return render_template('/protocols/PregnancyChildbirth.html', keys=keys, varTitle="PregnancyChildbirth")
 
@@ -531,5 +556,6 @@ def pregnancyChildbirth():
 def psychiatric():
 
     keys = get_key_list()
+    session['path'] = 'protocols.psychiatric'
 
     return render_template('/protocols/Psychiatric.html', keys=keys, varTitle="Psychiatric")
