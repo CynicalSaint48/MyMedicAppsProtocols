@@ -1,0 +1,715 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Pregnancy & Childbirth</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" pregnancyNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" pregnancyNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+            <h3>Pertinent Obstetric History</h3>
+                <ul class="differentialText">
+                    <li>Gravida / parity number</li>
+                    <li>Last menstrual period</li>
+                    <li>Estimated gestation age</li>
+                    <li>Due date</li>
+                    <li>Contractions
+                        <ul class="no-margin">
+                            <li>Onset</li>
+                            <li>Frequency</li>
+                            <li>Duration</li>
+                        </ul>
+                    </li>
+                    <li>Gestational complications - prior, current</li>
+                    <li>Fetal movement</li>
+                </ul><br>
+            <h3>Differential Diagnosis</h3>
+                <ul class="differentialText">
+                    <li>Vaginal bleeding
+                        <ul>
+                            <li>Labor</li>
+                            <li>Placenta previa</li>
+                            <li>Placental abruption</li>
+                            <li>Trauma</li>
+                        </ul>
+                    </li>
+                    <li>Abdominal pain
+                        <ul>
+                            <li>Labor</li>
+                            <li>Trauma</li>
+                            <li>Differential as per <a href="{{url_for('protocols.abdominal')}}">Abdominal Pain Protocol</a></li>
+                        </ul>
+                    </li>
+                    <li>Hypertension
+                        <ul>
+                            <li>Pregnancy induced hypertension</li>
+                            <li>Pre-eclampsia/Eclampsia</li>
+                        </ul>
+                    </li>
+                </ul><hr><br>
+            </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" pregnancyBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" pregnancyBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" pregnancyAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" pregnancyAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                {% else %}
+                                    <ol>
+                                        <li>Hemodynamically unstable: IVF wide open</li>
+                                        <li>Hemodynamically stable: TKO</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Place and transport in left lateral decubitus position for hypotension</li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO2 and ventilate with 100% oxygen</li>
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol><li><dose style="color:#f4b02a;font-weight:500">4 - 8 mg PO, IV, IM</dose></li></ol>
+                                {% else %}
+                                    <ol>
+                                        <li>4 - 8 mg PO, IV, IM</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Additional care per appropriate protocol</li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control as patient condition permits
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptMax200 %}
+                                            <ol>
+                                                <li>up to a <red><b>maximum</b></red> of <dose style="color:#f4b02a;font-weight:500">100 mcg IV, IV, IM, IO</dose></li>
+                                                <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route)</li>
+                                            </ol>
+                                        {% elif keys.ptMax100 %}
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500"></dose>{{ '%0.2f'|format(keys.ptKgs/2) }} - 100 mcg IV, IV, IM, IO</li>
+                                                <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route)</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500"></dose>{{ '%0.2f'|format(keys.ptKgs/2) }} - {{ '%0.2f'|format(keys.ptKgs) }} mcg IV, IV, IM, IO</li>
+                                                <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route)</li>
+                                            </ol>
+                                        {% endif %}
+                                        
+                                {% else %}
+                                    <ol>
+                                        <li>0.5 - 1 mcg/kg IV, IV, IM, IO (maximum 100 mcg)</li>
+                                        <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route)</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Childbirth</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" childbirthBasicTreatment" class="accordian__input" checked = "checked">
+            <label for=" childbirthBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care - No Crowning</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Observe and reassess</li>
+                    </ol>
+                </div><hr><br>
+
+                <h3>Basic Medical Care - Crowning</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Gently control the progress of the head</li>
+                        <li>Support the head with one hand as it is delivered</li>
+                        <li>Clear the infant's airway by suctioning with bulb syringe
+                            <ol><li>Suction mouth then nose</li></ol>
+                        </li>
+                        <li>Check to ensure that the umbilical cord is not wrapped around the head / neck (nuchal)
+                            <ol>
+                                <li>Gently slip the cord over the head
+                                    <ol><li>If unable to easily slip over the head, it may be possible to slip it back over the shoulders and deliver the body through the loop</li></ol>
+                                </li>
+                                <li>If necessary - unable to slip cord over the head; double-clamp and cut the cord between clamps (must ensure cord is not potentially cord of a twin gestation)</li>
+                            </ol>
+                        </li>
+                        <li>Help direct the anterior shoulder under the symphysis pubis with downward pressure on the side of the neonate's head</li>
+                        <li>Apply gentle upward pressure to deliver the posterior shoulder</li>
+                        <li>Support the infant through the remainder of the delivery</li>
+                        <li>Clamp the cord approximately two (2) inches from the infant's abdomen and cut</li>
+                        <li>Stimulate the infant and clear the airway</li>
+                        <li>Dry and wrap the infant for warmth</li>
+                        <li>Assess infants <a FIXME:href="#">APGAR score</a> at one and five minutes</li>
+                        <li>Deliver the placenta (never pull on umbilical cord to deliver the placenta)</li>
+                        <li>Massage the fundus of the uterus</li>
+                        <li>Monitor for post-partum hemorrhage</li>
+                    </ol>
+                </div><br>
+
+                <h3>Childbirth Complications</h3><hr>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><b>Prolapsed Cord</b>:
+                            <ol>
+                                <li>Encourage mother to refrain from pushing</li>
+                                <li>Place in Trendelenburg position</li>
+                                <li>Insert fingers into vagina to relieve cord pressure by displacing fetal head up</li>
+                                <li>Keep cord moist with saline soaked gauze</li>
+                            </ol>
+                        </li><br>
+                        <li><b>Breech presentation</b>
+                            <ol>
+                                <li>Encourage mother to refrain from pushing</li>
+                                <li>Place in Trendelenburg position</li>
+                                <li>Support presenting part(s); do NOT pull</li>
+                            </ol>
+                        </li><br>
+                        <li>if <b>Frank Breech</b> and delivery is progressing
+                            <ol>
+                                <li>Allow the buttocks and trunk to deliver spontaneously</li>
+                                <li>As the baby is delivered, continue to support with both hands</li>
+                                <li>Attempt to deliver the anterior shoulder and arm and then deliver the posterior shoulder and arm</li>
+                                <li>The arms need to be delivered to enable the head to be delivered</li>
+                                <li>Assist with the delivery of the head by exerting pressure above the pubic symphysis</li>
+                                <li>The face should be kept in a downward position</li>
+                                <li>Do not allow hyperextension of the neck as the head is delivered</li>
+                            </ol>
+                        </li><br>
+                        <li><b>Shoulder Dystocia</b>
+                            <ol>
+                                <li>Hyperflex the mother's hips and thighs towards her chest and apply anterior to posterior pressure with lateral to medial pressure supra-pubic in attempt to rotate the baby's shoulders off the pelvic rim</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div>
+
+
+            </div>
+        </div>
+
+        <h2>Newly Born</h2>
+
+        
+        <div>
+            <input type="checkbox" name="accordian" id=" newbornBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" newbornBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Assess estimated gestational age</li>
+                        <li>Suction oropharynx as required for meconium present
+                            <ol><li>May require positive pressure ventilation with BVM based on patient's condition</li></ol>
+                        </li>
+                        <li>Dry infant and keep warm</li>
+                        <li>Position & clear airway as indicated</li>
+                        <li>Assess APGAR score
+                            <ol>
+                                <li>Heart rate &gt; 100 BPM
+                                    <ol>
+                                        <li>For color normal = monitor and reassess</li>
+                                        <li>For color cyanotic = provide supplemental oxygen</li>
+                                    </ol>
+                                </li>
+                                <li>Heart rate 60 - 100
+                                    <ol>
+                                        <li>Provide positive pressure ventilation</li>
+                                        <li><a FIXME:href="#"></a>Airway: Pediatric Protocol</li>
+                                    </ol>
+                                </li>
+                                <li>Heart rate &lt; 60 BPM
+                                    <ol>
+                                        <li>Initiate CPR (compressions @ 100 - 120 min)</li>
+                                        <li>Provide positive pressure ventilation</li>
+                                        <li>Compression to ventilation ratio = 3:1</li>
+                                        <li><a FIXME:href="#"></a>Airway: Pediatric Protocol</li>
+                                    </ol>
+                                </li>
+                                <li>Respirations
+                                    <ol>
+                                        <li>Present = monitor and reassess</li>
+                                        <li>Respirations absent = stimulate, suction</li>
+                                        <li>Respirations remain absent = initiate BVM ventilations (ventilations @ 40/min)</li>
+                                    </ol>
+                                </li>
+                                <li>Color
+                                    <li>Pink - monitor and reassess</li>
+                                    <li>Cyanotic - provide supplemental oxygen</li>
+                                    <li><a FIXME:href="#"></a>Airway: Pediatric Protocol</li>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>Consider maternal hypoglycemia & maternal medication effects</li>
+                        <li>Reassess <a FIXME:href="#">APGAR score</a></li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" newbornAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" newbornAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Heart rate &lt; 60 BPM
+                                {% if keys.ptAdult %}
+                                    <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                {% else %}
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol><li><a href="{{url_for('medications.epinephrine')}}">Epinephrine 1:10,000</a> <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'|format (keys.ptKgs/100) }} mg IO, IV </dose>(<red><b>maximum 1 mg; 1 ml</b></red>)</li></ol>
+                                    {% else %}
+                                        <ol><li><a href="{{url_for('medications.epinephrine')}}">Epinephrine 1:10,000</a> 0.01 mg/kg; (0.1 ml/kg) IO, IV (maximum 1 mg; 1 ml)</li></ol>
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                            <li>Consider hypoglycemia
+                                {% if keys.ptAdult %}
+                                    <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                {% else %}
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol>
+                                            <li><a href="{{url_for('medications.glucose')}}">D10</a> <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'|format (keys.ptKgs/2) }} ml IO, IV </dose>as indicated
+                                                <ol><li>Repeat based on clinical condition and blood glucose level</li></ol>
+                                            </li>
+                                        </ol>
+                                    {% else %}
+                                        <ol>
+                                            <li><a href="{{url_for('medications.glucose')}}">D10</a> @ 2 ml/kg as indicated
+                                                <ol><li>Repeat based on clinical condition and blood glucose level</li></ol>
+                                            </li>
+                                        </ol>
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                            <li><a FIXME:href="#">IVF</a> bolus:
+                                {% if keys.ptAdult %}
+                                    <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                {% else %}
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol>
+                                            <li><a FIXME:href="#">IVF</a> <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} ml IO, IV </dose>for continued lethargy</li>
+                                        </ol>
+                                    {% else %}
+                                        <ol>
+                                            <li><a FIXME:href="#">IVF</a> 10 ml/kg IV, IO for continued lethargy</li>
+                                        </ol>
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                            <li>Consider maternal medication effects
+                                {% if keys.ptAdult %}
+                                    <div class="add-margin-L"><red><div class="add-margin-L"><b>Verify this Pt Age/Diagnosis combination</b></div></red></div>
+                                {% else %}
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol>
+                                            <li><a href="{{url_for('medications.naloxone')}}"> Naloxone (Narcan®)</a> <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'|format (keys.ptKgs/100) }} - {{ '%0.2f'|format (keys.ptKgs/10) }} mg IN, IV </dose>as indicated</li>
+                                        </ol>
+                                    {% else %}
+                                        <ol>
+                                            <li><a href="{{url_for('medications.naloxone')}}"> Naloxone (Narcan®)</a> 0.01 - 0.1 mg/kg IN, IV as indicated</li>
+                                        </ol>
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" newbornAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" newbornAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations for Newborns</h3>
+                    <div>
+                        <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/apgar.jpg') }}" alt="APGAR scoring"></div>
+                        <ul>
+                            <li>All newborn infants must be kept warm</li>
+                            <li>For thick meconium found in the amniotic fluid at the time of delivery or is present in the 
+                                oropharynx, suction oropharynx and prepare for need for positive pressure ventilation via 
+                                bag-valve-mask device</li>
+                            <li>Meconium Aspiration Syndrome is a severe complication for the neonate</li>
+                            <li>For meconium present at the time of delivery and the neonate has normal vital signs and demonstrates vigorous muscle activity
+                                <ul><li>Use the bulb suction or appropriately sized suction catheter to suction oropharynx</li></ul>
+                            </li>
+                            <li>For neonate that is depressed (apnea, heart rate &lt; 100, and decreased muscle tone)
+                                <ul>
+                                    <li>Provide positive pressure ventilation with bag-valve-mask device</li>
+                                    <li>Re-suction oropharynx as required
+                                        <ul><li>Suction should not last more than 3 to 5 seconds</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Obstetrical Emergencies</h2><br>
+        <h3>Preeclampsia / Eclampsia</h3>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" eclampsiaNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" eclampsiaNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Objective</H3>
+                <h3><b>Clinical Presentation</b></h3>
+                        <ul class="differentialText">
+                            <li>Edema (severe; especially if involves face or hands)</li>
+                            <li>Headache</li>
+                            <li>Hyper-reflexia</li>
+                            <li>Hypertension &gt; 160/110</li>
+                            <li>Proteinuria</li>
+                            <li>Visual changes</li>
+                            <li>Typically occurs between 20-weeks gestation and 6-weeks post partum</li>
+                        </ul>
+                <h3><b>Risk Factors</b></h3>
+                        <ul class="differentialText">
+                            <li>History of preeclampsia</li>
+                            <li>Gestational diabetes</li>
+                            <li>History of hypertension</li>
+                            <li>Maternal age &lt; 20-years or &gt; 35-years of age</li>
+                            <li>Molar pregnancy</li>
+                            <li>Multiple gestation</li>
+                            <li>Obesity</li>
+                            <li>Primagravida</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" eclampsiaBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" eclampsiaBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>For hypertension, position patient in left lateral decubitus position (left side down)</li>
+                        <li>Seizure precautions</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" eclampsiaAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" eclampsiaAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><a href="{{url_for('medications.labetalol')}}">Labetalol (Normodyne®)</a> <dose style="color:#f4b02a;font-weight:500">20 mg IV</dose> for preeclampsia
+                                <ol><li>Repeat <a href="{{url_for('medications.labetalol')}}">Labetalol (Normodyne®)</a> <dose style="color:#f4b02a;font-weight:500">20 mg IV</dose> for persistent symptoms or hypertension</li></ol>
+                            </li>
+                            <li>Transport patient in the left lateral decubitus position (left side down)</li>
+                            <li><a href="{{url_for('medications.magnesium')}}">Magnesium Sulfate</a> <dose style="color:#f4b02a;font-weight:500">4 grams IV over 10 minutes</dose> (4 grams in 150 ml NS) for eclampsia
+                                <ol>
+                                    <li>Monitor for signs for magnesium toxicity:
+                                        <ol>
+                                            <li>Hyporeflexia, respiratory depression, hypotension</li>
+                                            <li><red><b>Stop infusion</b></red> if present</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> <dose style="color:#f4b02a;font-weight:500">10 mg IM, IN</dose> for persistent seizure activity</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h3>Placental Abruption</h3>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" abruptionNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" abruptionNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3><b>Introduction</b></h3>
+                        <ul>
+                            <li>Partial or complete detachment of the placenta from its normal implantation site</li>
+                            <li>Occurs in 1 in 200 deliveries</li>
+                            <li>Accounts for 30% of cases of antepartum hemorrhage</li>
+                            <li>Risk factors = trauma, hypertension, acute decompression of distended uterus</li>
+                        </ul>
+                <h3><b>Clinical Presentation</b></h3>
+                        <ul>
+                            <li>Painful dark vaginal bleeding (classic presentation)</li>
+                            <li>Uterine irritability</li>
+                            <li>Uterine tenderness</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" abruptionBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" abruptionBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Do not attempt to localize the of vaginal bleeding beyond visual inspection of perineum</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" abruptionAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" abruptionAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><a FIXME:href="#">IVF</a> resuscitation as indicated
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">wide open</dose></li>
+                                        <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">TKO</dose></li>
+                                    </ol>
+                                {% else %}
+                                    <ol>
+                                        <li>Hemodynamically unstable: IVF wide open</li>
+                                        <li>Hemodynamically stable: TKO</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Transport patient in the left lateral decubitus position (left side down)</li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control as patient condition permits
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptMax200 %}
+                                            <ol>
+                                                <li>up to a <red><b>maximum</b></red> of <dose style="color:#f4b02a;font-weight:500">100 mcg IV, IV, IM, IO</dose></li>
+                                                <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route)</li>
+                                            </ol>
+                                        {% elif keys.ptMax100 %}
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'|format(keys.ptKgs/2) }} - 100 mcg IV, IV, IM, IO</dose></li>
+                                                <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route)</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li><dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'|format(keys.ptKgs/2) }} - {{ '%0.2f'|format(keys.ptKgs) }} mcg IV, IV, IM, IO</dose></li>
+                                                <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route)</li>
+                                            </ol>
+                                        {% endif %}
+                                        
+                                {% else %}
+                                    <ol>
+                                        <li>0.5 - 1 mcg/kg IV, IV, IM, IO (maximum 100 mcg)</li>
+                                        <li>May repeat x1 in 15 minutes as indicated (maximum 100 mcg any route)</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Ensure necessary equipment for emergent delivery is immediately available</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Placenta Previa</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" previaNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" previaNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3><b>Introduction</b></h3>
+                        <ul>
+                            <li>Implantation of the placenta in the lower uterine segment in advance of the fetal presenting part after 24 weeks gestation</li>
+                            <li>Occurs in 1 in 250 deliveries</li>
+                            <li>Accounts for 20% of cases of antepartum hemorrhage</li>
+                        </ul>
+                <h3><b>Clinical Presentation</b></h3>
+                        <ul>
+                            <li>Painless bright red vaginal bleeding (classic presentation)</li>
+                            <li>Contraction may or may not be present</li>
+                            <li>Potential for hypotension</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" previaBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" previaBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Do not attempt to localize the of vaginal bleeding beyond visual inspection of perineum</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" previaAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" previaAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><a FIXME:href="#">IVF</a> resuscitation as indicated
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">wide open</dose></li>
+                                        <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">TKO</dose></li>
+                                    </ol>
+                                {% else %}
+                                    <ol>
+                                        <li>Hemodynamically unstable: IVF wide open</li>
+                                        <li>Hemodynamically stable: TKO</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Ensure necessary equipment for emergent delivery is immediately available</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" pregnancyAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" pregnancyAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li><b>Physiologic Changes of Pregnancy</b>:
+                                <div class="proto-image"><img src="{{ url_for('static', filename='images/protocol/pregnancy.jpg') }}" alt="APGAR scoring"></div>
+                            </li>
+                            <li>Decision to transport versus remain and deliver is multifactorial and difficult
+                                <ul>
+                                    <li>Generally, it is preferable to transport</li>
+                                    <li>Factors that will impact decision include:
+                                        <ul>
+                                            <li>Number of previous deliveries</li>
+                                            <li>Length of previous labors</li>
+                                            <li>Frequency of contractions</li>
+                                            <li>Urge to push</li>
+                                            <li>Presence of crowning</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li> Transport to patient's hospital of choice
+                                <ul>
+                                    <li>For complications (hemorrhage, neonatal distress, abnormal delivery complication) divert to the closest hospital with OB/labor and delivery services within the requested healthcare system</li>
+                                    <li>Avoid free-standing emergency departments except in extreme circumstances and the free-standing ED is critically closer than closest hospital ED
+                                        <ul><li>These facilities do not have OB/labor and delivery services</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Any pregnant patient involved in a MVC should be seen by a physician for evaluation
+                                <ul>
+                                    <li>Greater than 20 weeks generally require 4 to 6 hours of fetal monitoring</li>
+                                </ul>
+                            </li>
+                            <li>When transporting to Atrium Health Carolinas Medical Center; the patient may be 
+                                transported directly to Labor and Delivery (bypassing Triage and the ED) for patient > 20 
+                                weeks in gestation (manifested by dates, ultrasound, or the uterus palpated above the 
+                                navel) and any the following are present:
+                                <ul>
+                                    <li>Indications
+                                        <ul>
+                                            <li>Abdomen, pelvic, or back pain</li>
+                                            <li>Signs and symptoms of labor or imminent delivery without crowning</li>
+                                            <li>Vaginal bleeding</li>
+                                            <li>Water has broken</li>
+                                        </ul>
+                                    </li>
+                                    <li>Contraindications for transporting directly to L&D
+                                        <ul>
+                                            <li>Active seizures</li>
+                                            <li>Crowning or imminent delivery</li>
+                                            <li>Respiratory or cardiac arrest</li>
+                                            <li>Shock</li>
+                                            <li>Trauma</li>
+                                        </ul>
+                                    </li>
+                                    <li>Contact CMC Labor and Delivery to provide report
+                                        <ul>
+                                            <li>Contact <red><b>CMED</b></red> at <red><b>704-598-2436</b></red> and request patch to <red><b>CMC Labor and Delivery</b></red></li>
+                                            <li>If this fails, Radio - Provide report to ED and request information be communicated to Labor and Delivery</li>
+                                            <li>If this fails, Cellular - Dial direct at <red><b>704-355-2053</b></red></li>
+                                        </ul>
+                                    </li>
+                                    <li>The following minimum information should be communicated along with routine 
+                                        clinical findings:
+                                        <ul>
+                                            <li>Name</li>
+                                            <li>Date of birth</li>
+                                            <li>Name of Obstetric Clinic or Obstetrician</li>
+                                            <li>Last menstrual period</li>
+                                            <li>Delivery date</li>
+                                        </ul>
+                                    </li>
+                                    <li>On arrival, proceed directly to the 8th floor
+                                        <ul><li>Labor and Delivery staff will be present on arrival to direct appropriate patient destination</li></ul>
+                                    </li>
+                                    <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for any of the following:
+                                        <ul>
+                                            <li>Unsure whether the patient meets appropriate criteria</li>
+                                            <li>Unable to contact Labor and Delivery</li>
+                                            <li>Clinical condition changes and destination directly to Labor and Delivery is contraindicated</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
