@@ -159,24 +159,24 @@
                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
                                         {% if keys.ptMax100 %}
                                             <ol>
-                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </dose></li>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IN, IM, IO</dose></li>
                                                 <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
                                             </ol>
                                         {% else %}
                                             <ol>
-                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg </dose></li>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IN, IM, IO</dose></li>
                                                 <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
                                             </ol>
                                         {% endif %}
                                     {% else %}
                                         {% if keys.ptMax100 %}
                                             <ol>
-                                                <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </dose></li>
+                                                <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IN, IM, IO</dose></li>
                                                 <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                             </ol>
                                         {% else %}
                                             <ol>
-                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg </dose></li>
+                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - {{ keys.ptKgs * 1 }} mcg IV, IN, IM, IO</dose></li>
                                                 <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
                                             </ol>
                                         {% endif %}
