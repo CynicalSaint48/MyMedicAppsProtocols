@@ -1058,29 +1058,29 @@
                             {% else %}
                                 <li>Treatment Adult:
                                     <ol>
-                                        <li>Mild effects: atropine 2 mg IV, IM, IO</li>
-                                        <li>Moderate effects: atropine 4 mg IV, IM, IO</li>
-                                        <li>Severe effects: atropine 6 mg IV, IM, IO</li>
-                                        <li>Seizures: midazolam 10 mg IM, IN</li>
+                                        <li>Mild effects: <a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 2 mg IV, IM, IO</li>
+                                        <li>Moderate effects: <a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 4 mg IV, IM, IO</li>
+                                        <li>Severe effects: <a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 6 mg IV, IM, IO</li>
+                                        <li>Seizures: <a href="{{url_for('medications.midazolam')}}">Midazolam</a> 10 mg IM, IN</li>
                                     </ol>
                                 </li>
                                 <li>Treatment Pediatric:
                                     <ol>
                                         <li>Mild - moderate symptoms
                                             <ol>
-                                                <li>Atropine 0.02 - 0.05 mg/kg IV, IM, IO (maximum 4 mg)</li>
+                                                <li><a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 0.02 - 0.05 mg/kg IV, IM, IO (maximum 4 mg)</li>
                                                 <li>Repeat 0.02 mg/kg IV, IM, IO in 5 minutes as indicated (maximum 2 mg)</li>
                                             </ol>
                                         </li>
                                         <li>Severe symptoms
                                             <ol>
-                                                <li>Atropine 0.02 - 0.05 mg/kg IV, IM, IO (maximum 6 mg)</li>
+                                                <li><a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 0.02 - 0.05 mg/kg IV, IM, IO (maximum 6 mg)</li>
                                             </ol>
                                         </li>
-                                        <li>Seizures: midazolam 0.15 mg/kg IM (max 10 mg); 0.2 mg/kg IN (max 10 mg)</li>
+                                        <li>Seizures: <a href="{{url_for('medications.midazolam')}}">Midazolam</a> 0.15 mg/kg IM (max 10 mg); 0.2 mg/kg IN (max 10 mg)</li>
                                     </ol>
                                 </li>
-                                <li>Repeat atropine every 3-5 minutes as indicated</li>
+                                <li>Repeat <a href="{{url_for('medicaitons.atropine')}}">Atropine</a> every 3-5 minutes as indicated</li>
                             {% endif %}
                     </div><hr><br>
             </div>
