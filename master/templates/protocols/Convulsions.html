@@ -145,13 +145,13 @@
                                                 </ol>
                                             {% endif %}
                                         {% else %}
-                                            {% if ptMax50 %}
+                                            {% if keys.ptMax50 %}
                                                 <ol>
                                                     <li>Pediatric &lt; 8 Years: <b style="color:#D2042D;font-weight:600">maximum dose </b><dose style="color:#f4b02a;font-weight:500">100 ml IV, IO</dose>
                                                         <ol>
                                                             <li>Reassess mental status/recheck glucose</li>
                                                             <li>As indicated repeat D10 @ 2 ml/kg IV, IO (maximum 100 ml)</li>
-                                                            {% if ptMax20 %}
+                                                            {% if keys.ptMax20 %}
                                                                 <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
                                                             {% else %}
                                                                 <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">0.5 mg IM</dose></li>
@@ -165,7 +165,7 @@
                                                     <ol>
                                                         <li>Reassess mental status/recheck glucose</li>
                                                         <li>As indicated repeat D10 @ 2 ml/kg IV, IO (maximum 100 ml)</li>
-                                                        {% if ptMax20 %}
+                                                        {% if keys.ptMax20 %}
                                                             <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">1 mg IM</dose></li>
                                                         {% else %}
                                                             <li>If unable to establish IV access: <a href="{{url_for('medications.glucagon')}}">Glucagon</a> <dose style="color:#f4b02a;font-weight:500">0.5 mg IM</dose></li>

@@ -134,7 +134,7 @@
                                 {% if keys.ptYears > 0 %}
                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
                                     {% if keys.ptAdult %}
-                                        {% if ptMax100 %}
+                                        {% if keys.ptMax100 %}
                                             <ol>
                                                 <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg</dose></li>
                                                 <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
@@ -268,7 +268,7 @@
                                 {% if keys.ptYears > 0 %}
                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
                                     {% if keys.ptAdult %}
-                                        {% if ptMax100 %}
+                                        {% if keys.ptMax100 %}
                                             <ol>
                                                 <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</dose> of 100 mcg </b></li>
                                                 <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
@@ -1157,7 +1157,7 @@
                                         <li>Adult: <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                             <ol>
                                                 <li><a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a><dose style="color:#f4b02a;font-weight:500">  5 mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">  10 mg IN</dose></li>
-                                                {% if ptMax100 %}
+                                                {% if keys.ptMax100 %}
                                                         <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl</a>: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
                                                 {% else %}
                                                         <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl</a>: <dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs)|int }} mcg IV, IO, IN</dose></li>
@@ -1184,7 +1184,7 @@
                                                         <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 10) }} mg IV, IM</dose> or <dose style="color:#f4b02a;font-weight:500">{{'%0.2f'| format(keys.ptKgs / 5) }} mg IN</dose></li></ol>
                                                     {% endif %}
                                                 </li>
-                                                {% if ptMax100 %}
+                                                {% if keys.ptMax100 %}
                                                     <ol>
                                                         <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl</a>: <dose style="color:#f4b02a;font-weight:500">up to <b style="color:#D2042D;font-weight:600">maximum dose</b> of 100 mcg</dose> IV, IO, IN</li>
                                                     </ol>

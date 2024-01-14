@@ -136,7 +136,7 @@
                                             <li>Adult: <thing style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</thing></li>
                                         </ol>
                                     {% else %}
-                                        {% if ptMax26 %}
+                                        {% if keys.ptMax26 %}
                                             <ol>
                                                 <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <thing style="color:#f4b02a"> 4 mg PO, IV, IM</thing></li>
                                             </ol>
@@ -157,7 +157,7 @@
                                 {% if keys.ptYears > 0 %}
                                     {% if keys.ptAdult %}
                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
-                                        {% if ptMax100 %}
+                                        {% if keys.ptMax100 %}
                                             <ol>
                                                 <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </dose></li>
                                                 <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
@@ -169,7 +169,7 @@
                                             </ol>
                                         {% endif %}
                                     {% else %}
-                                        {% if ptMax100 %}
+                                        {% if keys.ptMax100 %}
                                             <ol>
                                                 <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{ keys.ptKgs / 2 }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg </dose></li>
                                                 <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
