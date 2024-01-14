@@ -36,7 +36,6 @@ def getPt():
         keys['ptLbs'] = ptLbs
         keys['ptKgs'] = ptKgs
     
-    print(keys)
     return keys
 
 def setPt(years=0, lbs=0):

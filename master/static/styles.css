@@ -1018,7 +1018,7 @@ dope {
 }
 
 
-@media (max-width: 950px){
+@media (max-width: 1200px){
    .med-image {
       flex: 1 0;
       min-width: 600px
@@ -1030,8 +1030,8 @@ dope {
    .large-screen {
       display: none;
    }
-   .medication-dose-group {
-      max-width: 350px;
+   .medication-dose-group, med-info-group {
+      width: 401px;
    }
 }
 
@@ -1062,7 +1062,7 @@ dope {
    }
 
    .med-info-group {
-      max-width: 350px;
+      width: 350px;
    }
 
    .large-screen {
