@@ -64,6 +64,9 @@ def home():
     
 
     keys = getPt()
+
+    session['path'] = 'main.home'
+        
     latest_update = UpdatePost.query.order_by(UpdatePost.date_posted.desc()).first()
 
     return render_template('home.html', varTitle='Home', keys=keys, latest_update=latest_update)
