@@ -1,0 +1,535 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>High Consequence Pathogens</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id="covidNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Introduction</H3>
+                    <div class="objectivelist">
+                        <ul class="addl-list">
+                            <li>Patients should specifically be asked if he/she has had close contact with a diagnosed 
+                                patient in the past 14-days
+                                <ul><li>Or ask if close contact with person(s) who have traveled to at risk locations or is 
+                                    being evaluated for potential emerging infectious disease</li></ul>
+                            </li>
+                            <li>Differential diagnosis
+                                <ul>
+                                    <li>COVID-19 (Coronavirus)</li>
+                                    <li>Influenza</li>
+                                    <li>MERS (Middle East Respiratory Syndrome) - Arabian Peninsula</li>
+                                    <li>SARS (Severe Acute Respiratory Syndrome) - Asia</li>
+                                    <li>Bacteremia/septicemia</li>
+                                </ul>
+                            </li>    
+                            <li>Transmission occurs via contact with respiratory droplets of infected individuals:
+                                <ul>
+                                    <li>Between people who are in close contact with one another
+                                        <ul><li>~ 3 - 6 feet for > 10 minutes</li></ul>
+                                    </li>
+                                    <li>COVID-19</li>
+                                    <li>It may be possible that a person can get COVID-19 by touching contaminated 
+                                        surface or object that has the virus on it and then touching their own mouth, nose, 
+                                        or eyes
+                                        <ul><li>This is not believed to be the main way the virus spreads</li></ul>
+                                    </li>
+                                </ul>
+                            </li>    
+                            <li>Symptoms:
+                                <ul>
+                                    <li>Fever ( &gt; 100.4<sup>o</sup> F)</li>
+                                    <li>Cough/upper respiratory illness symptoms</li>
+                                    <li>Difficulty breathing or shortness of breath</li>
+                                    <li>Chills</li>
+                                    <li>Loss of sense of taste or smell</li>
+                                    <li>New headache</li>
+                                    <li>New myalgias</li>
+                                    <li>Nasal congestion/rhinorrhea</li>
+                                    <li>Nausea/vomiting/diarrhea</li>
+                                </ul>
+                            </li>    
+                            <li>Consider that at-risk countries of travel may change with time ****</li>    
+                            <li>Other Potential highly infectious diseases
+                                <ul>
+                                    <li>Ebola - west Africa</li>
+                                    <li>Lassa - west Africa</li>
+                                    <li>Marburg - south central Africa</li>
+                                    <li>Nipah Virus - southeast Asia</li>
+                                    <li>Smallpox</li>
+                                </ul>
+                            </li>    
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% elif current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol class="addl-list">
+                        <li>Screening on scene should take place for ALL patients (medical and trauma)</li>
+                        <li>EMS personnel should don personal protective equipment (PPE) with any patient with a 
+                            positive field screen (symptoms or known exposure) as soon as identified utilizing 
+                            standard donning procedures for airborne/droplet precautions
+                            <ol>
+                                <li>Eye protection (goggles / face shield)</li>
+                                <li>Fluid impervious gown</li>
+                                <li>Gloves</li>
+                                <li>N-95 mask (surgical mask may be utilized if N-95 mask is not available)</li>
+                            </ol>
+                        </li>
+                        <li>For CMED EIDS screen positive - one provider should don a surgical mask with face shield
+                            <ol>
+                                <li>Hand the patient a surgical mask to don</li>
+                                <li>Perform a Field Screen within 5 minutes to verify EIDS status</li>
+                                <li>For field screen positive ALL care providers who will be within 6 feet of patient 
+                                    must don full PPE</li>
+                                <li>For field screen negative follow standard PPE guidelines</li>
+                            </ol>
+                        </li>
+                        <li>For field screen positive
+                            <ol>
+                                <li>Only essential personnel should have any contact with the patient</li>
+                                <li>First responder personnel should NOT have patient contact unless critical 
+                                    intervention / assistance required</li>
+                            </ol>
+                        </li>
+                        <li>Surgical mask should be placed on all patients</li>
+                        <li>Contact operations supervisor as soon as a patient with a positive screen is identified</li>
+                        <li>Care as per appropriate protocol (note advisement in #9)</li>
+                        <li>Avoid aerosolizing procedures if not distinctly indicated
+                            <ol>
+                                <li>Nebulizer treatments, suctioning, high flow nasal cannula, CPAP, SGD, BVM</li>
+                                <li>If any aerosolizing procedure is required, PPE as above with an N-95 mask must 
+                                    be utilized</li>
+                                <li>Avoid attempts at endotracheal intubation</li>
+                            </ol>
+                        </li>
+                        <li>If supplemental oxygen is required a non-rebreather mask should be utilized</li>
+                        <li>Limit utilized equipment to only essential equipment required for needed patient care</li>
+                        <li>With negative screen provide care as per appropriate protocol and transport per patient 
+                            destination general triage protocol</li>
+                        <li>During encode notify receiving emergency department of “EIDS positive patient”</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        
+        <div>
+            <input type="checkbox" name="accordian" id="covidAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Driver of transporting ambulance should wear PPE as described above when participating 
+                                in patient care activities (including patient transport & loading)
+                                <ul>
+                                    <li>Remove PPE except for N-95 (or surgical mask) and perform hand hygiene prior 
+                                        to entering vehicle cab to prevent contamination of driver's compartment</li>
+                                </ul>
+                            </li>
+                            <li>CMED will screen at call-taking (CMED will advise “Positive EIDS patient” if positive screen)
+                                <ul>
+                                    <li>It is imperative that field providers also ask screening questions on scene</li>
+                                    <li>Transport of patient with suspected high consequence pathogen must be reported 
+                                        to Operations Supervisor (must be reported to local public health authorities)</li>
+                                    <li>Notify Supervisor and Public Health any patient who refuses transport or is 
+                                        pronounced dead on scene (if positive screen for a high consequence pathogen)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Extreme care should be utilized in doffing PPE post transport per standard procedure to 
+                                ensure no contamination from exposure to used PPE
+                                <ul>
+                                    <li>Do not touch outer surface of PPE</li>
+                                    <li>Do not remove N-95 mask or eye protection prior to gown/coverall removal</li>
+                                </ul>
+                            </li>
+                            <li>No family members or bystanders should be transported in the ambulance</li>
+                            <li>Appropriate PPE is required during cleaning / disinfecting of any EMS equipment
+                                <ul>
+                                    <li>Utilize appropriate approved disinfectant cleansing solution</li>
+                                    <li>Equipment includes ambulance interior and surfaces exposed to patient contact</li>
+                                </ul>
+                            </li>
+                            <li>Following patient care activity utilize standard hand hygiene utilizing soap and water for 
+                                30 seconds or alcohol-based hand sanitizer</li>
+                            <li>If any personnel exposure occurs Supervisor will perform a risk assessment and notify 
+                                employee health as indicated following decontamination/cleansing / irrigation of exposure</li>
+                            <li>Recommended to wear surgical mask and consider eye protection for any patient with 
+                                fever; even outside this protocol</li>
+                            <li>Negative Pressure in care compartment:
+                                <ul>
+                                    <li>For door or window available to separate driver's and care compartment space:
+                                        <ul>
+                                            <li>Close door/window between driver s and care compartment</li>
+                                            <li>Operate rear exhaust fan on full</li>
+                                        </ul>
+                                    </li>
+                                    <li>For no door or window available to separate driver's and care compartment space:
+                                        <ul><li>Open outside air vent in driver's compartment and set rear fan to full</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Set vehicle ventilation system to non-recirculating Airborne precautions
+                                <ul>
+                                    <li>Standard PPE with fit-tested N95 mask (or PAPR respirator) and utilization of a 
+                                        gown, change of gloves after every patient contact, and strict hand washing 
+                                        precautions</li>
+                                    <li>Utilized with Aspergillus, Tuberculosis, Measles (rubeola) Chickenpox (varicellazoster), Smallpox, Influenza, Rhinovirus, Norovirus, and Rotavirus, or zoster 
+                                        (shingles)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Contact precautions
+                                <ul>
+                                    <li>Standard PPE with utilization of a gown, change of gloves after every patient 
+                                        contact, and strict hand washing precautions</li>
+                                    <li>Utilized with GI complaints, blood or body fluids, C diff, scabies, wound and skin 
+                                        infections, MRSA</li>
+                                    <li>Clostridium difficile (C diff) is not inactivated by alcohol-based cleaners and 
+                                        washing with soap and water is indicated
+                                        </li>
+                                </ul>
+                            </li>
+                            <li>Droplet precautions
+                                <ul>
+                                    <li>Standard PPE plus a standard surgical mask for providers who accompany patients 
+                                        in the treatment compartment and a surgical mask or NRB O2 mask for the patient</li>
+                                    <li>Utilized when Influenza, Meningitis, Mumps, Streptococcal pharyngitis, Pertussis, 
+                                        Adenovirus, Rhinovirus, SARS, and undiagnosed rashes</li>
+                                </ul>
+                            </li>
+                            <li>All-hazards precautions
+                                <ul>
+                                    <li>Standard PPE plus airborne precautions plus contact precautions</li>
+                                    <li>Utilized during the initial phases of an outbreak when the etiology of the infection 
+                                        is unknown or the causative agent is found to be highly contagious (e.g. COVID19)
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>COVID-19 Specific High Consequence Pathogen</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="covidBNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidBNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Objective</H3>
+                    <div class="objectivelist">
+                        <ul class="addl-list">
+                            <li>Differential diagnosis
+                                <ul>
+                                    <li>Influenza</li>
+                                    <li>Bacteremia/septicemia</li>
+                                </ul>
+                            </li>
+                            <li>Transmission occurs via contact with respiratory droplets of infected individuals:
+                                <ul>
+                                    <li>Between people who are in close contact with one another</li>
+                                    <li>~ 3 - 6 feet for &gt; 10 minutes</li>
+                                </ul>
+                            </li>
+                            <li>It may be possible that a person can get COVID-19 by touching contaminated surface or 
+                                object that has the virus on it and then touching their own mouth, nose, or eyes
+                                <ul><li>This is not believed to be the main way the virus spreads</li></ul>
+                            </li>
+                            <li>Symptoms:
+                                <ul>
+                                    <li>Fever ( &gt; 100.4<sup>o</sup> F)</li>
+                                    <li>Cough/upper respiratory illness symptoms</li>
+                                    <li>Difficulty breathing or shortness of breath</li>
+                                    <li>New loss of sense of taste &/or smell</li>
+                                    <li>Chills/myalgias</li>
+                                    <li>Nausea/vomiting/diarrhea</li>
+                                    <li>New onset headache</li>
+                                    <li>Rhinorrhea</li>
+                                    <li>Sore throat</li>
+                                </ul>
+                            </li>
+                            <li>Persons that should be considered high risk
+                                <ul>
+                                    <li>Influenza-like illness = temp > 100.4 (or have taken an antipyretic in past 4-6 
+                                    hours)
+                                    <div class="add-margin-L"><b>Plus, one of the following:</b></div>
+                                    </li>
+                                    <li>Cough</li>
+                                    <li>Shortness of breath</li>
+                                    <li>Known exposure to person with COVID-19 or person under investigation (PUI) within past 
+                                        14 days
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidBBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% elif current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidBBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol class="addl-list">
+                        <li>Screening on scene should take place for ALL patients (medical and trauma)</li>
+                        <li>Surgical mask should be placed on all patients regardless of screening results</li>
+                        <li>EMS personnel should don personal protective equipment (PPE) with any patient with a 
+                            positive field screen as soon as identified utilizing standard donning procedures for 
+                            airborne/droplet precautions
+                            <ol>
+                                <li>Eye protection (goggles / face shield)</li>
+                                <li>Fluid impervious gown</li>
+                                <li>Gloves</li>
+                                <li>N-95 mask (surgical mask may be utilized if N-95 mask is not available)</li>
+                            </ol>
+                        </li>
+                        <li>For CMED EIDS screen positive - one provider should don a surgical mask with face shield
+                            <ol>
+                                <li>Ensure the patient dons the surgical mask</li>
+                                <li>Perform a Field Screen within 5 minutes to verify EIDS status</li>
+                                <li>For field screen positive ALL care providers who will be within 6 feet of patient don 
+                                    full PPE</li>
+                                <li>For field screen negative follow standard PPE guidelines</li>
+                            </ol>
+                        </li>
+                        <li>Temperature must be assessed on ALL patients</li>
+                        <li>Only essential personnel should have any contact with the patient</li>
+                        <li>First responder personnel should NOT have patient contact unless critical intervention / 
+                            assistance required</li>
+                        <li>Contact operations supervisor as soon as a patient with a positive screen is identified</li>
+                        <li><a FIXME:href=""FIXME:>Medical Initial Assessment Protocol</a> or <a FIXME:href=""FIXME:>Pediatric Initial Assessment Protocol</a></li>
+                        <li>Care as per appropriate protocol</li>
+                        <li>Avoid the aerosolizing procedures if not distinctly indicated
+                            <ol>
+                                <li>Nebulizer treatments, suctioning, high flow nasal cannula, CPAP, SGD, BVM, ETT</li>
+                                <li>If any aerosolizing procedure is required, PPE as above with an N-95 mask must 
+                                    be utilized</li>
+                                <li>Avoid attempts at endotracheal intubation</li>
+                            </ol>
+                        </li>
+                        <li>If supplemental oxygen is required a non-rebreather mask should be utilized
+                            <ol><li>Surgical mask should be placed over the NRB mask</li></ol>
+                        </li>
+                        <li>Limit utilized equipment to only essential equipment required for needed patient care</li>
+                        <li>With negative screen provide care as per appropriate protocol and transport per patient 
+                            destination general triage protocol</li>
+                        <li>During encode notify receiving emergency department of “EIDS positive patient”</li>
+                        <li>If nebulizer is being utilized, this should be halted and held upon arrival to the emergency 
+                            department until the patient has been placed in their treatment room</li>
+                        <li>Use of CPAP must be discussed with the receiving facility prior to arrival and plan for 
+                            patient transition from ambulance to treatment room clarified prior to arrival
+                            <ol><li>This may include momentary halting of CPAP during patient movement</li></ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidBAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidBAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Driver of transporting ambulance should wear PPE as described above when participating 
+                                in patient care activities (including patient transport & loading)
+                                <ul>
+                                    <li>Remove PPE except for N-95 (or surgical mask) and perform hand hygiene prior 
+                                        to entering vehicle cab to prevent contamination of driver's compartment</li>
+                                </ul>
+                            </li>
+                            <li>CMED will screen at call-taking (CMED will advise “Positive EIDS patient” if positive screen)
+                                <ul>
+                                    <li>It is imperative that field providers also ask screening questions on scene</li>
+                                </ul>
+                            </li>
+                            <li>Transport of patient with suspected high consequence pathogen must be reported to 
+                                Operations Supervisor
+                                <ul>
+                                    <li>Must be reported to local public health authorities</li>
+                                    <li>Ensure Supervisor and Public health notified of any patient who refuses transport 
+                                        or is pronounced dead on scene (if positive screen for a high consequence 
+                                        pathogen)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Extreme care should be utilized in doffing PPE post transport per standard procedure to 
+                                ensure no contamination from exposure to used PPE
+                                <ul>
+                                    <li>Do not touch outer surface of PPE</li>
+                                    <li>Do not remove N-95 mask or eye protection prior to gown/coverall removal</li>
+                                </ul>
+                            </li>
+                            <li>No family members or bystanders should be transported in the ambulance</li>
+                            <li>Appropriate PPE is required during cleaning / disinfecting of any EMS equipment
+                                <ul>
+                                    <li>Utilize appropriate approved disinfectant cleansing solution</li>
+                                    <li>Equipment includes ambulance interior and surfaces exposed to patient contact</li>
+                                </ul>
+                            </li>
+                            <li>Following patient care activity utilize standard hand hygiene utilizing soap and water for 
+                                30 seconds or alcohol-based hand sanitizer</li>
+                            <li>If any personnel exposure occurs Supervisor will perform a risk assessment and notify 
+                                employee health as soon as indicated following decontamination / cleansing / irrigation of 
+                                exposure</li>
+                            <li>Recommended to wear surgical mask and consider eye protection for any patient with 
+                                fever; even outside this protocol</li>
+                            <li>Negative Pressure in care compartment:
+                                <ul>
+                                    <li>For door or window available to separate driver's and care compartment space:
+                                        <ul>
+                                            <li>Close door/window between driver's and care compartment</li>
+                                            <li>Operate rear exhaust fan on full</li>
+                                        </ul>
+                                    </li>
+                                    <li>For no door or window available to separate driver's and care compartment space:
+                                        <ul>
+                                            <li>Open outside air vent in driver's compartment and set rear exhaust fan to full</li>
+                                            <li>Set vehicle ventilation system to non-recirculating to bring in maximum outside air</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>COVID-19 Focused Cardiac Arrest Supplement</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="covidCNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidCNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Introduction</H3>
+                    <div class="objectivelist">
+                        <ul class="addl-list">
+                            <li>This supplement is to be utilized in conjunction with the primary Focused Cardiac Arrest and COVID-19 protocols</li>
+                            <li>Goal will be to minimize provider exposure to a possible patient with undiagnosed COVID-19 while acknowledging the challenge of identifying these patients given their critical status</li>
+                            <li>The primary route of exposure to COVID-19 is the inhalation of infected respiratory droplets</li>
+                            <li>Resuscitative efforts involve several Aerosol-Generating Procedures; including:
+                                <ul>
+                                    <li>Intubation, extubation and related procedures</li>
+                                    <li>Manual Ventilation</li>
+                                    <li>Open Suctioning</li>
+                                </ul>
+                            </li>
+                            <li>Presently the CDC and the AHA recommend that providers utilize the following PPE when involved in resuscitation:
+                                <ul>
+                                    <li>Respirator (N95) or facemask if respirator is not available</li>
+                                    <li>Eye protection</li>
+                                    <li>Gloves</li>
+                                    <li>Gowns</li>
+                                </ul>
+                            </li>
+                            <li>All patients in cardiac arrest must be assumed to potentially be COVID-19 positive
+                            </li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidCBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% elif current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidCBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol class="addl-list">
+                        <li>All personnel participating in providing CPR MUST wear full PPE when performing resuscitative efforts to include:
+                            <ol>
+                                <li>N95 mask</li>
+                                <li>Face shield</li>
+                                <li>Gloves</li>
+                                <li>Fluid impervious gown</li>
+                            </ol>
+                        </li>
+                        <li>For patients with reported witnessed arrest PPE should be in place as to not delay resuscitative efforts</li>
+                        <li>For patients believed to be an obvious death (unwitnessed with likely prolonged 
+                            downtime) and no resuscitative measures are going to be initiated full protective measures 
+                            do not need to be worn to assess for rigor mortis, dependent lividity, cold temperature 
+                            (standard PPE should be utilized)
+                            <ol>
+                                <li>If subsequently determined patient does not meet obvious death criteria, 
+                                    compression only CPR should be initiated while full PPE as above is donned by 
+                                    other providers
+                                    <ol><li>Covering in the form of cloth or surgical mask should be placed over the 
+                                        patient's mouth & nose during compression only CPR</li></ol>
+                                </li>
+                                <li>Providers assessing for obvious death on a pulseless and apneic patient, should, 
+                                    at minimum, wear standard PPE</li>
+                            </ol>
+                        </li>
+                        <li>For patients with EMS witnessed cardiac arrest perform compression only CPR utilizing 
+                            standard PPE until full PPE is donned then proceed with focused cardiac arrest care
+                            <ol><li>Covering in the form of cloth or surgical mask should be placed over the patient's 
+                                mouth & nose during compression only CPR</li></ol>
+                        </li>
+                        <li>Only personnel required to perform resuscitative efforts should be in the room with the 
+                            patient
+                            <ul><li>FD Captain should also be in full PPE in order to provide appropriate feedback 
+                                coaching related to compressions and ventilations during the resuscitation</li></ul>
+                        </li>
+                        <li>All others on choosing to remain on scene should remain > 6 feet from patient/providers
+                            <ol><li>e.g., family, police, others</li></ol>
+                        </li>
+                        <li>Performance of cardiac arrest care:
+                            <ol>
+                                <li>Insert BIAD airway via standard method</li>
+                                <li>Avoid any BVM attempts prior to BIAD placement</li>
+                                <li>Place defibrillator pads and QCPR device</li>
+                            </ol>
+                        </li>
+                        <li>A cloth or towel may be utilized to assist with managing excess secretions</li>
+                        <li>Establish IO and administer fluids/medications as indicated</li>
+                    </ol>
+                </div><hr><br>
+
+                <h3>Post Resuscitation Care</h3>
+                <ul class="addl-list">
+                    <li>ROSC is achieved:
+                        <ul>
+                            <li>Continue with post ROSC standard procedures</li>
+                            <li>Obtain a temporal temperature measurement</li>
+                        </ul>
+                    </li>
+                    <li>Immediately notify the receiving hospital that you are enroute with a ROSC patient</li>
+                    <li>NO ROSC achieved and patient pronounced on scene
+                        <ul>
+                            <li>Ensure supervisor notified</li>
+                            <li>Ensure public health notified as indicated</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidCAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidCAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Following termination of resuscitative efforts or delivery of the patient to the ED doff PPE utilizing standard precautions</li>
+                            <li>Resources:
+                                <ul>
+                                    <li><a href="https://www.medpagetoday.com/infectiousdisease/covid19/85568">https://www.medpagetoday.com/infectiousdisease/covid19/85568</a></li>
+                                    <li><a href="https://www.medscape.com/viewarticle/927389">https://www.medscape.com/viewarticle/927389</a></li>
+                                    <li><a href="https://www.cdc.gov/coronavirus/2019-ncov/infection-control/control-recommendations.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcor">https://www.cdc.gov/coronavirus/2019-ncov/infection-control/control-recommendations.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcor</a></li>
+                                    <li>Cardiac Arrest COVID-19 Protocol Carolinas Medical Center Department of Emergency Medicine, COVID-19 EM Clinical Care Task Force</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

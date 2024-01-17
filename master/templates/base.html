@@ -13,6 +13,7 @@
 
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
@@ -137,13 +138,13 @@
                                     <button class="bottom-list-button"><a href="{{ url_for('protocols.sickPerson')}}"><div class="hidden-sidebar">Sick Person</div></a>
                                 </li>
                                 <li>
-                                    <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Viral Hemorrhagic Fever</div></a>
+                                    <button class="bottom-list-button"><a href="{{ url_for('protocols.viralHemorrhagic')}}"><div class="hidden-sidebar">Viral Hemorrhagic Fever</div></a>
                                 </li>
                                 <li>
-                                    <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">High Consequence Pathogen</div></a>
+                                    <button class="bottom-list-button"><a href="{{ url_for('protocols.highConsequencePathogens')}}"><div class="hidden-sidebar">High Consequence Pathogen</div></a>
                                 </li>
                                 <li>
-                                    <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Stab Wound</div></a>
+                                    <button class="bottom-list-button"><a href="{{ url_for('protocols.stabWound')}}"><div class="hidden-sidebar">Stab Wound</div></a>
                                 </li>
                                 <li>
                                     <button class="bottom-list-button"><a href="#"><div class="hidden-sidebar">Stroke</div></a>

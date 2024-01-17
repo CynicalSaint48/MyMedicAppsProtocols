@@ -567,3 +567,27 @@ def sickPerson():
     session['path'] = 'protocols.sickPerson'
 
     return render_template('/protocols/SickPerson.html', keys=keys, varTitle="Sick Person")
+
+@protocols.route("/protocols/ViralHemorrhagic")
+def viralHemorrhagic():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.viralHemorrhagic'
+
+    return render_template('/protocols/ViralHemorrhagic.html', keys=keys, varTitle="Suspected Viral Hemorrhagic Fever")
+
+@protocols.route("/protocols/HighConsequencePathogens")
+def highConsequencePathogens():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.highConsequencePathogens'
+
+    return render_template('/protocols/HighConsequencePathogens.html', keys=keys, varTitle="High Consequence Pathogens")
+
+@protocols.route("/protocols/StabWound")
+def stabWound():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.stabWound'
+
+    return render_template('/protocols/StabWound.html', keys=keys, varTitle="Stab Wound")

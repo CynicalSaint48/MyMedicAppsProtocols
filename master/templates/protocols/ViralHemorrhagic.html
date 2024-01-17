@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Suspected Viral Hemorrhagic Fever</H1><hr>
+
+        <div>
+            <input type="checkbox" name="accordian" id="viralHemNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="viralHemNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Introduction</H3>
+                    <div class="objectivelist">
+                        <ul class="addl-list">
+                            <li>Transmission occurs via contact with blood/body fluids of infected individuals including:
+                                <ul class="differentialText">
+                                    <li>Blood</li>
+                                    <li>Breast milk</li>
+                                    <li>Secretions (saliva/sweat)</li>
+                                    <li>Semen</li>
+                                    <li>Urine</li>
+                                    <li>Vomitus/diarrhea</li>
+                                </ul>
+                            </li>
+                            <li>Incubation period is 2 - 21 days (not transmitted prior to onset of symptoms)</li>
+                            <li>Symptoms:
+                                <ul class="differentialText">
+                                    <li>Abdominal pain</li>
+                                    <li>Anorexia</li>
+                                    <li>Bleeding</li>
+                                    <li>Diarrhea</li>
+                                    <li>Fever ( &lt; 100.4<sup>o</sup> F)</li>
+                                    <li>Headache</li>
+                                    <li>Joint and muscle aches</li>
+                                    <li>Vomiting</li>
+                                    <li>Weakness</li>
+                                </ul>
+                            </li>
+                            <li>Patients with any of the above signs/symptoms should specifically be asked if he/she has traveled to area with known viral hemorrhagic fever (e.g. viralHem) in the past 21-days
+                                <ul><li>If positive travel, specifically ask country(ies) of travel</li></ul>
+                            </li>
+                            <li>Consider that at-risk countries of travel may change with time
+                                <ul>
+                                    <li>Other Potential highly infectious diseases</li>
+                                    <li>viralHem - west Africa</li>
+                                    <li>Lassa - west Africa</li>
+                                    <li>Marburg - south central Africa</li>
+                                    <li>MERS (Middle East Respiratory Syndrome) - Arabian Peninsula</li>
+                                    <li>SARS (Severe Acute Respiratory Syndrome)</li>
+                                    <li>Nipah Virus - southeast Asia</li>
+                                    <li>Smallpox</li>
+                                </ul>
+                            </li>
+                            <li>Differential diagnosis
+                                <ul class="differentialText">
+                                    <li>Bacteremia/septicemia</li>
+                                    <li>Malaria</li>
+                                    <li>Meningococcemia</li>
+                                    <li>Typhoid fever</li>
+                                </ul>
+                            </li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="viralHemBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% elif current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="viralHemBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol class="addl-list">
+                        <li>EMS personnel should don personal protective equipment (PPE) with any patient with a 
+                            positive screen (symptoms and travel to area of known outbreak in past 21 days) as soon 
+                            as identified utilizing standard donning procedures for droplet/contact precautions (prior 
+                            to patient contact if positive screen per CMED):
+                            <ol>
+                                <li>Eye protection (goggles / face shield)</li>
+                                <li>Fluid impervious gown or (Tyvek) full coveralls</li>
+                                <li>Gloves</li>
+                                <li>N-95 mask</li>
+                                <li>Shoe/boot and head covers (if not included with coveralls)</li>
+                            </ol>
+                        </li>
+                        <li>Only essential personnel should have any contact with the patient</li>
+                        <li>First responder personnel should not have patient contact unless critical intervention / 
+                            assistance required
+                            <ol><li>Surgical mask should be placed on any patient with a positive screen for potential 
+                                highly infectious disease (symptoms + travel)</li></ol>
+                        </li>
+                        <li>Impermeable sheet should be utilized around patient as barrier between patient and EMS 
+                            equipment/personnel</li>
+                        <li>Care as per appropriate protocol (note advisements in #6 below)</li>
+                        <li>Do <b>NOT</b> perform the following procedures
+                            <ol>
+                                <li>Aerosolizing procedure (nebulizer treatments, suctioning, CPAP)</li>
+                                <li>Blood draw</li>
+                                <li>Endotracheal intubation, BIAD, BVM</li>
+                                <li>IM medication administration</li>
+                                <li>IV/IO access</li>
+                            </ol>
+                        </li>
+                        <li>If supplemental oxygen is required a non-rebreather mask should be utilized</li>
+                        <li>Limit utilized equipment to only essential equipment required for needed patient care</li>
+                        <li>If positive screen identified, destination will be limited to <b>CMC</b> or <b>NHPMC</b> (based on 
+                            patient hospital system of preference; if no preference, transport to closest (<b>CMC</b> or
+                            <b>NHPMC</b>NHPMC) per mobile mapping data
+                            <ol>
+                                <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> as soon as a patient with a positive screen is identified</li>
+                                <li>Provide report to attending physician</li>
+                                <li>Determine specific portal of entry per facility recommendations</li>
+                                <li>Upon arrival to destination facility do NOT enter the facility</li>
+                                <li>Crew will be met by hospital staff in the ambulance bay and patient will be 
+                                    transferred from EMS stretcher to hospital bed in the ambulance bay</li>
+                            </ol>
+                        </li>
+                        <li>With negative screen provide care as per appropriate protocol and transport per patient 
+                            destination general triage protocol</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="viralHemAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="viralHemAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>CMED will screen at call-taking (CMED will advise “Positive EIDS patient” if positive screen)
+                                <ul>
+                                    <li>It is imperative that field providers also ask screening questions on scene</li>
+                                </ul>
+                            </li>
+                            <li>Transport of patient with suspected highly infectious disease must be reported to 
+                                Operations Supervisor
+                                <ul>
+                                    <li>Highly infectious disease must be reported to local, state, and federal public health 
+                                        authorities</li>
+                                    <li>Ensure Public health notified of any patient who refuses transport or is pronounced 
+                                        dead on scene (if positive screen for a highly infectious disease)</li>
+                                </ul>
+                            </li>
+                            <li>If personnel sustain any exposure to patient blood, body fluids, secretions, or excretions 
+                                immediately wash affected area with soap and water
+                                <ul>
+                                    <li>Discontinue any patient care activities to wash / irrigate the affected site</li>
+                                    <li>Any mucous membrane exposure should receive copious irrigation</li>
+                                </ul>
+                            </li>
+                            <li>Extreme care should be utilized in doffing PPE post transport per standard procedure to 
+                                ensure no contamination from exposure to used PPE
+                                <ul>
+                                    <li>Do not touch outer surface of PPE</li>
+                                    <li>Do not remove N-95 mask or eye protection prior to gown/coverall removal</li>
+                                </ul>
+                            </li>
+                            <li>Appropriate PPE is required during cleaning / disinfecting of any EMS equipment
+                                <ul>
+                                    <li>Utilize appropriate approved disinfectant cleansing solution</li>
+                                    <li>Equipment includes ambulance interior and surfaces exposed to patient contact</li>
+                                </ul>
+                            </li>
+                            <li>Following patient care activity utilize standard hand hygiene utilizing soap and water for 
+                                30 seconds or alcohol-based hand wash</li>
+                            <li>If any personnel exposure occurs notify employee health as soon as feasible following 
+                                decontamination / cleansing / irrigation of exposure
+                                </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
