@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container1 content1">
+
+    <P>
+        We're sorry.<br><br>  Something went wrong in the application.  This error has been logged and will be fixed as soon as possible.<br>
+        For now, please use the menu at the left to navigate to another page.
+    </P>
+    
+    <h2 class="no-margin">Error:</h2><hr>
+   <p>{{ trace }}</p>
+
+</div>
+
+{% endblock content %}
