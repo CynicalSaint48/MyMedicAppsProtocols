@@ -559,3 +559,11 @@ def psychiatric():
     session['path'] = 'protocols.psychiatric'
 
     return render_template('/protocols/Psychiatric.html', keys=keys, varTitle="Psychiatric")
+
+@protocols.route("/protocols/SickPerson")
+def sickPerson():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.sickPerson'
+
+    return render_template('/protocols/SickPerson.html', keys=keys, varTitle="Sick Person")

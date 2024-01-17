@@ -114,6 +114,20 @@
                             <ol><li>Pediatric:  <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }}ml</dose></li></ol>
                         {% endif %}
                     {% else %}
+                        <ol>
+                            <li>Adult:
+                                <ol>
+                                    <li>Hemodynamically unstable: IVF wide open</li>
+                                    <li>Hemodynamically stable: TKO</li>
+                                </ol>
+                            </li>
+                            <li>Pediatric:
+                                <ol>
+                                    <li>Hemodynamically unstable: 10 - 20 ml/kg bolus and reassess</li>
+                                    <li>Hemodynamically stable: TKO</li>
+                                </ol>
+                            </li>
+                        </ol>
                     {% endif %}
                 </li>
             </ol>
@@ -173,7 +187,7 @@
                                         </ol>
                                     {% else %}                                      
                                         <ol>
-                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*20)|int }} ml bolus</dose></li>
                                             <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
                                         </ol>
                                     {% endif %}

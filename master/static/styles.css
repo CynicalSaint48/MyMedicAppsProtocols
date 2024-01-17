@@ -1017,6 +1017,13 @@ dope {
    justify-content: center;
 }
 
+.vomiText li {
+   width: 232px;
+}
+
+.addl-list > li {
+   margin-bottom: 3px;
+}
 
 @media (max-width: 1200px){
    .med-image {

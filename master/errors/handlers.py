@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, session
 from master.protocols.routes import get_key_list
 from decimal import *
 from werkzeug.exceptions import HTTPException
+import json
 
 errors = Blueprint('errors', __name__)
 
@@ -24,9 +25,11 @@ def internal_server_error(e):
 def handle_exception(e):
     # pass through HTTP errors. You wouldn't want to handle these generically.
     if isinstance(e, HTTPException):
+        
         return e
-
+    
     keys = get_key_list()
     # now you're handling non-HTTP exceptions only
+
     return render_template("errors/500.html", trace=e, keys=keys), 500
 

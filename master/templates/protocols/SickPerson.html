@@ -1,0 +1,2155 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Sick Person / General Illness</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id=" sickPersonNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" sickPersonNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Behavioral disorder</li>
+                            <li>Blood pressure abnormality</li>
+                            <li>Brief Resolved Unexplained Event</li>
+                            <li>Cancer</li>
+                            <li>Cerebrovascular accident</li>
+                            <li>Cholecystitis</li>
+                            <li>Diabetic condition</li>
+                            <li>Electrolyte abnormality</li>
+                            <li>Gastroenteritis</li>
+                            <li>Hepatitis</li>
+                            <li>HIV or AIDS</li>
+                            <li>Hypertension</li>
+                            <li>Infection</li>
+                            <li>Inflammatory illness</li>
+                            <li>Medication reaction</li>
+                            <li>Pancreatitis</li>
+                            <li>Pneumonia</li>
+                            <li>Renal Failure</li>
+                            <li>Sepsis</li>
+                            <li>Sickle Cell Pain Crisis</li>
+                            <li>Substance abuse</li>
+                            <li>Ulcer disease</li>
+                            <li>Viral syndrome</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" sickPersonBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" sickPersonBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs including temperature</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li>Additional care per provider determined primary and/or secondary impression</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id=" sickPersonAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" sickPersonAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose></li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% else %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% endif %}
+                            {% else %}
+                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                <ol>
+                                    <li>Adult: 2 - 10 mcg/min IV</li>
+                                    <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                </ol>
+                                <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                            </li>
+                            {% endif %}
+                            <li>Additional care per provider determined primary and/or secondary impression</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        
+        <h2>Sickle Cell Anemia Related Crisis</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" sickleNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" sickleNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Sickle cell disease related events</H3>
+                    <div class="objectivelist">
+                        <ul>
+                            <li>Acute chest syndrome
+                                <ul>
+                                    <li>Young patients</li>
+                                    <li>Chest pain, fever, cough, tachypnea, hypoxemia</li>
+                                </ul>
+                            </li>
+                            <li>Acute pain crisis
+                                <ul>
+                                    <li>Most common clinical manifestation (vaso-occlusive crisis) with SCD</li>
+                                    <li>Triggers: hypoxia, dehydration, temperature (inc or dec; patient or ambient)</li>
+                                </ul>
+                            </li>
+                            <li>Aplastic anemia</li>
+                            <li>Avascular necrosis
+                                <ul><li>Femoral, humeral heads</li></ul>
+                            </li>
+                            <li>Cholelithiasis</li>
+                            <li>Chronic pain</li>
+                            <li>Hemolytic anemia</li>
+                            <li>Infection</li>
+                            <li>Priapism</li>
+                            <li>Pulmonary hypertension</li>
+                            <li>Stroke</li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id=" sickleAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for=" sickleAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care - Vaso-occlusive Pain Crisis</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as per patient condition
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">250 ml </dose>bolus and reassess</li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }} ml </dose>bolus and reassess</li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} ml </dose>bolus and reassess</li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: 250 ml bolus and reassess</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable:  10 - 20 ml/kg bolus and reassess</li>
+                                                <li>Hemodynamically stable:  10  ml/kg bolus and reassess</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if keys.ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IN, IM, IO</dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg IV, IN, IM, IO</dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                            <ol>
+                                                <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IN, IM, IO</dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg IV, IN, IM, IO</dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li> Adult: </li>
+                                            <ul>
+                                                <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>                                        
+                                            </ul>
+                                        <li> Pediatric: </li>
+                                            <ul>
+                                                <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                            </ul>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li> Alternative pain control: <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide </a>via patient-controlled inhalation </li>
+                        </ol>
+                    </div><hr><br>
+
+                    <h3>Advanced Medical Care - Vaso-occlusive Pain Crisis</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                            <li>Pain control as for vaso-occlusive crisis</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Fever</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="feverNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="feverNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Drug intoxication (cocaine, methamphetamine)</li>
+                            <li>Hyperthermia (environment)</li>
+                            <li>Hyperthyroidism</li>
+                            <li>Infection</li>
+                            <li>Lymphoma, cancer</li>
+                            <li>Medication reaction</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="feverBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="feverBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Antipyretic
+                            <ol>
+                                <li><a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain control
+                                    {% if keys.ptYears > 0 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax43 %}
+                                                <ol>
+                                                    <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs * 15) }} mg PO</dose></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li> Adult: 650 - 975 mg PO</li>
+                                        <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                        </li>
+                                    </ol>                           
+                                {% endif %}
+                                </li>
+                                <!-- TODO:  Protocol Error?  Mismatch dose with Ibuprophen Page -->
+                                <li><a href="{{ url_for('medications.ibuprophen')}}"> Ibuprofen (Motrin®)</a> for pain control
+                                    {% if keys.ptYears > 0 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 400 - 800 mg PO </dose></li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax40 %}
+                                                <ol>
+                                                    <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 400 mg PO</dose></li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs * 10) }} mg PO</dose></li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li> Adult: 650 - 975 mg PO</li>
+                                        <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                        </li>
+                                    </ol>                           
+                                {% endif %}
+                                </li>
+                            </ol>
+                        </li>
+                        <li><a href="{{ url_for('medications.ibuprophen')}}"> Ibuprofen (Motrin®)</a> and <a href="{{ url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> are <b>NOT</b> indicated in instances of elevated temperature as 
+                            the result of heat related emergencies (environmental)</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="feverAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="feverAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li><a FIXME:href="#">IVF</a> administration as indicated per patient condition</li>
+                            <li>Additional care per appropriate protocol per patient presentation</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="feverAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="feverAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Droplet precautions:
+                                <ul>
+                                    <li>Standard PPE + surgical mask for providers who accompany patients in the back of the ambulance and surgical mask or NRB O2 mask for the patient</li>
+                                    <li>Should be utilized when influenza, meningitis, mumps, streptococcal pharyngitis, and other illnesses spread via large particle droplets are suspected</li>
+                                </ul>
+                            </li>
+                            <li>Airborne precautions:
+                                <ul>
+                                    <li>Include standard PPE + gown and change of gloves after every patient contact, and strict hand washing precautions</li>
+                                    <li>Should be utilized when multi-drug resistant organisms (e.g. MRSA), scabies, or zoster (shingles), or other illnesses spread by contact are suspected</li>
+                                </ul>
+                            </li>
+                            <li>All-hazards precautions:
+                                <ul>
+                                    <li>Standard PPE + airborne precautions + contact precautions</li>
+                                    <li>Should be utilized during the initial phases of an outbreak when the etiology of the infection is unknown or when the causative agent is found to be highly contagious (e.g. SARS, Ebola)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Vomiting or Diarrhea</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="vomitNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="vomitNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li><b>Vomiting</b>
+                                <ul class="vomiText">
+                                    <li>Appendicitis</li>
+                                    <li>Bowel obstruction</li>
+                                    <li>Cholecystitis</li>
+                                    <li>Closed head injury</li>
+                                    <li>DKA</li>
+                                    <li>Food-born toxin</li>
+                                    <li>Gastroparesis</li>
+                                    <li>Glaucoma</li>
+                                    <li>Increased intracranial pressure</li>
+                                    <li>Inflammatory bowel disease</li>
+                                    <li>Intoxication</li>
+                                    <li>Irritable bowel syndrome</li>
+                                    <li>Medications</li>
+                                    <li>Migraine</li>
+                                    <li>Myocardial infarction</li>
+                                    <li>Pain</li>
+                                    <li>Pancreatitis</li>
+                                    <li>Pregnancy</li>
+                                    <li>Renal calculi</li>
+                                    <li>Urinary tract infection</li>
+                                    <li>Vestibular disorder</li>
+                                    <li>Viral gastroenteritis</li>
+                                </ul>
+                            </li>
+                            <li><b>Diarrhea</b>
+                                <ul class="vomiText">
+                                    <li>Bacterial enteritis</li>
+                                    <li>Gastric bypass</li>
+                                    <li>Inflammatory bowel disease</li>
+                                    <li>Laxative abuse</li>
+                                    <li>Malabsorption</li>
+                                    <li>Medications</li>
+                                    <li>Mesenteric ischemia</li>
+                                    <li>Viral gastroenteritis</li>
+                                </ul>
+                            </li>
+                        </ul><hr><br>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id="vomitAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="vomitAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as per patient condition
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">TKO - 500 ml </dose>bolus and reassess</li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }} ml </dose>bolus and reassess</li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">TKO - {{ (keys.ptKgs*10)|int }} ml </dose>bolus and reassess</li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO - 500 ml bolus and reassess</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable:  10 - 20 ml/kg bolus and reassess</li>
+                                                <li>Hemodynamically stable:  TKO - 10  ml/kg bolus and reassess</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 4 - 8 mg PO, IV, IM</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        {% if keys.ptMax26 %}
+                                            <ol>
+                                                <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 4 mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(( keys.ptKgs * 3)/20) }}mg PO, IV, IM</dose></li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 4 - 8 mg PO, IV, IM </li>
+                                    <li> Pediatric dose = 0.15 mg/kg PO, IV, IM (maximum 4 mg) </li>
+                                </ol>                           
+                            {% endif %}
+                            </li>
+                            <li>Assess blood glucose level and treat as per <a href="{{url_for('protocols.diabetic')}}">Diabetic Protocol</a></li>
+                            <li>Treat any associated abdominal pain as per <a href="{{url_for('protocols.abdominal')}}">Abdominal Pain Protocol</a></li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Sepsis / Suspected Bacterial Infection</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="sepsisNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="sepsisNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                    <h3>Signs and Symptoms</h3>
+                    <ul class="differentialText">
+                        <li>Abdominal pain</li>
+                        <li>Altered mental status</li>
+                        <li>Fatigue / tired</li>
+                        <li>Fever / chills</li>
+                        <li>Generalized weakness</li>
+                        <li>Hyperthermia (temp &gt; 100<sup>o</sup> or “hot to touch”)</li>
+                        <li>Hypothermia (temp &lt; 96<sup>o</sup>F or “cold to touch”)</li>
+                        <li>Localized redness/swelling</li>
+                        <li>Productive cough</li>
+                    </ul>
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Bacteremia</li>
+                            <li>Cellulitis/Abscess</li>
+                            <li>Indwelling device (central line, PICC, Foley catheter)</li>
+                            <li>Intra-abdominal infection</li>
+                            <li>Meningitis</li>
+                            <li>Pneumonia</li>
+                            <li>Urinary tract infection (UTI)</li>
+                            <li>Wound infection</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="sepsisAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="sepsisAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li> Calculate shock index (HR/SBP)</li>
+                            <li>High Risk:
+                                <ol>
+                                    <li>Shock index &ge; 1</li>
+                                    <li>Hypotension (SBP &lt; 100; MAP &lt; 65 mmHg)</li>
+                                    <li>HR &gt; 120</li>
+                                    <li>GCS &le; 14</li>
+                                    <li>For high risk of serious bacterial infection, provide <a FIXME:href="#">IVF</a> resuscitation
+                                        {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                            {% if keys.ptAdult %}
+                                                <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">IVF wide open;</dose>goal = {{ (keys.ptKgs*30)|int }}</li></ol>
+                                            {% else %}
+                                                <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }} ml </dose>bolus and reassess</li></ol>
+                                            {% endif %}
+                                        {% else %}
+                                            <ol>
+                                                <li>Adult: IVF wide open; goal = 30 ml/kg</li>
+                                                <li>Pediatric: 10 - 20 ml/kg bolus and reassess</li>
+                                            </ol>
+                                        {% endif %}
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Medium Risk:
+                                <ol>
+                                    <li>Shock Index 0.99 - 0.8</li>
+                                    <li>For medium risk of serious bacterial infection, provide <a FIXME:href="#">IVF</a> resuscitation:
+                                        {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        <ol><li><a FIXME:href="#">IVF</a>: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }} ml </dose>bolus and reassess</li></ol>
+                                        {% else %}
+                                        <ol><li><a FIXME:href="#">IVF</a>: 10 - 20 ml/kg </dose>and reassess</li></ol>
+                                        {% endif %}
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>Low Risk:
+                                <ol><li>No identified objective criteria</li></ol>
+                            </li>
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose> for persistent hypotension following adequate IVF resuscitation</li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% else %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% endif %}
+                            {% else %}
+                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                <ol>
+                                    <li>Adult: 2 - 10 mcg/min IV for persistent hypotension following adequate IVF resuscitation</li>
+                                    <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                </ol>
+                                <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                            </li>
+                            {% endif %}
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="sepsisAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="sepsisAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Sepsis indicators
+                                <ul>
+                                    <li>Altered mental status</li>
+                                    <li>Hypotension (SBP &lt; 100 or MAP &lt; 65 mmHg)</li>
+                                    <li>Hypoxia (SpO<sub>2</sub> &lt; 90%)</li>
+                                    <li>Tachycardia (HR &gt; 100)</li>
+                                    <li>Tachypnea (RR &gt; 20)</li>
+                                    <li>Temperature (&gt; 101.0<sup>o</sup>F or &lt; 96.8<sup>o</sup>F)</li>
+                                </ul>
+                            </li>
+                            <li>Sepsis = life threatening condition where the body's immune response to infection injures its own tissues and organs</li>
+                            <li>Severe sepsis = known or suspected infection with systemic manifestations of sepsis along with sepsis-related tissue hypo-perfusion or organ dysfunction</li>
+                            <li>Septic shock = severe sepsis and poor perfusion (MAP &lt; 65 mmHg or elevated lactate) unimproved after fluid bolus</li>
+                            <li>Droplet precautions:
+                                <ul>
+                                    <li>Standard PPE + surgical mask for providers who accompany patients in the back of the ambulance and surgical mask or NRB O2 mask for the patient</li>
+                                    <li>Should be utilized when influenza, meningitis, mumps, streptococcal pharyngitis, and other illnesses spread via large particle droplets are suspected</li>
+                                </ul>
+                            </li>
+                            <li>Airborne precautions:
+                                <ul>
+                                    <li>Include standard PPE + gown and change of gloves after every patient contact, and strict hand washing precautions</li>
+                                    <li>Should be utilized when multi-drug resistant organisms (e.g. MRSA), scabies, or zoster (shingles), or other illnesses spread by contact are suspected</li>
+                                </ul>
+                            </li>
+                            <li>All-hazards precautions:
+                                <ul>
+                                    <li>Standard PPE + airborne precautions + contact precautions</li>
+                                    <li>Should be utilized during the initial phases of an outbreak when the etiology of the infection is unknown or when the causative agent is found to be highly contagious (e.g. SARS, Ebola)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+
+            <h2>Dialysis / Renal Failure</h2>
+
+            <div>
+                <input type="checkbox" name="accordian" id="dialysisAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+                <label for="dialysisAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+                <div class="advancedTreatmentSection">
+                    <h3>Advanced Medical Care</h3>
+                        <div class="advancedCare orderedList">
+                            <ol>
+                                <li>Assess fluid status: <a FIXME:href="#">IVF</a> bolus for suspected hypovolemia post hemodialysis
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500">250 - 500 ml IV</dose> and reassess</li>
+                                                <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                {% if keys.ptMax26 %}
+                                                <li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">250 - 500 ml IV</dose> and reassess</li>
+                                                <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                                                {% else %}
+                                                <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} ml IV</dose> and reassess</li>
+                                                <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                                                {% endif %}
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                            <ol>
+                                                <li>Adult: 250 - 500 ml IV and reassess</li>
+                                                <li>Pediatric: 10 ml/kg IV and reassess</li>
+                                                <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                                            </ol>
+                                    {% endif %}
+                                </li>
+                                <li>Monitor vital signs frequently with continuous ECG monitoring</li>
+                                <li>12-lead ECG as indicated</li>
+                                <li>For presumed hyperkalemia
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ol>
+                                                <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a;font-weight:500">2 grams (20ml of 10% solution) IV, IO</dose></li>
+                                                <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a> <dose style="color:#f4b02a;font-weight:500">50 mEq (50 ml) IV, IO</dose></li>
+                                                <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> <dose style="color:#f4b02a;font-weight:500">5 mg </dose>via nebulizer</li>
+                                            </ol>
+                                        {% else %}
+                                            {% if keys.ptMax100 %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">2 grams (20ml of 10% solution) IV, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a> <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">50 mEq (50 ml) IV, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg </dose>via nebulizer</li>
+                                                </ol>
+                                            {% elif keys.ptMax50 %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f' | format ((keys.ptKgs*20)/1000) }} grams IV, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a> <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">50 mEq (50 ml) IV, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg </dose>via nebulizer</li>
+                                                </ol>
+                                            {% else %}
+                                                <ol>
+                                                    <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f' | format ((keys.ptKgs*20)/1000) }} grams IV, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a> <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f' | format (keys.ptKgs) }} mEq ({{ '%0.2f'|format (keys.ptKgs) }} ml) IV, IO</dose></li>
+                                                    <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> <dose style="color:#f4b02a;font-weight:500">2.5 - 5 mg </dose>via nebulizer</li>
+                                                </ol>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                    <ol>
+                                        <li>Adult:
+                                            <ol>
+                                                <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> 2 grams (20ml of 10% solution) IV, IO</li>
+                                                <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a> 50 mEq (50 ml) IV, IO</li>
+                                                <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 5 mg via nebulizer</li>
+                                            </ol>
+                                        </li>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> 20 mg/kg IV, IO (0.2 ml/kg of 10% solution); maximum 2 grams (20 ml)</li>
+                                                <li><a href="{{url_for('medications.bicarb')}}">Sodium bicarbonate</a> 1 mEq/kg (1 ml/kg) maximum 50 mEq (50 ml) IV, IO</li>
+                                                <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 2.5 - 5 mg via nebulizer</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                    {% endif %}
+                                </li>
+                                <li>Control access site hemorrhage with direct pressure (do not compress the fistula/shunt)
+                                    <ol><li>Persistent bleeding: consider MEDIC tourniquet place proximal to the shunt <b>NOT</b> on the bleeding source per <a FIXME:href="#">Wound Care - Tourniquet Protocol</a></li></ol>
+                                </li>
+                                {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose> for persistent hypotension following adequate IVF resuscitation</li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% else %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% endif %}
+                            {% else %}
+                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                <ol>
+                                    <li>Adult: 2 - 10 mcg/min IV for persistent hypotension following adequate IVF resuscitation</li>
+                                    <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                </ol>
+                                <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                            </li>
+                            {% endif %}
+                            </ol>
+                        </div><hr><br>
+                </div>
+            </div>
+            <div>
+                <input type="checkbox" name="accordian" id="dialysisAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+                <label for="dialysisAdditional" class="accordian__label">Additional Information</label>
+                <div class="additionalSection">
+                    <h3>Additional Considerations</h3>
+                        <div>
+                            <ul class="addl-list">
+                                <li>Avoid IV access or blood pressure measurements in extremity with a shunt or fistula</li>
+                                <li>Consider post-dialysis complications
+                                    <ul>
+                                        <li>Bleeding</li>
+                                        <li>Disequilibrium
+                                            <ul><li>Electrolyte shifts causing weakness, dizziness, nausea/vomiting, seizures</li></ul>
+                                        </li>
+                                        <li>Hypotension</li>
+                                    </ul>
+                                </li>
+                                <li>Hyperkalemia symptoms: fatigue, muscle weakness, nausea/vomiting, paresthesias</li>
+                                <li>Hyperkalemia ECG Changes
+                                    <div class="proto-image">
+                                        <div>
+                                            <ul>
+                                                <li>T-waves peaked</li>
+                                                <li>P-wave loss</li>
+                                                <li>PR prolongation</li>
+                                                <li>QRS widening</li>
+                                                <li>AV block</li>
+                                                <li>Bradycardia</li>
+                                                <li>Sine wave</li>
+                                                <li>Ventricular fibrillation</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <img class="add-margin-L" src="{{ url_for('static', filename='images/protocol/hyperK_ecg.jpg') }}" alt="Hyperkalemia ECG Findings">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Hypertension</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="hypertensionNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="hypertensionNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Historical Considerations</h3>
+                        <ul class="differentialText">
+                            <li>Diagnosed hypertension</li>
+                            <li>Compliance with medications for hypertension</li>
+                            <li>Pregnancy</li>
+                            <li>Renal failure</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="hypertensionAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="hypertensionAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li>Assess for evidence of hypertensive crisis
+                                <ol>
+                                    <li>Signs
+                                        <ul>
+                                            <li>Systolic BP &gt; 185 mm Hg</li>
+                                            <li>Diastolic BP &gt; 110 mm Hg</li>
+                                            <li>Measured on two occasions &gt; 5 minutes apart</li>
+                                        </ul>
+                                    </li>
+                                    <li>Symptoms
+                                        <ul>
+                                            <li>Altered mental status</li>
+                                            <li>Cerebrovascular accident</li>
+                                            <li>Chest pain</li>
+                                            <li>Congestive heart failure</li>
+                                            <li>Renal failure</li>
+                                            <li>Seizure</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.labetalol')}}">Labetalol</a> <dose style="color:#f4b02a;font-weight:500">20 mg IV</dose> for hypertensive crisis for:
+                                <ol>
+                                    <li>Altered mental status</li>
+                                    <li>Pre-eclampsia/eclampsia</li>
+                                    <li>CVA: <red>per</red> <a FIXME:href="#">Medical Control Ring Central</a> <red>order</red></li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a> for hypertensive crisis for:
+                                <ol>
+                                    <li>Chest Pain</li>
+                                    <li>CHF</li>
+                                </ol>
+                            </li>
+                            <li>Advanced Airway management as indicated</li>
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
+                            <li>Additional care as indicated by patient presentation</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="hypertensionAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="hypertensionAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Asymptomatic elevated blood pressure does NOT require emergent treatment to lower the blood pressure</li>
+                            <li>Elevated blood pressure that is <u>the result of respiratory distress</u> (COPD, asthma) requires aggressive treatment of the respiratory distress <b>NOT</b> the blood pressure</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Hypotension / Shock</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="shockNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="shockNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>History Considerations</h3>
+                        <ul class="differentialText">
+                            <li>Allergic reaction - anaphylaxis</li>
+                            <li>Blood loss - GI bleeding, vaginal bleeding, intra-abdominal bleeding (AAA, ectopic)</li>
+                            <li>Fever</li>
+                            <li>Fluid loss - vomiting, diarrhea</li>
+                            <li>Medications</li>
+                            <li>Pregnancy</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="shockAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="shockAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li>Identify the cause of shock - management depends on the underlying cause of shock
+                                <ol>
+                                    <li>Cardiogenic:
+                                        <ol>
+                                            <li>For volume depleted: <a FIXME:href="#">IVF</a> bolus
+                                                {% if keys.ptYears > 0 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    {% if keys.ptAdult %}
+                                                        <ol>
+                                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">250 - 500 ml IV</dose> and reassess</li>
+                                                        </ol>
+                                                    {% else %}
+                                                        <ol>
+                                                            {% if keys.ptMax26 %}
+                                                            <li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">250 - 500 ml IV</dose> and reassess</li>
+                                                            {% else %}
+                                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*20)|int }} ml IV</dose> and reassess</li>
+                                                            {% endif %}
+                                                        </ol>
+                                                    {% endif %}
+                                                {% else %}
+                                                        <ol>
+                                                            <li>Adult: 250 - 500 ml IV and reassess</li>
+                                                            <li>Pediatric: 20 ml/kg IV and reassess</li>
+                                                        </ol>
+                                                {% endif %}
+                                            </li>
+                                            <li>For persistent hypotension:
+                                                <ol>
+                                                {% if keys.ptYears > 0 %}
+                                                    {% if keys.ptAdult %}
+                                                    <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                        <ol>
+                                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose> for persistent hypotension following adequate IVF resuscitation</li>
+                                                        </ol>
+                                                        <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                                    </li>
+                                                    {% else %}
+                                                    <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                        <ol>
+                                                            <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                                        </ol>
+                                                        <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                                    </li>
+                                                    {% endif %}
+                                                {% else %}
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                    <ol>
+                                                        <li>Adult: 2 - 10 mcg/min IV for persistent hypotension following adequate IVF resuscitation</li>
+                                                        <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                                    </ol>
+                                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                                </li>
+                                                {% endif %}
+                                                </ol>
+                                            </li>
+                                            <li>For volume overloaded:
+                                                <ol>
+                                                {% if keys.ptYears > 0 %}
+                                                    {% if keys.ptAdult %}
+                                                    <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                        <ol>
+                                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose> for persistent hypotension following adequate IVF resuscitation</li>
+                                                        </ol>
+                                                        <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                                    </li>
+                                                    {% else %}
+                                                    <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                        <ol>
+                                                            <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                                        </ol>
+                                                        <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                                    </li>
+                                                    {% endif %}
+                                                {% else %}
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                    <ol>
+                                                        <li>Adult: 2 - 10 mcg/min IV for persistent hypotension following adequate IVF resuscitation</li>
+                                                        <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                                    </ol>
+                                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                                </li>
+                                                {% endif %}
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li>Hypovolemic:
+                                        <ol>
+                                            <li><a FIXME:href="#">IVF</a> resuscitation
+                                                {% if keys.ptYears > 0 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    {% if keys.ptAdult %}
+                                                        <ol>
+                                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">wide open</dose></li>
+                                                        </ol>
+                                                    {% else %}
+                                                        <ol>
+                                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*20)|int }} ml IV</dose> and reassess
+                                                                <ul><li>may repeat x2 boluses per patient condition</li></ul>
+                                                            </li>
+                                                        </ol>
+                                                    {% endif %}
+                                                {% else %}
+                                                        <ol>
+                                                            <li>Adult: wide open</li>
+                                                            <li>Pediatric: 20 ml/kg - may repeat x2 boluses per patient condition</li>
+                                                        </ol>
+                                                {% endif %}
+                                            </li>
+                                            <li>Treat any potential trauma (hemorrhagic shock) per appropriate protocol</li>
+                                        </ol>
+                                    </li>
+                                    <li>Distributive (vasogenic):
+                                        <ol>
+                                            <li><a FIXME:href="#">IVF</a> resuscitation
+                                                {% if keys.ptYears > 0 %}
+                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    {% if keys.ptAdult %}
+                                                        <ol>
+                                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">wide open</dose></li>
+                                                        </ol>
+                                                    {% else %}
+                                                        <ol>
+                                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*20)|int }} ml IV</dose> and reassess
+                                                                <ul><li>may repeat x2 boluses per patient condition</li></ul>
+                                                            </li>
+                                                        </ol>
+                                                    {% endif %}
+                                                {% else %}
+                                                        <ol>
+                                                            <li>Adult: wide open</li>
+                                                            <li>Pediatric: 20 ml/kg - may repeat x2 boluses per patient condition</li>
+                                                        </ol>
+                                                {% endif %}
+                                            </li>
+                                            {% if keys.ptYears > 0 %}
+                                                {% if keys.ptAdult %}
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ol>
+                                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose> for persistent hypotension following adequate IVF resuscitation</li>
+                                                    </ol>
+                                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                                </li>
+                                                {% else %}
+                                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                    <ol>
+                                                        <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                                    </ol>
+                                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                                </li>
+                                                {% endif %}
+                                            {% else %}
+                                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                                <ol>
+                                                    <li>Adult: 2 - 10 mcg/min IV for persistent hypotension following adequate IVF resuscitation</li>
+                                                    <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                                </ol>
+                                                <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                            </li>
+                                            {% endif %}
+                                        </ol>
+                                    </li>
+                                    <li>Obstructive:
+                                        <ol>
+                                            <li>For suspected tension pneumothorax perform chest needle decompression</li>
+                                            <li>For suspected cardiac tamponade administer <a FIXME:href="#">IVF</a> bolus</li>
+                                        </ol>
+                                    </li>
+                                    <li>Additional care as per appropriate presumptive diagnosis protocol</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="shockAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="shockAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Hypovolemic Shock
+                                <ul>
+                                    <li>Medical or surgical condition in which rapid fluid loss results in multiple organ 
+                                        failure due to inadequate circulating volume and subsequent inadequate 
+                                        perfusion</li>
+                                    <li>Cutaneous fluid loss (burns, excessive sweating)</li>
+                                    <li>Gastrointestinal fluid loss (vomiting, diarrhea)</li>
+                                    <li>Hemorrhage</li>
+                                    <li>Renal fluid loss (diabetes, diuretics)</li>
+                                </ul>
+                            </li>
+                            <li>Cardiogenic Shock
+                                <ul>
+                                    <li>Decreased cardiac output and evidence of tissue hypoxia in the presence of 
+                                        adequate intravascular volume</li>
+                                    <li>Beta-blocker overdose</li>
+                                    <li>Calcium channel blocker overdose</li>
+                                    <li>Cardiomyopathy</li>
+                                    <li>Dysrhythmia</li>
+                                    <li>Infarction</li>
+                                    <li>Myocardial dysfunction</li>
+                                    <li>Myocardial toxicity</li>
+                                    <li>Tricyclic antidepressant overdose</li>
+                                    <li>Valvular incompetence</li>
+                                </ul>
+                            </li>
+                            <li>Vasogenic Shock
+                                <ul>
+                                    <li>Excessive vasodilation and the impaired distribution of blood flow</li>
+                                    <li>Anaphylaxis</li>
+                                    <li>Drug toxicity</li>
+                                    <li>Sepsis</li>
+                                </ul>
+                            </li>
+                            <li>Neurogenic Shock
+                                <ul>
+                                    <li>Specific form of vasogenic shock related to loss of sympathetic tone</li>
+                                    <li>Spinal cord injury</li>
+                                </ul>
+                            </li>
+                            <li>Other Shock States
+                                <ul>
+                                    <li>Adrenal crisis</li>
+                                    <li>Aortic dissection</li>
+                                    <li>Cardiac tamponade</li>
+                                    <li>Pulmonary embolus</li>
+                                    <li>Tension pneumothorax</li>
+                                    <li>Vena cava obstruction</li>
+                                </ul>
+                            </li>
+                            <li>Undifferentiated Shock in the Medical Patient
+                                <ul>
+                                    <li>Myocardial dysfunction (ECG changes, dysrhythmia, JVD, murmur)</li>
+                                    <li>Unexplained shock (sepsis, drug ingestion, adrenal crisis)</li>
+                                    <li>Volume depletion (dry mucous membranes, poor skin turgor)</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Adrenal Crisis</h3>
+                            <ul>
+                                <li>Symptoms: vomiting, abdominal pain, and shock</li>
+                                <li>Requires <a FIXME:href="#">IVF</a> resuscitation
+                                    {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                        {% if keys.ptAdult %}
+                                            <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li></ul>
+                                        {% else %}
+                                            <ul><li>pedatric: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }} ml bolus</dose></li> and reassess</ul>
+                                        {% endif %}
+                                    {% else %}
+                                        <ul>
+                                            <li>Adult: IVF wide open</li>
+                                            <li>Pediatric: 10 - 20 ml/kg bolus and reassess</li>
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                                <li>If patient has specific medication available for adrenal crisis:
+                                    <ul>
+                                        <li>Hydrocortisone (Solu-Cortef®) this may be given per the prescribing physician's documented instructions</li>
+                                        <li>Typical dosing
+                                            <ul>
+                                                <li>&lt; 1-year: 25 mg IV, IO, IM</li>
+                                                <li>1 - 12 years: 50 mg IV, IO, IM</li>
+                                                <li>&gt; 12 years: 100 mg IV, IO, IM</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>If no patient specific medication available:
+                                    <ul>
+                                        <li><a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a>
+                                            {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                                {% if keys.ptAdult %}
+                                                    <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">16 mg IV, IM, PO</dose></li></ul>
+                                                {% else %}
+                                                    {% if keys.ptMax26 %}
+                                                        <ul><li>Adult <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">16 mg IV, IM, PO</dose></li></ul>
+                                                    {% else %}
+                                                        <ul><li>Adult: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f' | format ((keys.ptKgs*3)/5)}} mg IV, IM, PO</dose></li></ul>
+                                                    {% endif %}
+                                                {% endif %}
+                                                <ul>
+                                                    <li>Adult: 16 mg IV, IM, PO</li>
+                                                    <li>Pediatric: 0.6 mg/kg IV, IM, PO (maximum 16 mg)</li>
+                                                </ul>
+                                            {% else %}
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                    </div>
+
+                    <h3>Additional Considerations</h3>
+
+                    <ul>
+                        <li>Shock in the Trauma Patient
+                            <ul>
+                                <li>Aortic transection</li>
+                                <li>Cardiac tamponade</li>
+                                <li>Hemorrhage</li>
+                                <li>Myocardial contusion</li>
+                                <li>Spinal cord injury</li>
+                                <li>Tension pneumothorax</li>
+                            </ul>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+
+        <h2>Emergencies Involving Indwelling Central Lines (UP-8)</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="centralCathNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="centralCathNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Catheter Types</h3>
+                        <ul class="differentialText">
+                            <li>Broviac®</li>
+                            <li>Hickman®</li>
+                            <li>Groshong®</li>
+                            <li>Permacath / Vas cath</li>
+                            <li>PICC - peripherally inserted central catheter</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="centralCathBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="centralCathBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Medical Initial Assessment Protocol</a> or <a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Assess vital signs</li>
+                        <li>Ensure catheter secured</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="centralCathAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="centralCathAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Clean catheter port in standard aseptic fashion</li>
+                            <li>Unclamp catheter</li>
+                            <li>Attempt flush with sterile saline</li>
+                            <li>Assess for infiltration
+                                <ol><li>If present, stop infusion of any fluids, medications</li></ol>
+                            </li>
+                            <li>Assess for hemorrhage at catheter insertion site
+                                <ol><li>If present, apply direct pressure</li></ol>
+                            </li>
+                            <li>Assess for evidence of air embolus
+                                <ul>
+                                    <li>If present, position patient on left wide with head down</li>
+                                    <li>Stop infusion</li>
+                                    <li>Clamp off catheter</li>
+                                </ul>
+                            </li>
+                            <li>If no difficulties: IVF or medication per appropriate protocol</li>
+                            <li>Additional care as per appropriate medical condition protocol</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="centralCathAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="centralCathAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul>
+                            <li>Do not place a BP cuff or tourniquet on the same side as a peripherally inserted central line (PICC)</li>
+                            <li>Catheter may be accessed in times of cardiac arrest for ACLS medication administration
+                                <ul>
+                                    <li>Hickman®, Broviac®</li>
+                                    <li>PICC line</li>
+                                    <li>Permacath, Vas cath hemodialysis catheter (non-tunneled hemodialysis catheter)</li>
+                                </ul>
+                            </li>
+                            <li>Implanted devises (fully beneath the skin), such as a port-a-cath are NOT to be accessed by MEDIC personnel
+                                <ul>
+                                    <li>These devices require specialized equipment and training for accessing</li>
+                                </ul>
+                            </li>
+                            <li>Broviac®, Hickman®, Groshong®
+                                <div class="proto-image">
+                                    <div>
+                                        <ul>
+                                            <li>Tunneled catheters</li>
+                                            <li>Single, double or triple lumens</li>
+                                            <li>Broviac® typically smaller internal diameter for pediatrics</li>
+                                            <li>Groshong® has 3-way valve at distal end which remains closed when not being use</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <img class="add-margin-L" src="{{ url_for('static', filename='images/protocol/broviac.jpg') }}" alt="Broviac Hickman Groshong Catheters">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Permacath
+                                <div class="proto-image">
+                                    <div>
+                                        <ul>
+                                            <li>Tunneled hemodialysis catheter</li>
+                                            <li>Vascath = non-tunneled catheter</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <img class="add-margin-L" src="{{ url_for('static', filename='images/protocol/permacath.jpg') }}" alt="Permacath Catheter">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>PICC
+                                <div class="proto-image">
+                                    <div>
+                                        <ul>
+                                            <li>Peripherally inserted central catheter</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <img class="add-margin-L" src="{{ url_for('static', filename='images/protocol/picc.jpg') }}" alt="PICC Catheter">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Portacath
+                                <div class="proto-image">
+                                    <div>
+                                        <ul>
+                                            <li>Full implanted device</li>
+                                            <li>Requires Huber needle for access</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <img class="add-margin-L" src="{{ url_for('static', filename='images/protocol/portacath.jpg') }}" alt="Portacath Catheter">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Brief Resolved Unexplained Event (BRUE)</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="BRUENarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="BRUENarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul>
+                            <li>Sudden, brief (less than one minute), resolved episode including at least one of the following:
+                                <li>Cyanosis or pallor</li>
+                                <li>Absent, decreased, or irregular breathing</li>
+                                <li>Marked change in muscle tone (hyper- or hypotonia) or altered responsiveness</li>
+                            </li>
+                            <li>Occurs in infants &lt; 1 year of age</li>
+                            <li>Infants may appear normal after the episode</li>
+                            <li>Associated with gastroesophageal reflux disease, viral lower respiratory tract infection, 
+                                pertussis, sepsis and/or meningitis, seizures, metabolic disorders, toxic ingestion, cardiac 
+                                dysrhythmia (e.g., long QT syndrome, SVT), anemia, nonaccidental trauma, or structural 
+                                CNS, cardiac (ductal-dependent lesion), or airway anomaly
+                            </li>
+                            <li>Infants are at risk for sudden infant death syndrome</li>
+                            <li>Infant should always be transported
+                                <ul><li>Any parent/guardian (patient) initiated refusal should be discussed with medical 
+                                    control prior to non-transport</li></ul>
+                            </li><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="BRUEBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="BRUEBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="BRUEAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="BRUEAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Assess blood glucose level
+                                <ol><li>Treatment as per <a href="{{url_for('protocols.diabetic')}}">Diabetic Problems Protocol</a></li></ol>
+                            </li>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>Additional care per provider determined presumptive diagnosis</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+
+        <h2>Suspected Viral Hemorrhagic Fever</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="ebolaNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="ebolaNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Introduction</H3>
+                    <div class="objectivelist">
+                        <ul class="addl-list">
+                            <li>Transmission occurs via contact with blood/body fluids of infected individuals including:
+                                <ul class="differentialText">
+                                    <li>Blood</li>
+                                    <li>Breast milk</li>
+                                    <li>Secretions (saliva/sweat)</li>
+                                    <li>Semen</li>
+                                    <li>Urine</li>
+                                    <li>Vomitus/diarrhea</li>
+                                </ul>
+                            </li>
+                            <li>Incubation period is 2 - 21 days (not transmitted prior to onset of symptoms)</li>
+                            <li>Symptoms:
+                                <ul class="differentialText">
+                                    <li>Abdominal pain</li>
+                                    <li>Anorexia</li>
+                                    <li>Bleeding</li>
+                                    <li>Diarrhea</li>
+                                    <li>Fever ( &lt; 100.4<sup>o</sup> F)</li>
+                                    <li>Headache</li>
+                                    <li>Joint and muscle aches</li>
+                                    <li>Vomiting</li>
+                                    <li>Weakness</li>
+                                </ul>
+                            </li>
+                            <li>Patients with any of the above signs/symptoms should specifically be asked if he/she has traveled to area with known viral hemorrhagic fever (e.g. Ebola) in the past 21-days
+                                <ul><li>If positive travel, specifically ask country(ies) of travel</li></ul>
+                            </li>
+                            <li>Consider that at-risk countries of travel may change with time
+                                <ul>
+                                    <li>Other Potential highly infectious diseases</li>
+                                    <li>Ebola - west Africa</li>
+                                    <li>Lassa - west Africa</li>
+                                    <li>Marburg - south central Africa</li>
+                                    <li>MERS (Middle East Respiratory Syndrome) - Arabian Peninsula</li>
+                                    <li>SARS (Severe Acute Respiratory Syndrome)</li>
+                                    <li>Nipah Virus - southeast Asia</li>
+                                    <li>Smallpox</li>
+                                </ul>
+                            </li>
+                            <li>Differential diagnosis
+                                <ul class="differentialText">
+                                    <li>Bacteremia/septicemia</li>
+                                    <li>Malaria</li>
+                                    <li>Meningococcemia</li>
+                                    <li>Typhoid fever</li>
+                                </ul>
+                            </li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="ebolaBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% elif current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="ebolaBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol class="addl-list">
+                        <li>EMS personnel should don personal protective equipment (PPE) with any patient with a 
+                            positive screen (symptoms and travel to area of known outbreak in past 21 days) as soon 
+                            as identified utilizing standard donning procedures for droplet/contact precautions (prior 
+                            to patient contact if positive screen per CMED):
+                            <ol>
+                                <li>Eye protection (goggles / face shield)</li>
+                                <li>Fluid impervious gown or (Tyvek) full coveralls</li>
+                                <li>Gloves</li>
+                                <li>N-95 mask</li>
+                                <li>Shoe/boot and head covers (if not included with coveralls)</li>
+                            </ol>
+                        </li>
+                        <li>Only essential personnel should have any contact with the patient</li>
+                        <li>First responder personnel should not have patient contact unless critical intervention / 
+                            assistance required
+                            <ol><li>Surgical mask should be placed on any patient with a positive screen for potential 
+                                highly infectious disease (symptoms + travel)</li></ol>
+                        </li>
+                        <li>Impermeable sheet should be utilized around patient as barrier between patient and EMS 
+                            equipment/personnel</li>
+                        <li>Care as per appropriate protocol (note advisements in #6 below)</li>
+                        <li>Do <b>NOT</b> perform the following procedures
+                            <ol>
+                                <li>Aerosolizing procedure (nebulizer treatments, suctioning, CPAP)</li>
+                                <li>Blood draw</li>
+                                <li>Endotracheal intubation, BIAD, BVM</li>
+                                <li>IM medication administration</li>
+                                <li>IV/IO access</li>
+                            </ol>
+                        </li>
+                        <li>If supplemental oxygen is required a non-rebreather mask should be utilized</li>
+                        <li>Limit utilized equipment to only essential equipment required for needed patient care</li>
+                        <li>If positive screen identified, destination will be limited to <b>CMC</b> or <b>NHPMC</b> (based on 
+                            patient hospital system of preference; if no preference, transport to closest (<b>CMC</b> or
+                            <b>NHPMC</b>NHPMC) per mobile mapping data
+                            <ol>
+                                <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> as soon as a patient with a positive screen is identified</li>
+                                <li>Provide report to attending physician</li>
+                                <li>Determine specific portal of entry per facility recommendations</li>
+                                <li>Upon arrival to destination facility do NOT enter the facility</li>
+                                <li>Crew will be met by hospital staff in the ambulance bay and patient will be 
+                                    transferred from EMS stretcher to hospital bed in the ambulance bay</li>
+                            </ol>
+                        </li>
+                        <li>With negative screen provide care as per appropriate protocol and transport per patient 
+                            destination general triage protocol</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="ebolaAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="ebolaAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>CMED will screen at call-taking (CMED will advise “Positive EIDS patient” if positive screen)
+                                <ul>
+                                    <li>It is imperative that field providers also ask screening questions on scene</li>
+                                </ul>
+                            </li>
+                            <li>Transport of patient with suspected highly infectious disease must be reported to 
+                                Operations Supervisor
+                                <ul>
+                                    <li>Highly infectious disease must be reported to local, state, and federal public health 
+                                        authorities</li>
+                                    <li>Ensure Public health notified of any patient who refuses transport or is pronounced 
+                                        dead on scene (if positive screen for a highly infectious disease)</li>
+                                </ul>
+                            </li>
+                            <li>If personnel sustain any exposure to patient blood, body fluids, secretions, or excretions 
+                                immediately wash affected area with soap and water
+                                <ul>
+                                    <li>Discontinue any patient care activities to wash / irrigate the affected site</li>
+                                    <li>Any mucous membrane exposure should receive copious irrigation</li>
+                                </ul>
+                            </li>
+                            <li>Extreme care should be utilized in doffing PPE post transport per standard procedure to 
+                                ensure no contamination from exposure to used PPE
+                                <ul>
+                                    <li>Do not touch outer surface of PPE</li>
+                                    <li>Do not remove N-95 mask or eye protection prior to gown/coverall removal</li>
+                                </ul>
+                            </li>
+                            <li>Appropriate PPE is required during cleaning / disinfecting of any EMS equipment
+                                <ul>
+                                    <li>Utilize appropriate approved disinfectant cleansing solution</li>
+                                    <li>Equipment includes ambulance interior and surfaces exposed to patient contact</li>
+                                </ul>
+                            </li>
+                            <li>Following patient care activity utilize standard hand hygiene utilizing soap and water for 
+                                30 seconds or alcohol-based hand wash</li>
+                            <li>If any personnel exposure occurs notify employee health as soon as feasible following 
+                                decontamination / cleansing / irrigation of exposure
+                                </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>High Consequence Pathogens</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="covidNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Introduction</H3>
+                    <div class="objectivelist">
+                        <ul class="addl-list">
+                            <li>Patients should specifically be asked if he/she has had close contact with a diagnosed 
+                                patient in the past 14-days
+                                <ul><li>Or ask if close contact with person(s) who have traveled to at risk locations or is 
+                                    being evaluated for potential emerging infectious disease</li></ul>
+                            </li>
+                            <li>Differential diagnosis
+                                <ul>
+                                    <li>COVID-19 (Coronavirus)</li>
+                                    <li>Influenza</li>
+                                    <li>MERS (Middle East Respiratory Syndrome) - Arabian Peninsula</li>
+                                    <li>SARS (Severe Acute Respiratory Syndrome) - Asia</li>
+                                    <li>Bacteremia/septicemia</li>
+                                </ul>
+                            </li>    
+                            <li>Transmission occurs via contact with respiratory droplets of infected individuals:
+                                <ul>
+                                    <li>Between people who are in close contact with one another
+                                        <ul><li>~ 3 - 6 feet for > 10 minutes</li></ul>
+                                    </li>
+                                    <li>COVID-19</li>
+                                    <li>It may be possible that a person can get COVID-19 by touching contaminated 
+                                        surface or object that has the virus on it and then touching their own mouth, nose, 
+                                        or eyes
+                                        <ul><li>This is not believed to be the main way the virus spreads</li></ul>
+                                    </li>
+                                </ul>
+                            </li>    
+                            <li>Symptoms:
+                                <ul>
+                                    <li>Fever ( &gt; 100.4<sup>o</sup> F)</li>
+                                    <li>Cough/upper respiratory illness symptoms</li>
+                                    <li>Difficulty breathing or shortness of breath</li>
+                                    <li>Chills</li>
+                                    <li>Loss of sense of taste or smell</li>
+                                    <li>New headache</li>
+                                    <li>New myalgias</li>
+                                    <li>Nasal congestion/rhinorrhea</li>
+                                    <li>Nausea/vomiting/diarrhea</li>
+                                </ul>
+                            </li>    
+                            <li>Consider that at-risk countries of travel may change with time ****</li>    
+                            <li>Other Potential highly infectious diseases
+                                <ul>
+                                    <li>Ebola - west Africa</li>
+                                    <li>Lassa - west Africa</li>
+                                    <li>Marburg - south central Africa</li>
+                                    <li>Nipah Virus - southeast Asia</li>
+                                    <li>Smallpox</li>
+                                </ul>
+                            </li>    
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% elif current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol class="addl-list">
+                        <li>Screening on scene should take place for ALL patients (medical and trauma)</li>
+                        <li>EMS personnel should don personal protective equipment (PPE) with any patient with a 
+                            positive field screen (symptoms or known exposure) as soon as identified utilizing 
+                            standard donning procedures for airborne/droplet precautions
+                            <ol>
+                                <li>Eye protection (goggles / face shield)</li>
+                                <li>Fluid impervious gown</li>
+                                <li>Gloves</li>
+                                <li>N-95 mask (surgical mask may be utilized if N-95 mask is not available)</li>
+                            </ol>
+                        </li>
+                        <li>For CMED EIDS screen positive - one provider should don a surgical mask with face shield
+                            <ol>
+                                <li>Hand the patient a surgical mask to don</li>
+                                <li>Perform a Field Screen within 5 minutes to verify EIDS status</li>
+                                <li>For field screen positive ALL care providers who will be within 6 feet of patient 
+                                    must don full PPE</li>
+                                <li>For field screen negative follow standard PPE guidelines</li>
+                            </ol>
+                        </li>
+                        <li>For field screen positive
+                            <ol>
+                                <li>Only essential personnel should have any contact with the patient</li>
+                                <li>First responder personnel should NOT have patient contact unless critical 
+                                    intervention / assistance required</li>
+                            </ol>
+                        </li>
+                        <li>Surgical mask should be placed on all patients</li>
+                        <li>Contact operations supervisor as soon as a patient with a positive screen is identified</li>
+                        <li>Care as per appropriate protocol (note advisement in #9)</li>
+                        <li>Avoid aerosolizing procedures if not distinctly indicated
+                            <ol>
+                                <li>Nebulizer treatments, suctioning, high flow nasal cannula, CPAP, SGD, BVM</li>
+                                <li>If any aerosolizing procedure is required, PPE as above with an N-95 mask must 
+                                    be utilized</li>
+                                <li>Avoid attempts at endotracheal intubation</li>
+                            </ol>
+                        </li>
+                        <li>If supplemental oxygen is required a non-rebreather mask should be utilized</li>
+                        <li>Limit utilized equipment to only essential equipment required for needed patient care</li>
+                        <li>With negative screen provide care as per appropriate protocol and transport per patient 
+                            destination general triage protocol</li>
+                        <li>During encode notify receiving emergency department of “EIDS positive patient”</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        
+        <div>
+            <input type="checkbox" name="accordian" id="covidAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Driver of transporting ambulance should wear PPE as described above when participating 
+                                in patient care activities (including patient transport & loading)
+                                <ul>
+                                    <li>Remove PPE except for N-95 (or surgical mask) and perform hand hygiene prior 
+                                        to entering vehicle cab to prevent contamination of driver's compartment</li>
+                                </ul>
+                            </li>
+                            <li>CMED will screen at call-taking (CMED will advise “Positive EIDS patient” if positive screen)
+                                <ul>
+                                    <li>It is imperative that field providers also ask screening questions on scene</li>
+                                    <li>Transport of patient with suspected high consequence pathogen must be reported 
+                                        to Operations Supervisor (must be reported to local public health authorities)</li>
+                                    <li>Notify Supervisor and Public Health any patient who refuses transport or is 
+                                        pronounced dead on scene (if positive screen for a high consequence pathogen)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Extreme care should be utilized in doffing PPE post transport per standard procedure to 
+                                ensure no contamination from exposure to used PPE
+                                <ul>
+                                    <li>Do not touch outer surface of PPE</li>
+                                    <li>Do not remove N-95 mask or eye protection prior to gown/coverall removal</li>
+                                </ul>
+                            </li>
+                            <li>No family members or bystanders should be transported in the ambulance</li>
+                            <li>Appropriate PPE is required during cleaning / disinfecting of any EMS equipment
+                                <ul>
+                                    <li>Utilize appropriate approved disinfectant cleansing solution</li>
+                                    <li>Equipment includes ambulance interior and surfaces exposed to patient contact</li>
+                                </ul>
+                            </li>
+                            <li>Following patient care activity utilize standard hand hygiene utilizing soap and water for 
+                                30 seconds or alcohol-based hand sanitizer</li>
+                            <li>If any personnel exposure occurs Supervisor will perform a risk assessment and notify 
+                                employee health as indicated following decontamination/cleansing / irrigation of exposure</li>
+                            <li>Recommended to wear surgical mask and consider eye protection for any patient with 
+                                fever; even outside this protocol</li>
+                            <li>Negative Pressure in care compartment:
+                                <ul>
+                                    <li>For door or window available to separate driver's and care compartment space:
+                                        <ul>
+                                            <li>Close door/window between driver s and care compartment</li>
+                                            <li>Operate rear exhaust fan on full</li>
+                                        </ul>
+                                    </li>
+                                    <li>For no door or window available to separate driver's and care compartment space:
+                                        <ul><li>Open outside air vent in driver's compartment and set rear fan to full</li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Set vehicle ventilation system to non-recirculating Airborne precautions
+                                <ul>
+                                    <li>Standard PPE with fit-tested N95 mask (or PAPR respirator) and utilization of a 
+                                        gown, change of gloves after every patient contact, and strict hand washing 
+                                        precautions</li>
+                                    <li>Utilized with Aspergillus, Tuberculosis, Measles (rubeola) Chickenpox (varicellazoster), Smallpox, Influenza, Rhinovirus, Norovirus, and Rotavirus, or zoster 
+                                        (shingles)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Contact precautions
+                                <ul>
+                                    <li>Standard PPE with utilization of a gown, change of gloves after every patient 
+                                        contact, and strict hand washing precautions</li>
+                                    <li>Utilized with GI complaints, blood or body fluids, C diff, scabies, wound and skin 
+                                        infections, MRSA</li>
+                                    <li>Clostridium difficile (C diff) is not inactivated by alcohol-based cleaners and 
+                                        washing with soap and water is indicated
+                                        </li>
+                                </ul>
+                            </li>
+                            <li>Droplet precautions
+                                <ul>
+                                    <li>Standard PPE plus a standard surgical mask for providers who accompany patients 
+                                        in the treatment compartment and a surgical mask or NRB O2 mask for the patient</li>
+                                    <li>Utilized when Influenza, Meningitis, Mumps, Streptococcal pharyngitis, Pertussis, 
+                                        Adenovirus, Rhinovirus, SARS, and undiagnosed rashes</li>
+                                </ul>
+                            </li>
+                            <li>All-hazards precautions
+                                <ul>
+                                    <li>Standard PPE plus airborne precautions plus contact precautions</li>
+                                    <li>Utilized during the initial phases of an outbreak when the etiology of the infection 
+                                        is unknown or the causative agent is found to be highly contagious (e.g. COVID19)
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>COVID-19 Specific High Consequence Pathogen</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="covidBNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidBNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Objective</H3>
+                    <div class="objectivelist">
+                        <ul class="addl-list">
+                            <li>Differential diagnosis
+                                <ul>
+                                    <li>Influenza</li>
+                                    <li>Bacteremia/septicemia</li>
+                                </ul>
+                            </li>
+                            <li>Transmission occurs via contact with respiratory droplets of infected individuals:
+                                <ul>
+                                    <li>Between people who are in close contact with one another</li>
+                                    <li>~ 3 - 6 feet for &gt; 10 minutes</li>
+                                </ul>
+                            </li>
+                            <li>It may be possible that a person can get COVID-19 by touching contaminated surface or 
+                                object that has the virus on it and then touching their own mouth, nose, or eyes
+                                <ul><li>This is not believed to be the main way the virus spreads</li></ul>
+                            </li>
+                            <li>Symptoms:
+                                <ul>
+                                    <li>Fever ( &gt; 100.4<sup>o</sup> F)</li>
+                                    <li>Cough/upper respiratory illness symptoms</li>
+                                    <li>Difficulty breathing or shortness of breath</li>
+                                    <li>New loss of sense of taste &/or smell</li>
+                                    <li>Chills/myalgias</li>
+                                    <li>Nausea/vomiting/diarrhea</li>
+                                    <li>New onset headache</li>
+                                    <li>Rhinorrhea</li>
+                                    <li>Sore throat</li>
+                                </ul>
+                            </li>
+                            <li>Persons that should be considered high risk
+                                <ul>
+                                    <li>Influenza-like illness = temp > 100.4 (or have taken an antipyretic in past 4-6 
+                                    hours)
+                                    <div class="add-margin-L"><b>Plus, one of the following:</b></div>
+                                    </li>
+                                    <li>Cough</li>
+                                    <li>Shortness of breath</li>
+                                    <li>Known exposure to person with COVID-19 or person under investigation (PUI) within past 
+                                        14 days
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidBBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% elif current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidBBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol class="addl-list">
+                        <li>Screening on scene should take place for ALL patients (medical and trauma)</li>
+                        <li>Surgical mask should be placed on all patients regardless of screening results</li>
+                        <li>EMS personnel should don personal protective equipment (PPE) with any patient with a 
+                            positive field screen as soon as identified utilizing standard donning procedures for 
+                            airborne/droplet precautions
+                            <ol>
+                                <li>Eye protection (goggles / face shield)</li>
+                                <li>Fluid impervious gown</li>
+                                <li>Gloves</li>
+                                <li>N-95 mask (surgical mask may be utilized if N-95 mask is not available)</li>
+                            </ol>
+                        </li>
+                        <li>For CMED EIDS screen positive - one provider should don a surgical mask with face shield
+                            <ol>
+                                <li>Ensure the patient dons the surgical mask</li>
+                                <li>Perform a Field Screen within 5 minutes to verify EIDS status</li>
+                                <li>For field screen positive ALL care providers who will be within 6 feet of patient don 
+                                    full PPE</li>
+                                <li>For field screen negative follow standard PPE guidelines</li>
+                            </ol>
+                        </li>
+                        <li>Temperature must be assessed on ALL patients</li>
+                        <li>Only essential personnel should have any contact with the patient</li>
+                        <li>First responder personnel should NOT have patient contact unless critical intervention / 
+                            assistance required</li>
+                        <li>Contact operations supervisor as soon as a patient with a positive screen is identified</li>
+                        <li><a FIXME:href=""FIXME:>Medical Initial Assessment Protocol</a> or <a FIXME:href=""FIXME:>Pediatric Initial Assessment Protocol</a></li>
+                        <li>Care as per appropriate protocol</li>
+                        <li>Avoid the aerosolizing procedures if not distinctly indicated
+                            <ol>
+                                <li>Nebulizer treatments, suctioning, high flow nasal cannula, CPAP, SGD, BVM, ETT</li>
+                                <li>If any aerosolizing procedure is required, PPE as above with an N-95 mask must 
+                                    be utilized</li>
+                                <li>Avoid attempts at endotracheal intubation</li>
+                            </ol>
+                        </li>
+                        <li>If supplemental oxygen is required a non-rebreather mask should be utilized
+                            <ol><li>Surgical mask should be placed over the NRB mask</li></ol>
+                        </li>
+                        <li>Limit utilized equipment to only essential equipment required for needed patient care</li>
+                        <li>With negative screen provide care as per appropriate protocol and transport per patient 
+                            destination general triage protocol</li>
+                        <li>During encode notify receiving emergency department of “EIDS positive patient”</li>
+                        <li>If nebulizer is being utilized, this should be halted and held upon arrival to the emergency 
+                            department until the patient has been placed in their treatment room</li>
+                        <li>Use of CPAP must be discussed with the receiving facility prior to arrival and plan for 
+                            patient transition from ambulance to treatment room clarified prior to arrival
+                            <ol><li>This may include momentary halting of CPAP during patient movement</li></ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidBAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidBAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Driver of transporting ambulance should wear PPE as described above when participating 
+                                in patient care activities (including patient transport & loading)
+                                <ul>
+                                    <li>Remove PPE except for N-95 (or surgical mask) and perform hand hygiene prior 
+                                        to entering vehicle cab to prevent contamination of driver's compartment</li>
+                                </ul>
+                            </li>
+                            <li>CMED will screen at call-taking (CMED will advise “Positive EIDS patient” if positive screen)
+                                <ul>
+                                    <li>It is imperative that field providers also ask screening questions on scene</li>
+                                </ul>
+                            </li>
+                            <li>Transport of patient with suspected high consequence pathogen must be reported to 
+                                Operations Supervisor
+                                <ul>
+                                    <li>Must be reported to local public health authorities</li>
+                                    <li>Ensure Supervisor and Public health notified of any patient who refuses transport 
+                                        or is pronounced dead on scene (if positive screen for a high consequence 
+                                        pathogen)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Extreme care should be utilized in doffing PPE post transport per standard procedure to 
+                                ensure no contamination from exposure to used PPE
+                                <ul>
+                                    <li>Do not touch outer surface of PPE</li>
+                                    <li>Do not remove N-95 mask or eye protection prior to gown/coverall removal</li>
+                                </ul>
+                            </li>
+                            <li>No family members or bystanders should be transported in the ambulance</li>
+                            <li>Appropriate PPE is required during cleaning / disinfecting of any EMS equipment
+                                <ul>
+                                    <li>Utilize appropriate approved disinfectant cleansing solution</li>
+                                    <li>Equipment includes ambulance interior and surfaces exposed to patient contact</li>
+                                </ul>
+                            </li>
+                            <li>Following patient care activity utilize standard hand hygiene utilizing soap and water for 
+                                30 seconds or alcohol-based hand sanitizer</li>
+                            <li>If any personnel exposure occurs Supervisor will perform a risk assessment and notify 
+                                employee health as soon as indicated following decontamination / cleansing / irrigation of 
+                                exposure</li>
+                            <li>Recommended to wear surgical mask and consider eye protection for any patient with 
+                                fever; even outside this protocol</li>
+                            <li>Negative Pressure in care compartment:
+                                <ul>
+                                    <li>For door or window available to separate driver's and care compartment space:
+                                        <ul>
+                                            <li>Close door/window between driver's and care compartment</li>
+                                            <li>Operate rear exhaust fan on full</li>
+                                        </ul>
+                                    </li>
+                                    <li>For no door or window available to separate driver's and care compartment space:
+                                        <ul>
+                                            <li>Open outside air vent in driver's compartment and set rear exhaust fan to full</li>
+                                            <li>Set vehicle ventilation system to non-recirculating to bring in maximum outside air</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>COVID-19 Focused Cardiac Arrest Supplement</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="covidCNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidCNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Introduction</H3>
+                    <div class="objectivelist">
+                        <ul class="addl-list">
+                            <li>This supplement is to be utilized in conjunction with the primary Focused Cardiac Arrest and COVID-19 protocols</li>
+                            <li>Goal will be to minimize provider exposure to a possible patient with undiagnosed COVID-19 while acknowledging the challenge of identifying these patients given their critical status</li>
+                            <li>The primary route of exposure to COVID-19 is the inhalation of infected respiratory droplets</li>
+                            <li>Resuscitative efforts involve several Aerosol-Generating Procedures; including:
+                                <ul>
+                                    <li>Intubation, extubation and related procedures</li>
+                                    <li>Manual Ventilation</li>
+                                    <li>Open Suctioning</li>
+                                </ul>
+                            </li>
+                            <li>Presently the CDC and the AHA recommend that providers utilize the following PPE when involved in resuscitation:
+                                <ul>
+                                    <li>Respirator (N95) or facemask if respirator is not available</li>
+                                    <li>Eye protection</li>
+                                    <li>Gloves</li>
+                                    <li>Gowns</li>
+                                </ul>
+                            </li>
+                            <li>All patients in cardiac arrest must be assumed to potentially be COVID-19 positive
+                            </li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidCBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% elif current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidCBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol class="addl-list">
+                        <li>All personnel participating in providing CPR MUST wear full PPE when performing resuscitative efforts to include:
+                            <ol>
+                                <li>N95 mask</li>
+                                <li>Face shield</li>
+                                <li>Gloves</li>
+                                <li>Fluid impervious gown</li>
+                            </ol>
+                        </li>
+                        <li>For patients with reported witnessed arrest PPE should be in place as to not delay resuscitative efforts</li>
+                        <li>For patients believed to be an obvious death (unwitnessed with likely prolonged 
+                            downtime) and no resuscitative measures are going to be initiated full protective measures 
+                            do not need to be worn to assess for rigor mortis, dependent lividity, cold temperature 
+                            (standard PPE should be utilized)
+                            <ol>
+                                <li>If subsequently determined patient does not meet obvious death criteria, 
+                                    compression only CPR should be initiated while full PPE as above is donned by 
+                                    other providers
+                                    <ol><li>Covering in the form of cloth or surgical mask should be placed over the 
+                                        patient's mouth & nose during compression only CPR</li></ol>
+                                </li>
+                                <li>Providers assessing for obvious death on a pulseless and apneic patient, should, 
+                                    at minimum, wear standard PPE</li>
+                            </ol>
+                        </li>
+                        <li>For patients with EMS witnessed cardiac arrest perform compression only CPR utilizing 
+                            standard PPE until full PPE is donned then proceed with focused cardiac arrest care
+                            <ol><li>Covering in the form of cloth or surgical mask should be placed over the patient's 
+                                mouth & nose during compression only CPR</li></ol>
+                        </li>
+                        <li>Only personnel required to perform resuscitative efforts should be in the room with the 
+                            patient
+                            <ul><li>FD Captain should also be in full PPE in order to provide appropriate feedback 
+                                coaching related to compressions and ventilations during the resuscitation</li></ul>
+                        </li>
+                        <li>All others on choosing to remain on scene should remain > 6 feet from patient/providers
+                            <ol><li>e.g., family, police, others</li></ol>
+                        </li>
+                        <li>Performance of cardiac arrest care:
+                            <ol>
+                                <li>Insert BIAD airway via standard method</li>
+                                <li>Avoid any BVM attempts prior to BIAD placement</li>
+                                <li>Place defibrillator pads and QCPR device</li>
+                            </ol>
+                        </li>
+                        <li>A cloth or towel may be utilized to assist with managing excess secretions</li>
+                        <li>Establish IO and administer fluids/medications as indicated</li>
+                    </ol>
+                </div><hr><br>
+
+                <h3>Post Resuscitation Care</h3>
+                <ul class="addl-list">
+                    <li>ROSC is achieved:
+                        <ul>
+                            <li>Continue with post ROSC standard procedures</li>
+                            <li>Obtain a temporal temperature measurement</li>
+                        </ul>
+                    </li>
+                    <li>Immediately notify the receiving hospital that you are enroute with a ROSC patient</li>
+                    <li>NO ROSC achieved and patient pronounced on scene
+                        <ul>
+                            <li>Ensure supervisor notified</li>
+                            <li>Ensure public health notified as indicated</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="covidCAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="covidCAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Following termination of resuscitative efforts or delivery of the patient to the ED doff PPE utilizing standard precautions</li>
+                            <li>Resources:
+                                <ul>
+                                    <li><a href="https://www.medpagetoday.com/infectiousdisease/covid19/85568">https://www.medpagetoday.com/infectiousdisease/covid19/85568</a></li>
+                                    <li><a href="https://www.medscape.com/viewarticle/927389">https://www.medscape.com/viewarticle/927389</a></li>
+                                    <li><a href="https://www.cdc.gov/coronavirus/2019-ncov/infection-control/control-recommendations.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcor">https://www.cdc.gov/coronavirus/2019-ncov/infection-control/control-recommendations.html?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcor</a></li>
+                                    <li>Cardiac Arrest COVID-19 Protocol Carolinas Medical Center Department of Emergency Medicine, COVID-19 EM Clinical Care Task Force</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
