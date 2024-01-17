@@ -591,3 +591,11 @@ def stabWound():
     session['path'] = 'protocols.stabWound'
 
     return render_template('/protocols/StabWound.html', keys=keys, varTitle="Stab Wound")
+
+@protocols.route("/protocols/Stroke")
+def stroke():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.stroke'
+
+    return render_template('/protocols/Stroke.html', keys=keys, varTitle="Stroke")

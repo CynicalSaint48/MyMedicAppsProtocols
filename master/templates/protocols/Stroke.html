@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Stroke</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id="strokeNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="strokeNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <H3>Stroke Types</H3>
+                    <div class="objectivelist">
+                        <ul>
+                            <li>Thromboembolic (85%)</li>
+                            <li>Hemorrhagic (15%)</li>
+                        </ul>
+                    </div>
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Drug ingestion</li>
+                            <li>Electrolyte abnormality</li>
+                            <li>Environmental exposure</li>
+                            <li>Hypoglycemia</li>
+                            <li>Hypoxia</li>
+                            <li>Post-ictal (Todd's) paralysis</li>
+                            <li>Psychiatric</li>
+                            <li>Seizure</li>
+                            <li>Shock</li>
+                            <li>Transient ischemic attack (TIA)</li>
+                            <li>Trauma</li>
+                            <li>Tumor</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="strokeBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="strokeBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol class="addl-list">
+                        <li><a href="">Medical Initial Assessment Protocol</a>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li>Allow all conscious patients to sit in a position of comfort</li>
+                        <li>Perform Cincinnati Prehospital Stroke Screen
+                            <ol>
+                                <li>Facial Droop:
+                                    <ol>
+                                        <ul><li>Ask patient to smile and show their teeth</li></ul>
+                                        <li>Normal: Both sides of face move equally</li>
+                                        <li>Abnormal: One side of face does not move at all</li>
+                                    </ol>
+                                </li>
+                                <li>Arm Drift:
+                                    <ol>
+                                        <ul><li>Ask patient to hold both arms straight out for 10 seconds</li></ul>
+                                        <li>Normal: Both arms move equally or not at all</li>
+                                        <li>Abnormal: One arm drifts compared to the other</li>
+                                    </ol>
+                                </li>
+                                <li>Speech:
+                                    <ol>
+                                        <ul><li>Ask patient to repeat phrase: “You can't teach an old dog new tricks”</li></ul>
+                                        <li>Normal: Patient uses correct words with no slurring</li>
+                                        <li>Abnormal: Slurred or inappropriate words or mute</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>Perform the <b>F</b>ield <b>A</b>ssessment <b>S</b>troke <b>T</b>riage for <b>E</b>mergency <b>D</b>estination <b>(FAST-ED)</b>
+                            <div class="proto-image"><div><img src="{{ url_for('static', filename='images/protocol/fasted.jpg') }}" alt="FAST-ED"></div></div>
+                        </li>
+                        <li>Identify time of onset of symptoms
+                            <ol>
+                                <li>Note if patient awoke from sleep with symptoms</li>
+                                <li>If unclear time of onset, note time patient last known to be normal</li>
+                            </ol>
+                        </li>
+                        <li>Record total Cincinnati Prehospital Stroke Screen & FAST-ED scores & report to receiving emergency department</li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="strokeAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="strokeAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol class="addl-list">
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li>Assess blood sugar level and treat as per <a href="{{url_for('protocols.diabetic')}}">Diabetic Problems Protocol</a></li>
+                            <li>For hypertension (SBP &gt; 185 and/or DBP &gt; 110)
+                                <ol><li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for potential <a href="{{url_for('medications.labetalol')}}">Labetalol</a> administration</li> <dose style="color:#f4b02a;font-weight:500">10 - 20 mg IV</dose></ol>
+                            </li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF bolus - wide open</dose> and reassess</li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*20)|int }} ml bolus</dose> and reassess</li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF bolus - wide open and reassess</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 10 - 20 ml/kg bolus and reassess</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500"></dose>4 - 8 mg PO, IV, IM</li></ol>
+                                    {% else %}
+                                        {% if keys.ptMax26 %}
+                                            <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500"></dose>4 mg PO, IV, IM</li></ol>
+                                        {% else %}
+                                            <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500"></dose>{{ '%0.2f'| format((ptKgs*3)/20) }} mg PO, IV, IM</li></ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 4 - 8 mg PO, IV, IM</li>
+                                        <li>Pediatric dose = 0.15 mg/kg PO, IV, IM (maximum 4 mg)</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO2 and ventilate with 100% oxygen</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="strokeAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="strokeAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li><b>CODE STROKE</b>
+                                <ul>
+                                    <li>Onset of symptoms &lt; 24 hours</li>
+                                    <li>1 or more of the Cincinnati Prehospital Stroke Screen assessments is abnormal
+                                        <ul>
+                                            <li>1 of 3 = 72% probability ischemic stroke</li>
+                                            <li>3 of 3 = 85% probability ischemic stroke</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><b>FAST-ED </b>screen is utilized to assist in assessing for a large vessel occlusion (LVO) stroke
+                                <ul>
+                                    <li>Local indication for transport to endovascular center (<b>CMC</b> or <b>NHPMC</b>) = <b>>FAST-ED</b score &ge; 6</li>
+                                </ul>
+                            </li>
+                            <li>Ischemic strokes are more common in patients greater than 45 years of age</li>
+                            <li>Hemorrhagic strokes can be seen in any age group</li>
+                            <li>For the patient that cannot provide historical information, it is imperative to obtain as much information as possible from family members or friends prior to scene departure
+                                <ul>
+                                    <li><b>Obtain family member name and contact phone number to provide to receiving hospital personnel</b></li>
+                                    <li>Obtain the <b><u> last known normal time</u></b> and report to receiving personnel</li>
+                                </ul>
+                            </li>
+                            <li>Acute ischemic strokes typically do not cause seizures, hypotension, or hypoglycemia
+                                <ul>
+                                    <li>Seizures are a common presentation for other intracerebral conditions (intracerebral or subarachnoid hemorrhage, tumor, meningitis or other infections, or toxins)</li>
+                                </ul>
+                            </li>
+                            <li>Patients with acute stroke symptoms may be candidates for thrombolytic therapy if they arrive at the hospital within 24 hours of symptom onset
+                                <ul><li>Do not inform the patient or family members that the patient will receive thrombolytic therapy, as they may not meet inclusion criteria</li></ul>
+                            </li>
+                            <li>Ensure that the <b>FAST-ED</b> score is communicated to the receiving hospital during pre-arrival radio report</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <h2>Stroke Transfer tPA Infusion or Post Tenecteplase (TNK)</h2>
+
+        <div>
+            <input type="checkbox" name="accordian" id="tpaNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="tpaNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Introduction</h3>
+                    <div class="introText">
+                        <ul class="addl-list">
+                            <li>TNK is administered as a bolus dose only</li>
+                            <li>tPA infusion will only be initiated by the referring facility</li>
+                            <li>Verify tPA bolus - Amount and time administered</li>
+                            <li>Verify tPA total amount to be infused
+                                <ul>
+                                    <li>Verify that excess tPA has been withdrawn from the bottle and wasted</li>
+                                    <li>Time infusion initiated & time infusion to be completed</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="tpaAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="tpaAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol class="addl-list">
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>Assess neurologic exam including GCS and pupil exam
+                                <ol><li>Repeat neurologic exam every 15 minutes throughout transport</li></ol>
+                            </li>
+                            <li>Obtain baseline set of vital signs and reassess every 15 minutes throughout transport
+                                <ol>
+                                    <li>Ensure BP evaluated prior to initiation of transport
+                                        <ol>
+                                            <li>SBP &lt; 185 mmHg</li>
+                                            <li>DBP &lt; 110 mmHg</li>
+                                        </ol>
+                                    </li>
+                                    <li>All BP readings should be obtained in limb without tPA infusion</li>
+                                </ol>
+                            </li>
+                            <li><a href="{{url_for('medications.labetalol')}}">Labetalol (Normodyne®)</a> <dose style="color:#f4b02a;font-weight:500">10 mg IV</dose> for SBP &gt; 185 or DBP &gt; 110 and patient not currently receiving antihypertensive infusion & confirm treatment plan with physician</li>
+                            <li>For patient on hypertensive mediation infusion initiated by referring facility:
+                                <ol>
+                                    <li>Nicardipine drip (Cardene®) - increase drip 2.5 mg/hour every 15 minutes until 
+                                        SBP &lt; 180, DBP &lt; 105 mmHg or maximum rate of 15 mg/hour</li>
+                                    <li>Labetalol (Normodyne®) drip - increase drip 2 mg/min every 10 minutes until SBP 
+                                        &lt; 180, DBP &lt; 105 mmHg</li>
+                                </ol>
+                            </li>
+                            <li>For SBP &lt; 140, DBP &lt; 80 mmHg and antihypertensive agent is infusing STOP infusion of antihypertensive agent</li>
+                            <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                            <li>Only stop tPA infusion if any of the following occur (medical control at receiving facility must be notified as soon as possible if infusion is stopped for any reason)
+                                <ol>
+                                    <li>Allergic reaction</li>
+                                    <li>Excessive bleeding</li>
+                                    <li>Nausea/vomiting</li>
+                                    <li>Onset of severe headache</li>
+                                    <li>Seizure</li>
+                                    <li>Worsening neurological exam</li>
+                                </ol>
+                            </li>
+                            <li>It will be necessary to spike the tPA drip chamber into a bag of NS to complete infusion of tPA that is within the IV tubing</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="tpaAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="tpaAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>tPA infusion should NOT be stopped simply for transport</li>
+                            <li>tPA infusion must NOT be stopped unless one of the above indications for stopping (#8)</li>
+                            <li>Review IV pump functioning with referring staff prior to departure as necessary</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
