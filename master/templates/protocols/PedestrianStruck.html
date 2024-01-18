@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Traffic Accident - Pedestrian Struck</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id="pedestrianNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="pedestrianNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Significant Hemorrhage Considerations</h3>
+                        <ul class="differentialText">
+                            <li>External bleeding</li>
+                            <li>Hemothorax</li>
+                            <li>Intra-abdominal bleeding</li>
+                            <li>Pelvis fracture</li>
+                            <li>Femur fracture</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="pedestrianBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="pedestrianBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety</li>
+                        <li><a FIXME:href="">Trauma Initial Assessment Protocol</a> or <a FIXME:href="">Pediatric Trauma Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Control any active external bleeding with direct pressure
+                            <ol><li>Apply MEDIC tourniquet for presumed life-threatening extremity hemorrhage not 
+                                controlled with direct pressure</li></ol>
+                        </li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>For suspected trauma to head or spine, protect and maintain control of the cervical spine,
+                            (with manual motion restriction) and the thoracolumbar spine until cervical collar placed 
+                            and patient firmly secured to transport stretcher
+                            <ol>
+                                <li>Assess back for additional injuries by log-rolling the patient</li>
+                                <li>Assess neurological status before and after motion restriction/movement</li>
+                                <li>Patients with isolated penetrating trauma who are neurologically intact do not 
+                                    require cervical collar and spinal immobilization</li>
+                            </ol>
+                        </li>
+                        <li>Remove appropriate clothing to fully inspect for any significant injuries</li>
+                        <li>Splint any long bone deformities or areas where crush injury has occurred
+                            <ol>
+                                <li>Dislocated joints should be splinted in position of deformity</li>
+                                <li>Fractures should be realigned and splinted from joint above through joint below</li>
+                                <li>Distal pulses should be assessed before and after realignment and splinting</li>
+                            </ol>
+                        </li>
+                        <li>Apply appropriate dressing to any open wounds</li>
+                        <li>Assess blood glucose level as indicated per patient presentation</li>
+                        <li><a href="{{url_for('medications.acetaminophen')}}"> Acetaminophen (Tylenol®)</a> for pain Control
+                            {% if keys.ptYears > 0 %}
+                                        <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <ol>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 650 - 975 mg PO </dose></li>
+                                    </ol>
+                                {% else %}
+                                    {% if keys.ptMax43 %}
+                                        <ol>
+                                            <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a"> 650 mg PO</dose></li>
+                                        </ol>
+                                    {% else %}
+                                        <ol>
+                                            <li>Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs * 15) }} mg PO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li> Adult: 650 - 975 mg PO</li>
+                                    <li> Pediatric: 15 mg/kg PO <b style="color:#D2042D;font-weight:600">(maximum 650 mg)</b>
+                                    </li>
+                                </ol>                           
+                            {% endif %}
+                        </li>
+                        <li>Alternative pain control: <a href="{{url_for('medications.nitrous')}}">Nitrous Oxide</a> via patient-controlled inhalation
+                            <ol><li><red><b>Contraindicated</b></red> with suspected pneumothorax</li></ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="pedestrianAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="pedestrianAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*20)|int }} ml bolus</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.fentanyl')}}">Fentanyl (Sublimaze®)</a> for pain control
+                                {% if keys.ptYears > 0 %}
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }} kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if keys.ptMax100 %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IN, IM, IO</dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Adult: <dose style="color:#f4b02a;font-weight:500"> {{ '%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg IV, IN, IM, IO</dose></li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if keys.ptMax100 %}
+                                            <ol>
+                                                <li> Pediatric:  <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - <b style="color:#D2042D;font-weight:600">maximum</b> of 100 mcg IV, IN, IM, IO</dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% else %}
+                                            <ol>
+                                                <li> Pediatric: <dose style="color:#f4b02a;font-weight:500"> {{'%0.2f'| format(keys.ptKgs / 2) }} - {{'%0.2f'| format(keys.ptKgs * 1) }} mcg IV, IN, IM, IO</dose></li>
+                                                <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>
+                                            </ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li> Adult: </li>
+                                            <ul>
+                                                <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                <li> May repeat x1 in 15 minutes as indicated (maximum 100 mcg) </li>                                        
+                                            </ul>
+                                        <li> Pediatric: </li>
+                                            <ul>
+                                                <li> 0.5 - 1 mcg/kg IV, IN, IM, IO (maximum 100 mcg)</li>
+                                                <li>  Contact <a FIXME: href="#">Medical Control Ring Central</a> for repeat dosing </li>                                        
+                                            </ul>
+                                    </ol>                           
+                                {% endif %}
+                            </li>
+                            <li><a href="{{url_for('medications.cefazolin')}}">Cefazolin (Ancef®)</a> for adult with suspected open fracture
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        {% if keys.ptMax120 %}
+                                            <ul><li>Adult &gt; 120kg: <dose style="color:#f4b02a;font-weight:500"></dose>3 grams IV</li> over 3 - 5 minutes</ul>
+                                        {% elif keys.ptMax40 %}
+                                            <ul><li>Adult 40 - 120kg: <dose style="color:#f4b02a;font-weight:500"></dose>2 grams IV</li> over 3 - 5 minutes</ul>
+                                        {% else %}
+                                            <ul><li>Adult: <red><b>Contraindicated</b></red> in Pediatric or Adult Pts under 40kg</ul>
+                                        {% endif %}
+                                    {% else %}
+                                    <ul><li>Pediatric: <red><b>Contraindicated</b></red> in Pediatric or Adult Pts under 40kg</ul>
+                                    {% endif %}
+                                {% else %}
+                                    <ul>
+                                        <li>&gt; 120 kg: 3 grams IV over 3 - 5 minutes</li>
+                                        <li>40 - 120 kg: 2 grams IV over 3 - 5 minutes</li>
+                                    </ul>
+                                {% endif %}
+                            </li>
+                            <li>If there is any question or uncertainty; the patient should be placed in spinal motion restriction per <a FIXME:href="#">Spinal Motion Restriction Protocol</a></li>
+                            <li>Patients who are found ambulatory on scene may have a cervical collar placed and be transported secured firmly to the stretcher in supine position</li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO2 and ventilate with 100% oxygen</li>
+                            <li>For penetrating injury noted to chest or back such that the possibility of a tension 
+                                pneumothorax exists, and the patient is hemodynamically unstable:
+                                <ol><li>Perform chest needle decompression</li></ol>
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="pedestrianAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="pedestrianAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Patients should be placed in spinal motion restriction and transported with spinal motion restriction if any of the following are present:
+                                <ul>
+                                    <li>Abnormal mental status</li>
+                                    <li>Intoxicated or under the influence of mind-altering substance</li>
+                                    <li>Age &lt; 5 years or &gt; 65 years</li>
+                                    <li>Any posterior midline tenderness</li>
+                                    <li>Presence of distracting injury</li>
+                                    <li>Cervical pain with cervical range of motion
+                                        <ul>
+                                            <li>Patient unable to rotate neck 45 degrees to the left and to the right</li>
+                                            <li>Do <u>NOT</u> assess range of motion if the patient has any midline cervical spine tenderness to palpation</li>
+                                        </ul>
+                                    </li>
+                                    <li>Any focal neurological deficit</li>
+                                    <li>High risk mechanism of injury
+                                        <ul>
+                                            <li>ATV crash</li>
+                                            <li>Ejection from vehicle</li>
+                                            <li>Fall &gt; 3 feet (5 stairs)</li>
+                                            <li>High speed ( &gt; 55 mph ) or rollover MVC</li>
+                                            <li>Pedestrian or bicyclist struck by motor vehicle</li>
+                                            <li>Diving injury</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            <li>If there is any question or uncertainty; the patient should be placed in spinal immobilization per standard technique</li>
+                            <li>Patients who are found ambulatory on scene may have a cervical collar placed and be transported secured firmly to the stretcher in supine position</li>
+                            <li>Amputated extremities should be placed in saline soaked dressing in container & container placed on ice as available (do not place amputated part directly on ice)
+                                <ul>
+                                    <li>Splint partial amputations in normal alignment without applying tension to soft tissue</li>
+                                    <li>Apply sterile saline dressing to amputated part</li>
+                                </ul>
+                            </li>
+                            <li>Rule-out medical causes of altered mental status in patients with depressed GCS
+                                <ul>
+                                    <li>Hypoglycemia</li>
+                                    <li>Hypoxemia</li>
+                                    <li>Overdose</li>
+                                </ul>
+                            </li>
+                            <li>Differential diagnosis of shock in trauma
+                                <ul>
+                                    <li>Aortic transection</li>
+                                    <li>Cardiac tamponade</li>
+                                    <li>Hemorrhage</li>
+                                    <li>Myocardial contusion / myocardial infarction</li>
+                                    <li>Spinal cord injury
+                                        <ul><li>Note: traumatic brain injury is NOT a cause of shock</li></ul>
+                                    </li>
+                                    <li>Tension pneumothorax</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

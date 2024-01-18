@@ -1025,6 +1025,14 @@ dope {
    margin-bottom: 3px;
 }
 
+.introText ul > li {
+   margin-bottom: 3px;
+}
+
+.orderedList ol > li {
+   margin-bottom: 3px;
+}
+
 @media (max-width: 1200px){
    .med-image {
       flex: 1 0;

@@ -599,3 +599,59 @@ def stroke():
     session['path'] = 'protocols.stroke'
 
     return render_template('/protocols/Stroke.html', keys=keys, varTitle="Stroke")
+
+@protocols.route("/protocols/TrafficAccident")
+def trafficAccident():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.trafficAccident'
+
+    return render_template('/protocols/TrafficAccident.html', keys=keys, varTitle="Traffic Accident")
+
+@protocols.route("/protocols/TraumaticInjury")
+def traumaticInjury():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.traumaticInjury'
+
+    return render_template('/protocols/TraumaticInjury.html', keys=keys, varTitle="Traumatic Injury")
+
+@protocols.route("/protocols/Unconscious")
+def unconscious():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.unconscious'
+
+    return render_template('/protocols/Unconscious.html', keys=keys, varTitle="Unconscious / Syncope")
+
+@protocols.route("/protocols/Unknown")
+def unknown():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.unknown'
+
+    return render_template('/protocols/Unknown.html', keys=keys, varTitle="Unknown Problem")
+
+@protocols.route("/protocols/Interfacility")
+def transfer():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.transfer'
+
+    return render_template('/protocols/Interfacility.html', keys=keys, varTitle="Interfacility Transfer")
+
+@protocols.route("/protocols/Gunshot")
+def gunshot():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.gunshot'
+
+    return render_template('/protocols/Gunshot.html', keys=keys, varTitle="Gunshot Wound")
+
+@protocols.route("/protocols/PedestrianStruck")
+def pedestrianStruck():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.pedestrianStruck'
+
+    return render_template('/protocols/PedestrianStruck.html', keys=keys, varTitle="Pedestrian Struck")

@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Transfer - Interfacility</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id="transferBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="transferBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li><a FIXME:href="">Universal Patient Care Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>Perform any transfer orders prescribed by the transferring or accepting facility
+                            <ol>
+                                <li>All orders performed must be within the scope of practice for the provider level</li>
+                                <li>All orders must be recorded on the PCR as per the ordering physician</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="transferAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="transferAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>Obtain 4-lead ECG and refer to appropriate protocol as indicated</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ (keys.ptKgs*20)|int }} ml bolus</dose> and reassess</li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Additional care as per appropriate protocol based on patient's presentation</li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO2 and ventilate with 100% oxygen</li>
+                            <li>Perform any transfer orders prescribed by the transferring or accepting facility
+                                <ol>
+                                    <li>All orders performed must be within the scope of practice for the provider level</li>
+                                    <li>All orders must be recorded on the PCR as per the ordering physician</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="transferAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="transferAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Confirm destination facility prior to departure from referring facility
+                                <ul>
+                                    <li>Crew will confer with patient and physician together to confirm patient destination prior to departing referring facility</li>
+                                </ul>
+                            </li>
+                            <li>Interhospital (Emergency Department) transfers involve referring and receiving physicians 
+                                and facilities and therefore destination is NOT based on Mecklenburg EMS Agency 
+                                destination protocol
+                                <ul>
+                                    <li>Destination is based on the physician (facility) to physician (facility) transfer</li>
+                                    <li>MEDIC personnel shall NEVER suggest an alternative destination</li>
+                                    <li>If the patient changes their destination decision after departing the hospital/ED 
+                                        contact must be made with that facility immediately, to inform them of the 
+                                        patient's requested change</li>
+                                </ul>
+                            </li>
+                            <li>If patient decompensates while enroute to a destination facility other than an emergency 
+                                department; consider diverting to the closest emergency department for patient 
+                                stabilization as indicated regardless of original orders received
+                                <ul>
+                                    <li>Contact <a FIXME:href="#">Medical Control Ring Central</a> for clarification</li>
+                                </ul>
+                            </li>
+                            <li>Medications on continuous infusion requiring titration during transport will require a nurse to accompany the transport
+                                <ul><li>Exceptions are <a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin</a>, <a href="{{url_for('medications.dopamine')}}">Dopamine</a>, and <a href="{{url_for('medications.lidocaine')}}">Lidocaine</a> drips</li></ul>
+                            </li>
+                            <li>Medications on continuous infusion that do not require titration during transport may be 
+                                transported provided all the following conditions are met:
+                                <ul>
+                                    <li>Medication is on the NCMB approved list for Paramedic personnel</li>
+                                    <li>Paramedic is familiar & comfortable with the medication and the order</li>
+                                    <li>Medication infusion is such that, should pump failure occur, the infusion can be stopped without detriment to the patient</li>
+                                </ul>
+                            </li>
+                            <li>Medication orders received from the referring physician for single bolus dosing may be 
+                                followed provided all the following conditions are met:
+                                <ul>
+                                    <li>Medication is on the NCMB approved list for Paramedic personnel</li>
+                                    <li>Paramedic is familiar & comfortable with the medication and the order(s)</li>
+                                    <li>Detailed parameters for medication dosage are received from referring physician 
+                                        (for clarification the order must be read back to the physician giving the order and 
+                                        documented in the patient care report)</li>
+                                </ul>
+                            </li>
+                            <li>Bedside times during interfacility transfers of CODE STEMI and CODE STROKE patients 
+                                are as significant as scene times
+                                <ul>
+                                    <li>The goal should be &lt; 15 minutes at the referring facility</li>
+                                    <li>12-lead ECG does NOT need to be performed by MEDIC prior to transport</li>
+                                </ul>
+                            </li>
+                            <li><a FIXME:href="#">Medical Control Ring Central</a> may be contacted at any time for clarification or assistance</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

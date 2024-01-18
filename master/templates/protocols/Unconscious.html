@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>Unconscious / Syncope</H1><hr>
+        <div>
+            <input type="checkbox" name="accordian" id="unconsciousNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="unconsciousNarrative" class="accordian__label">Narrative Protocol</label>
+            <div class="narrativeSection">
+                <h3>Differential Diagnosis</h3>
+                        <ul class="differentialText">
+                            <li>Adverse medication reaction</li>
+                            <li>Cardiac abnormality (MI, CHF)</li>
+                            <li>CNS lesion</li>
+                            <li>Diabetes related
+                                <ul>
+                                    <li>Hypoglycemia</li>
+                                    <li>Hyperglycemia (NKHC, DKA)</li>
+                                </ul>
+                            </li>
+                            <li>Drug overdose</li>
+                            <li>Dysrhythmia</li>
+                            <li>Electrolyte abnormality</li>
+                            <li>Environmental
+                                <ul>
+                                    <li>Hyperthermia</li>
+                                    <li>Hypothermia</li>
+                                </ul>
+                            </li>
+                            <li>Head trauma</li>
+                            <li>Hemorrhage</li>
+                            <li>Hypotension</li>
+                            <li>Hypoxemia</li>
+                            <li>Infection
+                                <ul>
+                                    <li>Meningitis</li>
+                                    <li>Sepsis</li>
+                                </ul>
+                            </li>
+                            <li>Metabolic
+                                <ul>
+                                    <li>Acidosis</li>
+                                    <li>Alkalosis</li>
+                                </ul>
+                            </li>
+                            <li>Psychiatric disorder</li>
+                            <li>Pulmonary embolus</li>
+                            <li>Seizure</li>
+                            <li>Stroke</li>
+                            <li>Thyroid abnormality</li>
+                            <li>Toxin Exposure
+                                <ul>
+                                    <li>Alcohol</li>
+                                    <li>Carbon monoxide</li>
+                                </ul>
+                            </li>
+                            <li>Tumor</li>
+                            <li>Vasovagal episode</li>
+                        </ul><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="unconsciousBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="unconsciousBasicTreatment" class="accordian__label">BLS Treatment</label>                
+            <div class="basicTreatmentSection">
+                <h3>Basic Medical Care</h3>
+                <div class="basicCare orderedList">
+                    <ol>
+                        <li>Ensure scene safety</li>
+                        <li><a FIXME:href="">Medical Initial Assessment Protocol</a> or <a FIXME:href="">Pediatric Initial Assessment Protocol</a></li>
+                        <li><a FIXME:href="">Trauma Initial Assessment Protocol</a> or <a FIXME:href="">Pediatric Trauma Assessment Protocol</a></li>
+                        <li>Maintain airway; suction as needed</li>
+                        <li>Assess vital signs</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
+                        <li>Provide assisted ventilations with bag-valve mask and 100% oxygen if breathing or ventilatory compromise is apparent</li>
+                        <li>For suspected trauma to head or spine, protect and maintain control of the cervical spine, 
+                            (with spinal motion restriction) and the thoracolumbar spine until cervical collar placed 
+                            and patient firmly secured to transport stretcher
+                            <ol>
+                                <li>Assess back for additional injuries by log-rolling the patient</li>
+                                <li>Assess neurological status before and after motion restriction/movement</li>
+                            </ol>
+                        </li>
+                        <li>Assess blood glucose level
+                            <ol><li><a href="{{url_for('medications.glucose')}}">Oral Glucose (Insta-Glucose®)</a> for hypoglycemia and patient alert with intact gag reflex</li></ol>
+                        </li>
+                        <li><a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> for suspected opioids (narcotics) overdose
+                            {% if keys.ptYears > 0 %}
+                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                {% if keys.ptAdult %}
+                                    <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                {% else %}
+                                    {% if keys.ptMax200 %}
+                                        <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                    {% elif keys.ptMax20 %}
+                                        <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - 2 mg IV, IO, IN</dose></li></ol>
+                                    {% else %}
+                                        <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - {{ '%0.2f'| format (keys.ptKgs/10) }} mg IV, IO, IN</dose></li></ol>
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <ol>
+                                    <li>Adult: 1 - 2 mg IV, IO, IN</li>
+                                    <li>Pediatric: 0.01 - 0.1 mg/kg IV, IO, IN</li>
+                                </ol>
+                            {% endif %}
+                        </li>
+                    </ol>
+                </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="unconsciousAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="unconsciousAdvancedTreatment" class="accordian__label">ALS Treatment</label>
+            <div class="advancedTreatmentSection">
+                <h3>Advanced Medical Care</h3>
+                    <div class="advancedCare orderedList">
+                        <ol>
+                            <li>4-lead ECG as indicated and refer to appropriate protocol</li>
+                            <li>12-lead ECG as indicated</li>
+                            <li><a FIXME:href=""FIXME:>IVF</a> as indicated
+                                {% if keys.ptYears > 0 %}
+                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">IVF wide open</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% else %}                                      
+                                        <ol>
+                                            <li>Hemodynamically unstable: <dose style="color:#f4b02a;font-weight:500">{{ keys.ptKgs*20 }} ml bolus</dose></li>
+                                            <li>Hemodynamically stable: <dose style="color:#f4b02a;font-weight:500">IVF TKO</dose></li>
+                                        </ol>
+                                    {% endif %}
+                                {% else %}
+                                    <ol>                                                    
+                                        <li>Adult:
+                                            <ol>
+                                                <li>Hemodynamically unstable: IVF wide open</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        <li>Pediatric:
+                                            <ol>
+                                                <li>Hemodynamically unstable: 20 ml/kg bolus</li>
+                                                <li>Hemodynamically stable: TKO</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>For hypoglycemia treat as per <a href="{{url_for('protocols.diabetic')}}">Diabetic Problems Hypoglycemia Protocol</a></li>
+                            <li><a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a> for suspected opioids (narcotics) overdose
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                        <ol><li>Adult: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                    {% else %}
+                                        {% if keys.ptMax200 %}
+                                            <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500">1 - 2 mg IV, IO, IN</dose></li></ol>
+                                        {% elif keys.ptMax20 %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - 2 mg IV, IO, IN</dose></li></ol>
+                                        {% else %}
+                                            <ol><li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format (keys.ptKgs/100) }} - {{ '%0.2f'| format (keys.ptKgs/10) }} mg IV, IO, IN</dose></li></ol>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    <ol>
+                                        <li>Adult: 1 - 2 mg IV, IO, IN</li>
+                                        <li>Pediatric: 0.01 - 0.1 mg/kg IV, IO, IN</li>
+                                    </ol>
+                                {% endif %}
+                            </li>
+                            <li>Advanced Airway management as indicated
+                                <ol>
+                                    <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
+                                    <li><a FIXME:href="#"FIXME:>Airway: BIAD Protocol</a> as indicated </li>
+                                </ol>
+                            </li>
+                            <li>Ensure proper tube placement using capnometry, SpO2 and ventilate with 100% oxygen</li>
+                            <li>Additional care protocol as indicated per patient condition/presumptive diagnosis</li>
+                        </ol>
+                    </div><hr><br>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" name="accordian" id="unconsciousAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="unconsciousAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Patients > 65 syncope is cardiac until proven otherwise</li>
+                            <li>Female patients of child-bearing age consider ectopic pregnancy or other pregnancy related complication</li>
+                            <li>Consider pulmonary embolus for unexplained syncope in patient with risk factors for thromboembolic disease</li>
+                            <li>Syncope with no preceding symptoms or event may be associated with dysrhythmia</li>
+                            <li>Assess for signs and symptoms of trauma if associated or questionable fall with syncope</li>
+                            <li>Consider Hazmat exposure and utilize PPE as indicated
+                                <ul><li>Multiple causes may be present simultaneously</li></ul>
+                            </li>
+                            <li>Airway management and ventilatory assistance remains paramount and must be performed while preparing naloxone for administration</li>
+                            <li>Naloxone administration may precipitate narcotic withdrawal in patients who chronically abuse narcotics
+                                <ul><li>Providers must be prepared to manage acute agitation and/or nausea/vomiting that may result from narcotic withdrawal following naloxone administration</li></ul>
+                            </li>
+                            <li>Always rule out medical causes prior to determining behavioral condition as cause</li>
+                        </ul>
+                    </div>
+
+                <h3>ECG Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Brugada syndrome
+                                <ul>
+                                    <li>Disorder characterized by syncope and sudden death associated</li>
+                                    <li>Genetic alteration of sodium channels of cardiac action potential</li>
+                                    <li>Most common in people from Asia; 8-10 times more prevalent in men</li>
+                                    <li>Often asymptomatic, but ECG shows ST-segment elevation in leads V1-V3</li>
+                                    <li>Type 1: coved ST elevation &gt; 2mm in &gt; 1 of V<sub>1</sub> - V<sub>3</sub> with negative T-wave</li>
+                                    <li>Type 2: “saddleback” ST elevation &gt; 2mm</li>
+                                    <li>Type 3: morphology as type 1 or 2 but &lt; 2mm</li>
+                                </ul>
+                                <div class="proto-image"><div><img src="{{ url_for('static', filename='images/protocol/brugada5.jpg') }}" alt="Brugada Image"></div></div>
+                            </li>
+                            <li>Long QT Syndrome
+                                <ul>
+                                    <li>Congenital disorder characterized by a prolongation of the QT interval and a 
+                                        propensity to ventricular tachyarrhythmias, which may lead to syncope, cardiac 
+                                        arrest, or sudden death</li>
+                                    <li>QT interval corrected for heart rate (QTc) that is longer than 0.44 seconds is 
+                                        generally considered to be abnormal, although a normal QTc can be more 
+                                        prolonged in females (up to 0.46sec)</li>
+                                    <li>QT prolongation can lead to polymorphic ventricular tachycardia, or torsade de 
+                                        pointes</li>
+                                </ul>
+                                <div class="proto-image">
+                                    <div><img src="{{ url_for('static', filename='images/protocol/longQT1.jpg') }}" alt="Long QT Image"></div>
+                                    <div><img src="{{ url_for('static', filename='images/protocol/longQT2.jpg') }}" alt="Long QT ECG"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

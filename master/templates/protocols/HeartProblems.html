@@ -1292,6 +1292,20 @@
                                 </li>
                                 {% endif %}
                             {% else %}
+                            <li>Adult:
+                                <ol>
+                                    <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> 2 grams (20 ml of 10% solution) IV over 2 minutes</li>
+                                    <li>Repeat <a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> 2 grams for dysrhythmia that continues</li>
+                                    <li><a href="{{url_for('medications.bicarb')}}">Sodium Bicarbonate</a> 50 mEq (50 ml) IV, IO</li>
+                                    <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 5 mg via nebulizer</li>
+                                </ol>
+                            </li>
+                            <li>Pediatric:
+                                <ol>
+                                    <li><a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> 20 mg/kg IO, IV (0.2 ml/kg of 10% solution); maximum 2 grams (20 ml) over 2 minutes</li>
+                                    <li><a href="{{url_for('medications.albuterol')}}">Albuterol</a> 2.5 - 5 mg via nebulizer</li>
+                                </ol>
+                            </li>
                             {% endif %}
                             <li> If any rhythm change occurs refer to appropriate protocol</li>
                         </ol>
