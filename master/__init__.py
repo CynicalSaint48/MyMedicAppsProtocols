@@ -29,6 +29,7 @@ def create_app(config_class=Config):
     from master.main.routes import main
     from master.users.routes import users
     from master.errors.handlers import errors
+    from master.tools.routes import tools
 
     from master import models
 
@@ -37,5 +38,6 @@ def create_app(config_class=Config):
     app.register_blueprint(users)
     app.register_blueprint(medications)
     app.register_blueprint(errors)
+    app.register_blueprint(tools)
 
     return app

@@ -1017,6 +1017,30 @@ dope {
    justify-content: center;
 }
 
+.phoneList {
+   display: grid;
+   grid-template-columns: 50px 250px 150px;
+   margin: 20px;
+}
+
+.phoneList div {
+   border: 1px solid var(--fifty-border);
+   display: flex;
+   justify-content: center;
+}
+
+.phoneListOffice {
+   display: grid;
+   grid-template-columns: 180px 325px;
+   margin: 20px;
+}
+
+.phoneListOffice div {
+   border: 1px solid var(--fifty-border);
+   display: flex;
+   justify-content: center;
+}
+
 .vomiText li {
    width: 232px;
 }
