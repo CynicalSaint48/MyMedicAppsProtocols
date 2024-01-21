@@ -1565,29 +1565,32 @@
                             <li>Ensure both batteries are NEVER disconnected at the same time</li>
                         </ul>
                     </div>
+
+                    <h3>Left Ventricular Assist Devices</h3>
+
+                    <div class="lvads">
+                        <div><b>HeartMate III</b> (pulsatile flow)</div>
+                        <div><img src="{{ url_for('static', filename='images/protocol/heartmateIII.jpg') }}" alt="HeartMate III">
+                            <img src="{{ url_for('static', filename='images/protocol/heartmateIII_2.jpg') }}" alt="HeartMate III">
+                        </div>
+                    </div>
+                    <div class="lvads">
+                        <div><b>HeartMate II</b> (continuous flow non-pulsatile)</div>
+                        <div><img src="{{ url_for('static', filename='images/protocol/heartmateII.jpg') }}" alt="HeartMate II">
+                            <img src="{{ url_for('static', filename='images/protocol/heartmateII_2.jpg') }}" alt="HeartMate II">
+                        </div>
+                    </div>
+                    <div class="lvads">
+                        <div><b>HeartMate XVE</b> (pulsatile)</div>
+                        <div><img src="{{ url_for('static', filename='images/protocol/heartmateXVE.jpg') }}" alt="HeartMate XVE">
+                            <img src="{{ url_for('static', filename='images/protocol/heartmateXVE_2.jpg') }}" alt="HeartMate XVE">
+                        </div>
+                    </div>
+
             </div>
         </div>
 
-        <h3>Left Ventricular Assist Devices</h3>
-
-        <div class="lvads">
-            <div><b>HeartMate III</b> (pulsatile flow)</div>
-            <div><img src="{{ url_for('static', filename='images/protocol/heartmateIII.jpg') }}" alt="HeartMate III">
-                 <img src="{{ url_for('static', filename='images/protocol/heartmateIII_2.jpg') }}" alt="HeartMate III">
-            </div>
-        </div>
-        <div class="lvads">
-            <div><b>HeartMate II</b> (continuous flow non-pulsatile)</div>
-            <div><img src="{{ url_for('static', filename='images/protocol/heartmateII.jpg') }}" alt="HeartMate II">
-                 <img src="{{ url_for('static', filename='images/protocol/heartmateII_2.jpg') }}" alt="HeartMate II">
-            </div>
-        </div>
-        <div class="lvads">
-            <div><b>HeartMate XVE</b> (pulsatile)</div>
-            <div><img src="{{ url_for('static', filename='images/protocol/heartmateXVE.jpg') }}" alt="HeartMate XVE">
-                 <img src="{{ url_for('static', filename='images/protocol/heartmateXVE_2.jpg') }}" alt="HeartMate XVE">
-            </div>
-        </div>
+        
 
         <div>
             <input type="checkbox" name="accordian" id=" LVADBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>

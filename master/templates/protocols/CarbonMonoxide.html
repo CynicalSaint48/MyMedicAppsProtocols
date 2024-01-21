@@ -828,30 +828,30 @@
                                 <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Adult:</div>
                                 <ol>
                                     <li>Mild effects (miosis, rhinorrhea, nausea, vomiting)
-                                        <ul><li><dose style="color:#f4b02a;font-weight:500">1 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                        <ul><li><dose style="color:#f4b02a;font-weight:500">1 - Atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
                                     </li>
                                     <li>Moderate effects (shortness of breath)
-                                        <ul><li><dose style="color:#f4b02a;font-weight:500">2 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                        <ul><li><dose style="color:#f4b02a;font-weight:500">2 - Atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
                                     </li>
                                     <li>Severe effects (seizures, vomiting, apnea)
-                                        <ul><li><dose style="color:#f4b02a;font-weight:500">3 - atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
+                                        <ul><li><dose style="color:#f4b02a;font-weight:500">3 - Atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
                                     </li>
                                 </ol>
                             {% else %}
                                 {% if keys.ptYears14 %}
                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Pediatric &gt; 14 years:</div>
                                     </ol>
-                                        <li><dose style="color:#f4b02a;font-weight:500">3 - atropine/2-Pralidoxime IM via auto-injector</dose></li>
+                                        <li><dose style="color:#f4b02a;font-weight:500">3 - Atropine/2-Pralidoxime IM via auto-injector</dose></li>
                                     </ol>
                                 {% elif keys.ptYears7 %}
                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Pediatric 7 - 14 years:</div>
                                     <ol>
-                                        <li><dose style="color:#f4b02a;font-weight:500">2 - atropine/2-Pralidoxime IM via auto-injector</dose></li>
+                                        <li><dose style="color:#f4b02a;font-weight:500">2 - Atropine/2-Pralidoxime IM via auto-injector</dose></li>
                                     </ol>
                                 {% else %}
                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Pediatric &lt; 7 years:</div>
                                     <ol>
-                                        <li><dose style="color:#f4b02a;font-weight:500">1 - atropine/2-Pralidoxime IM via auto-injector</dose></li>
+                                        <li><dose style="color:#f4b02a;font-weight:500">1 - Atropine/2-Pralidoxime IM via auto-injector</dose></li>
                                     </ol>
                                 {% endif %}
                             {% endif %}
@@ -859,21 +859,21 @@
                         <li>Treatment Adult:
                             <ol>
                                 <li>Mild effects (miosis, rhinorrhea, nausea, vomiting)
-                                    <ol><li>1 - atropine/2-Pralidoxime IM via auto-injectors</li></ol>
+                                    <ol><li>1 - Atropine/2-Pralidoxime IM via auto-injectors</li></ol>
                                 </li>
                                 <li>Moderate effects (shortness of breath)
-                                    <ol><li>2 - atropine/2-Pralidoxime IM via auto-injectors</li></ol>
+                                    <ol><li>2 - Atropine/2-Pralidoxime IM via auto-injectors</li></ol>
                                 </li>
                                 <li>Severe effects (seizures, vomiting, apnea)
-                                    <ol><li>3 - atropine/2-Pralidoxime IM via auto-injectors</li></ol>
+                                    <ol><li>3 - Atropine/2-Pralidoxime IM via auto-injectors</li></ol>
                                 </li>
                             </ol>
                         </li>
                         <li>Treatment Pediatric:
                             <ol>
-                                <li>&lt; 7 years of age: 1 - atropine/2-Pralidoxime IM via auto-injector</li>
-                                <li>7 - 14 years of age: 2 - atropine/2-Pralidoxime IM via auto-injector</li>
-                                <li>&gt; 14 years of age: 3 - atropine/2-Pralidoxime IM via auto-injector</li>
+                                <li>&lt; 7 years of age: 1 - Atropine/2-Pralidoxime IM via auto-injector</li>
+                                <li>7 - 14 years of age: 2 - Atropine/2-Pralidoxime IM via auto-injector</li>
+                                <li>&gt; 14 years of age: 3 - Atropine/2-Pralidoxime IM via auto-injector</li>
                             </ol>
                         </li>
                         {% endif %}
@@ -1058,9 +1058,9 @@
                             {% else %}
                                 <li>Treatment Adult:
                                     <ol>
-                                        <li>Mild effects: <a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 2 mg IV, IM, IO</li>
-                                        <li>Moderate effects: <a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 4 mg IV, IM, IO</li>
-                                        <li>Severe effects: <a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 6 mg IV, IM, IO</li>
+                                        <li>Mild effects: <a href="{{url_for('medications.atropine')}}">Atropine</a> 2 mg IV, IM, IO</li>
+                                        <li>Moderate effects: <a href="{{url_for('medications.atropine')}}">Atropine</a> 4 mg IV, IM, IO</li>
+                                        <li>Severe effects: <a href="{{url_for('medications.atropine')}}">Atropine</a> 6 mg IV, IM, IO</li>
                                         <li>Seizures: <a href="{{url_for('medications.midazolam')}}">Midazolam</a> 10 mg IM, IN</li>
                                     </ol>
                                 </li>
@@ -1068,19 +1068,19 @@
                                     <ol>
                                         <li>Mild - moderate symptoms
                                             <ol>
-                                                <li><a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 0.02 - 0.05 mg/kg IV, IM, IO (maximum 4 mg)</li>
+                                                <li><a href="{{url_for('medications.atropine')}}">Atropine</a> 0.02 - 0.05 mg/kg IV, IM, IO (maximum 4 mg)</li>
                                                 <li>Repeat 0.02 mg/kg IV, IM, IO in 5 minutes as indicated (maximum 2 mg)</li>
                                             </ol>
                                         </li>
                                         <li>Severe symptoms
                                             <ol>
-                                                <li><a href="{{url_for('medicaitons.atropine')}}">Atropine</a> 0.02 - 0.05 mg/kg IV, IM, IO (maximum 6 mg)</li>
+                                                <li><a href="{{url_for('medications.atropine')}}">Atropine</a> 0.02 - 0.05 mg/kg IV, IM, IO (maximum 6 mg)</li>
                                             </ol>
                                         </li>
                                         <li>Seizures: <a href="{{url_for('medications.midazolam')}}">Midazolam</a> 0.15 mg/kg IM (max 10 mg); 0.2 mg/kg IN (max 10 mg)</li>
                                     </ol>
                                 </li>
-                                <li>Repeat <a href="{{url_for('medicaitons.atropine')}}">Atropine</a> every 3-5 minutes as indicated</li>
+                                <li>Repeat <a href="{{url_for('medications.atropine')}}">Atropine</a> every 3-5 minutes as indicated</li>
                             {% endif %}
                     </div><hr><br>
             </div>

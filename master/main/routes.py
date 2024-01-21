@@ -10,6 +10,8 @@ from master.protocols.routes import get_key_list
 main = Blueprint('main', __name__)
 
 
+
+
 def getPt():
 
     keys= {}
@@ -61,10 +63,8 @@ def setPt(years=0, lbs=0):
 @main.route("/")
 @main.route("/home")
 def home():
-    
 
     keys = getPt()
-
     session['path'] = 'main.home'
         
     latest_update = UpdatePost.query.order_by(UpdatePost.date_posted.desc()).first()
