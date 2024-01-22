@@ -25,7 +25,7 @@ consoleHandler = logging.StreamHandler()
 logger.addHandler(consoleHandler)
 
 # Add File Handler to the root logger
-fileHandler = RotatingFileHandler('errors.log', maxBytes=1024, backupCount=5)
+fileHandler = RotatingFileHandler('master/errors/logs/errors.log', maxBytes=1024, backupCount=5)
 fileHandler.setFormatter(logFormatter)
 logger.addHandler(fileHandler)
 
