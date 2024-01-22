@@ -822,9 +822,10 @@
                     <ol>
                         <li>Initiate decontamination procedures</li>
                         <li>Airway protection; may need frequent suctioning</li>
-                        <li>Initiate decontamination procedures</li>
+                        <li>Provide supplemental oxygen per patient condition to maintain SpO<sub>2</sub> = 94 - 97%</li>
                         {% if keys.ptYears > 0 %}
                             {% if keys.ptAdult %}
+                            <li>Adult:
                                 <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Adult:</div>
                                 <ol>
                                     <li>Mild effects (miosis, rhinorrhea, nausea, vomiting)
@@ -837,7 +838,9 @@
                                         <ul><li><dose style="color:#f4b02a;font-weight:500">3 - Atropine/2-Pralidoxime IM via auto-injector</dose></li></ul>
                                     </li>
                                 </ol>
+                            </li>
                             {% else %}
+                            <li>Pediatric:
                                 {% if keys.ptYears14 %}
                                     <div class="currentPatient">Current Pt ({{ keys.ptYears }} years), Pediatric &gt; 14 years:</div>
                                     </ol>
@@ -854,6 +857,7 @@
                                         <li><dose style="color:#f4b02a;font-weight:500">1 - Atropine/2-Pralidoxime IM via auto-injector</dose></li>
                                     </ol>
                                 {% endif %}
+                            </li>
                             {% endif %}
                         {% else %}
                         <li>Treatment Adult:

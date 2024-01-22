@@ -277,31 +277,33 @@
                 <h3>Advanced Medical Care</h3>
                     <div class="advancedCare orderedList">
                         <ol>
-                            {% if keys.ptYears > 0 %}
-                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                {% if keys.ptAdult %}
-                                    <li><a FIXME: href="#">IVF</a>:
-                                        <ul>
-                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 500 - 1000 ml</dose> bolus and reassess</li>
-                                        </ul>
-                                    </li>
-                                {% else %}
-                                    {% if keys.ptMax100 %}                                     
-                                        <ol>
-                                            <li>Pediatric:<dose style="color:#f4b02a;font-weight:500"> 500 - 1000 ml </dose>as per patient condition</li>
-                                        </ol>
-                                    {% elif keys.ptMax50 %}                                     
-                                        <ol>
-                                            <li>Pediatric:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - 1000 ml</dose></li>
-                                        </ol>
-                                    {% else %}                                     
-                                        <ol>
-                                            <li>Pediatric:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }} ml</dose></li>
-                                        </ol>
+                            <li><a FIXME: href="#">IVF</a>:
+                                {% if keys.ptYears > 0 %}
+                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    {% if keys.ptAdult %}
+                                            <ol>
+                                                <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 500 - 1000 ml</dose> bolus and reassess</li>
+                                            </ol>
+                                    {% else %}
+                                        {% if keys.ptMax100 %}                                     
+                                            <ol>
+                                                <li>Pediatric:<dose style="color:#f4b02a;font-weight:500"> 500 - 1000 ml </dose>as per patient condition</li>
+                                            </ol>
+                                        {% elif keys.ptMax50 %}                                     
+                                            <ol>
+                                                <li>Pediatric:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - 1000 ml</dose></li>
+                                            </ol>
+                                        {% else %}                                     
+                                            <ol>
+                                                <li>Pediatric:<dose style="color:#f4b02a;font-weight:500"> {{ (keys.ptKgs*10)|int }} - {{ (keys.ptKgs*20)|int }} ml</dose></li>
+                                            </ol>
+                                        {% endif %}
                                     {% endif %}
+                            </li>
+                                {% else %}
+                                <li>Adult: Normal Saline <a FIXME: href="#">IVF</a> 500 - 1000 ml bolus and reassess</li>
+                                <li>Pediatric: Normal Saline <a FIXME: href="#">IVF</a> 10 - 20 ml/kg bolus and reassess</li>        
                                 {% endif %}
-                            {% else %}
-                            {% endif %}
                             <li><a href="{{url_for('medications.ondansetron')}}">Ondansetron (Zofran®)</a> for nausea/vomiting
                                 {% if keys.ptYears > 0 %}
                                             <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
@@ -335,7 +337,7 @@
                             <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
                             <li>Consider causes of hyperglycemia and treat per appropriate protocol</li>
                             <li>Obtain 12-lead ECG if patient presentation consistent with DKA</li>
-                            <li>Administer <a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> <dose style="color:#f4b02a">2 grams</dose> IV for ECG changes of suspected hyperkalemia</li>
+                            <li>Administer <a href="{{url_for('medications.calcium')}}">Calcium Gluconate</a> 2 grams IV for ECG changes of suspected hyperkalemia</li>
                         </ol>
                     </div><hr><br>
             </div>

@@ -138,7 +138,7 @@
                                         {% if keys.ptMax26 %}
                                             <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500"></dose>4 mg PO, IV, IM</li></ol>
                                         {% else %}
-                                            <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500"></dose>{{ '%0.2f'| format((ptKgs*3)/20) }} mg PO, IV, IM</li></ol>
+                                            <ol><li>Pediatric <red><b>maximum</b></red>: <dose style="color:#f4b02a;font-weight:500"></dose>{{ '%0.2f'| format((keys.ptKgs*3)/20) }} mg PO, IV, IM</li></ol>
                                         {% endif %}
                                     {% endif %}
                                 {% else %}

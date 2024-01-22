@@ -29,7 +29,7 @@
                             <li>Volume overload</li>
                         </ul>    
                     </div>
-                    <div><b>Pediatric</b>
+                    <div><li><b>Pediatric</b></li>
                         <ul>
                             <li>Anaphylaxis</li>
                             <li>Aspiration</li>
@@ -246,12 +246,11 @@
                                             <ol>
                                                 <li>Pediatric: <b style="color:#D2042D;font-weight:600">maximum dose</b>; <dose style="color:#f4b02a">16 mg IV, PO</dose>
                                                     <ol>
-                                                        <li> May refrain from administering IV if placing IV access strictly for the purpose of administering dexamethasone, as this may further distress the pediatric patient worsening any respiratory distress</li>
+                                                        <li> May refrain from administering IV if placing IV access strictly for the purpose of administering <a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a>, as this may further distress the pediatric patient worsening any respiratory distress</li>
                                                     </ol>
                                                 </li>
                                             </ol>
                                         {% else %}
-                                                <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                                 <ol>
                                                     <li>Pediatric: <dose style="color:#f4b02a;font-weight:500">{{ '%0.2f'| format(keys.ptKgs * 0.6) }}mg IV, PO</dose>
                                                         <ol>
@@ -348,7 +347,7 @@
                         <ol>
                             <li>4-lead ECG and refer to appropriate protocol as indicated</li>
                             <li>12-lead ECG for patient history consistent with cardiac ischemia or dysrhythmia</li>
-                            <li><a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin </a>(adult patients only)
+                            <li><a href="{{url_for('medications.nitroglycerin')}}">Nitroglycerin </a>(Adult patients only)
                                 {% if keys.ptYears > 0 %}
                                 <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                     {% if keys.ptAdult %}
@@ -386,29 +385,36 @@
                                     </ol>
                                 {% endif %}
                             </li>
-                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
-                                {% if keys.ptYears > 0 %}
-                                            <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
-                                    {% if keys.ptAdult %}
-                                        <ol>
-                                            <li>Adult: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>
-                                            <div><b>OR</b></div>
-                                            <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> 10 - 20 mcg/kg/min</dose></li>
-                                        </ol>
-                                    {% else %}
-                                        <ol>
-                                            <li><a href="{{url_for('medications.dopamine')}}">Dopamine</a>: <dose style="color:#f4b02a;font-weight:500">2 - 10 mcg/min IV for hypotension</dose></li>
-                                            <div><b>OR</b></div>
-                                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine</a>: <b style="color:#D2042D;font-weight:600">must contact </b><a FIXME: href="#">Medical Control Ring Central</a></li>
-                                        </ol>
-                                    {% endif %}
-                                {% else %}
+                            {% if keys.ptYears > 0 %}
+                                {% if keys.ptAdult %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
                                     <ol>
-                                        <li>Adult: 2 - 10 mcg/min IV for hypotension</li>
-                                        <li>Pediatric: <b style="color:#D2042D;font-weight:600">must contact </b><a FIXME: href="#">Medical Control Ring Central</a></li>
+                                        <li>Adult: <dose style="color:#f4b02a;font-weight:500"> 2 - 10 mcg/min IV</dose></li>
+                                        <li>Discontinue <a FIXME: href="#">CPAP</a> if already instituted</li>
                                     </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
+                                {% else %}
+                                <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                    <div class="currentPatient">Current Pt ({{ keys.ptYears }} years, {{ keys.ptKgs }}kgs):</div>
+                                    <ol>
+                                        <li>Pediatric: Contact<a FIXME: href="#">Medical Control Ring Central</a></li>
+                                        <li>Discontinue <a FIXME: href="#">CPAP</a> if already instituted</li>
+                                    </ol>
+                                    <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
+                                </li>
                                 {% endif %}
+                            {% else %}
+                            <li><a href="{{url_for('medications.norepinephrine')}}">Norepinephrine (Levophed®)</a>
+                                <ol>
+                                    <li>Adult: 2 - 10 mcg/min IV</li>
+                                    <li>Pediatric: Contact <a FIXME: href="#">Medical Control Ring Central</a></li>
+                                    <li>Discontinue <a FIXME: href="#">CPAP</a> if already instituted</li>
+                                </ol>
+                                <div><b>OR</b> <a href="{{url_for('medications.dopamine')}}">Dopamine</a><dose style="color:#f4b02a;font-weight:500"> @ 10 - 20 mcg/kg/min</dose></div>
                             </li>
+                            {% endif %}
                             <li>Advanced Airway management as indicated</li>
                                 <ol>
                                     <li><a FIXME:href="#"FIXME:>Airway: Intubation Protocol</a> as indicated </li>
@@ -417,9 +423,17 @@
                             <li>Ensure proper tube placement using capnometry, SpO<sub>2</sub> and ventilate with 100% oxygen</li>
                         </ol>
                     </p>
-                    <h3>Additional Considerations</h3>
-                    <div class="edemaAdditional orderedList">
-                        <ul>
+                    
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id="edemaAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="edemaAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
                             <li>Patients with respiratory distress and elevated blood pressure
                                 <ul>
                                     <li>Assess patient to determine if the elevated blood pressure is the cause of the respiratory distress (e.g. CHF)
@@ -437,7 +451,6 @@
                             </li>
                         </ul>
                     </div><hr><br>
-                    
             </div>
         </div>
 
@@ -528,7 +541,7 @@
                                 </ol>
                             {% endif %}
                             <ul>
-                                <li>Do not start IV access simply for dexamethasone administration - this may further upset the child worsening respiratory distress</li>
+                                <div class="add-margin-L"><li>Do not start IV access simply for <a href="{{url_for('medications.dexamethasone')}}">Dexamethasone</a> administration - this may further upset the child worsening respiratory distress</li></div>
                             </ul>
                         </li>
                         <li>Reassess patient frequently</li>
@@ -684,13 +697,21 @@
                         </li>
                     </ol>
                 </p>
-                <h3>Additional Considerations</h3>
-                <div class="edemaAdditional orderedList">
-                    <ul>
-                        <li>For patient comfort remember midazolam (Versed®) does not treat pain</li>
-                    </ul>
-                </div><hr><br>
+                
             </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id="intubAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="intubAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>For patient comfort remember <a href="{{url_for('medications.midazolam')}}">Midazolam (Versed®)</a> does not treat pain</li>
+                        </ul>
+                    </div>
+            </div><hr><br>
         </div>
 
         <h2>Ventilator Emergencies</h2>
@@ -732,51 +753,57 @@
                     <ol>
                         <li>Assess ventilator, oxygen source, and circuit</li>
                         <li>Attempt to maintain patient on patient's typical ventilator settings</li>
-                        <li> Contact <a FIXME: href="#"></a>Medical Control Ring Central to attempt corrective actions to improve cause of respiratory distress/increased work of breathing</li>
+                        <li> Contact <a FIXME: href="#">Medical Control Ring Central</a> to attempt corrective actions to improve cause of respiratory distress/increased work of breathing</li>
                             <ul>
                                 <li>Family may be able to provide instructions from patient's physician</li>
                             </ul>
                         <li>Ventilate with bag-valve-device if unable to oxygenate/ventilate with ventilator despite appropriate adjustment to settings</li>
                         <li>Utilize continuous waveform ETCO2 during transport</li>
                     </ol>
-                </p>
-
-                <h3>Additional Considerations</h3>
-                <div class=" ventAdditional orderedList">
-                <ul>
-                    <li>Troubleshooting <dope>DOPE</dope> pneumonic
-                        <ul>
-                            <li><dope>D</dope>isplaced ETT, tracheostomy</li>
-                            <li><dope>O</dope>bstruction, <b>O</b>xygen source</li>
-                            <li><dope>P</dope>neumothorax</li>
-                            <li><dope>E</dope>quipment failure</li>
-                        </ul>
-                    </li>
-                    <li>Typical alarms
-                        <ul>
-                            <li>Low pressure/apnea
-                                <ul>
-                                    <li>Loose or disconnected circuit</li>
-                                    <li>Leak in circuit or at tracheostomy site</li>
-                                </ul>
-                            </li>
-                            <li>Low power
-                                <ul>
-                                    <li>Internal battery depletion</li>
-                                </ul>
-                            </li>
-                            <li>High pressure
-                                <ul>
-                                    <li>Plugged/obstructed airway or circuit</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>When in doubt: ventilate with bag-valve-device if unable to oxygenate/ventilate with ventilator</li>
-                </ul>
-                </div><hr><br>
+                </p><hr><br>
             </div>
-        </div><br>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id="ventAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="ventAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Troubleshooting <dope>DOPE</dope> pneumonic
+                                <ul>
+                                    <li><dope>D</dope>isplaced ETT, tracheostomy</li>
+                                    <li><dope>O</dope>bstruction, <b>O</b>xygen source</li>
+                                    <li><dope>P</dope>neumothorax</li>
+                                    <li><dope>E</dope>quipment failure</li>
+                                </ul>
+                            </li>
+                            <li>Typical alarms
+                                <ul>
+                                    <li>Low pressure/apnea
+                                        <ul>
+                                            <li>Loose or disconnected circuit</li>
+                                            <li>Leak in circuit or at tracheostomy site</li>
+                                        </ul>
+                                    </li>
+                                    <li>Low power
+                                        <ul>
+                                            <li>Internal battery depletion</li>
+                                        </ul>
+                                    </li>
+                                    <li>High pressure
+                                        <ul>
+                                            <li>Plugged/obstructed airway or circuit</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>When in doubt: ventilate with bag-valve-device if unable to oxygenate/ventilate with ventilator</li>
+                        </ul>
+                    </div>
+            </div><hr><br>
+        </div>
 
         <h2>Tracheostomy Tube Emergencies</h2>
 
@@ -847,23 +874,29 @@
                                 </ol>
                             </li>
                         </ol>
-                    </p>
-
-                <h3>Additional Considerations</h3>
-                <div class=" ventAdditional orderedList">
-                <ul>
-                    <li>Utilize family members as appropriate for assistance in the care of the tracheostomy</li>
-                    <li>Anticipate more difficult tube changing with tracheostomies &lt; 2-weeks old</li>
-                    <li>Potential complications
-                        <ul>
-                            <li>Airway obstruction</li>
-                            <li>Airway device misplacement</li>
-                            <li>Bleeding</li>
-                        </ul>
-                    </li>
-                </ul>
-                </div><hr><br>
+                    </p><hr><br>
             </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="accordian" id="trachAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <label for="trachAdditional" class="accordian__label">Additional Information</label>
+            <div class="additionalSection">
+                <h3>Additional Considerations</h3>
+                    <div>
+                        <ul class="addl-list">
+                            <li>Utilize family members as appropriate for assistance in the care of the tracheostomy</li>
+                            <li>Anticipate more difficult tube changing with tracheostomies &lt; 2-weeks old</li>
+                            <li>Potential complications
+                                <ul>
+                                    <li>Airway obstruction</li>
+                                    <li>Airway device misplacement</li>
+                                    <li>Bleeding</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div><hr><br>
         </div>
         
         <H2> Breathing Problems Additional Info</H2>
