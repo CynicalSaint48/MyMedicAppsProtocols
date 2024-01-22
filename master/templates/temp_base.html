@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if varTitle %}
+    <title>My Medic Apps - {{ varTitle }}</title>
+    {% else %}
+    <title>My Medic Apps</title>
+    {% endif %}
+
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+</head>
+
+<body>
+    <div class="bodyContainer">
+        <div class="header">
+            <button class="menu-icon-btn" data-menu-icon-btn>
+                <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon-right"><path d="M4 6h16v2H4zm4 5h12v2H8zm5 5h7v2h-7z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon-left hidden"><path d="M4 11h12v2H4zm0-5h16v2H4zm0 12h7.235v-2H4z"></path></svg>
+            </button>
+            <div class="agency"></div>
+            <div class="pt-info-div">
+            {% if current_user.is_authenticated %}
+                <div class="btn-user">
+                    {% if current_user.displayName %}
+                    <p>{{ current_user.displayName }}</p>
+                    {% else %}
+                        <p>{{ current_user.email }}</p>
+                    {% endif %}                    
+                    <div><a href="{{url_for('users.account')}}" class="small-link">Settings/Log Out</a></div>
+                </div>
+            {% else %}
+                <a class="btn-login" href="{{url_for('users.login')}}">Login\Register</button>
+            {% endif %}
+            </div>
+        </div>
+
+
+        <div class="container">
+            <aside class="sidebar" data-sidebar-state>
+                <div class="middle-sidebar">
+                    <ul>
+                        <li>
+                            <button class="top-list-button"><a href="{{ url_for('main.home')}}"><i class="fa-solid fa-gauge fa-lg"></i><div class="hidden-sidebar">Home Screen</div></a></button>
+                        </li>
+                        <li id="proto-id">                     
+                            <button class="top-list-button" data-proto-btn><a href="{{ url_for('main.home')}}" onclick="return false"><i class="fa-solid fa-notes-medical fa-lg"></i><div class="hidden-sidebar">Protocols</div></a></button>
+                            <ul proto-list id="proto-list-id" style="display:none">
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Abdominal Pain</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Allergic Reaction</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Bites and Envenomations</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Animal Bites</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Assault</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Back Pain</div></a>
+                                </li>
+                                
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Breathing Problems</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Burns</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">CO, Cyanide and Hazmat</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Cardiac Arrest</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Chest Pain - Non Cardiac</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Choking</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Convulsions (Seizure)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Diabetic Problems</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Drowning</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Electrocution</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Eye Problems</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Falls</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Headache</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Heart Problems</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Heat/Cold Exposure</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Hemorrhage - Medical Etiology</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Industrial Accident</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Overdose</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Pregnancy & Childbirth</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Psychiatric</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Sick Person</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Viral Hemorrhagic Fever</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">High Consequence Pathogen</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Stab Wound</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Stroke</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Traffic Accident</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Traumatic Injury</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Unconscious</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Unknown Problem</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Transfer - Interfacility</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Gunshot Wound</div></a>
+                                </li>                            
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Pedestrian Struck</div></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="meds-id">
+                            <button class="top-list-button" data-meds-btn><a href="#"><i class="fa-solid fa-file-prescription fa-lg"></i><div class="hidden-sidebar">&ensp;Medications</div></a></button>
+                            <ul meds-list style="display:none">
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Acetaminophen (Tylenol)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Adenosine (Adenocard)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Albuterol (Proventil)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Aspirin</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Atropine</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Calcium Gluconate</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Cefazolin (Ancef)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Dexamethasone (Decadron)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Diltiazem (Cardizem)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Diphenhydramine (Benadryl)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Dopamine</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Droperidol</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Epinephrine</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Fentanyl</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Gulcagon (GlucaGen)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Glucose</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Ibuprophen (Motrin)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Ketamine</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Labetalol (Normodyne)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Lidocaine (Cardiac Arrest)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Magnesium Sulfate</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Midazolam (Versed)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Naloxone (Narcan)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Nitroglycerine (NitroStat)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Nitrous Oxide</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Norepinephrine (Levophed)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Ondansetron (Zofran)</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Sodium Bicarb</div></a>
+                                </li>
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Sodium Thiosulfate</div></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="other-id">
+                            <button class="top-list-button" data-other-btn><a href="#"><i class="fa-solid fa-truck-medical fa-lg"></i><div class="hidden-sidebar">Tools</div></a>
+                            </button>
+                            <ul other-list id="other-list-id" style="display:none">
+                                <li>
+                                    <button class="bottom-list-button"><a href=""><div class="hidden-sidebar">Phone Numbers</div></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul><hr>
+                    <div class="pt-info-section">
+                        <div>
+                            <a href="">
+                                <button class="pt-info-div2">
+                                    <p>Pt Age:</p>
+                                    <p>{{ keys.ptYears }} years</p>
+                                    <div class="mvdown"><p></p></div>
+                                    
+                                    <p>Pt Weight:</p>
+                                    <p>{{ keys.ptKgs }} kgs</p>
+                                </button>
+                            </a>             
+                        </div>
+                        <div>
+                            <a class="small-link" href="">Clear Pt</a>
+                        </div>            
+                        
+                                     
+                    </div>
+                    <hr> 
+                </div>
+            </aside>
+        
+    
+        {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1057,6 +1057,12 @@ dope {
    margin-bottom: 3px;
 }
 
+.appDesc {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+}
+
 @media (max-width: 1200px){
    .med-image {
       flex: 1 0;

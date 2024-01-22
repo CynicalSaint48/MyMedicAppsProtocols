@@ -1,6 +1,6 @@
 # users/routes.py
 
-from flask import render_template, request, Blueprint, redirect, url_for, session, flash
+from flask import render_template, request, Blueprint, redirect, url_for, session, flash, abort
 from decimal import *
 from master.users.forms import RegistrationForm, LoginForm, AccountForm
 from master import db, bcrypt
@@ -16,7 +16,16 @@ def register():
 
     keys = get_key_list()
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        if not current_user.email == 'michaels3@medic911.com':
+           abort(403) 
+        else:
+            pass
+
+    else:
+        abort(403) 
+
+    # if current_user.is_authenticated:
+    #     return redirect(url_for('main.home'))
 
     form = RegistrationForm()
     if form.validate_on_submit():

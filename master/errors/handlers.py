@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, session
 from master.protocols.routes import get_key_list
 from decimal import *
 from werkzeug.exceptions import HTTPException
-import json
 
 errors = Blueprint('errors', __name__)
 
@@ -10,6 +9,7 @@ errors = Blueprint('errors', __name__)
 def page_not_found(e):
     keys = get_key_list()
     return render_template('errors/404.html', keys=keys, trace=e), 404
+
 
 @errors.app_errorhandler(403)
 def permission_denied(e):
@@ -31,5 +31,6 @@ def handle_exception(e):
     keys = get_key_list()
     # now you're handling non-HTTP exceptions only
 
-    return render_template("errors/500.html", trace=e, keys=keys), 500
+    return render_template("errors/5001.html", trace=e, keys=keys), 500
+
 

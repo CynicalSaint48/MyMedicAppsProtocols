@@ -358,6 +358,7 @@ def allergy():
 
     keys = get_key_list()
     session['path'] = 'protocols.allergy'
+    
     return render_template('/protocols/AllergicReaction.html', keys=keys, varTitle="Allergic Reaction")
 
 @protocols.route("/protocols/abdominal_pain")

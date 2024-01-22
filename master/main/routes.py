@@ -66,10 +66,14 @@ def home():
 
     keys = getPt()
     session['path'] = 'main.home'
-        
     latest_update = UpdatePost.query.order_by(UpdatePost.date_posted.desc()).first()
+    print('here')
+    if current_user.is_authenticated:
+        return render_template('home.html', varTitle='Home', keys=keys, latest_update=latest_update)
+    else:
+        return redirect(url_for('users.login'))
+    
 
-    return render_template('home.html', varTitle='Home', keys=keys, latest_update=latest_update)
 
 @main.route("/clrPt")
 def clrPt():

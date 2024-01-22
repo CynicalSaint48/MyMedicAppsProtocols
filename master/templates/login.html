@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "temp_base.html" %}
 {% block content %}
 <div class="container1 content1">
 
@@ -68,8 +68,18 @@
     </div>
     <div class="border-top">
         <small class="text-muted">
-            Need an Account?  <a href="{{ url_for('users.register') }}" class="ml-2">Register</a>   
+            <!-- Need an Account?  <a href="{{ url_for('users.register') }}" class="ml-2">Register</a>    -->
+            Need an Account?  Contact michael@ninersabroad.com to request access.
         </small>
+    </div><br>
+    <div class="appDesc">
+    Welcome to My Medic Apps;  This application is meant to provide easy and quick access to your Pre-Hospital Protocols, Standing Orders, Medication Formulary and additional tools.<br><br>
+    The web-based format allows for cross-platform access.  All Windows, Mac, Android and IOS devices are supported.  The responsive layout changes depending on the size and shape of the screen that it is being viewed on.<br><br>
+    Users are able to Expand or Collapse sections of the Protocol, allowing them to configure a view that is relevant to their use-case.<br><br>
+    Entry of Patient Age and Weight (or other patient variables) will integrate patient specific treatment directly into the protocol, including differing medications, dosages, maximums, or contraindications.  <br><br>
+    Together, these features provide you with a view of each of your protocols that is specific to the provider utilizing them, and the patient being treated.<br><br><br><hr><br>
+
+    If you are interested in hearing more, or would like to demo the application, please contact Michael Schmidt - michael@ninersabroad.com
     </div>
 </div>
 {% endblock %}
