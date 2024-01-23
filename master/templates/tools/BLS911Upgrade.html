@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container content1">
+    <div class="accordian">
+        <H1>ALS Upgrade Indications</H1><hr>
+                
+        <div>
+            <input type="checkbox" name="accordian" id="indicationsNarrative" class="accordian__input" checked="checked">
+            <label for="indicationsNarrative" class="accordian__label">ALS Upgrade Indications</label>
+            <div class="narrativeSection">
+                <h3>Any of the following may indicate an ALS upgrade:</h3>
+                <div class="oneChoiceList">
+                    <ul class="addl-list">
+                        <li><dose style="color:#f4b02a;font-weight:500">BGL &lt; 60mg/dl</dose> & <dose style="color:#f4b02a;font-weight:500">unable to take </dose><a href="{{url_for('medications.glucose')}}">Oral Glucose</a>;  <a href="{{'protocols.diabetic'}}">Diabetic Protocol</a></li>
+                        <li><a href="{{url_for('protocols.traumaticInjury')}}">Traumatic Injury</a> requiring <b><dose style="color:#f4b02a;font-weight:500">Narcotic pain managment</b></dose> by a Paramedic
+                            <ul>
+                                <li><i>Pain rating &gt; 7 and/or inability to take PO </i><a href="{{url_for('medications.acetaminophen')}}">Acetaminophen</a></li>
+                            </ul>
+                        </li>
+                        <li>Symptoms consistent with <dose style="color:#f4b02a;font-weight:500">potential Cardiac etiology</dose>:
+                            <ul>
+                                <li><a href="{{url_for('protocols.unconscious')}}">Syncope</a>, <a href="{{url_for('protocols.chestPain')}}">Chest Pain</a>, <a href="{{url_for('protocols.heartProblems')}}">Heart Problems</a></li>
+                            </ul>
+                        </li>
+                        <li>Necessity for <dose style="color:#f4b02a;font-weight:500">IV Fluid Resuscitation</dose>:
+                            <ul>
+                                <li><a href="{{url_for('protocols.heartProblems')}}">Heart Problems</a> - Hypotension</li>
+                            </ul>
+                        </li>
+                        <li>Necessity for <dose style="color:#f4b02a;font-weight:500">IM medication administration</dose>:
+                            <ul>
+                                <li>Includes patients given IM <a href="{{url_for('medications.epinephrine')}}">Epinephrine</a> by a BLS provider</li>
+                            </ul>
+                        </li>
+                        <li>Necessity for <dose style="color:#f4b02a;font-weight:500">IV medication administration</dose></li>
+                        <li>Indication for a <dose style="color:#f4b02a;font-weight:500">12-Lead EKG</dose></li>
+                        <li>Clinical Impression:
+                            <ul>
+                                <li>ALS upgrade can be initiated if EMT clinical impression following assessment and/or treatment is that <dose style="color:#f4b02a;font-weight:500">ALS evaluation or treatment is needed.</dose></li>
+                            </ul>
+                        </li>
+                        <li>Necessity for any other <dose style="color:#f4b02a;font-weight:500">ALS intervention</dose></li>
+                    </ul><hr><br>
+                </div>
+
+                <H3>Any <dose style="color:#f4b02a;font-weight:500"><b>two</b></dose> of the following may indicate an ALS upgrade:</H3>
+                    <div class="twoChoiceList">
+                        <ul class="addl-list">
+                            <li><dose style="color:#f4b02a;font-weight:500">GCS &lt; 12</dose>
+                                <div class="add-margin-L">Exceptions:
+                                <ul>
+                                    <li>GCS &lt; 12 is baseline for this patient</li>
+                                    <li><a href="{{'protocols.diabetic'}}">Hypoglycemia</a>; GCS corrected with <a href="{{url_for('medications.glucose')}}">Oral Glucose</a></li>
+                                    <li><a href="{{'protocols.overdose'}}">Overdose</a>; GCS corrected with <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a></li>
+                                </ul>
+                                </div>
+                            </li>
+                            <li><dose style="color:#f4b02a;font-weight:500">RR &lt; 8</dose>
+                                <div class="add-margin-L">Exceptions:
+                                <ul>
+                                    <li><a href="{{'protocols.overdose'}}">Overdose</a>; RR corrected with <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a></li>
+                                </ul>
+                                </div>
+                            </li>
+                            <li><dose style="color:#f4b02a;font-weight:500">RR &gt; 24</dose></li>
+                            <li><dose style="color:#f4b02a;font-weight:500">Systolic BP &lt; 90mmHg</dose></li>
+                            <li><dose style="color:#f4b02a;font-weight:500">Systolic BP &gt; 180mmHg</dose>
+                                <div class="add-margin-L"><i>Symptomatic</i> Hypertension:
+                                <ul>
+                                    <li>Chest Pain</li>
+                                    <li>Dyspnea</li>
+                                    <li>Altered Mental Status</li>
+                                    <li>Focal Neurological Deficits</li>
+                                </ul>
+                                </div>
+                            </li>
+                            <li><dose style="color:#f4b02a;font-weight:500">HR &lt; 60bpm</dose>
+                                <div class="add-margin-L"><i>Symptomatic</i> Bradycardia
+                                    <ul>
+                                        <li>Syncope</li>
+                                        <li>Lightheaded/Dizzy</li>
+                                        <li>Shortness of Breath</li>
+                                        <li>Altered Mental Status</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><dose style="color:#f4b02a;font-weight:500">HR &gt; 100bpm</dose>
+                                <div class="add-margin-L">2 or more consecutive measurments</div>
+                            </li>
+                            <li><dose style="color:#f4b02a;font-weight:500">SpO<sub>2</sub> &lt; 90%</dose>
+                                <div class="add-margin-L">Exceptions:
+                                <ul>
+                                    <li>SpO<sub>2</sub> is baseline for patient</li>
+                                    <li><a href="{{'protocols.overdose'}}">Overdose</a>; SpO<sub>2</sub> corrected with <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a></li>
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div><hr><br>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
