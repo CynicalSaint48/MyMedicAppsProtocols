@@ -433,6 +433,14 @@ def cardiacArrest():
 
     return render_template('/protocols/CardiacArrest.html', keys=keys, varTitle="Cardiac Arrest")
 
+@protocols.route("/protocols/CardiacArrest_collapsed")
+def cardiacArrestcollapsed():
+
+    keys = get_key_list()
+    session['path'] = 'protocols.cardiacArrest'
+
+    return render_template('/protocols/CardiacArrest_collapsed.html', keys=keys, varTitle="Cardiac Arrest")
+
 @protocols.route("/protocols/ChestPain")
 def chestPain():
 

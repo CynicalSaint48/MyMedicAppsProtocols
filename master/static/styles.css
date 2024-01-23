@@ -36,6 +36,9 @@ a {
     --sidebar-width: 60px;
     --animation-duration: 200ms;
     --animation-timing-curve: ease-in-out;
+    --open-menu-width: 285px;
+    --view-width: 100vw;
+    --twenty-margin: 20px;
  }
 
  .highlight-yellow {
@@ -995,11 +998,13 @@ dope {
 
 .lvads {
    display: flex;
+   flex-direction: column;
    flex-wrap: wrap;
    margin-bottom: 20px;
    gap: 20px;
-   width: 100vw;
+   width: calc(var(--view-width) - var(--twenty-margin) - var(--sidebar-width));
 }
+
 
 .differentialText li {
    margin-right: 20px;
@@ -1057,11 +1062,25 @@ dope {
    margin-bottom: 3px;
 }
 
+.content1 {
+   width: calc(var(--view-width) - var(--sidebar-width) - var(--twenty-margin));
+}
+
+.accordian {
+   width: calc(var(--view-width) - var(--sidebar-width) - var(--twenty-margin));
+}
+
 .appDesc {
    display: flex;
    flex-direction: column;
    flex-wrap: wrap;
 }
+
+.reduce {
+   scale: 66%;
+}
+
+
 
 @media (max-width: 1200px){
    .med-image {
@@ -1124,16 +1143,18 @@ dope {
    }
 }
 
- @media (min-width: 950px) {
+ @media (min-width: 1250px) {
    .bodyContainer {
-      width: 1405px;
-      margin: 0 auto;
+      /* width: 1405px; */
+      width: 66VW;
+      margin-left: 17vw;
+      margin-right: 17vw;
    }
    .accordian {
-      min-width: 1100px;
+      /* min-width: 1100px; */
    }
    .content1 h1 {
-      min-width: 1100px
+      /* min-width: 1100px */
    }
 
    .pt-info-div2 {
@@ -1169,6 +1190,11 @@ dope {
 
    .content1 {
       margin-left: 285px;
+      width: calc(var(--view-width) - var(--open-menu-width));
+   }
+
+   .accordian {
+      width: calc(var(--view-width)*.66 - var(--open-menu-width));
    }
 
    .small-screen {

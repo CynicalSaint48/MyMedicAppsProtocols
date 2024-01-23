@@ -2,9 +2,9 @@
 {% block content %}
 <div class="container content1">
     <div class="accordian">
-        <H1> Cardiac Arrest</H1><div class="add-margin-L"><a href="{{url_for('protocols.cardiacArrestcollapsed')}}">Collapse All</a></div><hr>
+        <H1> Cardiac Arrest</H1><hr>
         <div>
-            <input type="checkbox" name="accordian" id=" cardiacTTNarrative" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showNarrative %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" cardiacTTNarrative" class="accordian__input" >
             <label for=" cardiacTTNarrative" class="accordian__label">Narrative Protocol</label>
             <div class="narrativeSection">
                 <h3>Differential Diagnosis</h3>
@@ -31,7 +31,7 @@
         </div>
 
         <div>
-            <input type="checkbox" name="accordian" id="cardiacBasicTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showBasic %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id="cardiacBasicTreatment" class="accordian__input" >
             <label for="cardiacBasicTreatment" class="accordian__label">BLS Treatment</label>                
             <div class="basicTreatmentSection">
                 <h3>Basic Medical Care</h3>
@@ -78,7 +78,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id="cardiacAdvancedTreatment" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdvanced %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id="cardiacAdvancedTreatment" class="accordian__input" >
             <label for="cardiacAdvancedTreatment" class="accordian__label">ALS Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -118,7 +118,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id="cardiacAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id="cardiacAdditional" class="accordian__input" >
             <label for="cardiacAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>
@@ -144,7 +144,7 @@
         <h2>Ventricular Fibrillation, Pulseless VT</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id="cardiac1AdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id="cardiac1AdvancedTreatment" class="accordian__input" >
             <label for="cardiac1AdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                     <div class="advancedCare orderedList"><br>
@@ -237,7 +237,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id="cardiac1Additional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id="cardiac1Additional" class="accordian__input" >
             <label for="cardiac1Additional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>
@@ -253,7 +253,7 @@
         <h2>VF, Pulseless VT Present/Persisting after Initial Intervention</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id="cardiacOneAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id="cardiacOneAdvancedTreatment" class="accordian__input" >
             <label for="cardiacOneAdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -413,7 +413,7 @@
             </div>
         </div>
         <div>
-            <input type="checkbox" name="accordian" id="cardiacONEAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id="cardiacONEAdditional" class="accordian__input" >
             <label for="cardiacONEAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>
@@ -434,7 +434,7 @@
         <h2>Torsades de Points</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id="torsadesAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id="torsadesAdvancedTreatment" class="accordian__input" >
             <label for="torsadesAdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -636,7 +636,7 @@
         <h2>Pulseless Electrical Activity</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id=" peaAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" peaAdvancedTreatment" class="accordian__input" >
             <label for=" peaAdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -863,7 +863,7 @@
         <h2>Asystole</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id=" asystoleAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" asystoleAdvancedTreatment" class="accordian__input" >
             <label for=" asystoleAdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -1038,7 +1038,7 @@
         <h2>Pulseless Wide-complex bradycardia, prolonged QT-interval, or sine wave possibly resulting from hyperkalemia</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id=" arrestOtherAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" arrestOtherAdvancedTreatment" class="accordian__input" >
             <label for=" arrestOtherAdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -1150,7 +1150,7 @@
         </div>
 
         <div>
-            <input type="checkbox" name="accordian" id=" arrestOtherAdditional" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" arrestOtherAdditional" class="accordian__input" >
             <label for=" arrestOtherAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>
@@ -1175,7 +1175,7 @@
         <h2>Adult Blunt Trauma Arrest</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id=" adultBluntAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" adultBluntAdvancedTreatment" class="accordian__input" >
             <label for=" adultBluntAdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -1213,7 +1213,7 @@
         <h2>Adult Penetrating Trauma Arrest</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id=" adultPenetratingAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" adultPenetratingAdvancedTreatment" class="accordian__input" >
             <label for=" adultPenetratingAdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -1245,7 +1245,7 @@
         <h2>Pediatric Blunt or Penetrating Trauma Arrest</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id=" pedTraumaAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" pedTraumaAdvancedTreatment" class="accordian__input" >
             <label for=" pedTraumaAdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -1319,7 +1319,7 @@
         </div>
 
         <div>
-            <input type="checkbox" name="accordian" id=" pedTraumaAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id=" pedTraumaAdditional" class="accordian__input" >
             <label for=" pedTraumaAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>
@@ -1347,7 +1347,7 @@
         <h2>Post-Resuscitation Care</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id=" postResusAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" postResusAdvancedTreatment" class="accordian__input" >
             <label for=" postResusAdvancedTreatment" class="accordian__label">Treatment</label>
             <div class="advancedTreatmentSection">
                 <h3>Traumatic Cardiac Arrest</h3>
@@ -1454,7 +1454,7 @@
         </div>
 
         <div>
-            <input type="checkbox" name="accordian" id=" postResusAdditional" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" postResusAdditional" class="accordian__input" >
             <label for=" postResusAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>
@@ -1494,7 +1494,7 @@
         <h2>Focused Cardiac Arrest</h2>
 
         <div>
-            <input type="checkbox" name="accordian" id=" responderAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" responderAdvancedTreatment" class="accordian__input" >
             <label for=" responderAdvancedTreatment" class="accordian__label">First Responder</label>
             <div class="advancedTreatmentSection">
                 <h3>First Responder Arrives Prior to Medic</h3>
@@ -1547,7 +1547,7 @@
         </div>
 
         <div>
-            <input type="checkbox" name="accordian" id=" medicAdvancedTreatment" class="accordian__input" checked="checked">
+            <input type="checkbox" name="accordian" id=" medicAdvancedTreatment" class="accordian__input" >
             <label for=" medicAdvancedTreatment" class="accordian__label">Advanced Medical Care</label>
             <div class="advancedTreatmentSection">
                 <h3>Advanced Medical Care</h3>
@@ -1648,7 +1648,7 @@
         </div>
 
         <div>
-            <input type="checkbox" name="accordian" id="focusedAdditional" class="accordian__input" {% if current_user.is_authenticated %}{% if current_user.showAdditional %}checked="checked"{% else %}{% endif %}{% else %}checked="checked"{% endif %}>
+            <input type="checkbox" name="accordian" id="focusedAdditional" class="accordian__input" >
             <label for="focusedAdditional" class="accordian__label">Additional Information</label>
             <div class="additionalSection">
                 <h3>Additional Considerations</h3>
