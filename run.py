@@ -6,28 +6,28 @@ from logging.handlers import RotatingFileHandler
 
 app = create_app()
 
-logger = logging.getLogger()
-class NewFormatter(logging.Formatter):
-    def format(self, record):
-        if has_request_context():
-            record.url = request.url
-            record.remote = request.remote_addr
-        else:
-            record.url = None
-            record.remote = None
-        return super().format(record)
+# logger = logging.getLogger()
+# class NewFormatter(logging.Formatter):
+#     def format(self, record):
+#         if has_request_context():
+#             record.url = request.url
+#             record.remote = request.remote_addr
+#         else:
+#             record.url = None
+#             record.remote = None
+#         return super().format(record)
 
-logFormatter = NewFormatter("%(asctime)s - %(url)s - %(remote)s - %(levelname)s - %(message)s", datefmt="%m-%d-%Y %H:%M:%S")
+# logFormatter = NewFormatter("%(asctime)s - %(url)s - %(remote)s - %(levelname)s - %(message)s", datefmt="%m-%d-%Y %H:%M:%S")
 
 
-# Add console Handler to the root logger
-consoleHandler = logging.StreamHandler()
-logger.addHandler(consoleHandler)
+# # Add console Handler to the root logger
+# consoleHandler = logging.StreamHandler()
+# logger.addHandler(consoleHandler)
 
-# Add File Handler to the root logger
-fileHandler = RotatingFileHandler('master/errors/logs/errors.log', maxBytes=1024, backupCount=5)
-fileHandler.setFormatter(logFormatter)
-logger.addHandler(fileHandler)
+# # Add File Handler to the root logger
+# fileHandler = RotatingFileHandler('master/errors/logs/errors.log', maxBytes=1024, backupCount=5)
+# fileHandler.setFormatter(logFormatter)
+# logger.addHandler(fileHandler)
 
 @app.before_request
 def make_session_permanent():

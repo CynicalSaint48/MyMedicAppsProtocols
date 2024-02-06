@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container1 content1">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="message-div">
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith%}
+
+    <H1>Admin - Manage Users</H1><hr><br>
+    <a class="give-border"href="{{url_for('users.register')}}">Add New User</a><br><br>
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <div class="jumbotron">
+
+                    <table class="USERStable">
+                        <thead>
+                            <tr>
+                                <th>email</th>
+                                <th>action&emsp;&emsp;&emsp;&emsp;</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        <button class="btn-edit" onclick="return confirm ('Reset {{ user.email }} password to the default?')"><a href="/reset/{{ user.email }}">Reset</a></button>
+                                        <button class="btn-edit" onclick="return confirm ('Are you sure you want to delete this user?')"><a href="/delete/{{ user.email }}">Delete</a></button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        
+
+
+                    </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -11,7 +11,7 @@
                 <h3>Any of the following may indicate an ALS upgrade:</h3>
                 <div class="oneChoiceList">
                     <ul class="addl-list">
-                        <li><dose style="color:#f4b02a;font-weight:500">BGL &lt; 60mg/dl</dose> & <dose style="color:#f4b02a;font-weight:500">unable to take </dose><a href="{{url_for('medications.glucose')}}">Oral Glucose</a>;  <a href="{{'protocols.diabetic'}}">Diabetic Protocol</a></li>
+                        <li><dose style="color:#f4b02a;font-weight:500">BGL &lt; 60mg/dl</dose> & <dose style="color:#f4b02a;font-weight:500">unable to take </dose><a href="{{url_for('medications.glucose')}}">Oral Glucose</a>;  <a href="{{url_for('protocols.diabetic')}}">Diabetic Protocol</a></li>
                         <li><a href="{{url_for('protocols.traumaticInjury')}}">Traumatic Injury</a> requiring <b><dose style="color:#f4b02a;font-weight:500">Narcotic pain managment</b></dose> by a Paramedic
                             <ul>
                                 <li><i>Pain rating &gt; 7 and/or inability to take PO </i><a href="{{url_for('medications.acetaminophen')}}">Acetaminophen</a></li>
@@ -50,15 +50,15 @@
                                 <div class="add-margin-L">Exceptions:
                                 <ul>
                                     <li>GCS &lt; 12 is baseline for this patient</li>
-                                    <li><a href="{{'protocols.diabetic'}}">Hypoglycemia</a>; GCS corrected with <a href="{{url_for('medications.glucose')}}">Oral Glucose</a></li>
-                                    <li><a href="{{'protocols.overdose'}}">Overdose</a>; GCS corrected with <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a></li>
+                                    <li><a href="{{url_for('protocols.diabetic')}}">Hypoglycemia</a>; GCS corrected with <a href="{{url_for('medications.glucose')}}">Oral Glucose</a></li>
+                                    <li><a href="{{url_for('protocols.overdose')}}">Overdose</a>; GCS corrected with <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a></li>
                                 </ul>
                                 </div>
                             </li>
                             <li><dose style="color:#f4b02a;font-weight:500">RR &lt; 8</dose>
                                 <div class="add-margin-L">Exceptions:
                                 <ul>
-                                    <li><a href="{{'protocols.overdose'}}">Overdose</a>; RR corrected with <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a></li>
+                                    <li><a href="{{url_for('protocols.overdose')}}">Overdose</a>; RR corrected with <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a></li>
                                 </ul>
                                 </div>
                             </li>
@@ -91,7 +91,7 @@
                                 <div class="add-margin-L">Exceptions:
                                 <ul>
                                     <li>SpO<sub>2</sub> is baseline for patient</li>
-                                    <li><a href="{{'protocols.overdose'}}">Overdose</a>; SpO<sub>2</sub> corrected with <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a></li>
+                                    <li><a href="{{url_for('protocols.overdose')}}">Overdose</a>; SpO<sub>2</sub> corrected with <a href="{{url_for('medications.naloxone')}}">Naloxone (Narcan®)</a></li>
                                 </ul>
                                 </div>
                             </li>

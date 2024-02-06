@@ -85,3 +85,41 @@ def account():
         form.showAdditional.data = current_user.showAdditional
 
     return render_template('account.html', keys=keys, varTitle='Account', form=form)
+
+@users.route("/update_users", methods=['GET', 'POST'])
+@login_required
+def updateUsers():
+    keys = get_key_list()
+    if current_user.is_authenticated:
+        if not current_user.email == 'michaels3@medic911.com':
+           abort(403)
+        else:
+            pass
+    
+    else:
+        abort(403) 
+
+    users= User.query.order_by(User.email).all()
+
+    return render_template('update_users.html', keys=keys, varTitle='Manage Users', users=users)
+
+@users.route("/reset/<email>", methods=['GET', 'POST'])
+def reset(email):
+
+    selected_user = User.query.filter_by(email=email).first()
+    selected_user.password = bcrypt.generate_password_hash("password").decode('utf-8')
+
+    db.session.commit()
+    flash('Password has been reset to the default!','message_success')
+
+    return redirect(url_for('users.updateUsers'))   
+
+@users.route("/delete/<email>", methods=['GET', 'POST'])
+def delete(email):
+
+    selected_user = User.query.filter_by(email=email).first()
+    db.session.delete(selected_user)
+    db.session.commit()
+    flash('User has been deleted!','message_success')
+
+    return redirect(url_for('users.updateUsers'))   

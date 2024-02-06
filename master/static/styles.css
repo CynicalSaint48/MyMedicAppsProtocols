@@ -598,6 +598,15 @@ hr {
    font-size: small;
 }
 
+.btn-edit {
+   background: none;
+   border: 1px solid var(--fifty-border);
+   text-decoration: none;
+   color: var(--teal-accent);
+   cursor: pointer;
+   font-size: small;
+}
+
 .invalid-feedback span {
    color: red;
    font-size:small;
@@ -1022,6 +1031,24 @@ dope {
    justify-content: center;
 }
 
+.USERStable {
+   margin: 20px;
+   border-collapse: collapse;
+   width: 100%;
+}
+
+.USERStable tr {
+   width: 100%;
+}
+
+.USERStable th, td{
+   border: 1px solid var(--fifty-border);
+   width: 100%;
+   text-align: left;
+   padding: 5px
+}
+
+
 .phoneList {
    display: grid;
    grid-template-columns: 50px 250px 150px;
@@ -1079,7 +1106,6 @@ dope {
 .reduce {
    scale: 66%;
 }
-
 
 
 @media (max-width: 1200px){
